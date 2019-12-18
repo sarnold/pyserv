@@ -14,7 +14,13 @@ Example :
 ```bash
 serv 8088
 ```
+The output could be 
 
+```bash
+INFO:root:Starting HTTP SERVER at PORT 8088
+```
+
+GET and POST request example
 
 
 If no port is mentioned the server attempts to run on port 8080. 
