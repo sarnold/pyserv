@@ -34,6 +34,7 @@ setup(
 )
 
 try:
+    cwd = os.getcwd()
     python_file_path = os.popen('which python').read()
     python_dir = os.path.dirname(python_file_path)
-    
+    os.popen().read()
