@@ -1,11 +1,19 @@
 from distutils.core import setup
 import os
 import logging
+from os import path
+this_directory = path.abspath(path.dirname('__file__'))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
 #from setuptools import setup, find_packages
 setup(
   name = 'pyserv',         # How you named your package folder (MyLib)
   packages = ['pyserv'],   # Chose the same as "name"
   version = '0.4.0',      # 
+  long_description=long_description,
+  long_description_content_type='text/markdown',
+
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Python HTTPD Server to test GET and POST requests',   # Give a short description about your library
   author = 'Dheeraj M Pai',                   # Type in your name
