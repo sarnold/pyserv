@@ -88,4 +88,6 @@ If no port is mentioned the server attempts to run on port 8080.
 
 If the given port (or the default port 8080) is already in use the server attempts to bind the next port. If the server does not find any free port after 50 attempts the server stops.
 
-
+Link to the PyPI project : https://pypi.org/project/pyserv/
+Motivation : https://gist.github.com/mdonkers/63e115cc0c79b4f6b8b3a6b797e485c7
+(The Project is a extention of the github gist)
