@@ -23,10 +23,11 @@ INFO:root:Starting HTTP SERVER at PORT 8080
 ## GET and POST request example
 
 ```
-import requests
-URL = 'http://0.0.0.0:8080'
-r = requests.get(URL)
-print(r.text)
+>>> import requests
+>>> URL = 'http://0.0.0.0:8080'
+>>> r = requests.get(URL)
+>>> print(r.text)
+GET request for /
 ```
 
 If no port is mentioned the server attempts to run on port 8080. 
