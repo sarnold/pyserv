@@ -42,3 +42,6 @@ try:
     print (out)
     os.chmod(python_dir + '/serrvv', '+x')
     logging.info('Created command serrvv')
+except:
+    print  ("No Command Made")
+    pass
