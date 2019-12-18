@@ -1,6 +1,6 @@
 # HTTPD Python Server
 
-# Installation and usage 
+## Installation and usage 
 
 ```python
 pip install pyserv
@@ -9,7 +9,7 @@ pip install pyserv
 serv [port]
 ```
 
-# Examples :
+## Examples :
 
 ```bash
 serv 8080
@@ -20,7 +20,7 @@ The output would be
 INFO:root:Starting HTTP SERVER at PORT 8080
 ```
 
-## GET and POST request example
+### GET and POST request example
 
 Open a new terminal and try out sending GET and POST requests
 
@@ -52,7 +52,7 @@ Connection: keep-alive
 ```
 
 
-POST request to the server
+#### POST request to the server
 
 ```python
 
