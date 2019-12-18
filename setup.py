@@ -4,7 +4,7 @@ import logging
 #from setuptools import setup, find_packages
 setup(
   name = 'pyserv',         # How you named your package folder (MyLib)
-  packages = ['saenews'],   # Chose the same as "name"
+  packages = ['pyserv'],   # Chose the same as "name"
   version = '0.3.0',      # 
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'required code for saenews',   # Give a short description about your library
