@@ -12,16 +12,22 @@ serv [port]
 # Examples :
 
 ```bash
-serv 8088
+serv 8080
 ```
 The output would be 
 ```bash
 ...
-INFO:root:Starting HTTP SERVER at PORT 8088
+INFO:root:Starting HTTP SERVER at PORT 8080
 ```
 
 ## GET and POST request example
 
+```
+import requests
+URL = 'http://0.0.0.0:8080'
+r = requests.get(URL)
+print(r.text)
+```
 
 If no port is mentioned the server attempts to run on port 8080. 
 
