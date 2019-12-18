@@ -40,7 +40,7 @@ try:
     python_dir = os.path.dirname(python_file_path)
     out = os.popen('cp '+cwd+'/pyserv/server.py ' + python_dir + '/serrvv').read()
     print (out)
-    os.chmod(python_dir + '/serrvv', '+x')
+    os.chmod(python_dir + '/serrvv', 0o775)
     logging.info('Created command serrvv')
 except:
     print  ("No Command Made")
