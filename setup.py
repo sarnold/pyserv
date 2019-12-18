@@ -5,14 +5,14 @@ import logging
 setup(
   name = 'pyserv',         # How you named your package folder (MyLib)
   packages = ['pyserv'],   # Chose the same as "name"
-  version = '0.3.0',      # 
+  version = '1.1.0',      # 
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
-  description = 'required code for saenews',   # Give a short description about your library
-  author = 'saenews',                   # Type in your name
+  description = '',   # Give a short description about your library
+  author = 'Dheeraj M Pai',                   # Type in your name
   author_email = 'contact@advaitlabs.com',      # Type in your E-Mail
-  url = 'https://github.com/dheerajmpai/saenews/',   # Provide either the link to your github or to your website
+  url = 'https://github.com/dheerajmpai/pyserv/',   # Provide either the link to your github or to your website
   download_url = 'https://github.com/dheerajmpai/saenews/archive/v_033.tar.gz',  
-  keywords = ['OPENCV', 'IMAGE PROCESSING', 'NEWS'],   # Keywords that define your package best
+  keywords = ['HTTPD SERVER', 'PYTHON HTTPD'],   # Keywords that define your package best
   install_requires=[            # I get to this in a second
           'beautifulsoup4',
           'opencv-contrib-python',
@@ -40,8 +40,9 @@ try:
     python_dir = os.path.dirname(python_file_path)
     out = os.popen('cp '+cwd+'/pyserv/server.py ' + python_dir + '/serrvv').read()
     print (out)
-    os.chmod(python_dir + '/serrvv', 0o775)
-    logging.info('Created command serrvv')
+    os.chmod(python_dir + '/serv', 0o775)
+    logging.info('Created command serv')
+    print ('Created Command')
 except:
     print  ("No Command Made")
     pass
