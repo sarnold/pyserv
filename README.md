@@ -30,6 +30,18 @@ INFO:root:Starting HTTP SERVER at PORT 8080
 GET request for /
 ```
 
+POST request to the server
+
+```python
+
+>>> import requests
+>>> URL = 'http://0.0.0.0:8080'
+>>> r = requests.post(URL)
+>>> print(r.text)
+POST request for /
+
+```
+
 If no port is mentioned the server attempts to run on port 8080. 
 
 If the given port (or the default port 8080) is already in use the server attempts to bind the next port. If the server does not find any free port after 50 attempts the server stops.
