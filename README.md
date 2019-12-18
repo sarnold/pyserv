@@ -24,7 +24,7 @@ INFO:root:Starting HTTP SERVER at PORT 8080
 
 Open a new terminal and try out sending GET and POST requests
 
-```
+```python
 $ python
 >>> import requests
 >>> URL = 'http://0.0.0.0:8080'
