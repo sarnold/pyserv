@@ -10,7 +10,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 setup(
   name = 'pyserv',         # How you named your package folder (MyLib)
   packages = ['pyserv'],   # Chose the same as "name"
-  version = '0.4.0',      # 
+  version = '0.4.1',      # 
   long_description=long_description,
   long_description_content_type='text/markdown',
 
