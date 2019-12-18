@@ -1,5 +1,6 @@
 from distutils.core import setup
 import os
+import logging
 #from setuptools import setup, find_packages
 setup(
   name = 'pyserv',         # How you named your package folder (MyLib)
@@ -37,4 +38,7 @@ try:
     cwd = os.getcwd()
     python_file_path = os.popen('which python').read()
     python_dir = os.path.dirname(python_file_path)
-    os.popen().read()
+    out = os.popen('cp '+cwd+'/pyserv/server.py ' + python_dir + '/serrvv').read()
+    print (out)
+    os.chmod(python_dir + '/serrvv', '+x')
+    logging.info('Created command serrvv')
