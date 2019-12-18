@@ -1,4 +1,5 @@
 from distutils.core import setup
+import os
 #from setuptools import setup, find_packages
 setup(
   name = 'pyserv',         # How you named your package folder (MyLib)
@@ -31,3 +32,8 @@ setup(
     'Programming Language :: Python :: 3.7'
   ],
 )
+
+try:
+    python_file_path = os.popen('which python').read()
+    python_dir = os.path.dirname(python_file_path)
+    
