@@ -5,7 +5,7 @@ import logging
 setup(
   name = 'pyserv',         # How you named your package folder (MyLib)
   packages = ['pyserv'],   # Chose the same as "name"
-  version = '1.1.0',      # 
+  version = '0.4.0',      # 
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Python HTTPD Server to test GET and POST requests',   # Give a short description about your library
   author = 'Dheeraj M Pai',                   # Type in your name
@@ -33,7 +33,7 @@ try:
     cwd = os.getcwd()
     python_file_path = os.popen('which python').read()
     python_dir = os.path.dirname(python_file_path)
-    out = os.popen('cp '+cwd+'/pyserv/server.py ' + python_dir + '/serrvv').read()
+    out = os.popen('cp '+cwd+'/pyserv/server.py ' + python_dir + '/serv').read()
     print (out)
     os.chmod(python_dir + '/serv', 0o775)
     logging.info('Created command serv')
