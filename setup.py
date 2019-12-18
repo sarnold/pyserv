@@ -7,18 +7,13 @@ setup(
   packages = ['pyserv'],   # Chose the same as "name"
   version = '1.1.0',      # 
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
-  description = '',   # Give a short description about your library
+  description = 'Python HTTPD Server to test GET and POST requests',   # Give a short description about your library
   author = 'Dheeraj M Pai',                   # Type in your name
   author_email = 'contact@advaitlabs.com',      # Type in your E-Mail
   url = 'https://github.com/dheerajmpai/pyserv/',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/dheerajmpai/saenews/archive/v_033.tar.gz',  
-  keywords = ['HTTPD SERVER', 'PYTHON HTTPD'],   # Keywords that define your package best
+  download_url = 'https://github.com/dheerajmpai/pyserv/',  
+  keywords = ['HTTPD SERVER', 'PYTHON HTTPD', 'SERVER', 'GET', 'REQUESTS', 'HTTPD'],   # Keywords that define your package best
   install_requires=[            # I get to this in a second
-          'beautifulsoup4',
-          'opencv-contrib-python',
-          'Pillow',
-          'matplotlib'
-          
       
       ],
   classifiers=[
