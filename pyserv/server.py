@@ -4,8 +4,12 @@ Very simple HTTP server in python for logging requests
 Usage::
     ./server.py [<port>]
 """
-from http.server import BaseHTTPRequestHandler, HTTPServer
+import sys
 import logging
+
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -15,7 +19,8 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-    
+
+
 class S(BaseHTTPRequestHandler):
     def _set_response(self):
         self.send_response(200)
@@ -35,6 +40,7 @@ class S(BaseHTTPRequestHandler):
 
         self._set_response()
         self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
+
 
 def run(server_class=HTTPServer, handler_class=S, port=8080):
     logging.basicConfig(level=logging.INFO)
@@ -59,10 +65,17 @@ def run(server_class=HTTPServer, handler_class=S, port=8080):
     httpd.server_close()
     logging.info('Stopping httpd...\n')
 
-if __name__ == '__main__':
-    from sys import argv
 
-    if len(argv) == 2:
-        run(port=int(argv[1]))
+def main(args=None):
+    """The main wrapper."""
+    if args is None:
+        args = sys.argv[1:]
+
+    if len(args) == 1:
+        run(port=int(args[0]))
     else:
         run()
+
+
+if __name__ == '__main__':
+    sys.exit(main())
