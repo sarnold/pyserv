@@ -117,7 +117,7 @@ Original gist: https://gist.github.com/mdonkers/63e115cc0c79b4f6b8b3a6b797e485c7
     :target: https://github.com/sarnold/pyserv/actions/workflows/release.yml
     :alt: Release Status
 
-.. |pylint| image:: https://raw.githubusercontent.com/sarnold/pyserv/badges/main/pylint-score.svg
+.. |pylint| image:: https://raw.githubusercontent.com/sarnold/pyserv/badges/master/pylint-score.svg
     :target: https://github.com/sarnold/pyserv/actions/workflows/pylint.yml
     :alt: Pylint score
 
