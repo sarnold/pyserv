@@ -7,6 +7,14 @@ requires = [
 
 build-backend = "setuptools.build_meta"
 
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["test",]
+log_cli =  false
+doctest_optionflags = ["ELLIPSIS", "NORMALIZE_WHITESPACE",]
+addopts = "--strict-markers"
+markers = "subscript"
+
 [tool.coverage.run]
 branch = true
 source = ["pyserv"]
@@ -38,7 +46,7 @@ exclude = '''
   | build
   | docs
   | dist
-  | tests
+  | test
 )/
 '''
 

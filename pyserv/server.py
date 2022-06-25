@@ -15,6 +15,8 @@ class GetHandler(SimpleHTTPRequestHandler):
     """
     Wrapper class to munge the incoming request path from Dialog OTA.
     Runs `urlparse` on the url and updates the GET handler path.
+
+    :param SimpleHTTPRequestHandler: imported from ``http.server``
     """
     def do_GET(self):
         logging.info('Path in: %s', self.path)
@@ -28,6 +30,7 @@ class GetHandler(SimpleHTTPRequestHandler):
 def parse_url(ota_url):
     """
     Parse the url sent by OTA command for file path and netloc.
+
     :param ota_url: broken GET path if full url
     :return tuple: netloc and path from ``urlparse``
     """
@@ -43,8 +46,9 @@ def run(server_class=TCPServer, handler_class=GetHandler, port=8080):
     """
     Run command wrapper for console entry point; init logging and server,
     run the server, stop the server.
-    :param server_class: should be TCPServer
-    :param handler_class: the GetHandler wrapper
+
+    :param server_class: imported from ``socketserver``
+    :param handler_class: the ``GetHandler`` wrapper
     :param port: server listen port
     """
     logging.basicConfig(level=logging.INFO)
