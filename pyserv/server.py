@@ -10,14 +10,16 @@ from urllib.parse import urlparse
 
 
 class GetHandler(SimpleHTTPRequestHandler):
-
+    """
+    Wrapper class to munge the incoming request path from Dialog OTA.
+    Runs `urlparse` on the url and updates the GET handler path.
+    """
     def do_GET(self):
-        # self.send_response(200, self.headers)
-        # for h in self.headers:
-            # self.send_header(h, self.headers[h])
-        # self.end_headers()
-        logging.info(self.headers)
-        SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
+        host_str, file_path = parse_url(self.path)
+        self.path = file_path
+        logging.info(f'Path: {self.path}')
+        logging.info(f'Headers:\n{self.headers}\n')
+        SimpleHTTPRequestHandler.do_GET(self)
 
 
 def parse_url(ota_url):
@@ -27,8 +29,8 @@ def parse_url(ota_url):
     get_data = urlparse(str(ota_url))
     file_path = get_data.path
     host_str = get_data.netloc
-    print("request file was {}\n".format(file_path.lstrip("/")))
-    print("request host was {}\n".format(host_str))
+    logging.debug("request file: {}".format(file_path.lstrip("/")))
+    logging.debug("request host: {}".format(host_str))
     return host_str, file_path
 
 
