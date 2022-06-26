@@ -4,13 +4,15 @@
 
 |ci| |wheels| |release| |badge|
 
-|pylint|
+|pre| |pylint|
 
 |tag| |license| |python|
 
-A Python HTTP server to handle simple GET requests for local files that
+A Python_ HTTP server to handle simple GET requests for local files that
 also provides logging of requests/headers and an extra "feature" to handle
 (broken) clients that send the full URL instead of the GET file path.
+
+.. _Python: https://docs.python.org/3/library/http.server.html
 
 Quick Start
 ===========
@@ -33,6 +35,7 @@ Then run your update command and provide a URL something like::
 where ``PORT`` is the port used below and ``fw_update.img`` is the name
 of your OTA update file.
 
+.. _OTA: https://en.wikipedia.org/wiki/Over-the-air_programming
 
 Install with pip
 ----------------
@@ -80,7 +83,6 @@ another project, use something like this::
 
 
 .. _Tox: https://github.com/tox-dev/tox
-.. _OTA: https://en.wikipedia.org/wiki/Over-the-air_programming
 
 
 GET request example
@@ -93,7 +95,7 @@ Open a new terminal and try out sending a GET request::
   >>> URL = 'http://0.0.0.0:8080'
   >>> r = requests.get(URL)
   >>> print(r.text)
-  GET request for /
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
 On the server side, ie, inside your virtual environment, you should see:
 
