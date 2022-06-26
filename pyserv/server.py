@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
-Simple HTTP server with broken GET rewriting for serving FW upgrades.
+Simple HTTP server with broken GET rewriting for serving FW upgrades or
+other local files in an engineering development environment.
 """
 
 import logging

@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# generated/user files
+pyserv/_version.py
+
 # Distribution / packaging
 .Python
 build/
