@@ -15,6 +15,16 @@ also provides logging of requests/headers and an extra "feature" to handle
 Quick Start
 ===========
 
+The primary reason this version of the "project" exists is serving OTA_
+firmware images to a small device over wifi, eg, an Android device or
+similar that requires an HTTP URL for firmware img/zip files. If that
+is what you need, then make sure the FW update files you want are in
+a directory in your virtual environment and run the server from that
+directory.  The simple way to that is::
+
+* follow the steps below to create a virtual env (either venv or tox)
+* copy your FW files into the source dir, then start the server
+
 Install with pip
 ----------------
 
@@ -33,11 +43,7 @@ The output should be::
 
   INFO:root:Starting HTTP SERVER at PORT 8080
 
-To install the latest release use this::
-
-  $ pip install -U -f https://github.com/sarnold/pyserv/releases/ pyserv
-
-The alternative to python venv is the ``tox`` test driver.  If you have it
+The alternative to python venv is the Tox_ test driver.  If you have it
 installed already, clone this repository and try the following commands
 from the pyserv source directory.
 
@@ -56,6 +62,16 @@ To run pylint::
           again while inside the virtual environment. By default Tox
           environments are created under ``.tox/`` and named after the
           env argument (eg, py).
+
+
+To install the latest release, eg with your own ``tox.ini`` file in
+another project, use something like this::
+
+  $ pip install -U -f https://github.com/sarnold/pyserv/releases/ pyserv
+
+
+.. _Tox: https://github.com/tox-dev/tox
+.. _OTA: https://en.wikipedia.org/wiki/Over-the-air_programming
 
 
 GET request example
