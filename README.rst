@@ -20,10 +20,19 @@ firmware images to a small device over wifi, eg, an Android device or
 similar that requires an HTTP URL for firmware img/zip files. If that
 is what you need, then make sure the FW update files you want are in
 a directory in your virtual environment and run the server from that
-directory.  The simple way to that is::
+directory.  The simple way to do that is:
 
 * follow the steps below to create a virtual env (either venv or tox)
+* connect your dev host to the same wifi network as the device
 * copy your FW files into the source dir, then start the server
+
+Then run your update command and provide a URL something like::
+
+  http://<dev_host_wifi_IP>:PORT/fw_update.img
+
+where ``PORT`` is the port used below and ``fw_update.img`` is the name
+of your OTA update file.
+
 
 Install with pip
 ----------------
