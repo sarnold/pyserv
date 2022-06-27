@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 """
-Simple HTTP server with broken GET rewriting for serving FW upgrades.
+Simple HTTP server with broken GET rewriting for serving FW upgrades or
+other local files in an engineering development environment.
 """
 
 import logging
@@ -18,6 +20,7 @@ class GetHandler(SimpleHTTPRequestHandler):
 
     :param SimpleHTTPRequestHandler: imported from ``http.server``
     """
+
     def do_GET(self):
         logging.info('Path in: %s', self.path)
         _, file_path = parse_url(self.path)
@@ -58,10 +61,10 @@ def run(server_class=TCPServer, handler_class=GetHandler, port=8080):
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        pass
-
-    httpd.server_close()
-    logging.info('Stopping httpd...\n')
+        print("")
+        print("Exiting ...")
+        httpd.shutdown()
+        httpd.socket.close()
 
 
 def main(args=None):
