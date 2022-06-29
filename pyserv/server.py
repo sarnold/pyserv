@@ -45,18 +45,29 @@ def parse_url(ota_url):
     return host_str, file_path
 
 
-def run(server_class=TCPServer, handler_class=GetHandler, port=8080):
+def serv_init(listen_port, server_class=TCPServer, handler_class=GetHandler):
     """
-    Run command wrapper for console entry point; init logging and server,
-    run the server, stop the server.
+    Init http server for handoff; init logging and server/handler classes.
 
     :param server_class: imported from ``socketserver``
     :param handler_class: the ``GetHandler`` wrapper
-    :param port: server listen port
+    :param listen_port: server listen port
+    :return httpd_handler:
     """
     logging.basicConfig(level=logging.INFO)
-    server_address = ('', port)
-    httpd = server_class(server_address, handler_class)
+    server_address = ('', listen_port)
+    httpd_handler = server_class(server_address, handler_class)
+    return httpd_handler
+
+
+def fg_run(port=8080):
+    """
+    Run foreground command wrapper for console entry point;
+    init logging and server, run the server, stop the server.
+
+    :param port: server listen port
+    """
+    httpd = serv_init(listen_port=port)
     logging.info('Starting HTTP SERVER at PORT %s', port)
     try:
         httpd.serve_forever()
@@ -73,9 +84,9 @@ def main(args=None):
         args = sys.argv[1:]
 
     if len(args) == 1:
-        run(port=int(args[0]))
+        fg_run(port=int(args[0]))
     else:
-        run()
+        fg_run()
 
 
 if __name__ == '__main__':

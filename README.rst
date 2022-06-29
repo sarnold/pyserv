@@ -12,6 +12,11 @@ A Python_ HTTP server to handle simple GET requests for local files that
 also provides logging of requests/headers and an extra "feature" to handle
 (broken) clients that send the full URL instead of the GET file path.
 
+.. important:: This is **not** intended for Internet/intranet use and
+              has absolutely **no** security. This is intended *only*
+              for personal use on a local subnet, eg, a local WIFI
+              network *you* control. You have been warned.
+
 .. _Python: https://docs.python.org/3/library/http.server.html
 
 Quick Start
@@ -70,7 +75,7 @@ To run pylint::
 
 .. note:: After installing in dev mode, use the environment created by
           Tox just like any other Python virtual environment.  The dev
-          install mode of Pip allows you to edit the script and run it
+          install mode of Pip allows you to edit the code and run it
           again while inside the virtual environment. By default Tox
           environments are created under ``.tox/`` and named after the
           env argument (eg, py).
