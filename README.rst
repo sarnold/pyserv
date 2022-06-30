@@ -13,9 +13,9 @@ also provides logging of requests/headers and an extra "feature" to handle
 (broken) clients that send the full URL instead of the GET file path.
 
 .. important:: This is **not** intended for Internet/intranet use and
-              has absolutely **no** security. This is intended *only*
-              for personal use on a local subnet, eg, a local WIFI
-              network *you* control. You have been warned.
+  has absolutely **no** security. This is intended *only* for personal
+  use on a local subnet, eg, a local WIFI network *you* control. You
+  have been warned.
 
 .. _Python: https://docs.python.org/3/library/http.server.html
 
@@ -26,8 +26,8 @@ The primary reason this version of the "project" exists is serving OTA_
 firmware images to a small device over wifi, eg, an Android device or
 similar that requires an HTTP URL for firmware img/zip files. If that
 is what you need, then make sure the FW update files you want are in
-a directory in your virtual environment and run the server from that
-directory.  The simple way to do that is:
+a directory in your virtual environment and run the ``serv`` command
+from that directory.  The simple way to do that is:
 
 * follow the steps below to create a virtual env (either venv or tox)
 * connect your dev host to the same wifi network as the device
@@ -58,7 +58,7 @@ From source::
 
 The output should be::
 
-  INFO:root:Starting HTTP SERVER at PORT 8080
+  INFO:root:Starting HTTP SERVER at PORT :8080
 
 The alternative to python venv is the Tox_ test driver.  If you have it
 installed already, clone this repository and try the following commands
@@ -92,6 +92,13 @@ another project, use something like this::
 
 GET request example
 -------------------
+
+In the repo, use the tox env and start the server::
+
+  $ tox -e py
+  $ source .tox/py/bin/activate
+  (py) $ serv
+  INFO:root:Starting HTTP SERVER at :8080
 
 Open a new terminal and try out sending a GET request::
 

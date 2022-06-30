@@ -45,30 +45,31 @@ def parse_url(ota_url):
     return host_str, file_path
 
 
-def serv_init(listen_port, server_class=TCPServer, handler_class=GetHandler):
+def serv_init(iface, port, server_class=TCPServer, handler_class=GetHandler):
     """
     Init http server for handoff; init logging and server/handler classes.
 
+    :param iface: server listen interface
+    :param port: server listen port
     :param server_class: imported from ``socketserver``
     :param handler_class: the ``GetHandler`` wrapper
-    :param listen_port: server listen port
-    :return httpd_handler:
+    :return httpd_handler: httpd handle, eg, httpd.serve_forever()
     """
     logging.basicConfig(level=logging.INFO)
-    server_address = ('', listen_port)
+    server_address = (iface, port)
     httpd_handler = server_class(server_address, handler_class)
     return httpd_handler
 
 
-def fg_run(port=8080):
+def serv_run(iface='', port=8080):
     """
-    Run foreground command wrapper for console entry point;
+    Run in foreground command wrapper for console entry point;
     init logging and server, run the server, stop the server.
 
     :param port: server listen port
     """
-    httpd = serv_init(listen_port=port)
-    logging.info('Starting HTTP SERVER at PORT %s', port)
+    httpd = serv_init(iface, port)
+    logging.info('Starting HTTP SERVER at %s:%s', iface, port)
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
@@ -79,14 +80,22 @@ def fg_run(port=8080):
 
 
 def main(args=None):
-    """The entry point wrapper."""
+    """
+    The serv entry point wrapper; both args are optional, but you must
+    provide either PORT or PORT *and* IFACE.
+    Usage::
+
+      serv [PORT] [IFACE]
+    """
     if args is None:
         args = sys.argv[1:]
 
     if len(args) == 1:
-        fg_run(port=int(args[0]))
+        serv_run(port=int(args[0]))
+    elif len(args) == 2:
+        serv_run(port=int(args[0]), iface=args[1])
     else:
-        fg_run()
+        serv_run()
 
 
 if __name__ == '__main__':
