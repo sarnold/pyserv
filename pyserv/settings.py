@@ -10,6 +10,18 @@ from appdirs import AppDirs
 from pyserv import version
 
 
+def init_dirs(dirs):
+    """
+    Check and create user dirs for logs and PID (doc root is assumed to
+    already exist).
+
+    :param: list of Path objs
+    """
+    for app_path in dirs:
+        if not app_path.exists():
+            app_path.mkdir(parents=True, exist_ok=True)
+
+
 def get_userdirs():
     """
     Set platform-agnostic user directory paths via appdirs.
@@ -39,12 +51,14 @@ def show_uservars():
 
 logdir, cachedir, docroot = get_userdirs()
 
-DEBUG = os.getenv('DEBUG', default=False)
+DEBUG = os.getenv('DEBUG', default=1)
 PORT = os.getenv('PORT', default='8080')
 IFACE = os.getenv('IFACE', default='127.0.0.1')
 HOMEDIR = os.getenv('DOCROOT', default=docroot)
 LOGFILE = os.getenv('LOGFILE', default=logdir.joinpath('httpd.log'))
 PIDFILE = os.getenv('PIDFILE', default=cachedir.joinpath('httpd.pid'))
+LOGDIR = Path(LOGFILE).resolve().parent
+PIDDIR = Path(PIDFILE).resolve().parent
 
 # some test output
 if __name__ == '__main__':
