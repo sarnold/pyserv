@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
@@ -29,6 +28,18 @@ class GetHandler(SimpleHTTPRequestHandler):
         for key, val in self.headers.items():
             logging.info('  %s: %s', key, val)
         SimpleHTTPRequestHandler.do_GET(self)
+
+    def log_message(self, format, *args):  # pylint: disable=W0622
+        """
+        We need a custom log handler, otherwise this message goes to
+        `sys.stdout` only.
+        """
+        logging.info(
+            "%s - - [%s] %s",
+            self.address_string(),
+            self.log_date_time_string(),
+            format % args,
+        )
 
 
 def parse_url(ota_url):

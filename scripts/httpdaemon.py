@@ -5,7 +5,6 @@ import datetime
 import logging
 import sys
 import threading
-import time
 from datetime import timezone
 from http.server import ThreadingHTTPServer
 
@@ -26,7 +25,7 @@ from pyserv.settings import (
 )
 
 user_dirs = [LOGDIR, PIDDIR]
-logger = logging.getLogger('httpd')
+logger = logging.getLogger(__name__)
 timestamp = datetime.datetime.now(timezone.utc)  # use local time for console
 
 
@@ -64,13 +63,12 @@ class servDaemon(Daemon):
 
     def cleanup(self):
         """Cleanup is optional"""
-        print("Exiting ...")
         servd.stop()
 
 
 if __name__ == "__main__":
     init_dirs(user_dirs)
-    setup_logging(DEBUG, LOGFILE)
+    setup_logging(DEBUG, LOGFILE, 'servd')
 
     if len(sys.argv) == 2:
         arg = sys.argv[1]

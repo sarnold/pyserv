@@ -51,7 +51,7 @@ def show_uservars():
 
 logdir, cachedir, docroot = get_userdirs()
 
-DEBUG = os.getenv('DEBUG', default=1)
+DEBUG = os.getenv('DEBUG', default=0)
 PORT = os.getenv('PORT', default='8080')
 IFACE = os.getenv('IFACE', default='127.0.0.1')
 HOMEDIR = os.getenv('DOCROOT', default=docroot)
