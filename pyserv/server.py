@@ -25,7 +25,9 @@ class GetHandler(SimpleHTTPRequestHandler):
         _, file_path = parse_url(self.path)
         self.path = file_path  # pylint: disable=W0201
         logging.info('Path out: %s', self.path)
-        logging.info('Headers:\n%s\n', self.headers)
+        logging.info('Headers:')
+        for key, val in self.headers.items():
+            logging.info('  %s: %s', key, val)
         SimpleHTTPRequestHandler.do_GET(self)
 
 
@@ -40,7 +42,7 @@ def parse_url(ota_url):
     file_path = get_data.path
     host_str = get_data.netloc
     logging.debug('request file: %s', file_path.lstrip("/"))
-    logging.debug('request host: %s', host_str)
+    logging.debug('request host: %s', host_str if host_str else 'None')
     return host_str, file_path
 
 
