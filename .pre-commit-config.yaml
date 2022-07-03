@@ -14,7 +14,7 @@ repos:
       - id: check-added-large-files
       - id: check-case-conflict
       - id: check-merge-conflict
-      #- id: check-symlinks
+      - id: check-symlinks
       - id: debug-statements
       #- id: requirements-txt-fixer
       - id: check-executables-have-shebangs
