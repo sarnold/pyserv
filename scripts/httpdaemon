@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import argparse
 import datetime
 import logging
 import sys
@@ -57,12 +58,15 @@ class GetServer(threading.Thread):
 
 class servDaemon(Daemon):
     def run(self):
-        """Daemon needs a run method"""
+        """
+        Daemon needs a run method. In this case we need to instantiate
+        our GetServer obj here, ie, *after* the Daemon object.
+        """
         servd = GetServer(IFACE, PORT)
         servd.start()
 
     def cleanup(self):
-        """Cleanup is optional"""
+        """And we need a cleanup method."""
         servd.stop()
 
 
