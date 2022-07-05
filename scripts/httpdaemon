@@ -72,7 +72,7 @@ class servDaemon(Daemon):
 
 if __name__ == "__main__":
     init_dirs(user_dirs)
-    setup_logging(DEBUG, LOGFILE, 'servd')
+    setup_logging(DEBUG, LOGFILE, 'httpd')
 
     if len(sys.argv) == 2:
         arg = sys.argv[1]

@@ -64,8 +64,8 @@ def show_uservars():
     print(f"  PORT: {PORT}")
     print(f"  IFACE: {IFACE}")
     print(f"  DOCROOT: {HOMEDIR}")
-    print(f"  LOGFILE: {LOGFILE}")
-    print(f"  PIDFILE: {PIDFILE}")
+    print(f"  LOGDIR: {LOGDIR}")
+    print(f"  PIDDIR: {PIDDIR}")
     print("-" * 79)
 
 

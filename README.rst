@@ -8,8 +8,8 @@
 
 |tag| |license| |python|
 
-A Python_ HTTP server to handle simple GET requests for local files that
-also provides logging of requests/headers and an extra "feature" to handle
+A `Python HTTP server`_ to handle simple GET requests for local files that
+provides logging of requests/headers and an extra "feature" to handle
 (broken) clients that send the full URL instead of the GET file path.
 
 .. important:: This is **not** intended for Internet/intranet use and
@@ -17,7 +17,7 @@ also provides logging of requests/headers and an extra "feature" to handle
   use on a local subnet, eg, a local WIFI network *you* control. You
   have been warned.
 
-.. _Python: https://docs.python.org/3/library/http.server.html
+.. _Python HTTP server: https://docs.python.org/3/library/http.server.html
 
 Quick Start
 ===========
@@ -31,9 +31,9 @@ from that directory.  The simple way to do that is:
 
 * follow the steps below to create a virtual env (either venv or tox)
 * connect your dev host to the same wifi network as the device
-* copy your FW files into the source dir, then start the server
+* copy your FW files into the source directory, then start the server
 
-Then run your update command and provide a URL something like::
+In another terminal, run your update command and provide a URL like this::
 
   http://<dev_host_wifi_IP>:PORT/fw_update.img
 
@@ -42,10 +42,77 @@ of your OTA update file.
 
 .. _OTA: https://en.wikipedia.org/wiki/Over-the-air_programming
 
+Console command options
+-----------------------
+
+This package now installs two different command line interfaces;
+the ``serv`` command mentioned above, and a second  command
+called ``httpdaemon``.  The ``serv`` command is the standard Python
+console entry point, and has these minimal "features":
+
+* the document root is always the current directory
+* with no args, the default port is ``8080`` and the "server" listens
+  on *all* active interfaces
+* the *only* allowed args are either port, or port *and* interface
+
+The ``httpdaemon`` command is a stand-alone `Python daemon`_ with the same
+core server code, as well as a default user configuration adjustable via
+environment variables, and the following "extra" features:
+
+* allowed command-line args are ``start | stop | restart | status``
+* default port is ``8080`` and listen interface is ``127.0.0.1``
+* default XDG user paths are set for pid and log files
+* environment values are checked first; if not set, fallback to defaults
+* clean logging using daemon package logger config
+
+In the repository source directory, run the ``tox -e py`` command to see
+default configuration values with path overrides set by Tox::
+
+  $ tox -e py
+  ...
+  py run-test: commands[0] | python pyserv/settings.py
+  Python version: 3.9.7 (default, Mar 19 2022, 18:11:11)
+  [GCC 11.1.0]
+  -------------------------------------------------------------------------------
+  pyserv 1.2.1.dev8
+  Simple HTTP server with GET rewriting and request/header logging.
+
+  Default user vars:
+    log_dir: /home/user/.cache/pyserv/1.2.1.dev8/log
+    pid_dir: /home/user/.cache/pyserv/1.2.1.dev8
+    doc_root: /home/user/src/pyserv
+
+  Current environment values:
+    DEBUG: 0
+    PORT: 8080
+    IFACE: 127.0.0.1
+    DOCROOT: /home/user/src/pyserv
+    LOGDIR: /home/user/src/pyserv/.tox/py/log
+    PIDDIR: /home/user/src/pyserv/.tox/py/tmp
+  -------------------------------------------------------------------------------
+
+Use any of the variables under "Current environment values" to set your
+own custom environment.
+
+**One small wrinkle**
+
+The simple server command should run on all major platforms, however, the
+daemonizer package is the classic POSIX forking daemon, which is incompatible
+with Windows.  The current packaging workaround is to make the daemon script
+dependencies optional. This means you *must* install using the extra ``dev``
+identifier on the install command or dependency spec, eg:
+
+* with daemon script support: ``pip install pyserv[dev]``
+* without dameon script support: ``pip install pyserv``
+
+
+.. _Python daemon: https://github.com/sarnold/python-daemonizer
+
+
 Install with pip
 ----------------
 
-This updated fork of pyserv is *not* published on PyPI, thus use one of
+This refactored fork of pyserv is *not* published on PyPI, thus use one of
 the following commands to install the latest pyserv in a Python virtual
 environment on any platform.
 
