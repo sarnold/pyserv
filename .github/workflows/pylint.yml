@@ -48,6 +48,10 @@ jobs:
         python -m pip install --upgrade pip wheel
         pip install tox tox-gh-actions
 
+    #- name: Run tox
+      #run: |
+        #bash -c 'tox -e lint'
+
     - name: Run pylint
       id: analyze
       env:

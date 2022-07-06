@@ -1,0 +1,4 @@
+# daemon requirements, useful for tox/pip
+-f https://github.com/sarnold/python-daemonizer/releases/
+daemonizer>=0.3.1; sys_platform!="win32"
+appdirs

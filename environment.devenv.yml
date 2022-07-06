@@ -1,0 +1,8 @@
+name: pyserv-test
+
+dependencies:
+  - python
+  - setuptools
+  - versioningit
+  - appdirs
+  - pip
