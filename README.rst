@@ -96,15 +96,8 @@ own custom environment.
 
 **One small wrinkle**
 
-The simple server command should run on all major platforms, however, the
-daemonizer package is the classic POSIX forking daemon, which is incompatible
-with Windows.  The current packaging workaround is to make the daemon script
-dependencies optional. This means you *must* install using the extra ``dev``
-identifier on the install command or dependency spec, eg:
-
-* with daemon script support: ``pip install pyserv[dev]``
-* without dameon script support: ``pip install pyserv``
-
+* the ``httpdaemon`` script *will not* run on Windows (however
+  the ``serv`` command should work fine)
 
 .. _Python daemon: https://github.com/sarnold/python-daemonizer
 
