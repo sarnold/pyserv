@@ -100,14 +100,16 @@ if __name__ == "__main__":
     setup_logging(DEBUG, LOGFILE, 'httpd')
 
     if not platform_check():
-        logging.error('Platform requirements are not sufficiently POSIX!')
-        raise ChildProcessError('Cannot fork child processes.')
+        raise OSError(f'Incompatible platform type "{sys.platform}"')
 
     if len(sys.argv) == 2:
         arg = sys.argv[1]
         if arg in ('start', 'stop', 'restart', 'status'):
             d = servDaemon(PIDFILE, home_dir=HOMEDIR, verbose=0, use_cleanup=True)
             getattr(d, arg)()
+        else:
+            print("usage: %s start|stop|restart|status" % sys.argv[0])
+            sys.exit(2)
     else:
         print("usage: %s start|stop|restart|status" % sys.argv[0])
         sys.exit(2)
