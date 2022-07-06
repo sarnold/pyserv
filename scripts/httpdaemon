@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import argparse
 import datetime
 import logging
+import os
 import sys
 import threading
 from datetime import timezone
@@ -28,6 +28,26 @@ from pyserv.settings import (
 user_dirs = [LOGDIR, PIDDIR]
 logger = logging.getLogger(__name__)
 timestamp = datetime.datetime.now(timezone.utc)  # use local time for console
+
+
+def platform_check():
+    """
+    Check to see if we think we are POSIX.
+
+    :return: True if POSIX, else False
+    """
+    valid_os = False
+    myname = sys.platform
+    is_posix = os.name == 'posix'
+    posix_list = [
+        'linux',
+        'darwin',
+        'openbsd',
+        'freebsd',
+    ]
+    valid_os = any([x for x in posix_list if x in myname and is_posix])
+
+    return valid_os
 
 
 class GetServer(threading.Thread):
@@ -62,8 +82,13 @@ class servDaemon(Daemon):
         Daemon needs a run method. In this case we need to instantiate
         our GetServer obj here, ie, *after* the Daemon object.
         """
-        servd = GetServer(IFACE, PORT)
-        servd.start()
+        pwd = os.getcwd()
+        try:
+            os.chdir(HOMEDIR)
+            servd = GetServer(IFACE, PORT)
+            servd.start()
+        finally:
+            os.chdir(pwd)
 
     def cleanup(self):
         """And we need a cleanup method."""
@@ -73,6 +98,10 @@ class servDaemon(Daemon):
 if __name__ == "__main__":
     init_dirs(user_dirs)
     setup_logging(DEBUG, LOGFILE, 'httpd')
+
+    if not platform_check():
+        logging.error('Platform requirements are not sufficiently POSIX!')
+        raise ChildProcessError('Cannot fork child processes.')
 
     if len(sys.argv) == 2:
         arg = sys.argv[1]
