@@ -5,14 +5,12 @@ import datetime
 import logging
 import os
 import sys
-import threading
 from datetime import timezone
-from http.server import ThreadingHTTPServer
 
 from daemon import Daemon
 from daemon.parent_logger import setup_logging
 
-from pyserv.server import GetHandler
+from pyserv.server import GetServer
 from pyserv.settings import (
     DEBUG,
     HOMEDIR,
@@ -48,32 +46,6 @@ def platform_check():
     valid_os = any([x for x in posix_list if x in myname and is_posix])
 
     return valid_os
-
-
-class GetServer(threading.Thread):
-    """
-    Threaded wrapper class for custom ThreadingHTTPServer instance.
-    Usage:
-        s = GetServer('', 8080)
-        s.start()
-        s.stop()
-    """
-
-    def __init__(self, iface, port):
-        """Setup iface and port"""
-        super().__init__()
-        self.iface = iface
-        self.port = int(port)
-        self.server = ThreadingHTTPServer((self.iface, self.port), GetHandler)
-
-    def run(self):
-        """Start the server thread"""
-        self.server.serve_forever()
-
-    def stop(self):
-        """Stop the server thread"""
-        self.server.shutdown()
-        self.server.socket.close()
 
 
 class servDaemon(Daemon):

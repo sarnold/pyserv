@@ -7,69 +7,20 @@ other local files in an engineering development environment.
 
 import logging
 import sys
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import urlparse
+
+from . import GetServer
 
 
-class GetHandler(SimpleHTTPRequestHandler):
-    """
-    Munge the incoming request path from Dialog OTA. Runs `urlparse` on
-    the url and updates the GET handler path.
-
-    :param SimpleHTTPRequestHandler: imported from `http.server`
-    """
-
-    def do_GET(self):
-        logging.info('Path in: %s', self.path)
-        _, file_path = parse_url(self.path)
-        self.path = file_path  # pylint: disable=W0201
-        logging.info('Path out: %s', self.path)
-        logging.info('Headers:')
-        for key, val in self.headers.items():
-            logging.info('  %s: %s', key, val)
-        SimpleHTTPRequestHandler.do_GET(self)
-
-    def log_message(self, format, *args):  # pylint: disable=W0622
-        """
-        We need a custom log handler, otherwise this message goes to
-        `sys.stdout` only.
-        """
-        logging.info(
-            "%s - - [%s] %s",
-            self.address_string(),
-            self.log_date_time_string(),
-            format % args,
-        )
-
-
-def parse_url(ota_url):
-    """
-    Parse the url sent by OTA command for file path and netloc.
-
-    :param ota_url: broken GET path if full url
-    :return tuple: netloc and path from `urlparse`
-    """
-    get_data = urlparse(str(ota_url))
-    file_path = get_data.path
-    host_str = get_data.netloc
-    logging.debug('request file: %s', file_path.lstrip("/"))
-    logging.debug('request host: %s', host_str if host_str else 'None')
-    return host_str, file_path
-
-
-def serv_init(iface, port, server_class=ThreadingHTTPServer, handler_class=GetHandler):
+def serv_init(iface, port):
     """
     Init http server for handoff; init logging and server/handler classes.
 
     :param iface: server listen interface
     :param port: server listen port
-    :param server_class: imported from `http.server` or `socketserver`
-    :param handler_class: the `GetHandler` wrapper
-    :return httpd_handler: httpd handle, eg, httpd.serve_forever()
+    :return httpd_handler: threaded httpd handle, eg, httpd.start()
     """
     logging.basicConfig(level=logging.INFO)
-    server_address = (iface, port)
-    httpd_handler = server_class(server_address, handler_class)
+    httpd_handler = GetServer(iface, port)
     return httpd_handler
 
 
@@ -83,12 +34,11 @@ def serv_run(iface='', port=8080):
     httpd = serv_init(iface, port)
     logging.info('Starting HTTP SERVER at %s:%s', iface, port)
     try:
-        httpd.serve_forever()
+        httpd.start()
     except KeyboardInterrupt:
         print("")
         print("Exiting ...")
-        httpd.shutdown()
-        httpd.socket.close()
+        httpd.stop()
 
 
 def main(args=None):
