@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import http.server
+
 import logging
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer

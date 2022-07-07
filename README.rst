@@ -87,8 +87,8 @@ default configuration values with path overrides set by Tox::
     PORT: 8080
     IFACE: 127.0.0.1
     DOCROOT: /home/user/src/pyserv
-    LOGDIR: /home/user/src/pyserv/.tox/py/log
-    PIDDIR: /home/user/src/pyserv/.tox/py/tmp
+    LOGFILE: /home/user/src/pyserv/.tox/py/log/httpd.log
+    PIDFILE: /home/user/src/pyserv/.tox/py/tmp/httpd.pid
   -------------------------------------------------------------------------------
 
 Use any of the variables under "Current environment values" to set your

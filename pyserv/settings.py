@@ -15,8 +15,8 @@ from pyserv import __description__  # noqa: F401
 
 def init_dirs(dirs):
     """
-    Check and create user dirs for logs and PID (doc root is assumed to
-    already exist).
+    Check and create user dirs for logs and PID (doc root is assumed
+    to already exist).
 
     :param: list of Path objs
     """
@@ -64,8 +64,8 @@ def show_uservars():
     print(f"  PORT: {PORT}")
     print(f"  IFACE: {IFACE}")
     print(f"  DOCROOT: {HOMEDIR}")
-    print(f"  LOGDIR: {LOGDIR}")
-    print(f"  PIDDIR: {PIDDIR}")
+    print(f"  LOGFILE: {LOGFILE}")
+    print(f"  PIDFILE: {PIDFILE}")
     print("-" * 79)
 
 

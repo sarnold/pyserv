@@ -15,8 +15,8 @@ def serv_init(iface, port):
     """
     Init http server for handoff; init logging and server/handler classes.
 
-    :param iface: server listen interface
-    :param port: server listen port
+    :param iface: initialized listen interface
+    :param port: initialized listen port
     :return httpd_handler: threaded httpd handle, eg, httpd.start()
     """
     logging.basicConfig(level=logging.INFO)
@@ -29,16 +29,17 @@ def serv_run(iface='', port=8080):
     Run in foreground command wrapper for console entry point;
     init logging and server, run the server, stop the server.
 
+    :param iface: server listen interface
     :param port: server listen port
     """
     httpd = serv_init(iface, port)
     logging.info('Starting HTTP SERVER at %s:%s', iface, port)
     try:
         httpd.start()
+        httpd.join()
     except KeyboardInterrupt:
-        print("")
-        print("Exiting ...")
         httpd.stop()
+        print("\nExiting ...")
 
 
 def main(args=None):
