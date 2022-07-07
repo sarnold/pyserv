@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""Simple HTTP server with GET rewriting and request/header logging."""
+
 import logging
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -9,9 +11,7 @@ from pyserv._version import __version__
 
 VERSION = __version__
 
-__description__ = "Simple HTTP server with GET rewriting and request/header logging."
-
-__all__ = ["__description__", "__version__", "VERSION", "GetHandler", "GetServer"]
+__all__ = ["__version__", "VERSION", "GetHandler", "GetServer"]
 
 
 class GetHandler(SimpleHTTPRequestHandler):

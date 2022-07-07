@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Default settings for daemon mode.
+Pyserv default settings for daemon mode.
 """
 import importlib
 import os
@@ -10,7 +10,6 @@ from pathlib import Path
 from appdirs import AppDirs
 
 from pyserv import VERSION as version
-from pyserv import __description__  # noqa: F401
 
 
 def init_dirs(dirs):
@@ -50,7 +49,7 @@ def show_uservars():
     modname = 'pyserv.settings'
     try:
         mod = importlib.import_module(modname)
-        print(mod.__description__)
+        print(mod.__doc__)
 
         print("\nDefault user vars:")
         for dirname, path in zip(dirnames, mod.get_userdirs()):
