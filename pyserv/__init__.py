@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Simple HTTP server with GET rewriting and request/header logging."""
+"""Simple HTTP server classes with GET path rewriting and request/header logging."""
 
 import logging
 import threading
@@ -17,14 +17,16 @@ __all__ = ["__version__", "VERSION", "GetHandler", "GetServer"]
 class GetHandler(SimpleHTTPRequestHandler):
     """
     Munge the incoming request path from Dialog OTA. Runs `urlparse` on
-    the url and updates the GET handler path.
+    the url and updates the GET handler path. We also log the result.
 
     :param SimpleHTTPRequestHandler: imported from `http.server`
     """
 
     def do_GET(self):
+        logging.debug('Thread name: %s', threading.currentThread().getName())
+        logging.debug('Thread count: %s', threading.active_count())
         logging.info('Path in: %s', self.path)
-        _, file_path = self.parse_url(self.path)
+        _, file_path = self.munge_url(self.path)
         self.path = file_path  # pylint: disable=W0201
         logging.info('Path out: %s', self.path)
         logging.info('Headers:')
@@ -44,11 +46,11 @@ class GetHandler(SimpleHTTPRequestHandler):
             format % args,
         )
 
-    def parse_url(self, ota_url):
+    def munge_url(self, ota_url):
         """
         Parse the url sent by OTA command for file path and netloc.
 
-        :param ota_url: broken GET path if full url
+        :param ota_url: (possibly) broken GET path
         :return tuple: netloc and path from `urlparse`
         """
         get_data = urlparse(str(ota_url))

@@ -51,7 +51,7 @@ def show_uservars():
         mod = importlib.import_module(modname)
         print(mod.__doc__)
 
-        print("\nDefault user vars:")
+        print("Default user vars:")
         for dirname, path in zip(dirnames, mod.get_userdirs()):
             print(f'  {dirname}: {path}')
 
