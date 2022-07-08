@@ -33,7 +33,7 @@ repos:
     hooks:
       - id: ffffff
         name: "Format code (ffffff)"
-        files: pyserv/server.py
+        files: pyserv/
         language_version: python3
 
   - repo: https://github.com/pycqa/isort
@@ -51,7 +51,7 @@ repos:
         - --install-types
         - --non-interactive
         - --ignore-missing-imports
-      files: pyserv/server.py
+      files: pyserv/
 
   - repo: "https://github.com/asottile/blacken-docs"
     rev: "v1.12.1"
@@ -81,7 +81,7 @@ repos:
     rev: v1.4
     hooks:
       - id: autoflake
-        files: pyserv/server.py
+        files: pyserv/
         args:
           - --in-place
           - --remove-all-unused-imports
@@ -92,7 +92,7 @@ repos:
     rev: 3.9.2
     hooks:
       - id: flake8
-        files: pyserv/server.py
+        files: pyserv/
         additional_dependencies: ["flake8-bugbear"]
 
   - repo: https://github.com/PyCQA/bandit
@@ -100,7 +100,7 @@ repos:
     hooks:
       - id: bandit
         args: ["-ll", "-q"]
-        files: pyserv/server.py
+        files: pyserv/
 
 #  - repo: https://github.com/lovesegfault/beautysh
 #    rev: v6.2.1
