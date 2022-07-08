@@ -1,6 +1,6 @@
-=====================
- HTTPD Python Server
-=====================
+===========================
+ Pyserv Simple HTTP Server
+===========================
 
 |ci| |wheels| |release| |badge|
 
@@ -114,11 +114,11 @@ From source::
   $ python3 -m venv env
   $ source env/bin/activate
   $ pip install git+https://github.com/sarnold/pyserv.git
-  $ serv 8080
+  $ serv 8000
 
 The output should be::
 
-  INFO:root:Starting HTTP SERVER at PORT :8080
+  INFO:root:Starting HTTP SERVER at PORT :8000
 
 The alternative to python venv is the Tox_ test driver.  If you have it
 installed already, clone this repository and try the following commands

@@ -14,6 +14,21 @@ VERSION = __version__
 __all__ = ["__version__", "VERSION", "GetHandler", "GetServer"]
 
 
+def munge_url(ota_url):
+    """
+    Parse the url sent by OTA command for file path and netloc.
+
+    :param ota_url: (possibly) broken GET path
+    :return tuple: netloc and path from `urlparse`
+    """
+    url_data = urlparse(str(ota_url))
+    file_path = url_data.path
+    host_str = url_data.netloc
+    logging.debug('request file: %s', file_path.lstrip("/"))
+    logging.debug('request host: %s', host_str if host_str else 'None')
+    return host_str, file_path
+
+
 class GetHandler(SimpleHTTPRequestHandler):
     """
     Munge the incoming request path from Dialog OTA. Runs `urlparse` on
@@ -26,7 +41,7 @@ class GetHandler(SimpleHTTPRequestHandler):
         logging.debug('Thread name: %s', threading.currentThread().getName())
         logging.debug('Thread count: %s', threading.active_count())
         logging.info('Path in: %s', self.path)
-        _, file_path = self.munge_url(self.path)
+        _, file_path = munge_url(self.path)
         self.path = file_path  # pylint: disable=W0201
         logging.info('Path out: %s', self.path)
         logging.info('Headers:')
@@ -45,20 +60,6 @@ class GetHandler(SimpleHTTPRequestHandler):
             self.log_date_time_string(),
             format % args,
         )
-
-    def munge_url(self, ota_url):
-        """
-        Parse the url sent by OTA command for file path and netloc.
-
-        :param ota_url: (possibly) broken GET path
-        :return tuple: netloc and path from `urlparse`
-        """
-        get_data = urlparse(str(ota_url))
-        file_path = get_data.path
-        host_str = get_data.netloc
-        logging.debug('request file: %s', file_path.lstrip("/"))
-        logging.debug('request host: %s', host_str if host_str else 'None')
-        return host_str, file_path
 
 
 class GetServer(threading.Thread):
