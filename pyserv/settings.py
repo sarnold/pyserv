@@ -20,8 +20,7 @@ def init_dirs(dirs):
     :param: list of Path objs
     """
     for usr_path in dirs:
-        if not usr_path.exists():
-            usr_path.mkdir(parents=True, exist_ok=True)
+        usr_path.mkdir(parents=True, exist_ok=True)
 
 
 def get_userdirs():

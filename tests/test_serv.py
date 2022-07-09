@@ -29,7 +29,7 @@ def test_get_server_attrs():
     assert hasattr(GetServer, 'stop')
 
 
-def test_muge_url():
+def test_munge_url():
     """Make sure URLs are properly munged"""
 
     paths = [
