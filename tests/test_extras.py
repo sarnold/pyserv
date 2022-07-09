@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 from pathlib import Path
 
 from pyserv import VERSION
@@ -17,17 +18,26 @@ from pyserv.settings import (
     show_uservars,
 )
 
+WIN32 = sys.platform == 'win32'
+APPLE = sys.platform == 'darwin'
+
 
 def test_get_userdirs():
     """We should get Path objs"""
-    usr_paths = get_userdirs()
+    logdir, cachedir, docroot = get_userdirs()
 
-    for thing in usr_paths:
+    for thing in logdir, cachedir, docroot:
         assert isinstance(thing, Path)
 
-    assert get_userdirs()[0].name == 'log'
-    assert get_userdirs()[1].name == VERSION
-    assert get_userdirs()[2].name == Path.cwd().name
+    if WIN32:
+        assert logdir.name == 'Logs'
+    elif APPLE:
+        assert logdir.name == VERSION
+    else:
+        assert logdir.name == 'log'
+
+    assert cachedir.name == VERSION
+    assert docroot.name == Path.cwd().name
 
 
 def test_init_dirs(tmp_path):
