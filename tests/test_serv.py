@@ -25,8 +25,17 @@ def test_get_server_attrs():
 
     serv_thread = GetServer(iface, port)
     assert isinstance(serv_thread, GetServer)
-    assert hasattr(GetServer, 'start')
-    assert hasattr(GetServer, 'stop')
+    assert hasattr(serv_thread, 'start')
+    assert hasattr(serv_thread, 'stop')
+
+
+def test_serv_init():
+    """Test serv_init wrapper"""
+
+    serv_thread = serv_init(iface, port)
+    assert isinstance(serv_thread, GetServer)
+    assert hasattr(serv_thread, 'start')
+    assert hasattr(serv_thread, 'stop')
 
 
 def test_munge_url():
