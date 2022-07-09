@@ -24,7 +24,7 @@ def serv_init(iface, port):
     return httpd_handler
 
 
-def serv_run(iface='', port=8080):
+def serv_run(iface='', port=8080):  # pragma: no cover
     """
     Run in foreground command wrapper for console entry point;
     init logging and server, run the server, stop the server.
@@ -42,7 +42,7 @@ def serv_run(iface='', port=8080):
         print("\nExiting ...")
 
 
-def main(args=None):
+def main(args=None):  # pragma: no cover
     """
     The serv entry point wrapper; both args are optional, but you must
     provide either PORT or PORT *and* IFACE.
@@ -61,5 +61,5 @@ def main(args=None):
         serv_run()
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     sys.exit(main())
