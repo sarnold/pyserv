@@ -289,7 +289,7 @@ To run all ``pre-commit`` checks manually, try::
     :target: https://github.com/sarnold/pyserv/releases
     :alt: GitHub tag
 
-.. |python| image:: https://img.shields.io/badge/python-3.6+-blue.svg
+.. |python| image:: https://img.shields.io/badge/python-3.7+-blue.svg
     :target: https://www.python.org/downloads/
     :alt: Python
 

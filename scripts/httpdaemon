@@ -1,51 +1,20 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
+import argparse
 import datetime
 import logging
 import os
 import sys
 from datetime import timezone
+from pathlib import Path
 
 from daemon import Daemon
 from daemon.parent_logger import setup_logging
 
-from pyserv.server import GetServer
-from pyserv.settings import (
-    DEBUG,
-    HOMEDIR,
-    IFACE,
-    LOGDIR,
-    LOGFILE,
-    PIDDIR,
-    PIDFILE,
-    PORT,
-    init_dirs,
-)
+from pyserv import GetServer, __version__
+from pyserv.settings import DEBUG, LOG, PID, init_dirs, platform_check
 
-user_dirs = [LOGDIR, PIDDIR]
 logger = logging.getLogger(__name__)
-timestamp = datetime.datetime.now(timezone.utc)  # use local time for console
-
-
-def platform_check():
-    """
-    Check to see if we think we are POSIX.
-
-    :return: True if POSIX, else False
-    """
-    valid_os = False
-    myname = sys.platform
-    is_posix = os.name == 'posix'
-    posix_list = [
-        'linux',
-        'darwin',
-        'openbsd',
-        'freebsd',
-    ]
-    valid_os = any([x for x in posix_list if x in myname and is_posix])
-
-    return valid_os
 
 
 class servDaemon(Daemon):
@@ -54,13 +23,8 @@ class servDaemon(Daemon):
         Daemon needs a run method. In this case we need to instantiate
         our GetServer obj here, ie, *after* the Daemon object.
         """
-        pwd = os.getcwd()
-        try:
-            os.chdir(HOMEDIR)
-            servd = GetServer(IFACE, PORT)
-            servd.start()
-        finally:
-            os.chdir(pwd)
+        servd = GetServer(IFACE, PORT, DOCROOT)
+        servd.start()
 
     def cleanup(self):
         """And we need a cleanup method."""
@@ -68,20 +32,46 @@ class servDaemon(Daemon):
 
 
 if __name__ == "__main__":
-    init_dirs(user_dirs)
-    setup_logging(DEBUG, LOGFILE, 'httpd')
-
+    """
+    Collect and process command options/arguments and init app dirs
+    if needed.
+    """
     if not platform_check():
         raise OSError(f'Incompatible platform type "{sys.platform}"')
 
-    if len(sys.argv) == 2:
-        arg = sys.argv[1]
-        if arg in ('start', 'stop', 'restart', 'status'):
-            d = servDaemon(PIDFILE, home_dir=HOMEDIR, verbose=0, use_cleanup=True)
-            getattr(d, arg)()
-        else:
-            print("usage: %s start|stop|restart|status" % sys.argv[0])
-            sys.exit(2)
-    else:
-        print("usage: %s start|stop|restart|status" % sys.argv[0])
-        sys.exit(2)
+    daemon_args = ['start', 'stop', 'restart', 'status']
+
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        description='Threaded HTTP server daemon'
+    )
+    parser.add_argument('-L', '--logfile', type=str, default=LOG,
+                        help='Log file path')
+    parser.add_argument('-P', '--pidfile', type=str, default=PID,
+                        help='PID file path')
+    parser.add_argument('-R', '--rootdir', type=str, default='.',
+                        help='Server root directory')
+    parser.add_argument('-i', '--iface', type=str, default='',
+                        help='Listen address')
+    parser.add_argument('-p', '--port', type=int, default=8080,
+                        help='Listen port')
+    parser.add_argument("--version", action="version",
+                        version=f"httpdaemon {__version__}")
+    parser.add_argument('run', choices=daemon_args, nargs=1)
+
+    args = parser.parse_args()
+
+    init_dirs([Path(args.logfile).parent, Path(args.pidfile).parent])
+    setup_logging(DEBUG, Path(args.logfile), 'httpd')
+
+    PORT = int(args.port)
+    IFACE = str(args.iface)
+    DOCROOT = str(args.rootdir)
+
+    d = servDaemon(
+        args.pidfile,
+        home_dir=DOCROOT,
+        verbose=0,
+        use_cleanup=True
+    )
+    getattr(d, args.run[0])()

@@ -1,81 +1,72 @@
-# -*- coding: utf-8 -*-
 """
 Pyserv default settings for daemon mode.
 """
 import importlib
 import os
 import sys
-from pathlib import Path
 
-from appdirs import AppDirs
-
-from pyserv import VERSION as version
+from pyserv import __version__ as version
 
 
 def init_dirs(dirs):
     """
     Check and create user dirs for logs and PID (doc root is assumed
     to already exist).
-
     :param: list of Path objs
     """
     for usr_path in dirs:
         usr_path.mkdir(parents=True, exist_ok=True)
 
 
-def get_userdirs():
+def platform_check():
     """
-    Set platform-agnostic user directory paths via appdirs.
+    Check to see if we think we are POSIX.
 
-    :return tuple: logdir, cachedir, docroot as Path objs
+    :return: True if POSIX, else False
     """
-    dirs = AppDirs(appname='pyserv', version=version)
-    logdir = Path(dirs.user_log_dir)
-    cachedir = Path(dirs.user_cache_dir)
-    docroot = Path(os.getcwd())
-    return logdir, cachedir, docroot
+    valid_os = False
+    myname = sys.platform
+    is_posix = os.name == 'posix'
+    posix_list = [
+        'linux',
+        'darwin',
+        'openbsd',
+        'freebsd',
+    ]
+    valid_os = any([x for x in posix_list if x in myname and is_posix])
+
+    return valid_os
 
 
 def show_uservars():
     """
-    Display host platform user paths, files and environment.
+    Display default host paths and environment.
     """
     print("Python version:", sys.version)
     print("-" * 79)
     print(f"pyserv {version}")
 
-    dirnames = ['log_dir', 'pid_dir', 'doc_root']
     modname = 'pyserv.settings'
     try:
         mod = importlib.import_module(modname)
         print(mod.__doc__)
 
-        print("Default user vars:")
-        for dirname, path in zip(dirnames, mod.get_userdirs()):
-            print(f'  {dirname}: {path}')
+        print("Default user paths:")
+        print(f"  LOG file: {LOG}")
+        print(f"  PID file: {PID}")
 
-    except (ImportError, AttributeError) as exc:
+    except (ImportError, NameError) as exc:
         print("FAILED:", repr(exc))
 
     print("\nCurrent environment values:")
     print(f"  DEBUG: {DEBUG}")
-    print(f"  PORT: {PORT}")
-    print(f"  IFACE: {IFACE}")
-    print(f"  DOCROOT: {HOMEDIR}")
-    print(f"  LOGFILE: {LOGFILE}")
-    print(f"  PIDFILE: {PIDFILE}")
     print("-" * 79)
 
 
-DEBUG = os.getenv('DEBUG', default='0')
-PORT = os.getenv('PORT', default='8080')
-IFACE = os.getenv('IFACE', default='127.0.0.1')
-HOMEDIR = os.getenv('DOCROOT', default=str(get_userdirs()[2]))
-LOGFILE = os.getenv('LOGFILE', default=str(get_userdirs()[0].joinpath('httpd.log')))
-PIDFILE = os.getenv('PIDFILE', default=str(get_userdirs()[1].joinpath('httpd.pid')))
-LOGDIR = Path(LOGFILE).resolve().parent
-PIDDIR = Path(PIDFILE).resolve().parent
+DEBUG = os.getenv('DEBUG', default=0)
+LOG = 'httpd.log'
+PID = 'httpd.pid'
 
 # some test output
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     show_uservars()

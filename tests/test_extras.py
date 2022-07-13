@@ -1,43 +1,19 @@
-# -*- coding: utf-8 -*-
 import os
 import sys
 from pathlib import Path
 
-from pyserv import VERSION
+import pytest
+
+import pyserv
 from pyserv.settings import (
-    DEBUG,
-    HOMEDIR,
-    IFACE,
-    LOGDIR,
-    LOGFILE,
-    PIDDIR,
-    PIDFILE,
-    PORT,
-    get_userdirs,
     init_dirs,
+    platform_check,
     show_uservars,
+    version,
 )
 
 WIN32 = sys.platform == 'win32'
 APPLE = sys.platform == 'darwin'
-
-
-def test_get_userdirs():
-    """We should get Path objs"""
-    logdir, cachedir, docroot = get_userdirs()
-
-    for thing in logdir, cachedir, docroot:
-        assert isinstance(thing, Path)
-
-    if WIN32:
-        assert logdir.name == 'Logs'
-    elif APPLE:
-        assert logdir.name == VERSION
-    else:
-        assert logdir.name == 'log'
-
-    assert cachedir.name == VERSION
-    assert docroot.name == Path.cwd().name
 
 
 def test_init_dirs(tmp_path):
@@ -52,6 +28,18 @@ def test_init_dirs(tmp_path):
         assert thing.is_dir()
 
 
+def test_platform_check():
+    """Test for POSIX platform"""
+    iam = platform_check()
+    assert iam
+
+
 def test_show_uservars():
     """Start with default env"""
+    show_uservars()
+
+
+def test_show_uservars_error(monkeypatch):
+    """Monkeypatch attr"""
+    monkeypatch.delattr('pyserv.settings.LOG', raising=True)
     show_uservars()

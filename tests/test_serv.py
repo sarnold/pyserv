@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import threading
 import time
@@ -9,6 +8,7 @@ from pyserv import GetServer, munge_url
 from pyserv import settings as cfg
 from pyserv.server import *
 
+directory = '.'
 iface = '127.0.0.1'
 port = 8000
 
@@ -23,7 +23,7 @@ def get_request(port, iface):
 def test_get_server_attrs():
     """Test GetServer attrs """
 
-    serv_thread = GetServer(iface, port)
+    serv_thread = GetServer(iface, port, directory)
     assert isinstance(serv_thread, GetServer)
     assert hasattr(serv_thread, 'start')
     assert hasattr(serv_thread, 'stop')
@@ -32,7 +32,7 @@ def test_get_server_attrs():
 def test_serv_init():
     """Test serv_init wrapper"""
 
-    serv_thread = serv_init(iface, port)
+    serv_thread = serv_init(iface, port, directory)
     assert isinstance(serv_thread, GetServer)
     assert hasattr(serv_thread, 'start')
     assert hasattr(serv_thread, 'stop')
