@@ -24,7 +24,7 @@ def platform_check():
 
     :return: True if POSIX, else False
     """
-    valid_os = False
+    valid_os = []
     myname = sys.platform
     is_posix = os.name == 'posix'
     posix_list = [
@@ -33,7 +33,7 @@ def platform_check():
         'openbsd',
         'freebsd',
     ]
-    valid_os = any([x for x in posix_list if x in myname and is_posix])
+    valid_os = [x for x in posix_list if x in myname and is_posix]
 
     return valid_os
 
@@ -63,7 +63,7 @@ def show_uservars():
     print("-" * 79)
 
 
-DEBUG = os.getenv('DEBUG', default=0)
+DEBUG = os.getenv('DEBUG', default='0')
 LOG = 'httpd.log'
 PID = 'httpd.pid'
 

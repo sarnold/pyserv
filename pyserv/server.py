@@ -30,7 +30,7 @@ def serv_run(iface='', port=8080, directory='.'):  # pragma: no cover
     :param iface: server listen interface
     :param port: server listen port
     """
-    httpd = serv_init(iface, port)
+    httpd = serv_init(iface, port, directory)
     logging.info('Starting HTTP SERVER at %s:%s', iface, port)
     try:
         httpd.start()
