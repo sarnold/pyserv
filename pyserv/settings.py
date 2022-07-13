@@ -4,8 +4,23 @@ Pyserv default settings for daemon mode.
 import importlib
 import os
 import sys
+from pathlib import Path
+
+from appdirs import AppDirs
 
 from pyserv import __version__ as version
+
+
+def get_userdirs():
+    """
+    Get platform-agnostic user directory paths via appdirs.
+    :return tuple: logdir, piddir, docdir as Path objs
+    """
+    dirs = AppDirs(appname='pyserv', version=version)
+    logdir = Path(dirs.user_log_dir)
+    piddir = Path(dirs.user_cache_dir).joinpath('run')
+    docdir = Path(os.getcwd())
+    return logdir, piddir, docdir
 
 
 def init_dirs(dirs):
@@ -46,27 +61,32 @@ def show_uservars():
     print("-" * 79)
     print(f"pyserv {version}")
 
+    dirnames = ['log_dir', 'pid_dir', 'doc_dir']
     modname = 'pyserv.settings'
     try:
         mod = importlib.import_module(modname)
         print(mod.__doc__)
 
-        print("Default user paths:")
-        print(f"  LOG file: {LOG}")
-        print(f"  PID file: {PID}")
+        print("Default user vars:")
+        for dirname, path in zip(dirnames, mod.get_userdirs()):
+            print(f'  {dirname}: {path}')
+
+        print("\nCurrent environment values:")
+        print(f"  DEBUG: {DEBUG}")
+        print(f"  PORT: {PORT}")
+        print(f"  IFACE: {IFACE}")
+        print(f"  LOG: {LOG}")
+        print(f"  PID: {PID}")
+        print(f"  DOCROOT: {DOCROOT}")
+        print("-" * 79)
 
     except (ImportError, NameError) as exc:
         print("FAILED:", repr(exc))
 
-    print("\nCurrent environment values:")
-    print(f"  DEBUG: {DEBUG}")
-    print("-" * 79)
-
 
 DEBUG = os.getenv('DEBUG', default='0')
-LOG = 'httpd.log'
-PID = 'httpd.pid'
-
-# some test output
-if __name__ == '__main__':  # pragma: no cover
-    show_uservars()
+PORT = os.getenv('PORT', default='8080')
+IFACE = os.getenv('IFACE', default='127.0.0.1')
+LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath('httpd.log')))
+PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath('httpd.pid')))
+DOCROOT = os.getenv('DOCROOT', default=str(get_userdirs()[2]))

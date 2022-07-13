@@ -6,6 +6,7 @@ import pytest
 
 import pyserv
 from pyserv.settings import (
+    get_userdirs,
     init_dirs,
     platform_check,
     show_uservars,
@@ -14,6 +15,24 @@ from pyserv.settings import (
 
 WIN32 = sys.platform == 'win32'
 APPLE = sys.platform == 'darwin'
+
+
+def test_get_userdirs():
+    """We should get Path objs"""
+    logdir, piddir, docdir = get_userdirs()
+
+    for thing in logdir, piddir, docdir:
+        assert isinstance(thing, Path)
+
+    if WIN32:
+        assert logdir.name == 'Logs'
+    elif APPLE:
+        assert logdir.name == version
+    else:
+        assert logdir.name == 'log'
+
+    assert piddir.name == 'run'
+    assert docdir.name == Path.cwd().name
 
 
 def test_init_dirs(tmp_path):

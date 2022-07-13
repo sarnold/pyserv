@@ -3,4 +3,4 @@ graft docs
 
 include tox.ini README.rst
 
-global-exclude *~ *.py[cod] *.so
+global-exclude *~ *.py[cod]
