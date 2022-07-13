@@ -37,7 +37,7 @@ class GetHandler(SimpleHTTPRequestHandler):
     """
 
     def do_GET(self):
-        logging.debug('Thread name: %s', threading.currentThread().getName())
+        logging.debug('Thread name: %s', threading.current_thread().name)
         logging.debug('Thread count: %s', threading.active_count())
         logging.info('Path in: %s', self.path)
         _, file_path = munge_url(self.path)
