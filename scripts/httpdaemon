@@ -62,7 +62,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    init_dirs([Path(LOG).parent, Path(PID).parent, Path(DOCROOT)])
+    init_dirs([Path(LOG).parent, Path(PID).parent])
     setup_logging(DEBUG, Path(LOG), 'httpd')
 
     d = servDaemon(

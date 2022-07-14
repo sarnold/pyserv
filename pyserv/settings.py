@@ -84,7 +84,7 @@ def show_uservars():
         print("FAILED:", repr(exc))
 
 
-DEBUG = os.getenv('DEBUG', default='0')
+DEBUG = os.getenv('DEBUG', default=None)
 PORT = os.getenv('PORT', default='8080')
 IFACE = os.getenv('IFACE', default='127.0.0.1')
 LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath('httpd.log')))

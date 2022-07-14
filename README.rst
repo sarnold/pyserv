@@ -13,7 +13,7 @@ provides logging of requests/headers and an extra "feature" to handle
 (broken) clients that send the full URL instead of the GET file path.
 
 .. important:: This is **not** intended for Internet/intranet use and
-  has absolutely **no** security. This is intended *only* for personal
+  has absolutely **no** security. This is intended mainly for personal
   use on a local subnet, eg, a local WIFI network *you* control. You
   have been warned.
 
@@ -65,41 +65,54 @@ environment variables, and the following "extra" features:
 * environment values are checked first; if not set, fallback to defaults
 * clean logging using daemon package logger config
 
-In the repository source directory, run the ``tox -e py`` command to see
-default configuration values with path overrides set by Tox::
+Sample environment display with tox overrides, ie, inside a Tox_ venv::
 
-  $ tox -e py
-  ...
-  py run-test: commands[0] | python -c 'from pyserv.settings import show_uservars; print(show_uservars())'
   Python version: 3.9.7 (default, Mar 19 2022, 18:11:11)
   [GCC 11.1.0]
-  -------------------------------------------------------------------------------
-  pyserv 1.2.2.dev3
+  ----------------------------------------------------------------------
+  pyserv 1.2.2.dev5
 
   Pyserv default settings for daemon mode.
 
   Default user vars:
-    log_dir: /home/nerdboy/.cache/pyserv/1.2.2.dev3/log
-    pid_dir: /home/nerdboy/.cache/pyserv/1.2.2.dev3/run
-    doc_dir: /home/nerdboy/src/pyserv
+    log_dir: /home/user/.cache/pyserv/1.2.2.dev5/log
+    pid_dir: /home/user/.cache/pyserv/1.2.2.dev5/run
+    doc_dir: /home/user/src/pyserv
 
   Current environment values:
-    DEBUG: 0
+    DEBUG: 1
     PORT: 8080
     IFACE: 127.0.0.1
-    LOG: /home/nerdboy/src/pyserv/.tox/py/log/httpd.log
-    PID: /home/nerdboy/src/pyserv/.tox/py/tmp/httpd.pid
-    DOCROOT: /home/nerdboy/src/pyserv
-  -------------------------------------------------------------------------------
-  [test output snipped]
+    LOG: /home/user/src/pyserv/.tox/dev/log/httpd.log
+    PID: /home/user/src/pyserv/.tox/dev/tmp/httpd.pid
+    DOCROOT: /home/user/src/pyserv
+  ----------------------------------------------------------------------
 
 Use any of the variables under "Current environment values" to set your
 own custom environment.
 
+Daemon usage
+------------
+
+Once installed in a virtual environment, check the ``help`` output::
+
+  $ httpdaemon -h
+  usage: httpdaemon [-h] [--version] {start,stop,restart,status}
+
+  Threaded HTTP server daemon
+
+  positional arguments:
+    {start,stop,restart,status}
+
+  optional arguments:
+    -h, --help            show this help message and exit
+    --version             show program's version number and exit
+
+
 **One small wrinkle**
 
-* the ``httpdaemon`` script *will not* run on Windows (however
-  the ``serv`` command should work fine)
+* the ``httpdaemon`` script *will not* run on Windows, however,
+  the ``serv`` command should work fine
 
 .. _Python daemon: https://github.com/sarnold/python-daemonizer
 
@@ -127,6 +140,10 @@ installed already, clone this repository and try the following commands
 from the pyserv source directory.
 
 To install in dev mode::
+
+  $ tox -e dev
+
+To run tests using default system Python::
 
   $ tox -e py
 
@@ -175,17 +192,16 @@ On the server side, ie, inside your virtual environment, you should see:
 
 ::
 
-  INFO:root:Path: /
+  INFO:root:Starting HTTP SERVER at :8080
+  INFO:root:Path in: /
+  INFO:root:Path out: /
   INFO:root:Headers:
-  Host: 0.0.0.0:8080
-  User-Agent: python-requests/2.25.1
-  Accept-Encoding: gzip, deflate
-  Accept: */*
-  Connection: keep-alive
-
-
-
-  127.0.0.1 - - [24/Jun/2022 21:23:07] "GET / HTTP/1.1" 200 -
+  INFO:root:  Host: 0.0.0.0:8080
+  INFO:root:  User-Agent: python-requests/2.25.1
+  INFO:root:  Accept-Encoding: gzip, deflate
+  INFO:root:  Accept: */*
+  INFO:root:  Connection: keep-alive
+  INFO:root:127.0.0.1 - - [13/Jul/2022 20:52:22] "GET / HTTP/1.1" 200 -
 
 
 If no port is provided the server attempts to run on port 8080.
