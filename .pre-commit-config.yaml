@@ -20,6 +20,7 @@ repos:
       - id: check-executables-have-shebangs
       - id: check-shebang-scripts-are-executable
       - id: fix-encoding-pragma
+        args: ['--remove']
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: mixed-line-ending

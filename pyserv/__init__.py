@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
-
 """Simple HTTP server classes with GET path rewriting and request/header logging."""
 
 import logging
 import threading
+from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse
 
-from pyserv._version import __version__
+from ._version import __version__
 
 VERSION = __version__
 
@@ -38,7 +37,7 @@ class GetHandler(SimpleHTTPRequestHandler):
     """
 
     def do_GET(self):
-        logging.debug('Thread name: %s', threading.currentThread().getName())
+        logging.debug('Thread name: %s', threading.current_thread().name)
         logging.debug('Thread count: %s', threading.active_count())
         logging.info('Path in: %s', self.path)
         _, file_path = munge_url(self.path)
@@ -65,6 +64,7 @@ class GetHandler(SimpleHTTPRequestHandler):
 class GetServer(threading.Thread):
     """
     Threaded wrapper class for custom ThreadingHTTPServer instance.
+
     Usage::
 
         s = GetServer('', 8080)
@@ -72,12 +72,14 @@ class GetServer(threading.Thread):
         s.stop()
     """
 
-    def __init__(self, iface, port):
+    def __init__(self, iface, port, directory):
         """Setup server, iface, and port"""
         super().__init__()
         self.iface = iface
         self.port = int(port)
-        self.server = ThreadingHTTPServer((self.iface, self.port), GetHandler)
+        self.directory = directory
+        self.handler = partial(GetHandler, directory=self.directory)
+        self.server = ThreadingHTTPServer((self.iface, self.port), self.handler)
 
     def run(self):
         """Start main server thread"""

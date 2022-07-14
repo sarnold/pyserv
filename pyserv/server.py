@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 Simple HTTP server with broken GET rewriting for serving FW upgrades or
 other local files in an engineering development environment.
@@ -11,7 +9,7 @@ import sys
 from . import GetServer
 
 
-def serv_init(iface, port):
+def serv_init(iface, port, directory):
     """
     Init http server for handoff; init logging and server/handler classes.
 
@@ -20,11 +18,11 @@ def serv_init(iface, port):
     :return httpd_handler: threaded httpd handle, eg, httpd.start()
     """
     logging.basicConfig(level=logging.INFO)
-    httpd_handler = GetServer(iface, port)
+    httpd_handler = GetServer(iface, port, directory)
     return httpd_handler
 
 
-def serv_run(iface='', port=8080):  # pragma: no cover
+def serv_run(iface='', port=8080, directory='.'):  # pragma: no cover
     """
     Run in foreground command wrapper for console entry point;
     init logging and server, run the server, stop the server.
@@ -32,7 +30,7 @@ def serv_run(iface='', port=8080):  # pragma: no cover
     :param iface: server listen interface
     :param port: server listen port
     """
-    httpd = serv_init(iface, port)
+    httpd = serv_init(iface, port, directory)
     logging.info('Starting HTTP SERVER at %s:%s', iface, port)
     try:
         httpd.start()
