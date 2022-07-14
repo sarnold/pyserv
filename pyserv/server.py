@@ -9,9 +9,7 @@ import sys
 from . import GetServer
 from .settings import DEBUG
 
-log_level = logging.getLevelName('INFO')
-if DEBUG:
-    log_level = logging.getLevelName('DEBUG')
+lvl_name = 'DEBUG' if DEBUG else 'INFO'
 
 
 def serv_init(iface, port, directory):
@@ -22,7 +20,7 @@ def serv_init(iface, port, directory):
     :param port: initialized listen port
     :return httpd_handler: threaded httpd handle, eg, httpd.start()
     """
-    logging.basicConfig(level=log_level)
+    logging.basicConfig(level=lvl_name)
     httpd_handler = GetServer(iface, port, directory)
     return httpd_handler
 
