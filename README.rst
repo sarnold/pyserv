@@ -70,26 +70,28 @@ default configuration values with path overrides set by Tox::
 
   $ tox -e py
   ...
-  py run-test: commands[0] | python pyserv/settings.py
+  py run-test: commands[0] | python -c 'from pyserv.settings import show_uservars; print(show_uservars())'
   Python version: 3.9.7 (default, Mar 19 2022, 18:11:11)
   [GCC 11.1.0]
   -------------------------------------------------------------------------------
-  pyserv 1.2.1.dev8
-  Simple HTTP server with GET rewriting and request/header logging.
+  pyserv 1.2.2.dev3
+
+  Pyserv default settings for daemon mode.
 
   Default user vars:
-    log_dir: /home/user/.cache/pyserv/1.2.1.dev8/log
-    pid_dir: /home/user/.cache/pyserv/1.2.1.dev8
-    doc_root: /home/user/src/pyserv
+    log_dir: /home/nerdboy/.cache/pyserv/1.2.2.dev3/log
+    pid_dir: /home/nerdboy/.cache/pyserv/1.2.2.dev3/run
+    doc_dir: /home/nerdboy/src/pyserv
 
   Current environment values:
     DEBUG: 0
     PORT: 8080
     IFACE: 127.0.0.1
-    DOCROOT: /home/user/src/pyserv
-    LOGFILE: /home/user/src/pyserv/.tox/py/log/httpd.log
-    PIDFILE: /home/user/src/pyserv/.tox/py/tmp/httpd.pid
+    LOG: /home/nerdboy/src/pyserv/.tox/py/log/httpd.log
+    PID: /home/nerdboy/src/pyserv/.tox/py/tmp/httpd.pid
+    DOCROOT: /home/nerdboy/src/pyserv
   -------------------------------------------------------------------------------
+  [test output snipped]
 
 Use any of the variables under "Current environment values" to set your
 own custom environment.

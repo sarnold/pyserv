@@ -11,7 +11,7 @@ from pathlib import Path
 from daemon import Daemon
 from daemon.parent_logger import setup_logging
 
-from pyserv import GetServer
+from pyserv import GetServer, __version__
 from pyserv.settings import (
     DEBUG,
     DOCROOT,
@@ -48,17 +48,27 @@ if __name__ == "__main__":
     if not platform_check():
         raise OSError(f'Incompatible platform type "{sys.platform}"')
 
+    daemon_args = ['start', 'stop', 'restart', 'status']
     init_dirs([Path(LOG).parent, Path(PID).parent])
     setup_logging(DEBUG, Path(LOG), 'httpd')
 
-    if len(sys.argv) == 2:
-        arg = sys.argv[1]
-        if arg in ('start', 'stop', 'restart', 'status'):
-            d = servDaemon(Path(PID), home_dir=DOCROOT, verbose=0, use_cleanup=True)
-            getattr(d, arg)()
-        else:
-            print("usage: %s start|stop|restart|status" % sys.argv[0])
-            sys.exit(2)
-    else:
-        print("usage: %s start|stop|restart|status" % sys.argv[0])
-        sys.exit(2)
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        description='Threaded HTTP server daemon',
+    )
+    parser.add_argument("--version", action="version",
+                        version=f"httpdaemon {__version__}")
+    parser.add_argument('run', choices=daemon_args, nargs=1)
+
+    args = parser.parse_args()
+
+    init_dirs([Path(LOG).parent, Path(PID).parent, Path(DOCROOT)])
+    setup_logging(DEBUG, Path(LOG), 'httpd')
+
+    d = servDaemon(
+        Path(PID),
+        home_dir=DOCROOT,
+        verbose=0,
+        use_cleanup=True
+    )
+    getattr(d, args.run[0])()
