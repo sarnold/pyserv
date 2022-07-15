@@ -14,6 +14,7 @@ from pyserv import __version__ as version
 def get_userdirs():
     """
     Get platform-agnostic user directory paths via appdirs.
+
     :return tuple: logdir, piddir, docdir as Path objs
     """
     dirs = AppDirs(appname='pyserv', version=version)
@@ -27,6 +28,7 @@ def init_dirs(dirs):
     """
     Check and create user dirs for logs and PID (doc root is assumed
     to already exist).
+
     :param: list of Path objs
     """
     for usr_path in dirs:
