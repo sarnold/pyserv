@@ -5,7 +5,6 @@ import time
 import requests
 
 from pyserv import GetServer, munge_url
-from pyserv import settings as cfg
 from pyserv.server import *
 
 directory = '.'

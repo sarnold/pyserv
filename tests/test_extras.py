@@ -60,7 +60,9 @@ def test_show_uservars():
     show_uservars()
 
 
-def test_show_uservars_error(monkeypatch):
+def test_show_uservars_error(monkeypatch, capfd):
     """Monkeypatch attr"""
     monkeypatch.delattr('pyserv.settings.LOG', raising=True)
     show_uservars()
+    out, err = capfd.readouterr()
+    assert "FAILED:" in out
