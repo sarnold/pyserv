@@ -64,6 +64,7 @@ def show_uservars():
     print("-" * 79)
     print(f"pyserv {version}")
 
+    iface = 'all' if not IFACE else IFACE
     dirnames = ['log_dir', 'pid_dir', 'doc_dir']
     modname = 'pyserv.settings'
     try:
@@ -77,7 +78,7 @@ def show_uservars():
         print("\nCurrent environment values:")
         print(f"  DEBUG: {DEBUG}")
         print(f"  PORT: {PORT}")
-        print(f"  IFACE: {IFACE}")
+        print(f"  IFACE: {iface}")
         print(f"  LOG: {LOG}")
         print(f"  PID: {PID}")
         print(f"  DOCROOT: {DOCROOT}")
