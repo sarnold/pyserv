@@ -165,6 +165,11 @@ another project, use something like this::
 
   $ pip install -U -f https://github.com/sarnold/pyserv/releases/ pyserv
 
+If you have a ``requirements.txt`` file, you can add something like this::
+
+  -f https://github.com/sarnold/pyserv/releases/
+  pyserv>=1.2.3
+
 
 .. _Tox: https://github.com/tox-dev/tox
 
