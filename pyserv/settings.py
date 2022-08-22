@@ -29,7 +29,7 @@ def init_dirs(dirs):
     Check and create user dirs for logs and PID (doc root is assumed
     to already exist).
 
-    :param: list of Path objs
+    :param dirs: list of Path objs
     """
     for usr_path in dirs:
         usr_path.mkdir(parents=True, exist_ok=True)
@@ -39,7 +39,7 @@ def platform_check():
     """
     Check to see if we think we are POSIX.
 
-    :return: True if POSIX, else False
+    :return bool: True if POSIX, else False
     """
     valid_os = []
     myname = sys.platform
@@ -57,12 +57,14 @@ def platform_check():
 
 def show_uservars():
     """
-    Display default host paths and environment.
+    Display defaults and (possibly) overridden host paths and environment
+    variables.
     """
     print("Python version:", sys.version)
     print("-" * 79)
     print(f"pyserv {version}")
 
+    iface = 'all' if not IFACE else IFACE
     dirnames = ['log_dir', 'pid_dir', 'doc_dir']
     modname = 'pyserv.settings'
     try:
@@ -76,7 +78,7 @@ def show_uservars():
         print("\nCurrent environment values:")
         print(f"  DEBUG: {DEBUG}")
         print(f"  PORT: {PORT}")
-        print(f"  IFACE: {IFACE}")
+        print(f"  IFACE: {iface}")
         print(f"  LOG: {LOG}")
         print(f"  PID: {PID}")
         print(f"  DOCROOT: {DOCROOT}")
