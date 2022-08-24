@@ -129,7 +129,7 @@ From source::
   $ python3 -m venv env
   $ source env/bin/activate
   $ pip install git+https://github.com/sarnold/pyserv.git
-  $ serv 8000
+  $ serv 8000      # optionally add interface, eg, 10.0.0.2
 
 The output should be::
 
