@@ -4,7 +4,8 @@ import time
 
 import requests
 
-from pyserv import GetServer, munge_url
+import pyserv
+from pyserv import GetHandler, GetServer, munge_url
 from pyserv.server import *
 
 directory = '.'
@@ -17,6 +18,14 @@ def get_request(port, iface):
     URL = f'http://{iface}:{port}'
     r = requests.get(URL)
     return r
+
+
+def test_get_handler_attrs():
+    """Test GetHandler attrs """
+
+    handler = GetHandler
+    assert hasattr(handler, 'do_GET')
+    assert hasattr(handler, 'log_message')
 
 
 def test_get_server_attrs():

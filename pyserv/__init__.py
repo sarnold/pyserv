@@ -4,7 +4,9 @@ Simple HTTP server classes with GET path rewriting and request/header logging.
 
 import logging
 import os
+import sys
 import threading
+from functools import partial
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from socketserver import ThreadingMixIn
 from urllib.parse import urlparse
@@ -88,12 +90,16 @@ class GetServer(threading.Thread):
         self.iface = iface
         self.port = int(port)
         self.directory = directory
-        self.handler = GetHandler
+        if sys.version_info < (3, 7):
+            self.handler = GetHandler
+        else:
+            self.handler = partial(GetHandler, directory=self.directory)
         self.server = ThreadingHTTPServer((self.iface, self.port), self.handler)
 
     def run(self):
         """Start main server thread"""
-        os.chdir(self.directory)
+        if sys.version_info < (3, 7):
+            os.chdir(self.directory)
         self.server.serve_forever()
 
     def stop(self):
