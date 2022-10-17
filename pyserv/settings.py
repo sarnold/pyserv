@@ -79,7 +79,7 @@ def show_uservars():
         print(f"  DEBUG: {DEBUG}")
         print(f"  PORT: {PORT}")
         print(f"  IFACE: {iface}")
-        print(f"  LOG/PID NAME: {LPNAME}")
+        print(f"  LPNAME: {LPNAME}")
         print(f"  LOG: {LOG}")
         print(f"  PID: {PID}")
         print(f"  DOCROOT: {DOCROOT}")
