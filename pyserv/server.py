@@ -35,6 +35,9 @@ def serv_run(iface='', port=8080, directory=DOCROOT):  # pragma: no cover
     :param iface: server listen interface
     :param port: server listen port
     """
+    if not Path(directory).exists():
+        logging.error('DOCROOT directory %s does not exist', directory)
+        sys.exit(1)
     start_dir = Path.cwd()
     path_diff = start_dir.name != Path(directory).name
     if sys.version_info < (3, 7) and path_diff:

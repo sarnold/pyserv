@@ -42,8 +42,6 @@ class ServDaemon(Daemon):
         Daemon needs a run method. In this case we need to instantiate
         our GetServer obj here, ie, *after* the Daemon object.
         """
-        if sys.version_info < (3, 7):
-            os.chdir(DOCROOT)
         self.servd = GetServer(IFACE, PORT, DOCROOT)
         self.servd.start()
 
