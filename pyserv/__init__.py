@@ -3,7 +3,6 @@ Simple HTTP server classes with GET path rewriting and request/header logging.
 """
 
 import logging
-import os
 import sys
 import threading
 from functools import partial
@@ -98,8 +97,6 @@ class GetServer(threading.Thread):
 
     def run(self):
         """Start main server thread"""
-        if sys.version_info < (3, 7):
-            os.chdir(self.directory)
         self.server.serve_forever()
 
     def stop(self):

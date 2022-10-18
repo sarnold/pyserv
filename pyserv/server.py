@@ -4,7 +4,9 @@ other local files in an engineering development environment.
 """
 
 import logging
+import os
 import sys
+from pathlib import Path
 
 from . import GetServer
 from .settings import DEBUG, DOCROOT
@@ -33,6 +35,10 @@ def serv_run(iface='', port=8080, directory=DOCROOT):  # pragma: no cover
     :param iface: server listen interface
     :param port: server listen port
     """
+    start_dir = Path.cwd()
+    path_diff = start_dir.name != Path(directory).name
+    if sys.version_info < (3, 7) and path_diff:
+        os.chdir(directory)
     httpd = serv_init(iface, port, directory)
     logging.info('Starting HTTP SERVER at %s:%s', iface, port)
     try:
@@ -40,6 +46,7 @@ def serv_run(iface='', port=8080, directory=DOCROOT):  # pragma: no cover
         httpd.join()
     except KeyboardInterrupt:
         httpd.stop()
+        os.chdir(start_dir)
         print("\nExiting ...")
 
 
