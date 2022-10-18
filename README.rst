@@ -163,13 +163,14 @@ To run pylint::
 To install the latest release, eg with your own ``tox.ini`` file in
 another project, use something like this::
 
-  $ pip install -U -f https://github.com/sarnold/pyserv/releases/ pyserv
+  $ pip install https://github.com/sarnold/pyserv/releases/download/1.2.4/pyserv-1.2.4-py3-none-any.whl
 
 If you have a ``requirements.txt`` file, you can add something like this::
 
-  -f https://github.com/sarnold/pyserv/releases/
-  pyserv>=1.2.3
+  pyserv @ https://github.com/sarnold/pyserv/releases/download/1.2.4/pyserv-1.2.4.tar.gz
 
+Note the newest pip versions may no longer work using ``-f`` with just
+the GH "releases" path to get the latest release from Github.
 
 .. _Tox: https://github.com/tox-dev/tox
 

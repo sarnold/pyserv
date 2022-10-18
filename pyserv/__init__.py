@@ -1,9 +1,13 @@
-"""Simple HTTP server classes with GET path rewriting and request/header logging."""
+"""
+Simple HTTP server classes with GET path rewriting and request/header logging.
+"""
 
 import logging
+import sys
 import threading
 from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+from socketserver import ThreadingMixIn
 from urllib.parse import urlparse
 
 from ._version import __version__
@@ -15,10 +19,10 @@ __all__ = ["__version__", "VERSION", "GetHandler", "GetServer"]
 
 def munge_url(ota_url):
     """
-    Parse the url sent by OTA command for file path and netloc.
+    Parse the url sent by OTA command for file path and host string.
 
     :param ota_url: (possibly) broken GET path
-    :return tuple: netloc and path from `urlparse`
+    :return tuple: netloc and path from ``urlparse``
     """
     url_data = urlparse(str(ota_url))
     file_path = url_data.path
@@ -26,6 +30,13 @@ def munge_url(ota_url):
     logging.debug('request file: %s', file_path.lstrip("/"))
     logging.debug('request host: %s', host_str if host_str else 'None')
     return host_str, file_path
+
+
+class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
+    """
+    Backwards-compatible server class for Python <3.7 on older distros,
+    eg, Ubuntu bionic LTS.
+    """
 
 
 class GetHandler(SimpleHTTPRequestHandler):
@@ -78,7 +89,10 @@ class GetServer(threading.Thread):
         self.iface = iface
         self.port = int(port)
         self.directory = directory
-        self.handler = partial(GetHandler, directory=self.directory)
+        if sys.version_info < (3, 7):
+            self.handler = GetHandler
+        else:
+            self.handler = partial(GetHandler, directory=self.directory)
         self.server = ThreadingHTTPServer((self.iface, self.port), self.handler)
 
     def run(self):

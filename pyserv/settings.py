@@ -1,5 +1,5 @@
 """
-Pyserv default settings for daemon mode.
+Pyserv default settings for server and daemon modes.
 """
 import importlib
 import os
@@ -60,12 +60,12 @@ def show_uservars():
     Display defaults and (possibly) overridden host paths and environment
     variables.
     """
-    print("Python version:", sys.version)
+    print(f"Python version: {sys.version}")
     print("-" * 79)
     print(f"pyserv {version}")
 
     iface = 'all' if not IFACE else IFACE
-    dirnames = ['log_dir', 'pid_dir', 'doc_dir']
+    dirnames = ['log_dir', 'pid_dir', 'work_dir']
     modname = 'pyserv.settings'
     try:
         mod = importlib.import_module(modname)
@@ -79,18 +79,20 @@ def show_uservars():
         print(f"  DEBUG: {DEBUG}")
         print(f"  PORT: {PORT}")
         print(f"  IFACE: {iface}")
+        print(f"  LPNAME: {LPNAME}")
         print(f"  LOG: {LOG}")
         print(f"  PID: {PID}")
         print(f"  DOCROOT: {DOCROOT}")
         print("-" * 79)
 
     except (ImportError, NameError) as exc:
-        print("FAILED:", repr(exc))
+        print(f"FAILED: {repr(exc)}")
 
 
 DEBUG = os.getenv('DEBUG', default=None)
 PORT = os.getenv('PORT', default='8080')
 IFACE = os.getenv('IFACE', default='127.0.0.1')
-LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath('httpd.log')))
-PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath('httpd.pid')))
+LPNAME = os.getenv('LPNAME', default='httpd')
+LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))
+PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath(f'{LPNAME}.pid')))
 DOCROOT = os.getenv('DOCROOT', default=str(get_userdirs()[2]))

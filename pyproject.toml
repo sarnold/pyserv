@@ -2,7 +2,6 @@
 requires = [
     "setuptools>=42",
     "versioningit >= 1.1.1",
-    "wheel",
 ]
 
 build-backend = "setuptools.build_meta"
@@ -17,7 +16,10 @@ markers = "subscript"
 
 [tool.coverage.run]
 branch = true
-source = ["pyserv"]
+source = [
+    "pyserv/",
+    ".tox/py*/lib/python*/site-packages/",
+]
 omit = [
     "tests",
     ".tox",
@@ -27,7 +29,7 @@ omit = [
 source = ["pyserv"]
 
 [tool.coverage.report]
-fail_under = 85
+fail_under = 80
 show_missing = true
 exclude_lines = [
     "pragma: no cover",
