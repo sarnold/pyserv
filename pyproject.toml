@@ -16,7 +16,10 @@ markers = "subscript"
 
 [tool.coverage.run]
 branch = true
-source = ["pyserv"]
+source = [
+    "pyserv/",
+    ".tox/py*/lib/python*/site-packages/",
+]
 omit = [
     "tests",
     ".tox",
