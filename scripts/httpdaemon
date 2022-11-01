@@ -5,7 +5,6 @@ Http daemon script using pyserv (see settings.py for env vars).
 
 import argparse
 import logging
-import os
 import sys
 from pathlib import Path
 
