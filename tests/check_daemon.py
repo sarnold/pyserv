@@ -17,6 +17,7 @@ def get_request(port, iface):
     URL = f'http://{iface}:{port}/'
     r = requests.get(URL)
     print(f'Got request status {r.reason,} from {r.url}')
+    print(r.text.splitlines()[0])
     return r
 
 if __name__ == '__main__':

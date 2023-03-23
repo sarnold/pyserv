@@ -1,16 +1,19 @@
 import os
 import threading
 import time
+from wsgiref.simple_server import demo_app
 
 import requests
 
 import pyserv
-from pyserv import GetHandler, GetServer, munge_url
+from pyserv import GetHandler, GetServer, GetServerWSGI, munge_url
 from pyserv.server import *
+from pyserv.wsgi import *
 
 directory = '.'
 iface = '127.0.0.1'
 port = 8000
+wport = 5000
 
 
 def get_request(port, iface):
@@ -37,11 +40,29 @@ def test_get_server_attrs():
     assert hasattr(serv_thread, 'stop')
 
 
+def test_get_server_wsgi_attrs():
+    """Test GetServer attrs """
+
+    serv_thread = GetServerWSGI(wport, demo_app)
+    assert isinstance(serv_thread, GetServerWSGI)
+    assert hasattr(serv_thread, 'start')
+    assert hasattr(serv_thread, 'stop')
+
+
 def test_serv_init():
     """Test serv_init wrapper"""
 
     serv_thread = serv_init(iface, port, directory)
     assert isinstance(serv_thread, GetServer)
+    assert hasattr(serv_thread, 'start')
+    assert hasattr(serv_thread, 'stop')
+
+
+def test_wsgi_init():
+    """Test serv_init wrapper"""
+
+    serv_thread = wsgi_init(port, demo_app)
+    assert isinstance(serv_thread, GetServerWSGI)
     assert hasattr(serv_thread, 'start')
     assert hasattr(serv_thread, 'stop')
 

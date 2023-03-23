@@ -15,29 +15,10 @@ addopts = "--strict-markers"
 markers = "subscript"
 
 [tool.coverage.run]
-branch = true
-source = [
-    "pyserv/",
-    ".tox/py*/lib/python*/site-packages/",
-]
-omit = [
-    "tests",
-    ".tox",
-]
-
-[tool.coverage.paths]
-source = ["pyserv"]
+plugins = ["covdefaults"]
 
 [tool.coverage.report]
 fail_under = 80
-show_missing = true
-exclude_lines = [
-    "pragma: no cover",
-    "raise NotImplementedError",
-    "raise AssertionError",
-    "if typing.TYPE_CHECKING:",
-    "if TYPE_CHECKING:",
-]
 
 [tool.black]
 line-length = 90

@@ -9,6 +9,8 @@ from functools import partial
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from socketserver import ThreadingMixIn
 from urllib.parse import urlparse
+from wsgiref.simple_server import make_server
+from wsgiref.validate import validator
 
 from ._version import __version__
 
@@ -103,3 +105,34 @@ class GetServer(threading.Thread):
         """Stop main server thread"""
         self.server.shutdown()
         self.server.socket.close()
+
+
+class GetServerWSGI(threading.Thread):
+    """
+    Threaded wrapper class for custom flask WSGIServer instance.
+
+    Usage::
+
+        s = GetServerWSGI(my_app, 8080, is_flask=True, validate=False)
+        s.start()
+        s.stop()
+    """
+
+    def __init__(self, port, flask_app, is_flask=False, validate=False):
+        super().__init__()
+        self.port = int(port)
+        self.app = flask_app
+        if validate:
+            self.app = validator(flask_app)
+        self.server = make_server('', self.port, self.app)
+        if is_flask:
+            self.context = flask_app.app_context()
+            self.context.push()
+
+    def run(self):
+        """Start main server thread"""
+        self.server.serve_forever()
+
+    def stop(self):
+        """Stop main server thread"""
+        self.server.shutdown()
