@@ -150,7 +150,7 @@ jobs:
     - name: Setup old python for test
       uses: actions/setup-python@v4
       with:
-        python-version: 3.7
+        python-version: 3.6
 
     - name: Generate coverage
       run: |
