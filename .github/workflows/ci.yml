@@ -21,8 +21,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04, macos-12, windows-latest]
-        python-version: [3.6, 3.7, 3.9, '3.10']
+        os: [ubuntu-20.04, macos-12, windows-latest]
+        python-version: [3.7, 3.9, '3.10', '3.11']
     steps:
     - name: Set git crlf/eol
       run: |
@@ -34,7 +34,7 @@ jobs:
         fetch-depth: 0
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
 

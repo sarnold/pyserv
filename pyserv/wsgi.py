@@ -13,7 +13,7 @@ from .settings import DEBUG, DOCROOT, PORT
 LVL_NAME = 'DEBUG' if DEBUG else 'INFO'
 
 
-def wsgi_init(port, wapp, validate=True):
+def wsgi_init(wapp, port, validate=True):
     """
     Init wsgi server for handoff; init logging and simple_server classes.
 
@@ -22,7 +22,7 @@ def wsgi_init(port, wapp, validate=True):
     :return wsgi_handler: wsgi handle, eg, wsgid.serve_forever()
     """
     logging.basicConfig(level=LVL_NAME)
-    wsgi_handler = GetServerWSGI(port, wapp, validate=validate)
+    wsgi_handler = GetServerWSGI(wapp, port, validate=validate)
     return wsgi_handler
 
 
@@ -34,7 +34,7 @@ def wsgi_run(app=demo_app, port=PORT):  # pragma: no cover
     :param iface: server listen interface
     :param port: server listen port
     """
-    wsgid = wsgi_init(port, app, True)
+    wsgid = wsgi_init(app, port, True)
     logging.info('Serving %s on port %s', DOCROOT, port)
     try:
         wsgid.start()

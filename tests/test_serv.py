@@ -43,7 +43,7 @@ def test_get_server_attrs():
 def test_get_server_wsgi_attrs():
     """Test GetServer attrs"""
 
-    serv_thread = GetServerWSGI(wport, demo_app)
+    serv_thread = GetServerWSGI(demo_app, wport)
     assert isinstance(serv_thread, GetServerWSGI)
     assert hasattr(serv_thread, 'start')
     assert hasattr(serv_thread, 'stop')
@@ -61,7 +61,7 @@ def test_serv_init():
 def test_wsgi_init():
     """Test serv_init wrapper"""
 
-    serv_thread = wsgi_init(port, demo_app)
+    serv_thread = wsgi_init(demo_app, port)
     assert isinstance(serv_thread, GetServerWSGI)
     assert hasattr(serv_thread, 'start')
     assert hasattr(serv_thread, 'stop')

@@ -118,7 +118,7 @@ class GetServerWSGI(threading.Thread):
         s.stop()
     """
 
-    def __init__(self, port, flask_app, is_flask=False, validate=False):
+    def __init__(self, flask_app, port, is_flask=False, validate=False):
         super().__init__()
         self.port = int(port)
         self.app = flask_app
