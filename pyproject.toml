@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-testpaths = ["test",]
+testpaths = ["tests",]
 log_cli =  false
 doctest_optionflags = ["ELLIPSIS", "NORMALIZE_WHITESPACE",]
 addopts = "--strict-markers"
@@ -36,7 +36,7 @@ exclude = '''
   | build
   | docs
   | dist
-  | test
+  | tests
 )/
 '''
 

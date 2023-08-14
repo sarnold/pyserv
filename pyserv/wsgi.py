@@ -1,6 +1,6 @@
 """
-Simple HTTP server with broken GET rewriting for serving FW upgrades or
-other local files in an engineering development environment.
+Simple WSGI server for serving swagger or basic flask apps in an engineering
+development environment.
 """
 
 import logging
@@ -38,9 +38,10 @@ def wsgi_run(app=demo_app, port=PORT):  # pragma: no cover
     logging.info('Serving %s on port %s', DOCROOT, port)
     try:
         wsgid.start()
+        wsgid.join()
     except KeyboardInterrupt:
-        wsgid.stop()
         print("\nExiting ...")
+        wsgid.stop()
 
 
 def main(args=None):  # pragma: no cover

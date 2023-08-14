@@ -34,6 +34,7 @@ class ServDaemon(Daemon):
     Init daemon with custom run/cleanup methods, pass user vars to the
     server.
     """
+
     servd = None
 
     def run(self):
@@ -50,7 +51,6 @@ class ServDaemon(Daemon):
 
 
 if __name__ == "__main__":
-
     if not platform_check():
         raise OSError(f'Incompatible platform type "{sys.platform}"')
 
@@ -60,8 +60,9 @@ if __name__ == "__main__":
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
         description='Threaded HTTP server daemon',
     )
-    parser.add_argument("--version", action="version",
-                        version=f"httpdaemon {__version__}")
+    parser.add_argument(
+        "--version", action="version", version=f"httpdaemon {__version__}"
+    )
     parser.add_argument('run', choices=daemon_args, nargs=1)
 
     args = parser.parse_args()
@@ -70,10 +71,5 @@ if __name__ == "__main__":
     setup_logging(DEBUG, Path(LOG), 'httpd')
     # printout()
 
-    d = ServDaemon(
-        Path(PID),
-        home_dir=DOCROOT,
-        verbose=0,
-        use_cleanup=True
-    )
+    d = ServDaemon(Path(PID), home_dir=DOCROOT, verbose=0, use_cleanup=True)
     getattr(d, args.run[0])()

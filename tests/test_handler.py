@@ -13,13 +13,8 @@ REAL_PATH = pathlib.Path('requirements.txt')
 
 
 class TestHTTPHandler(unittest.TestCase):
-
     @pytest.mark.skipif(sys.version_info < (3, 7), reason="requires python3.7 or higher")
-    @httptest.Server(
-        lambda *args: GetHandler(
-            *args, directory=FILE_PATH.parent
-        )
-    )
+    @httptest.Server(lambda *args: GetHandler(*args, directory=FILE_PATH.parent))
     def test_call_response_dir(self, ts=httptest.NoServer()):
         with urllib.request.urlopen(ts.url() + FILE_PATH.name) as f:
             self.assertEqual(f.read().decode('utf-8'), FILE_PATH.read_text())

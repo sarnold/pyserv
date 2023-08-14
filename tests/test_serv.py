@@ -24,7 +24,7 @@ def get_request(port, iface):
 
 
 def test_get_handler_attrs():
-    """Test GetHandler attrs """
+    """Test GetHandler attrs"""
 
     handler = GetHandler
     assert hasattr(handler, 'do_GET')
@@ -32,7 +32,7 @@ def test_get_handler_attrs():
 
 
 def test_get_server_attrs():
-    """Test GetServer attrs """
+    """Test GetServer attrs"""
 
     serv_thread = GetServer(iface, port, directory)
     assert isinstance(serv_thread, GetServer)
@@ -41,7 +41,7 @@ def test_get_server_attrs():
 
 
 def test_get_server_wsgi_attrs():
-    """Test GetServer attrs """
+    """Test GetServer attrs"""
 
     serv_thread = GetServerWSGI(wport, demo_app)
     assert isinstance(serv_thread, GetServerWSGI)

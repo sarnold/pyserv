@@ -27,14 +27,11 @@ repos:
         args: [--fix=lf]
       - id: check-toml
 
-  # use ffffff (black fork) for single quote normalization
-  # (otherwise switch to black for double quotes)
-  - repo: https://github.com/grktsh/ffffff
-    rev: v2020.8.31
+  - repo: https://github.com/ambv/black
+    rev: 23.3.0
     hooks:
-      - id: ffffff
-        name: "Format code (ffffff)"
-        files: pyserv/
+      - id: black
+        name: "Format code"
         language_version: python3
 
   - repo: https://github.com/pycqa/isort
@@ -44,7 +41,7 @@ repos:
         args: [--settings-path=pyproject.toml]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.1.1
+    rev: v1.5.0
     hooks:
     - id: mypy
       args:
@@ -55,13 +52,13 @@ repos:
       files: pyserv/
 
   - repo: "https://github.com/asottile/blacken-docs"
-    rev: "1.13.0"
+    rev: "1.15.0"
     hooks:
       - id: "blacken-docs"
         name: "Format docs (blacken-docs)"
         args: ["-l", "64"]
         additional_dependencies:
-          - "black==22.1.0"
+          - "black==23.1.0"
 
   - repo: https://github.com/PyCQA/doc8
     rev: v1.1.1
@@ -79,7 +76,7 @@ repos:
       - id: rst-inline-touching-normal
 
   - repo: https://github.com/myint/autoflake
-    rev: v2.0.2
+    rev: v2.2.0
     hooks:
       - id: autoflake
         files: pyserv/
@@ -90,7 +87,7 @@ repos:
           - --remove-unused-variables
 
   - repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
+    rev: 6.1.0
     hooks:
       - id: flake8
         files: pyserv/
