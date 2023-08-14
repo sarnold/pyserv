@@ -90,7 +90,7 @@ def show_uservars():
 
 
 DEBUG = os.getenv('DEBUG', default=None)
-PORT = os.getenv('PORT', default='8080')
+PORT = os.getenv('PORT', default='8000')
 IFACE = os.getenv('IFACE', default='127.0.0.1')
 LPNAME = os.getenv('LPNAME', default='httpd')
 LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))

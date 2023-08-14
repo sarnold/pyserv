@@ -48,9 +48,9 @@ def serv_run(iface='', port=8080, directory=DOCROOT):  # pragma: no cover
         httpd.start()
         httpd.join()
     except KeyboardInterrupt:
+        print("\nExiting ...")
         httpd.stop()
         os.chdir(start_dir)
-        print("\nExiting ...")
 
 
 def main(args=None):  # pragma: no cover

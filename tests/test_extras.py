@@ -47,12 +47,10 @@ def test_init_dirs(tmp_path):
         assert thing.is_dir()
 
 
-@pytest.mark.skipif(sys.platform == 'win32',
-                    reason="daemon not supported on Windows")
+@pytest.mark.skipif(sys.platform == 'win32', reason="daemon not supported on Windows")
 def test_platform_check():
     """Test for POSIX platform"""
-    iam = platform_check()
-    assert iam
+    assert platform_check()
 
 
 def test_show_uservars():
