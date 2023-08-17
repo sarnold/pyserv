@@ -49,6 +49,15 @@ def test_get_server_wsgi_attrs():
     assert hasattr(serv_thread, 'stop')
 
 
+def test_get_server_wsgi_props():
+    """Test GetServer attrs"""
+
+    serv_thread = GetServerWSGI(demo_app, wport, False, True)
+    assert isinstance(serv_thread, GetServerWSGI)
+    assert hasattr(serv_thread, 'start')
+    assert hasattr(serv_thread, 'stop')
+
+
 def test_serv_init():
     """Test serv_init wrapper"""
 

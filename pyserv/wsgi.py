@@ -15,9 +15,10 @@ LVL_NAME = 'DEBUG' if DEBUG else 'INFO'
 
 def wsgi_init(wapp, port, validate=True):
     """
-    Init wsgi server for handoff; init logging and simple_server classes.
+    Init wsgi server for handler handoff; init logging and simple_server
+    classes.
 
-    :param iface: initialized listen interface
+    :param wapp: initialized WSGI app to run
     :param port: initialized listen port
     :return wsgi_handler: wsgi handle, eg, wsgid.serve_forever()
     """
@@ -28,11 +29,11 @@ def wsgi_init(wapp, port, validate=True):
 
 def wsgi_run(app=demo_app, port=PORT):  # pragma: no cover
     """
-    Run in foreground command wrapper for console entry point;
+    Run in foreground command wrapper for WSGI console entry point;
     init logging and server, run the server, stop the server.
 
-    :param iface: server listen interface
-    :param port: server listen port
+    :param app: WSGI app (defaults to ``demo_app`` if not provided)
+    :param port: WSGI server listen port
     """
     wsgid = wsgi_init(app, port, True)
     logging.info('Serving %s on port %s', DOCROOT, port)
