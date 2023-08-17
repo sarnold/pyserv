@@ -154,7 +154,7 @@ jobs:
 
     - name: Generate coverage
       run: |
-        tox -e coverage,py37,py311
+        tox -e coverage,py36,py311
 
     - name: Code Coverage Summary Report (data)
       uses: irongut/CodeCoverageSummary@v1.3.0
