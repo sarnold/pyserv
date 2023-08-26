@@ -26,6 +26,7 @@ from pyserv.settings import (
 )
 
 # from logging_tree import printout  # debug logging
+# pylint: disable=R0801
 
 
 IFACE = os.getenv('IFACE', default='0.0.0.0')

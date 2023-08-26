@@ -6,6 +6,7 @@ import pytest
 
 import pyserv
 from pyserv.settings import (
+    get_timeouts,
     get_userdirs,
     init_dirs,
     platform_check,
@@ -51,6 +52,12 @@ def test_init_dirs(tmp_path):
 def test_platform_check():
     """Test for POSIX platform"""
     assert platform_check()
+
+
+def test_get_timeouts():
+    """Start with default env"""
+    timeout_opts = get_timeouts()
+    assert isinstance(timeout_opts, dict)
 
 
 def test_show_uservars():
