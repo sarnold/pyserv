@@ -11,6 +11,16 @@ from appdirs import AppDirs
 from pyserv import __version__ as version
 
 
+def get_timeouts():
+    """
+    Return timeouts in byte-string format for py3tftp.
+
+    :return dict: byte string/float timeout values from env.
+    """
+    timeout_opts = {b'timeout': float(ACK_TMOUT), b'conn_timeout': float(CON_TMOUT)}
+    return timeout_opts
+
+
 def get_userdirs():
     """
     Get platform-agnostic user directory paths via appdirs.
@@ -83,6 +93,8 @@ def show_uservars():
         print(f"  LOG: {LOG}")
         print(f"  PID: {PID}")
         print(f"  DOCROOT: {DOCROOT}")
+        print(f"  ACK_TMOUT: {ACK_TMOUT}")
+        print(f"  CON_TMOUT: {CON_TMOUT}")
         print("-" * 79)
 
     except (ImportError, NameError) as exc:
@@ -96,3 +108,5 @@ LPNAME = os.getenv('LPNAME', default='httpd')
 LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))
 PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath(f'{LPNAME}.pid')))
 DOCROOT = os.getenv('DOCROOT', default=str(get_userdirs()[2]))
+ACK_TMOUT = os.getenv('ACK_TMOUT', default='0.5')
+CON_TMOUT = os.getenv('CON_TMOUT', default='3.0')

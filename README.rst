@@ -116,6 +116,13 @@ Once installed in a virtual environment, check the ``help`` output::
 
 .. _Python daemon: https://github.com/sarnold/python-daemonizer
 
+**New**
+
+* experimental tftp server daemon based on py3tftp
+* run ``tox -e tftp`` to create a virtual env and view defaults
+* ACK_TMOUT and CON_TMOUT are timeouts specific to tftp connections
+* script args and ENV values are otherwise the same as ``httpdaemon``
+
 
 Install with pip
 ----------------
