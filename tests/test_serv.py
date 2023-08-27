@@ -4,16 +4,19 @@ import time
 from wsgiref.simple_server import demo_app
 
 import requests
+import tftpy
 
 import pyserv
 from pyserv import GetHandler, GetServer, GetServerWSGI, munge_url
 from pyserv.server import *
+from pyserv.tftpd import *
 from pyserv.wsgi import *
 
 directory = '.'
 iface = '127.0.0.1'
 port = 8000
 wport = 5000
+tport = 8069
 
 
 def get_request(port, iface):
@@ -68,12 +71,22 @@ def test_serv_init():
 
 
 def test_wsgi_init():
-    """Test serv_init wrapper"""
+    """Test wsgi_init wrapper"""
 
     serv_thread = wsgi_init(demo_app, port)
     assert isinstance(serv_thread, GetServerWSGI)
     assert hasattr(serv_thread, 'start')
     assert hasattr(serv_thread, 'stop')
+
+
+def test_tftpd_init():
+    """Test tftpd_init wrapper"""
+
+    server = tftpd_init(directory)
+    print(type(server))
+    assert isinstance(server, tftpy.TftpServer)
+    assert hasattr(server, 'listen')
+    assert hasattr(server, 'stop')
 
 
 def test_munge_url():

@@ -16,7 +16,7 @@ from ._version import __version__
 
 VERSION = __version__
 
-__all__ = ["__version__", "VERSION", "GetHandler", "GetServer"]
+__all__ = ["__version__", "VERSION", "GetHandler", "GetServer", "GetServerWSGI"]
 
 
 def munge_url(ota_url):

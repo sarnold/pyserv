@@ -120,7 +120,7 @@ Once installed in a virtual environment, check the ``help`` output::
 
 * experimental tftp server daemon based on tftpy
 * run ``tox -e tftp`` to create a virtual env and view defaults
-* SOCK_TIMEOUT is specific to tftp client/server connections
+* ENV value SOCK_TIMEOUT is specific to tftp client/server connections
 * script args and ENV values are otherwise the same as ``httpdaemon``
 
 

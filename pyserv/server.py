@@ -20,6 +20,7 @@ def serv_init(iface, port, directory):
 
     :param iface: initialized listen interface
     :param port: initialized listen port
+    :param directory: server document root
     :return httpd_handler: threaded httpd handle, eg, httpd.start()
     """
     logging.basicConfig(level=LVL_NAME)
@@ -34,6 +35,7 @@ def serv_run(iface='', port=8080, directory=DOCROOT):  # pragma: no cover
 
     :param iface: server listen interface
     :param port: server listen port
+    :param directory: server document root
     """
     if not Path(directory).exists():
         logging.error('DOCROOT directory %s does not exist', directory)

@@ -1,5 +1,5 @@
 """
-Simple TFTP server for serving swupdate images or basic tasks in an engineering
+Simple TFTP server for serving kernels or swupdate images in an engineering
 development environment.
 """
 
@@ -21,7 +21,7 @@ def tftpd_init(directory):
     Init tftpd server for handoff; init logging.
 
     :param directory: server root directory
-    :return tftpd_server: tftpd obj, eg, tftpd.listen()
+    :return tftpd_server: tftpd server obj
     """
     logging.basicConfig(level=LVL_NAME)
     tftpd_server = tftpy.TftpServer(directory)
@@ -33,15 +33,16 @@ def tftpd_run(iface='', port=8069, directory=DOCROOT):  # pragma: no cover
     Run in foreground command wrapper for TFTP console entry point;
     init server listening, run the server, stop the server.
 
-    :param app: WSGI app (defaults to ``demo_app`` if not provided)
-    :param port: WSGI server listen port
+    :param iface: server listen interface (default: all)
+    :param port: server listen port (default: 8069)
+    :param directory: server root directory  (default: DOCROOT)
     """
     tftpd = tftpd_init(directory)
     try:
         tftpd.listen(iface, port)
         logging.info('Serving %s on port %s', directory, port)
     except tftpy.TftpException as err:
-        sys.stderr.write("%s\n" % str(err))
+        logging.critical("Server listen error: %s", str(err))
         sys.exit(1)
     except KeyboardInterrupt:
         print("\nExiting ...")
