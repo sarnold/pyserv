@@ -1,6 +1,6 @@
-===========================
- Pyserv Simple HTTP Server
-===========================
+=========================================
+ Pyserv - A Collection of Simple Servers
+=========================================
 
 |ci| |wheels| |release| |badge| |coverage|
 
@@ -13,8 +13,12 @@ custom `HTTP server`_ and WSGI_ classes, along with corresponding console
 entry points and some daemon scripts. The latest addition includes TFTP
 server support in both console and daemon formats.
 
-They exist mainly to handle simple requests for local files in a small-ish
-engineering/development environment.
+.. note:: Okay, a tftpy_ server class is not technically threaded, but it
+          *does* set ``threading.event`` and handles multiple client sessions
+          via a ``select`` loop.
+
+These tools exist mainly to handle simple requests for local files in a
+small-ish engineering/development environment.
 
 .. important:: This is **not** intended for Internet/intranet use and
   has absolutely **no** security. This is intended mainly for development
@@ -23,11 +27,12 @@ engineering/development environment.
 
 .. _HTTP server: https://docs.python.org/3/library/http.server.html
 .. _WSGI: https://docs.python.org/3/library/wsgiref.html
+.. _tftpy: https://tftpy.sourceforge.net/sphinx/index.html
 
 Quick Start
 ===========
 
-The primary reason this version of the "project" exists was serving OTA_
+The original reason this version of the "project" exists was serving OTA_
 firmware images to a small device over wifi, eg, an Android device or
 similar that requires an HTTP URL for firmware img/zip files. If that
 is what you need, then make sure the FW update files you want are in
