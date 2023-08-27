@@ -9,10 +9,9 @@ import sys
 
 import tftpy
 
-from .settings import DEBUG, DOCROOT
+from .settings import DEBUG, DOCROOT, IFACE
 
 LVL_NAME = 'DEBUG' if DEBUG else 'INFO'
-IFACE = os.getenv('IFACE', default='')
 PORT = os.getenv('PORT', default='8069')
 
 
@@ -23,12 +22,12 @@ def tftpd_init(directory):
     :param directory: server root directory
     :return tftpd_server: tftpd server obj
     """
-    logging.basicConfig(level=LVL_NAME)
+    logging.basicConfig(level=LVL_NAME)  # looks like tftpy has already grabbed logging
     tftpd_server = tftpy.TftpServer(directory)
     return tftpd_server
 
 
-def tftpd_run(iface='', port=8069, directory=DOCROOT):  # pragma: no cover
+def tftpd_run(iface=IFACE, port=PORT, directory=DOCROOT):  # pragma: no cover
     """
     Run in foreground command wrapper for TFTP console entry point;
     init server listening, run the server, stop the server.
@@ -39,8 +38,8 @@ def tftpd_run(iface='', port=8069, directory=DOCROOT):  # pragma: no cover
     """
     tftpd = tftpd_init(directory)
     try:
-        tftpd.listen(iface, port)
-        logging.info('Serving %s on port %s', directory, port)
+        tftpd.listen(iface, int(port))
+        logging.info('Serving %s on port %d', directory, int(port))
     except tftpy.TftpException as err:
         logging.critical("Server listen error: %s", str(err))
         sys.exit(1)

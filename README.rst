@@ -8,21 +8,26 @@
 
 |tag| |license| |python|
 
-A `Python HTTP server`_ to handle simple GET requests for local files that
-provides logging of requests/headers and an extra "feature" to handle
-(broken) clients that send the full URL instead of the GET file path.
+This is a growing collection of threaded Python server bits, including
+custom `HTTP server`_ and WSGI_ classes, along with corresponding console
+entry points and some daemon scripts. The latest addition includes TFTP
+server support in both console and daemon formats.
+
+They exist mainly to handle simple requests for local files in a small-ish
+engineering/development environment.
 
 .. important:: This is **not** intended for Internet/intranet use and
-  has absolutely **no** security. This is intended mainly for personal
-  use on a local subnet, eg, a local WIFI network *you* control. You
+  has absolutely **no** security. This is intended mainly for development
+  support on a local subnet, eg, a local WIFI network *you* control. You
   have been warned.
 
-.. _Python HTTP server: https://docs.python.org/3/library/http.server.html
+.. _HTTP server: https://docs.python.org/3/library/http.server.html
+.. _WSGI: https://docs.python.org/3/library/wsgiref.html
 
 Quick Start
 ===========
 
-The primary reason this version of the "project" exists is serving OTA_
+The primary reason this version of the "project" exists was serving OTA_
 firmware images to a small device over wifi, eg, an Android device or
 similar that requires an HTTP URL for firmware img/zip files. If that
 is what you need, then make sure the FW update files you want are in
@@ -45,25 +50,38 @@ of your OTA update file.
 Console command options
 -----------------------
 
-This package now installs two different command line interfaces;
-the ``serv`` command mentioned above, and a second  command
-called ``httpdaemon``.  The ``serv`` command is the standard Python
-console entry point, and has these minimal "features":
+This package now installs several different command line interfaces to
+support multiple protocols:
 
-* the document root is always the current directory
-* with no args, the default port is ``8080`` and the "server" listens
-  on *all* active interfaces
-* the *only* allowed args are either port, or port *and* interface
+* HTTP - the ``serv`` command and ``httpdaemon`` script
+* WSGI - the ``wsgi`` console command
+* TFTP - the ``tftpd`` console command and ``tftpdaemon`` script
 
-The ``httpdaemon`` command is a stand-alone `Python daemon`_ with the same
-core server code, as well as a default user configuration adjustable via
-environment variables, and the following "extra" features:
+The standard Python console entry points all have these minimal/default
+"features" with no arguments:
+
+* the document/server root is always the current directory
+
+  + HTTP: default port is ``8080`` and the server listens on *all* interfaces
+  + WSGI: default port is ``8000``, default app is builtin demo app, and the
+    server listens on localhost
+  + TFTP: default port is ``8069`` and the server listens on localhost
+
+* the *only* allowed args are either port, or port *and* interface (or
+  app and port for WSGI)
+
+.. note:: *All* of the above are configurable via environment variables
+          defined in the ``settings`` module (with the above defaults).
+
+The ``httpdaemon`` and ``tftpdaemon`` commands are stand-alone `Python daemon`_
+scripts with the same core server code, as well as a default user configuration
+adjustable via environment variables, and the following "extra" features:
 
 * allowed command-line args are ``start | stop | restart | status``
-* default port is ``8080`` and listen interface is ``127.0.0.1``
+* default port is ``8080`` or ``8069`` and listen interface is ``127.0.0.1``
 * default XDG user paths are set for pid and log files
 * environment values are checked first; if not set, fallback to defaults
-* clean logging using daemon package logger config
+* logging using daemon package logger config
 
 Sample environment display with tox overrides, ie, inside a Tox_ venv::
 
@@ -83,9 +101,11 @@ Sample environment display with tox overrides, ie, inside a Tox_ venv::
     DEBUG: 1
     PORT: 8080
     IFACE: 127.0.0.1
+    LPNAME: httpd
     LOG: /home/user/src/pyserv/.tox/dev/log/httpd.log
     PID: /home/user/src/pyserv/.tox/dev/tmp/httpd.pid
     DOCROOT: /home/user/src/pyserv
+    SOCK_TIMEOUT: 5
   ----------------------------------------------------------------------
 
 Use any of the variables under "Current environment values" to set your
@@ -111,8 +131,9 @@ Once installed in a virtual environment, check the ``help`` output::
 
 **One small wrinkle**
 
-* the ``httpdaemon`` script *will not* run on Windows, however,
-  the ``serv`` command should work fine
+* the daemon scripts *will not* run on Windows, however,
+  the console command variants should Just Work (if not, please file
+  an issue).
 
 .. _Python daemon: https://github.com/sarnold/python-daemonizer
 
@@ -181,6 +202,54 @@ the GH "releases" path to get the latest release from Github.
 
 .. _Tox: https://github.com/tox-dev/tox
 
+TFTP client example
+-------------------
+
+In the repo, use the tox env and start the server::
+
+  $ tox -e py
+  $ source .tox/py/bin/activate
+  (py) $ tftpd
+  INFO:tftpy.TftpServer:Server requested on ip 127.0.0.1, port 8069
+  INFO:tftpy.TftpServer:Starting receive loop...
+
+Open a new terminal and try out downloading a file with ``curl`` using
+default options; note this will send the file directly to stdout::
+
+  $ curl tftp://127.0.0.1:8069/requirements.txt
+  # daemon requirements, useful for tox/pip
+  daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.3.5#5f6bc3c80a90344b2c8e4cc24ed0b8c098a7af50; platform_system!="Windows"
+  appdirs
+  tftpy
+
+On the server side, ie, inside your virtual environment, you should see:
+
+::
+
+  INFO:tftpy.TftpStates:Setting tidport to 51009
+  INFO:tftpy.TftpStates:Dropping unsupported option 'timeout'
+  INFO:tftpy.TftpStates:requested file is in the server root - good
+  INFO:tftpy.TftpStates:Opening file /home/nerdboy/src/pyserv/requirements.txt for reading
+  INFO:tftpy.TftpServer:Currently handling these sessions:
+  INFO:tftpy.TftpServer:    127.0.0.1:51009 <tftpy.TftpStates.TftpStateExpectACK object at 0xffff87d5d1d0>
+  INFO:tftpy.TftpStates:Reached EOF on file requirements.txt
+  INFO:tftpy.TftpStates:Received ACK to final DAT, we're done.
+  INFO:tftpy.TftpServer:Successful transfer.
+  INFO:tftpy.TftpServer:
+  INFO:tftpy.TftpServer:Session 127.0.0.1:51009 complete
+  INFO:tftpy.TftpServer:Transferred 257 bytes in 0.00 seconds
+  INFO:tftpy.TftpServer:Average rate: 1243.74 kbps
+  INFO:tftpy.TftpServer:0.00 bytes in resent data
+  INFO:tftpy.TftpServer:0 duplicate packets
+
+If no port is provided the server attempts to run on port 8069.
+
+If the given port (or the default port 8069) is already in use, you will
+need to pass a different port number, eg, 9069.
+
+For larger/binary files, use ``-O`` to save the file in the current directory,
+and for better performance with large files, use curl's ``--tftp-blksize`` arg
+and set a larger size, eg, 8192.
 
 GET request example
 -------------------
