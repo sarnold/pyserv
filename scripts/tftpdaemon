@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+"""
+TFTP daemon script using pyserv and py3tftp (see settings.py for env vars).
+"""
+
+import argparse
+import logging
+import sys
+from pathlib import Path
+
+import tftpy
+from daemon import Daemon
+from daemon.parent_logger import setup_logging
+
+from pyserv import __version__
+from pyserv.settings import (
+    DEBUG,
+    DOCROOT,
+    IFACE,
+    LOG,
+    PID,
+    SOCK_TIMEOUT,
+    init_dirs,
+    platform_check,
+)
+from pyserv.tftpd import PORT
+
+# from logging_tree import printout  # debug logging
+# pylint: disable=R0801
+
+
+logger = logging.getLogger(__name__)
+
+
+class ServDaemon(Daemon):
+    """
+    Init daemon with custom run/cleanup methods, pass user vars to the
+    server.
+    """
+
+    server = None
+
+    def run(self):
+        """
+        Daemon needs a run method.
+        """
+        self.server = tftpy.TftpServer(DOCROOT)
+        self.server.listen(
+            listenip=IFACE, listenport=int(PORT), timeout=int(SOCK_TIMEOUT)
+        )
+
+    def cleanup(self):
+        """And we need a cleanup method."""
+        self.server.stop()
+
+
+if __name__ == "__main__":
+    if not platform_check():
+        raise OSError(f'Incompatible platform type "{sys.platform}"')
+
+    daemon_args = ['start', 'stop', 'restart', 'status']
+
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        description='Simple TFTP server daemon',
+    )
+    parser.add_argument(
+        "--version", action="version", version=f"tftpdaemon {__version__}"
+    )
+    parser.add_argument('run', choices=daemon_args, nargs=1)
+
+    args = parser.parse_args()
+
+    init_dirs([Path(LOG).parent, Path(PID).parent])
+    setup_logging(DEBUG, Path(LOG), 'tftpd')
+    # printout()
+
+    d = ServDaemon(Path(PID), home_dir=DOCROOT, verbose=0, use_cleanup=True)
+    getattr(d, args.run[0])()

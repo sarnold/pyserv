@@ -83,6 +83,7 @@ def show_uservars():
         print(f"  LOG: {LOG}")
         print(f"  PID: {PID}")
         print(f"  DOCROOT: {DOCROOT}")
+        print(f"  SOCK_TIMEOUT: {SOCK_TIMEOUT}")
         print("-" * 79)
 
     except (ImportError, NameError) as exc:
@@ -96,3 +97,4 @@ LPNAME = os.getenv('LPNAME', default='httpd')
 LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))
 PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath(f'{LPNAME}.pid')))
 DOCROOT = os.getenv('DOCROOT', default=str(get_userdirs()[2]))
+SOCK_TIMEOUT = os.getenv('SOCK_TIMEOUT', default='5')
