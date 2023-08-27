@@ -118,9 +118,9 @@ Once installed in a virtual environment, check the ``help`` output::
 
 **New**
 
-* experimental tftp server daemon based on py3tftp
+* experimental tftp server daemon based on tftpy
 * run ``tox -e tftp`` to create a virtual env and view defaults
-* ACK_TMOUT and CON_TMOUT are timeouts specific to tftp connections
+* SOCK_TIMEOUT is specific to tftp client/server connections
 * script args and ENV values are otherwise the same as ``httpdaemon``
 
 

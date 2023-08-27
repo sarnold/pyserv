@@ -4,15 +4,14 @@ TFTP daemon script using pyserv and py3tftp (see settings.py for env vars).
 """
 
 import argparse
-import asyncio
 import logging
 import os
 import sys
 from pathlib import Path
 
+import tftpy
 from daemon import Daemon
 from daemon.parent_logger import setup_logging
-from py3tftp.protocols import TFTPServerProtocol
 
 from pyserv import __version__
 from pyserv.settings import (
@@ -20,7 +19,7 @@ from pyserv.settings import (
     DOCROOT,
     LOG,
     PID,
-    get_timeouts,
+    SOCK_TIMEOUT,
     init_dirs,
     platform_check,
 )
@@ -30,30 +29,8 @@ from pyserv.settings import (
 
 
 IFACE = os.getenv('IFACE', default='0.0.0.0')
-PORT = os.getenv('PORT', default='9069')
+PORT = os.getenv('PORT', default='8069')
 logger = logging.getLogger(__name__)
-
-
-def get_async_loop():
-    """
-    Return async loop and transport bits.
-    """
-
-    loop = asyncio.get_event_loop()
-    timeouts = get_timeouts()
-
-    listen = loop.create_datagram_endpoint(
-        lambda: TFTPServerProtocol(IFACE, loop, timeouts),
-        local_addr=(
-            IFACE,
-            PORT,
-        ),
-        reuse_port=True,
-    )
-
-    transport, protocol = loop.run_until_complete(listen)
-
-    return loop, transport, protocol
 
 
 class ServDaemon(Daemon):
@@ -62,20 +39,20 @@ class ServDaemon(Daemon):
     server.
     """
 
-    loop, transport, protocol = get_async_loop()
+    server = None
 
     def run(self):
         """
-        Daemon needs a run method. In this case we need to instantiate
-        our GetServer obj here, ie, *after* the Daemon object.
+        Daemon needs a run method.
         """
-        self.loop.run_forever()
+        self.server = tftpy.TftpServer(DOCROOT)
+        self.server.listen(
+            listenip=IFACE, listenport=int(PORT), timeout=int(SOCK_TIMEOUT)
+        )
 
     def cleanup(self):
         """And we need a cleanup method."""
-        self.loop.run_until_complete(self.loop.shutdown_asyncgens())
-        self.loop.close()
-        self.transport.close()
+        self.server.stop()
 
 
 if __name__ == "__main__":
@@ -86,7 +63,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        description='Async TFTP server daemon',
+        description='Simple TFTP server daemon',
     )
     parser.add_argument(
         "--version", action="version", version=f"tftpdaemon {__version__}"
