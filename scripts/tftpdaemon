@@ -28,6 +28,7 @@ from pyserv.settings import (
 # pylint: disable=R0801
 
 
+LPNAME = os.getenv('LPNAME', default='tftpd')
 IFACE = os.getenv('IFACE', default='0.0.0.0')
 PORT = os.getenv('PORT', default='9069')
 logger = logging.getLogger(__name__)
