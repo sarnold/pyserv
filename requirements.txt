@@ -1,4 +1,4 @@
 # daemon requirements, useful for tox/pip
 daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.3.5#5f6bc3c80a90344b2c8e4cc24ed0b8c098a7af50; platform_system!="Windows"
+tftpy @ git+https://github.com/VCTLabs/tftpy.git@0.8.2.1#58d1f5c60af2e3759fbb137b89816954d8ea6bc9
 appdirs
-tftpy

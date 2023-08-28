@@ -6,7 +6,8 @@ __pycache__/
 # C extensions
 *.so
 
-# generated/user files
+# generated/user and test files
+*.swu
 ext/
 pyserv/_version.py
 

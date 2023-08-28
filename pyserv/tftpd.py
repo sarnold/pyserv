@@ -12,7 +12,7 @@ import tftpy
 from .settings import DEBUG, DOCROOT, IFACE
 
 LVL_NAME = 'DEBUG' if DEBUG else 'INFO'
-PORT = os.getenv('PORT', default='8069')
+PORT = os.getenv('PORT', default='9069')
 
 
 def tftpd_init(directory):
