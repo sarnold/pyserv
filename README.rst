@@ -90,28 +90,27 @@ adjustable via environment variables, and the following "extra" features:
 
 Sample environment display with tox overrides, ie, inside a Tox_ venv::
 
-  Python version: 3.9.7 (default, Mar 19 2022, 18:11:11)
-  [GCC 11.1.0]
-  ----------------------------------------------------------------------
-  pyserv 1.2.2.dev5
+  Python version: 3.11.4 (main, Jul  5 2023, 16:15:04) [GCC 12.3.1 20230526]
+  -------------------------------------------------------------------------------
+  pyserv 1.4.1.dev1
 
-  Pyserv default settings for daemon mode.
+  Pyserv default settings for server and daemon modes.
 
   Default user vars:
-    log_dir: /home/user/.cache/pyserv/1.2.2.dev5/log
-    pid_dir: /home/user/.cache/pyserv/1.2.2.dev5/run
-    doc_dir: /home/user/src/pyserv
+    log_dir: /home/user/.cache/pyserv/1.4.1.dev1/log
+    pid_dir: /home/user/.cache/pyserv/1.4.1.dev1/run
+    work_dir: /home/user/src/pyserv
 
   Current environment values:
     DEBUG: 1
-    PORT: 8080
+    PORT: 8000
     IFACE: 127.0.0.1
     LPNAME: httpd
     LOG: /home/user/src/pyserv/.tox/dev/log/httpd.log
     PID: /home/user/src/pyserv/.tox/dev/tmp/httpd.pid
     DOCROOT: /home/user/src/pyserv
     SOCK_TIMEOUT: 5
-  ----------------------------------------------------------------------
+  -------------------------------------------------------------------------------
 
 Use any of the variables under "Current environment values" to set your
 own custom environment.
@@ -136,9 +135,9 @@ Once installed in a virtual environment, check the ``help`` output::
 
 **One small wrinkle**
 
-* the daemon scripts *will not* run on Windows, however,
-  the console command variants should Just Work (if not, please file
-  an issue).
+* the daemon scripts are "traditional" forking daemons and thus *will not*
+  work on Windows, however, the console command variants should Just Work
+  (if not, please file an issue).
 
 .. _Python daemon: https://github.com/sarnold/python-daemonizer
 
@@ -147,7 +146,7 @@ Once installed in a virtual environment, check the ``help`` output::
 * experimental tftp server daemon based on tftpy
 * run ``tox -e tftp`` to create a virtual env and view defaults
 * ENV value SOCK_TIMEOUT is specific to tftp client/server connections
-* script args and ENV values are otherwise the same as ``httpdaemon``
+* script args and most ENV values are otherwise the same as ``httpdaemon``
 
 
 Install with pip
@@ -234,7 +233,7 @@ On the server side, ie, inside your virtual environment, you should see:
   INFO:tftpy.TftpStates:Setting tidport to 51009
   INFO:tftpy.TftpStates:Dropping unsupported option 'timeout'
   INFO:tftpy.TftpStates:requested file is in the server root - good
-  INFO:tftpy.TftpStates:Opening file /home/nerdboy/src/pyserv/requirements.txt for reading
+  INFO:tftpy.TftpStates:Opening file /home/user/src/pyserv/requirements.txt for reading
   INFO:tftpy.TftpServer:Currently handling these sessions:
   INFO:tftpy.TftpServer:    127.0.0.1:51009 <tftpy.TftpStates.TftpStateExpectACK object at 0xffff87d5d1d0>
   INFO:tftpy.TftpStates:Reached EOF on file requirements.txt
