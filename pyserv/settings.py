@@ -8,7 +8,7 @@ from pathlib import Path
 
 from appdirs import AppDirs
 
-from pyserv import __version__ as version
+from ._version import __version__ as version
 
 
 def get_userdirs():

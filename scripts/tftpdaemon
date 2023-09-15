@@ -4,7 +4,6 @@ TFTP daemon script using pyserv and py3tftp (see settings.py for env vars).
 """
 
 import argparse
-import logging
 import os
 import sys
 from pathlib import Path
@@ -13,7 +12,7 @@ import tftpy
 from daemon import Daemon
 from daemon.parent_logger import setup_logging
 
-from pyserv import __version__
+from pyserv._version import __version__
 from pyserv.settings import (
     DEBUG,
     DOCROOT,
@@ -31,7 +30,6 @@ from pyserv.settings import (
 LPNAME = os.getenv('LPNAME', default='tftpd')
 IFACE = os.getenv('IFACE', default='0.0.0.0')
 PORT = os.getenv('PORT', default='9069')
-logger = logging.getLogger(__name__)
 
 
 class ServDaemon(Daemon):
