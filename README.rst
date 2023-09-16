@@ -52,17 +52,30 @@ of your OTA update file.
 
 .. _OTA: https://en.wikipedia.org/wiki/Over-the-air_programming
 
+
+Daemons and Console Entry Points
+================================
+
+Pyserv contains modules with some backported features and a fix for broken
+OTA clients. It provides multiple console commands for different protocols,
+and two daemon wrappers for http and tftp.
+
+* console commands with simple arguments to run, well, from the console, or
+  for running via Procfile_ with something like Honcho_
+* daemon scripts to run in the background for workflows that need a simple
+  HTTP/WSGI server or TFTP server
+
+.. _Procfile: https://devcenter.heroku.com/articles/procfile
+.. _Honcho: https://honcho.readthedocs.io/en/latest/index.html
+
 Console command options
 -----------------------
 
-This package now installs several different command line interfaces to
-support multiple protocols:
-
-* HTTP - the ``serv`` command and ``httpdaemon`` script
+* HTTP - the ``serv`` console command
 * WSGI - the ``wsgi`` console command
-* TFTP - the ``tftpd`` console command and ``tftpdaemon`` script
+* TFTP - the ``tftpd`` console command
 
-The standard Python console entry points all have these minimal/default
+The above standard Python console entry points all have these minimal/default
 "features" with no arguments:
 
 * the document/server root is always the current directory
@@ -73,7 +86,7 @@ The standard Python console entry points all have these minimal/default
   + TFTP: default port is ``8069`` and the server listens on localhost
 
 * the *only* allowed args are either port, or port *and* interface (or
-  app and port for WSGI)
+  app_name and port for WSGI)
 
 .. note:: *All* of the above are configurable via environment variables
           defined in the ``settings`` module (with the above defaults).
@@ -150,7 +163,7 @@ Once installed in a virtual environment, check the ``help`` output::
 
 
 Install with pip
-----------------
+================
 
 This refactored fork of pyserv is *not* published on PyPI, thus use one of
 the following commands to install the latest pyserv in a Python virtual
@@ -305,9 +318,9 @@ Original gist: https://gist.github.com/mdonkers/63e115cc0c79b4f6b8b3a6b797e485c7
 
 
 Pre-commit
-----------
+==========
 
-This repo is now pre-commit_ enabled for python/rst source and file-type
+This repo is pre-commit_ enabled for python/rst source and file-type
 linting. The checks run automatically on commit and will fail the commit
 (if not clean) and perform simple file corrections.  For example, if the
 mypy check fails on commit, you must first fix any fatal errors for the
