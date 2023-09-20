@@ -1,5 +1,6 @@
 """
 Simple HTTP server classes with GET path rewriting and request/header logging.
+Now includes a reference WSGI server and tftpdaemon script.
 """
 
 import logging
@@ -12,11 +13,8 @@ from urllib.parse import urlparse
 from wsgiref.simple_server import make_server
 from wsgiref.validate import validator
 
-from ._version import __version__
-
-VERSION = __version__
-
-__all__ = ["__version__", "VERSION", "GetHandler", "GetServer", "GetServerWSGI"]
+__all__ = ["__description__", "GetHandler", "GetServer", "GetServerWSGI", "munge_url"]
+__description__ = "A collection of simple servers for HTTP, WSGI, and TFTP"
 
 
 def munge_url(ota_url):

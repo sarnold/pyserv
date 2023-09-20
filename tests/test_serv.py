@@ -16,7 +16,6 @@ directory = '.'
 iface = '127.0.0.1'
 port = 8000
 wport = 5000
-tport = 8069
 
 
 def get_request(port, iface):

@@ -6,9 +6,9 @@ import os
 import sys
 from pathlib import Path
 
-from appdirs import AppDirs
+from platformdirs import PlatformDirs
 
-from pyserv import __version__ as version
+from ._version import __version__ as version
 
 
 def get_userdirs():
@@ -17,9 +17,9 @@ def get_userdirs():
 
     :return tuple: logdir, piddir, docdir as Path objs
     """
-    dirs = AppDirs(appname='pyserv', version=version)
-    logdir = Path(dirs.user_log_dir)
-    piddir = Path(dirs.user_cache_dir).joinpath('run')
+    dirs = PlatformDirs(appname='pyserv', appauthor='nerdboy')
+    logdir = dirs.user_log_path
+    piddir = dirs.user_runtime_path
     docdir = Path(os.getcwd())
     return logdir, piddir, docdir
 

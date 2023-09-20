@@ -27,11 +27,11 @@ def test_get_userdirs():
     if WIN32:
         assert logdir.name == 'Logs'
     elif APPLE:
-        assert logdir.name == version
+        assert logdir.name == 'pyserv'
     else:
         assert logdir.name == 'log'
 
-    assert piddir.name == 'run'
+    assert piddir.name == 'pyserv'
     assert docdir.name == Path.cwd().name
 
 

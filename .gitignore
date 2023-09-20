@@ -9,7 +9,7 @@ __pycache__/
 # generated/user and test files
 *.swu
 ext/
-pyserv/_version.py
+src/pyserv/_version.py
 
 # Distribution / packaging
 .Python

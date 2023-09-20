@@ -17,7 +17,7 @@ markers = "subscript"
 [tool.coverage.run]
 branch = true
 source = [
-    "pyserv/",
+    "src/",
     ".tox/py*/lib/python*/site-packages/",
 ]
 omit = [
@@ -26,7 +26,7 @@ omit = [
 ]
 
 [tool.coverage.paths]
-source = ["pyserv"]
+source = ["src"]
 
 [tool.coverage.report]
 fail_under = 80
@@ -79,4 +79,4 @@ dirty = "{version}+d{build_date:%Y%m%d}"
 distance-dirty = "{next_version}.dev{distance}"
 
 [tool.versioningit.write]
-file = "pyserv/_version.py"
+file = "src/pyserv/_version.py"
