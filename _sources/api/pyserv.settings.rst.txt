@@ -1,0 +1,7 @@
+pyserv.settings module
+======================
+
+.. automodule:: pyserv.settings
+   :members:
+   :undoc-members:
+   :show-inheritance:
