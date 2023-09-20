@@ -83,7 +83,7 @@ The above standard Python console entry points all have these minimal/default
   + HTTP: default port is ``8080`` and the server listens on *all* interfaces
   + WSGI: default port is ``8000``, default app is builtin demo app, and the
     server listens on localhost
-  + TFTP: default port is ``8069`` and the server listens on localhost
+  + TFTP: default port is ``9069`` and the server listens on localhost
 
 * the *only* allowed args are either port, or port *and* interface (or
   app_name and port for WSGI)
@@ -96,7 +96,7 @@ scripts with the same core server code, as well as a default user configuration
 adjustable via environment variables, and the following "extra" features:
 
 * allowed command-line args are ``start | stop | restart | status``
-* default port is ``8080`` or ``8069`` and listen interface is ``127.0.0.1``
+* default port is ``8080`` or ``9069`` and listen interface is ``127.0.0.1``
 * default XDG user paths are set for pid and log files
 * environment values are checked first; if not set, fallback to defaults
 * logging using daemon package logger config
@@ -110,9 +110,9 @@ Sample environment display with tox overrides, ie, inside a Tox_ venv::
   Pyserv default settings for server and daemon modes.
 
   Default user vars:
-    log_dir: /home/user/.cache/pyserv/1.4.1.dev1/log
-    pid_dir: /home/user/.cache/pyserv/1.4.1.dev1/run
-    work_dir: /home/user/src/pyserv
+    log_dir: /home/user/.local/state/pyserv/log
+    pid_dir: /run/user/1001/pyserv
+    work_dir: /home/nerdboy/src/pyserv
 
   Current environment values:
     DEBUG: 1
@@ -227,13 +227,13 @@ In the repo, use the tox env and start the server::
   $ tox -e py
   $ source .tox/py/bin/activate
   (py) $ tftpd
-  INFO:tftpy.TftpServer:Server requested on ip 127.0.0.1, port 8069
+  INFO:tftpy.TftpServer:Server requested on ip 127.0.0.1, port 9069
   INFO:tftpy.TftpServer:Starting receive loop...
 
 Open a new terminal and try out downloading a file with ``curl`` using
 default options; note this will send the file directly to stdout::
 
-  $ curl tftp://127.0.0.1:8069/requirements.txt
+  $ curl tftp://127.0.0.1:9069/requirements.txt
   # daemon requirements, useful for tox/pip
   daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.3.5#5f6bc3c80a90344b2c8e4cc24ed0b8c098a7af50; platform_system!="Windows"
   appdirs
@@ -259,10 +259,10 @@ On the server side, ie, inside your virtual environment, you should see:
   INFO:tftpy.TftpServer:0.00 bytes in resent data
   INFO:tftpy.TftpServer:0 duplicate packets
 
-If no port is provided the server attempts to run on port 8069.
+If no port is provided the server attempts to run on port 9069.
 
-If the given port (or the default port 8069) is already in use, you will
-need to pass a different port number, eg, 9069.
+If the given port (or the default port 9069) is already in use, you will
+need to pass a different port number, eg, 9169.
 
 For larger/binary files, use ``-O`` to save the file in the current directory,
 and for better performance with large files, use curl's ``--tftp-blksize`` arg
