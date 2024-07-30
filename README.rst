@@ -112,7 +112,7 @@ Sample environment display with tox overrides, ie, inside a Tox_ venv::
   Default user vars:
     log_dir: /home/user/.local/state/pyserv/log
     pid_dir: /run/user/1001/pyserv
-    work_dir: /home/nerdboy/src/pyserv
+    work_dir: /home/user/src/pyserv
 
   Current environment values:
     DEBUG: 1

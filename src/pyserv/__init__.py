@@ -13,7 +13,20 @@ from urllib.parse import urlparse
 from wsgiref.simple_server import make_server
 from wsgiref.validate import validator
 
-__all__ = ["__description__", "GetHandler", "GetServer", "GetServerWSGI", "munge_url"]
+if sys.version_info < (3, 8):
+    from importlib_metadata import version
+else:
+    from importlib.metadata import version
+
+__version__ = version('pyserv')
+__all__ = [
+    "__description__",
+    "__version__",
+    "GetHandler",
+    "GetServer",
+    "GetServerWSGI",
+    "munge_url",
+]
 __description__ = "A collection of simple servers for HTTP, WSGI, and TFTP"
 
 

@@ -8,7 +8,7 @@ from pathlib import Path
 
 from platformdirs import PlatformDirs
 
-from ._version import __version__ as version
+from . import __version__ as version
 
 
 def get_userdirs():

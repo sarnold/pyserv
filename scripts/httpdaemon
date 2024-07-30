@@ -11,8 +11,7 @@ from pathlib import Path
 from daemon import Daemon
 from daemon.parent_logger import setup_logging
 
-from pyserv import GetServer
-from pyserv._version import __version__
+from pyserv import GetServer, __version__
 from pyserv.settings import (
     DEBUG,
     DOCROOT,

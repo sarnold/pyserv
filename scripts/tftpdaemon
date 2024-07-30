@@ -12,7 +12,7 @@ import tftpy
 from daemon import Daemon
 from daemon.parent_logger import setup_logging
 
-from pyserv._version import __version__
+from pyserv import __version__
 from pyserv.settings import (
     DEBUG,
     DOCROOT,
