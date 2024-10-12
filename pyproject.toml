@@ -1,10 +1,11 @@
 [build-system]
 requires = [
-    "setuptools>=42",
-    "versioningit >= 1.1.1",
+    "setuptools>=45",
+    "setuptools_scm[toml]>=6.2",
 ]
-
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -16,10 +17,7 @@ markers = "subscript"
 
 [tool.coverage.run]
 branch = true
-source = [
-    "src/",
-    ".tox/py*/lib/python*/site-packages/",
-]
+source = ["src"]
 omit = [
     "tests",
     ".tox",
@@ -70,13 +68,6 @@ force_grid_wrap = 0
 use_parentheses = true
 ensure_newline_before_comments = true
 
-[tool.versioningit.next-version]
-method = "smallest"
-
-[tool.versioningit.format]
-distance = "{next_version}.dev{distance}"
-dirty = "{version}+d{build_date:%Y%m%d}"
-distance-dirty = "{next_version}.dev{distance}"
-
-[tool.versioningit.write]
-file = "src/pyserv/_version.py"
+[tool.bandit]
+exclude_dirs = ["docs"]
+#skips = ["B603", "B404"]
