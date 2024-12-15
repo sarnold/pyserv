@@ -56,8 +56,6 @@ class GetHandler(SimpleHTTPRequestHandler):
     """
     Munge the incoming request path from Dialog OTA. Runs `urlparse` on
     the url and updates the GET handler path. We also log the result.
-
-    :param SimpleHTTPRequestHandler: imported from `http.server`
     """
 
     def do_GET(self):
@@ -96,7 +94,7 @@ class GetServer(threading.Thread):
         s.stop()
     """
 
-    def __init__(self, iface, port, directory):
+    def __init__(self, iface, port, directory="."):
         """Setup server, iface, and port"""
         super().__init__()
         self.iface = iface
