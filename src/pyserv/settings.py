@@ -37,13 +37,12 @@ def init_dirs(dirs):
         usr_path.mkdir(parents=True, exist_ok=True)
 
 
-def platform_check():
+def platform_check() -> bool:
     """
     Check to see if we think we are POSIX.
 
-    :return list: valid platform name
+    :return we_are_posix: true if system is posix
     """
-    valid_os = []
     myname = sys.platform
     is_posix = os.name == 'posix'
     posix_list = [
@@ -52,9 +51,8 @@ def platform_check():
         'openbsd',
         'freebsd',
     ]
-    valid_os = [x for x in posix_list if x in myname and is_posix]
-
-    return valid_os
+    we_are_posix = myname in posix_list and is_posix
+    return we_are_posix
 
 
 def show_uservars():

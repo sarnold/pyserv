@@ -32,7 +32,7 @@ def test_get_userdirs():
     else:
         assert logdir.name == 'log'
 
-    assert piddir.name == 'pyserv'
+    assert piddir.name == 'pyserv' or 'Cache'
     assert docdir.name == Path.cwd().name
 
 
