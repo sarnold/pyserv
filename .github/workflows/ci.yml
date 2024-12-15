@@ -45,6 +45,6 @@ jobs:
 
     - name: Run tests
       run: |
-        tox
+        tox -- no
       env:
         PLATFORM: ${{ matrix.os }}
