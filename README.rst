@@ -101,6 +101,10 @@ adjustable via environment variables, and the following "extra" features:
 * environment values are checked first; if not set, fallback to defaults
 * logging using daemon package logger config
 
+.. note:: The XDG runtime path may not exist in a console environment;
+          if so, the fallback is XDG user cache path.
+
+
 Sample environment display with tox overrides, ie, inside a Tox_ venv::
 
   Python version: 3.11.4 (main, Jul  5 2023, 16:15:04) [GCC 12.3.1 20230526]

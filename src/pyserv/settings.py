@@ -18,8 +18,10 @@ def get_userdirs():
     :return tuple: logdir, piddir, docdir as Path objs
     """
     dirs = PlatformDirs(appname='pyserv', appauthor='nerdboy')
+    run_check = Path('/run/user').exists()
+    run_path = dirs.user_runtime_path if run_check else dirs.user_cache_path
     logdir = dirs.user_log_path
-    piddir = dirs.user_runtime_path
+    piddir = run_path
     docdir = Path(os.getcwd())
     return logdir, piddir, docdir
 
@@ -35,13 +37,12 @@ def init_dirs(dirs):
         usr_path.mkdir(parents=True, exist_ok=True)
 
 
-def platform_check():
+def platform_check() -> bool:
     """
     Check to see if we think we are POSIX.
 
-    :return bool: True if POSIX, else False
+    :return we_are_posix: true if system is posix
     """
-    valid_os = []
     myname = sys.platform
     is_posix = os.name == 'posix'
     posix_list = [
@@ -50,9 +51,8 @@ def platform_check():
         'openbsd',
         'freebsd',
     ]
-    valid_os = [x for x in posix_list if x in myname and is_posix]
-
-    return valid_os
+    we_are_posix = myname in posix_list and is_posix
+    return we_are_posix
 
 
 def show_uservars():

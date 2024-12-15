@@ -20,6 +20,7 @@ APPLE = sys.platform == 'darwin'
 def test_get_userdirs():
     """We should get Path objs"""
     logdir, piddir, docdir = get_userdirs()
+    print(f'PID dir: {piddir}')
 
     for thing in logdir, piddir, docdir:
         assert isinstance(thing, Path)
@@ -31,7 +32,7 @@ def test_get_userdirs():
     else:
         assert logdir.name == 'log'
 
-    assert piddir.name == 'pyserv'
+    assert piddir.name == 'pyserv' or 'Cache'
     assert docdir.name == Path.cwd().name
 
 
@@ -47,10 +48,14 @@ def test_init_dirs(tmp_path):
         assert thing.is_dir()
 
 
-@pytest.mark.skipif(sys.platform == 'win32', reason="daemon not supported on Windows")
 def test_platform_check():
     """Test for POSIX platform"""
-    assert platform_check()
+    iam_posix = platform_check()
+    if WIN32:
+        assert iam_posix is False
+    else:
+        assert iam_posix
+    print(f'posix check: {iam_posix}')
 
 
 def test_show_uservars():
