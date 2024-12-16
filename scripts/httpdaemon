@@ -42,7 +42,7 @@ class ServDaemon(Daemon):
         Daemon needs a run method. In this case we need to instantiate
         our GetServer obj here, ie, *after* the Daemon object.
         """
-        self.servd = GetServer(IFACE, PORT, DOCROOT)
+        self.servd = GetServer(IFACE, PORT)
         self.servd.start()
 
     def cleanup(self):
@@ -70,6 +70,10 @@ if __name__ == "__main__":
     init_dirs([Path(LOG).parent, Path(PID).parent])
     setup_logging(DEBUG, Path(LOG), 'httpd')
     # printout()
+    if DEBUG == '1':
+        print(f'LOG: {LOG}')
+        print(f'PID: {PID}')
+        print(f'DOCROOT: {DOCROOT}')
 
     d = ServDaemon(Path(PID), home_dir=DOCROOT, verbose=0, use_cleanup=True)
     getattr(d, args.run[0])()
