@@ -11,7 +11,7 @@ import tftpy
 
 from .settings import DEBUG, DOCROOT, IFACE
 
-LVL_NAME = 'DEBUG' if DEBUG else 'INFO'
+LVL_NAME = 'DEBUG' if DEBUG == '1' else 'INFO'
 PORT = os.getenv('PORT', default='9069')
 
 
@@ -22,7 +22,7 @@ def tftpd_init(directory):
     :param directory: server root directory
     :return tftpd_server: tftpd server obj
     """
-    logging.basicConfig(level=LVL_NAME)  # looks like tftpy has already grabbed logging
+    logging.basicConfig(level=LVL_NAME)
     tftpd_server = tftpy.TftpServer(directory)
     return tftpd_server
 
@@ -57,6 +57,8 @@ def main(args=None):  # pragma: no cover
 
       tftpd [IFACE] [PORT]
     """
+    #logging.basicConfig(level=LVL_NAME)
+
     if args is None:
         args = sys.argv[1:]
 

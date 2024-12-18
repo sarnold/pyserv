@@ -38,6 +38,7 @@ class ServDaemon(Daemon):
     server.
     """
 
+    cur_dir = '.'
     serv = None
 
     def run(self):
