@@ -90,7 +90,7 @@ def show_uservars():
         print(f"FAILED: {repr(exc)}")
 
 
-DEBUG = os.getenv('DEBUG', default=None)
+DEBUG = os.getenv('DEBUG', default='0')
 PORT = os.getenv('PORT', default='8000')
 IFACE = os.getenv('IFACE', default='127.0.0.1')
 LPNAME = os.getenv('LPNAME', default='httpd')
