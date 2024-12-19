@@ -3,7 +3,6 @@
 Async TFTP daemon script using pyserv and py3tftp (see settings.py for env vars).
 """
 
-import argparse
 import asyncio
 import os
 import sys
@@ -11,13 +10,11 @@ from pathlib import Path
 
 from daemon import Daemon
 from daemon.parent_logger import setup_logging
-from py3tftp.cli_parser import parse_cli_arguments
 from py3tftp.protocols import TFTPServerProtocol
 
-from pyserv import __version__
+from pyserv.ext import parse_cli_arguments
 from pyserv.settings import (
     DEBUG,
-    SOCK_TIMEOUT,
     get_userdirs,
     init_dirs,
     platform_check,
@@ -26,8 +23,6 @@ from pyserv.settings import (
 # from logging_tree import printout  # debug logging
 # pylint: disable=R0801
 
-PORT = os.getenv('PORT', default='9069')
-IFACE = os.getenv('IFACE', default='0.0.0.0')
 LPNAME = os.getenv('LPNAME', default='atftpd')
 LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))
 PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath(f'{LPNAME}.pid')))
@@ -39,18 +34,14 @@ def get_inputs():
     Gather up the inputs for async loop.
     """
     uargs = parse_cli_arguments()
-    uargs.host = IFACE
-    uargs.port = PORT
-    uargs.conn_timeout = float(SOCK_TIMEOUT)
-    if DEBUG != '0':
-        uargs.verbose = True
 
     timeouts = {
         bytes(k, encoding='ascii'): v
         for k, v in vars(uargs).items() if 'timeout' in k
     }
 
-    print(f'Using uargs: {uargs} and timeouts: {timeouts}')
+    if DEBUG != '0':
+        print(f'Using uargs: {uargs} and timeouts: {timeouts}')
 
     return uargs, timeouts
 
@@ -90,26 +81,15 @@ if __name__ == "__main__":
     if not platform_check():
         raise OSError(f'Incompatible platform type "{sys.platform}"')
 
-    daemon_args = ['start', 'stop', 'restart', 'status']
+    pargs, _ = get_inputs()
 
-    parser = argparse.ArgumentParser(
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        description='Async TFTP server daemon',
-    )
-    parser.add_argument(
-        "--version", action="version", version=f"atftpdaemon {__version__}"
-    )
-    parser.add_argument('run', choices=daemon_args, nargs=1)
-
-    args = parser.parse_args()
-
-    setup_logging(DEBUG, Path(LOG), 'atftpd')
+    setup_logging(int(DEBUG), Path(LOG), 'atftpd')
     init_dirs([Path(LOG).parent, Path(PID).parent])
     # printout()
-    if DEBUG == '1':
+    if not pargs.quiet:
         print(f'LOG: {LOG}')
         print(f'PID: {PID}')
         print(f'DOCROOT: {DOCROOT}')
 
     d = ServDaemon(Path(PID), home_dir=DOCROOT, verbose=int(DEBUG), use_cleanup=True)
-    getattr(d, args.run[0])()
+    getattr(d, pargs.run[0])()
