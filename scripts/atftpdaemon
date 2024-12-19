@@ -23,6 +23,8 @@ from pyserv.settings import (
 # from logging_tree import printout  # debug logging
 # pylint: disable=R0801
 
+PORT = os.getenv('PORT', default='')
+IFACE = os.getenv('IFACE', default='')
 LPNAME = os.getenv('LPNAME', default='atftpd')
 LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))
 PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath(f'{LPNAME}.pid')))
@@ -34,10 +36,13 @@ def get_inputs():
     Gather up the inputs for async loop.
     """
     uargs = parse_cli_arguments()
+    if IFACE:
+        uargs.host = IFACE
+    if PORT:
+        uargs.port = int(PORT)
 
     timeouts = {
-        bytes(k, encoding='ascii'): v
-        for k, v in vars(uargs).items() if 'timeout' in k
+        bytes(k, encoding='ascii'): v for k, v in vars(uargs).items() if 'timeout' in k
     }
 
     if DEBUG != '0':
@@ -51,6 +56,7 @@ class ServDaemon(Daemon):
     Init daemon with custom run/cleanup methods, pass user vars to the
     server.
     """
+
     loop = None
     transport = None
 
@@ -59,11 +65,23 @@ class ServDaemon(Daemon):
         Daemon needs a run method.
         """
         argsobj, bsdict = get_inputs()
-        self.loop = asyncio.get_event_loop()
+
+        if sys.version_info < (3, 10):
+            self.loop = asyncio.get_event_loop()
+        else:
+            try:
+                self.loop = asyncio.get_running_loop()
+            except RuntimeError:
+                self.loop = asyncio.new_event_loop()
+
+        asyncio.set_event_loop(self.loop)
 
         listen = self.loop.create_datagram_endpoint(
             lambda: TFTPServerProtocol(argsobj.host, self.loop, bsdict),
-            local_addr=(argsobj.host, argsobj.port,)
+            local_addr=(
+                argsobj.host,
+                argsobj.port,
+            ),
         )
 
         self.transport, _ = self.loop.run_until_complete(listen)
