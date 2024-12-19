@@ -29,7 +29,18 @@ IFACE = os.getenv('IFACE', default='')
 LPNAME = os.getenv('LPNAME', default='tftpd')
 LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))
 PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath(f'{LPNAME}.pid')))
-DOCROOT = os.getenv('DOCROOT', default=str(get_userdirs()[2]))
+
+
+def get_docroot():
+    """
+    We need to santize the server root.
+    """
+    srv_path = Path(os.getenv('DOCROOT', default=str(get_userdirs()[2])))
+    srv_root = srv_path if srv_path.is_absolute() else srv_path.resolve()
+    return str(srv_root)
+
+
+DOCROOT = get_docroot()
 
 
 class ServDaemon(Daemon):

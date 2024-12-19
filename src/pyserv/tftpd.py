@@ -22,7 +22,6 @@ def tftpd_init(directory):
     :param directory: server root directory
     :return tftpd_server: tftpd server obj
     """
-    logging.basicConfig(level=LVL_NAME)
     tftpd_server = tftpy.TftpServer(directory)
     return tftpd_server
 
@@ -57,7 +56,7 @@ def main(args=None):  # pragma: no cover
 
       tftpd [IFACE] [PORT]
     """
-    #logging.basicConfig(level=LVL_NAME)
+    logging.basicConfig(level=LVL_NAME)
 
     if args is None:
         args = sys.argv[1:]
