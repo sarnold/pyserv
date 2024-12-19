@@ -19,6 +19,14 @@ SPDX-FileCopyrightText = "Copyright (c) 2023 Masen Furer"
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
+path = "src/pyserv/ext.py"
+SPDX-FileCopyrightText = [
+    "Copyright 2016 Matt O. <matt@mattscodecave.com>",
+    "2022-2024 Stephen Arnold <sarnold@vctlabs.com>",
+]
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
 path = "**"
 SPDX-FileCopyrightText = [
     "2022-2024 Stephen Arnold <sarnold@vctlabs.com>",

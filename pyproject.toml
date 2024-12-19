@@ -70,4 +70,4 @@ ensure_newline_before_comments = true
 
 [tool.bandit]
 exclude_dirs = ["docs"]
-#skips = ["B603", "B404"]
+#skips = ["B104"]
