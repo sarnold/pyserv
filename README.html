@@ -1,0 +1,551 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pyserv - A Collection of Simple Servers &mdash; pyserv 1.6.4.dev2+g0678f36 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=4c327eb9"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyserv" href="api/modules.html" />
+    <link rel="prev" title="Welcome to the pyserv documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            pyserv
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pyserv - A Collection of Simple Servers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#daemons-and-console-entry-points">Daemons and Console Entry Points</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#console-command-options">Console command options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#daemon-usage">Daemon usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#async-tftp-usage">Async tftp usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#install-with-pip">Install with pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tftp-client-example">TFTP client example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-request-example">GET request example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-commit">Pre-commit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">pyserv</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyserv</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Pyserv - A Collection of Simple Servers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pyserv-a-collection-of-simple-servers">
+<h1>Pyserv - A Collection of Simple Servers<a class="headerlink" href="#pyserv-a-collection-of-simple-servers" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/ci.yml"><img alt="CI Status" src="https://github.com/sarnold/pyserv/actions/workflows/ci.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/wheels.yml"><img alt="Wheel Status" src="https://github.com/sarnold/pyserv/actions/workflows/wheels.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/release.yml"><img alt="Release Status" src="https://github.com/sarnold/pyserv/actions/workflows/release.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/pylint.yml"><img alt="Pylint Status" src="https://github.com/sarnold/pyserv/actions/workflows/pylint.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/coverage.yml"><img alt="Coverage workflow" src="https://github.com/sarnold/pyserv/actions/workflows/coverage.yml/badge.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/pre-commit/pre-commit"><img alt="pre-commit" src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&amp;logoColor=white" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/"><img alt="Test coverage" src="https://raw.githubusercontent.com/sarnold/pyserv/badges/master/test-coverage.svg" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/pylint.yml"><img alt="Pylint score" src="https://raw.githubusercontent.com/sarnold/pyserv/badges/master/pylint-score.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/sarnold/pyserv/releases"><img alt="GitHub tag" src="https://img.shields.io/github/v/tag/sarnold/pyserv?color=green&amp;include_prereleases&amp;label=latest%20release" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/blob/master/LICENSES/MIT.txt"><img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg" /></a> <a class="reference external" href="https://www.python.org/downloads/"><img alt="Python" src="https://img.shields.io/badge/python-3.6+-blue.svg" /></a></p>
+<p>This is a growing collection of threaded Python server bits, including
+custom <a class="reference external" href="https://docs.python.org/3/library/http.server.html">HTTP server</a> and <a class="reference external" href="https://docs.python.org/3/library/wsgiref.html">WSGI</a> classes, along with corresponding console
+entry points and some daemon scripts. The latest addition includes TFTP
+server support in both console and daemon formats.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Okay, a <a class="reference external" href="https://tftpy.sourceforge.net/sphinx/index.html">tftpy</a> server class is not technically threaded, but it
+<em>does</em> set <code class="docutils literal notranslate"><span class="pre">threading.event</span></code> and handles multiple client sessions
+via a <code class="docutils literal notranslate"><span class="pre">select</span></code> loop.</p>
+</div>
+<p>These tools exist mainly to handle simple requests for local files in a
+small-ish engineering/development environment.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This is <strong>not</strong> intended for Internet/intranet use and
+has absolutely <strong>no</strong> security. This is intended mainly for development
+support on a local subnet, eg, a local WIFI network <em>you</em> control. You
+have been warned.</p>
+</div>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<p>The original reason this version of the “project” exists was serving <a class="reference external" href="https://en.wikipedia.org/wiki/Over-the-air_programming">OTA</a>
+firmware images to a small device over wifi, eg, an Android device or
+similar that requires an HTTP URL for firmware img/zip files. If that
+is what you need, then make sure the FW update files you want are in
+a directory in your virtual environment and run the <code class="docutils literal notranslate"><span class="pre">serv</span></code> command
+from that directory.  The simple way to do that is:</p>
+<ul class="simple">
+<li><p>follow the steps below to create a virtual env (either venv or tox)</p></li>
+<li><p>connect your dev host to the same wifi network as the device</p></li>
+<li><p>copy your FW files into the source directory, then start the server</p></li>
+</ul>
+<p>In another terminal, run your update command and provide a URL like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">dev_host_wifi_IP</span><span class="o">&gt;</span><span class="p">:</span><span class="n">PORT</span><span class="o">/</span><span class="n">fw_update</span><span class="o">.</span><span class="n">img</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">PORT</span></code> is the port used below and <code class="docutils literal notranslate"><span class="pre">fw_update.img</span></code> is the name
+of your OTA update file.</p>
+</section>
+<section id="daemons-and-console-entry-points">
+<h2>Daemons and Console Entry Points<a class="headerlink" href="#daemons-and-console-entry-points" title="Link to this heading"></a></h2>
+<p>Pyserv contains modules with some backported features and a fix for broken
+OTA clients. It provides multiple console commands for different protocols,
+and two daemon wrappers for http and tftp.</p>
+<ul class="simple">
+<li><p>console commands with simple arguments to run, well, from the console, or
+for running via <a class="reference external" href="https://devcenter.heroku.com/articles/procfile">Procfile</a> with something like <a class="reference external" href="https://honcho.readthedocs.io/en/latest/index.html">Honcho</a></p></li>
+<li><p>daemon scripts to run in the background for workflows that need a simple
+HTTP/WSGI server or TFTP server</p></li>
+</ul>
+<section id="console-command-options">
+<h3>Console command options<a class="headerlink" href="#console-command-options" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>HTTP - the <code class="docutils literal notranslate"><span class="pre">serv</span></code> console command</p></li>
+<li><p>WSGI - the <code class="docutils literal notranslate"><span class="pre">wsgi</span></code> console command</p></li>
+<li><p>TFTP - the <code class="docutils literal notranslate"><span class="pre">tftpd</span></code> console command</p></li>
+</ul>
+<p>The above standard Python console entry points all have these minimal/default
+“features” with no arguments:</p>
+<ul class="simple">
+<li><p>the document/server root is always the current directory</p>
+<ul>
+<li><p>HTTP: default port is <code class="docutils literal notranslate"><span class="pre">8080</span></code> and the server listens on <em>all</em> interfaces</p></li>
+<li><p>WSGI: default port is <code class="docutils literal notranslate"><span class="pre">8000</span></code>, default app is builtin demo app, and the
+server listens on localhost</p></li>
+<li><p>TFTP: default port is <code class="docutils literal notranslate"><span class="pre">9069</span></code> and the server listens on localhost</p></li>
+</ul>
+</li>
+<li><p>the <em>only</em> allowed args are either port, or port <em>and</em> interface (or
+app_name and port for WSGI)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>All</em> of the above are configurable via environment variables
+defined in the <code class="docutils literal notranslate"><span class="pre">settings</span></code> module (with the above defaults).</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">httpdaemon</span></code> and <code class="docutils literal notranslate"><span class="pre">tftpdaemon</span></code> commands are stand-alone <a class="reference external" href="https://github.com/sarnold/python-daemonizer">Python daemon</a>
+scripts with the same core server code, as well as a default user configuration
+adjustable via environment variables, and the following “extra” features:</p>
+<ul class="simple">
+<li><p>allowed command-line args are <code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">|</span> <span class="pre">stop</span> <span class="pre">|</span> <span class="pre">restart</span> <span class="pre">|</span> <span class="pre">status</span></code></p></li>
+<li><p>default port is <code class="docutils literal notranslate"><span class="pre">8080</span></code> or <code class="docutils literal notranslate"><span class="pre">9069</span></code> and listen interface is <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code></p></li>
+<li><p>default XDG user paths are set for pid and log files</p></li>
+<li><p>environment values are checked first; if not set, fallback to defaults</p></li>
+<li><p>logging using daemon package logger config</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The XDG runtime path may not exist in a console environment;
+if so, the fallback is XDG user cache path.</p>
+</div>
+<p>Sample environment display with tox overrides, ie, inside a <a class="reference external" href="https://github.com/tox-dev/tox">Tox</a> venv:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="n">version</span><span class="p">:</span> <span class="mf">3.11.4</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Jul</span>  <span class="mi">5</span> <span class="mi">2023</span><span class="p">,</span> <span class="mi">16</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">04</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">12.3.1</span> <span class="mi">20230526</span><span class="p">]</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">pyserv</span> <span class="mf">1.4.1</span><span class="o">.</span><span class="n">dev1</span>
+
+<span class="n">Pyserv</span> <span class="n">default</span> <span class="n">settings</span> <span class="k">for</span> <span class="n">server</span> <span class="ow">and</span> <span class="n">daemon</span> <span class="n">modes</span><span class="o">.</span>
+
+<span class="n">Default</span> <span class="n">user</span> <span class="nb">vars</span><span class="p">:</span>
+  <span class="n">log_dir</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/.</span><span class="n">local</span><span class="o">/</span><span class="n">state</span><span class="o">/</span><span class="n">pyserv</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">pid_dir</span><span class="p">:</span> <span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="mi">1001</span><span class="o">/</span><span class="n">pyserv</span>
+  <span class="n">work_dir</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">pyserv</span>
+
+<span class="n">Current</span> <span class="n">environment</span> <span class="n">values</span><span class="p">:</span>
+  <span class="n">DEBUG</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="n">PORT</span><span class="p">:</span> <span class="mi">8000</span>
+  <span class="n">IFACE</span><span class="p">:</span> <span class="mf">127.0.0.1</span>
+  <span class="n">LPNAME</span><span class="p">:</span> <span class="n">httpd</span>
+  <span class="n">LOG</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">pyserv</span><span class="o">/.</span><span class="n">tox</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">httpd</span><span class="o">.</span><span class="n">log</span>
+  <span class="n">PID</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">pyserv</span><span class="o">/.</span><span class="n">tox</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">httpd</span><span class="o">.</span><span class="n">pid</span>
+  <span class="n">DOCROOT</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">pyserv</span>
+  <span class="n">SOCK_TIMEOUT</span><span class="p">:</span> <span class="mi">5</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Use any of the variables under “Current environment values” to set your
+own custom environment.</p>
+</section>
+<section id="daemon-usage">
+<h3>Daemon usage<a class="headerlink" href="#daemon-usage" title="Link to this heading"></a></h3>
+<p>Once installed in a virtual environment, check the <code class="docutils literal notranslate"><span class="pre">help</span></code> output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ httpdaemon -h
+usage: httpdaemon [-h] [--version] {start,stop,restart,status}
+
+Threaded HTTP server daemon
+
+positional arguments:
+  {start,stop,restart,status}
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program&#39;s version number and exit
+</pre></div>
+</div>
+<p><strong>One small wrinkle</strong></p>
+<ul class="simple">
+<li><p>the daemon scripts are “traditional” forking daemons and thus <em>will not</em>
+work on Windows, however, the console command variants should Just Work
+(if not, please file an issue).</p></li>
+</ul>
+<p><strong>New</strong></p>
+<ul class="simple">
+<li><p>experimental tftp server daemon based on tftpy</p></li>
+<li><p>even more experimental async tftp server daemon based on py3tftp</p></li>
+<li><p>run <code class="docutils literal notranslate"><span class="pre">tox</span> <span class="pre">-e</span> <span class="pre">tftp</span></code> to create a virtual env and view defaults</p></li>
+<li><p>run <code class="docutils literal notranslate"><span class="pre">tox</span> <span class="pre">-e</span> <span class="pre">tftpd</span></code> to create a virtual env with capabilities for low
+ports, eg, port <code class="docutils literal notranslate"><span class="pre">69</span></code></p></li>
+<li><p>ENV value SOCK_TIMEOUT is specific to tftp client/server connections</p></li>
+<li><p>script args and most ENV values are otherwise the same as <code class="docutils literal notranslate"><span class="pre">httpdaemon</span></code></p></li>
+</ul>
+</section>
+<section id="async-tftp-usage">
+<h3>Async tftp usage<a class="headerlink" href="#async-tftp-usage" title="Link to this heading"></a></h3>
+<p>Run a simple test of the async daemon with tox:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ LPNAME=atftpd tox -e tftpd
+tftpd: install_deps&gt; python -I -m pip install logging_tree &#39;pip&gt;=23.1&#39; &#39;setuptools_scm[toml]&#39; .
+tftpd: commands_pre[0]&gt; bash -c &#39;dd if=/dev/zero of=$DOCROOT/$TST_FILE bs=1M count=40&#39;
+40+0 records in
+40+0 records out
+41943040 bytes (42 MB, 40 MiB) copied, 0.0127168 s, 3.3 GB/s
+tftpd: commands_pre[1]&gt; bash -c &#39;sudo setcap cap_net_bind_service+ep /home/nerdboy/src/pyserv/.tox/tftpd/bin/python&#39;
+tftpd: commands_pre[2]&gt; bash -c &#39;sudo setcap cap_net_bind_service+ep /home/nerdboy/src/pyserv/.tox/tftpd/bin/python3&#39;
+tftpd: commands[0]&gt; python -c &#39;from pyserv.settings import show_uservars; show_uservars()&#39;
+Python version: 3.12.7 (main, Oct 19 2024, 22:38:25) [GCC 14.2.1 20240921]
+-------------------------------------------------------------------------------
+pyserv 1.6.2.dev8+g684c689
+
+Pyserv default settings for server and daemon modes.
+
+Default user vars:
+  log_dir: /home/nerdboy/.local/state/pyserv/log
+  pid_dir: /run/user/1000/pyserv
+  work_dir: /home/nerdboy/src/pyserv
+
+Current environment values:
+  DEBUG: 0
+  PORT: 69
+  IFACE: 0.0.0.0
+  LPNAME: atftpd
+  LOG: /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
+  PID: /home/nerdboy/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+  DOCROOT: tests/data
+  SOCK_TIMEOUT: 5
+-------------------------------------------------------------------------------
+tftpd: commands[1]&gt; atftpdaemon -h
+usage: atftpdaemon [-h] [--version] [--host HOST] [-p PORT]
+                   [--ack-timeout TIMEOUT] [--conn-timeout CONN_TIMEOUT] [-v]
+                   [-q]
+                   {start,stop,restart,status}
+
+Async TFTP server daemon
+
+positional arguments:
+  {start,stop,restart,status}
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program&#39;s version number and exit
+  --host HOST           IP of the interface the server will listen on.
+                        Default: 0.0.0.0 (default: )
+  -p PORT, --port PORT  Port the server will listen on. Default: 9069. TFTP
+                        standard-compliant port: 69 - requires additional
+                        privileges. (default: 9069)
+  --ack-timeout TIMEOUT
+                        Timeout for each ACK of the lock-step. Default: 0.5.
+                        (default: 0.5)
+  --conn-timeout CONN_TIMEOUT
+                        Timeout before the server gives up on a transfer and
+                        closes the connection. Default: 3. (default: 5.0)
+  -v, --verbose         Enable debug-level logging. (default: False)
+  -q, --quiet           Inhibit extra console output. (default: False)
+tftpd: commands[2]&gt; atftpdaemon start
+LOG: /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
+PID: /home/nerdboy/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+DOCROOT: tests/data
+tftpd: commands[3]&gt; bash -c &#39;sleep 2&#39;
+tftpd: commands[4]&gt; curl --tftp-blksize 8192 --output tests/testbin.swu tftp://0.0.0.0:69/testbin.swu
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 40.0M  100 40.0M    0     0   275M      0 --:--:-- --:--:-- --:--:--  275M
+100 40.0M  100 40.0M    0     0   275M      0 --:--:-- --:--:-- --:--:--  275M
+tftpd: commands[5]&gt; bash -c &#39;sleep 1&#39;
+tftpd: commands[6]&gt; tail -n 5 /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
+2024-12-24 01:48:12 UTC INFO atftpd.daemonize(149) Started
+2024-12-24 01:48:12 UTC INFO atftpd.connection_made(393) Listening...
+2024-12-24 01:48:14 UTC INFO atftpd.__init__(273) Initiating RRQProtocol with (&#39;127.0.0.1&#39;, 56554)
+2024-12-24 01:48:14 UTC INFO atftpd.connection_lost(123) Connection to 127.0.0.1:56554 terminated
+tftpd: commands[7]&gt; cmp tests/data/testbin.swu tests/testbin.swu
+tftpd: commands[8]&gt; ls -l tests/data/testbin.swu tests/testbin.swu
+-rw-r--r-- 1 nerdboy nerdboy 41943040 Dec 23 17:48 tests/data/testbin.swu
+-rw-r--r-- 1 nerdboy nerdboy 41943040 Dec 23 17:48 tests/testbin.swu
+tftpd: commands[9]&gt; bash -c &#39;rm -f tests/data/testbin.swu tests/testbin.swu&#39;
+tftpd: commands_post[0]&gt; atftpdaemon stop
+LOG: /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
+PID: /home/nerdboy/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+DOCROOT: tests/data
+  tftpd: OK (39.19=setup[35.53]+cmd[0.02,0.01,0.01,0.07,0.09,0.10,2.00,0.15,1.00,0.01,0.02,0.00,0.01,0.18] seconds)
+  congratulations :) (39.24 seconds)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="install-with-pip">
+<h2>Install with pip<a class="headerlink" href="#install-with-pip" title="Link to this heading"></a></h2>
+<p>This refactored fork of pyserv is <em>not</em> published on PyPI, thus use one of
+the following commands to install the latest pyserv in a Python virtual
+environment on any platform.</p>
+<p>From source:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 -m venv env
+$ source env/bin/activate
+$ pip install git+https://github.com/sarnold/pyserv.git
+$ serv 8000      # optionally add interface, eg, 10.0.0.2
+</pre></div>
+</div>
+<p>The output should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Starting</span> <span class="n">HTTP</span> <span class="n">SERVER</span> <span class="n">at</span> <span class="n">PORT</span> <span class="p">:</span><span class="mi">8000</span>
+</pre></div>
+</div>
+<p>The alternative to python venv is the <a class="reference external" href="https://github.com/tox-dev/tox">Tox</a> test driver.  If you have it
+installed already, clone this repository and try the following commands
+from the pyserv source directory.</p>
+<p>To install in dev mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e dev
+</pre></div>
+</div>
+<p>To run tests using default system Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e py
+</pre></div>
+</div>
+<p>To run pylint:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e lint
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After installing in dev mode, use the environment created by
+Tox just like any other Python virtual environment.  The dev
+install mode of Pip allows you to edit the code and run it
+again while inside the virtual environment. By default Tox
+environments are created under <code class="docutils literal notranslate"><span class="pre">.tox/</span></code> and named after the
+env argument (eg, py).</p>
+</div>
+<p>To install the latest release, eg with your own <code class="docutils literal notranslate"><span class="pre">tox.ini</span></code> file in
+another project, use something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install https://github.com/sarnold/pyserv/releases/download/1.2.4/pyserv-1.2.4-py3-none-any.whl
+</pre></div>
+</div>
+<p>If you have a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file, you can add something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pyserv</span> <span class="o">@</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sarnold</span><span class="o">/</span><span class="n">pyserv</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="mf">1.2.4</span><span class="o">/</span><span class="n">pyserv</span><span class="o">-</span><span class="mf">1.2.4</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>Note the newest pip versions may no longer work using <code class="docutils literal notranslate"><span class="pre">-f</span></code> with just
+the GH “releases” path to get the latest release from Github.</p>
+<section id="tftp-client-example">
+<h3>TFTP client example<a class="headerlink" href="#tftp-client-example" title="Link to this heading"></a></h3>
+<p>In the repo, use the tox env and start the server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e py
+$ source .tox/py/bin/activate
+(py) $ tftpd
+INFO:tftpy.TftpServer:Server requested on ip 127.0.0.1, port 9069
+INFO:tftpy.TftpServer:Starting receive loop...
+</pre></div>
+</div>
+<p>Open a new terminal and try out downloading a file with <code class="docutils literal notranslate"><span class="pre">curl</span></code> using
+default options; note this will send the file directly to stdout:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl tftp://127.0.0.1:9069/requirements.txt
+# daemon requirements, useful for tox/pip
+daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.3.5#5f6bc3c80a90344b2c8e4cc24ed0b8c098a7af50; platform_system!=&quot;Windows&quot;
+appdirs
+tftpy
+</pre></div>
+</div>
+<p>On the server side, ie, inside your virtual environment, you should see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">Setting</span> <span class="n">tidport</span> <span class="n">to</span> <span class="mi">51009</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">Dropping</span> <span class="n">unsupported</span> <span class="n">option</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">requested</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">server</span> <span class="n">root</span> <span class="o">-</span> <span class="n">good</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">Opening</span> <span class="n">file</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">pyserv</span><span class="o">/</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span> <span class="k">for</span> <span class="n">reading</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="n">Currently</span> <span class="n">handling</span> <span class="n">these</span> <span class="n">sessions</span><span class="p">:</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span>    <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">51009</span> <span class="o">&lt;</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="o">.</span><span class="n">TftpStateExpectACK</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0xffff87d5d1d0</span><span class="o">&gt;</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">Reached</span> <span class="n">EOF</span> <span class="n">on</span> <span class="n">file</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">Received</span> <span class="n">ACK</span> <span class="n">to</span> <span class="n">final</span> <span class="n">DAT</span><span class="p">,</span> <span class="n">we</span><span class="s1">&#39;re done.</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="n">Successful</span> <span class="n">transfer</span><span class="o">.</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="n">Session</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">51009</span> <span class="n">complete</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="n">Transferred</span> <span class="mi">257</span> <span class="nb">bytes</span> <span class="ow">in</span> <span class="mf">0.00</span> <span class="n">seconds</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="n">Average</span> <span class="n">rate</span><span class="p">:</span> <span class="mf">1243.74</span> <span class="n">kbps</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="mf">0.00</span> <span class="nb">bytes</span> <span class="ow">in</span> <span class="n">resent</span> <span class="n">data</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="mi">0</span> <span class="n">duplicate</span> <span class="n">packets</span>
+</pre></div>
+</div>
+<p>If no port is provided the server attempts to run on port 9069.</p>
+<p>If the given port (or the default port 9069) is already in use, you will
+need to pass a different port number, eg, 9169.</p>
+<p>For larger/binary files, use <code class="docutils literal notranslate"><span class="pre">-O</span></code> to save the file in the current directory,
+and for better performance with large files, use curl’s <code class="docutils literal notranslate"><span class="pre">--tftp-blksize</span></code> arg
+and set a larger size, eg, 8192.</p>
+</section>
+<section id="get-request-example">
+<h3>GET request example<a class="headerlink" href="#get-request-example" title="Link to this heading"></a></h3>
+<p>In the repo, use the tox env and start the server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e py
+$ source .tox/py/bin/activate
+(py) $ serv
+INFO:root:Starting HTTP SERVER at :8080
+</pre></div>
+</div>
+<p>Open a new terminal and try out sending a GET request:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python
+&gt;&gt;&gt; import requests
+&gt;&gt;&gt; URL = &#39;http://0.0.0.0:8080&#39;
+&gt;&gt;&gt; r = requests.get(URL)
+&gt;&gt;&gt; print(r.text)
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+</pre></div>
+</div>
+<p>On the server side, ie, inside your virtual environment, you should see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Starting</span> <span class="n">HTTP</span> <span class="n">SERVER</span> <span class="n">at</span> <span class="p">:</span><span class="mi">8080</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Path</span> <span class="ow">in</span><span class="p">:</span> <span class="o">/</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Path</span> <span class="n">out</span><span class="p">:</span> <span class="o">/</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Headers</span><span class="p">:</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span>  <span class="n">Host</span><span class="p">:</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">8080</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span>  <span class="n">User</span><span class="o">-</span><span class="n">Agent</span><span class="p">:</span> <span class="n">python</span><span class="o">-</span><span class="n">requests</span><span class="o">/</span><span class="mf">2.25.1</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span>  <span class="n">Accept</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="n">gzip</span><span class="p">,</span> <span class="n">deflate</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span>  <span class="n">Accept</span><span class="p">:</span> <span class="o">*/*</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span>  <span class="n">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="mf">127.0.0.1</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">13</span><span class="o">/</span><span class="n">Jul</span><span class="o">/</span><span class="mi">2022</span> <span class="mi">20</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">22</span><span class="p">]</span> <span class="s2">&quot;GET / HTTP/1.1&quot;</span> <span class="mi">200</span> <span class="o">-</span>
+</pre></div>
+</div>
+<p>If no port is provided the server attempts to run on port 8080.</p>
+<p>If the given port (or the default port 8080) is already in use, you will
+need to pass a different port number, eg, 8088.</p>
+<p>Motivation:</p>
+<p>Small device firmware with non-compliant HTTP client implementations.</p>
+<p>Original project from gist: <a class="reference external" href="https://pypi.org/project/pyserv/">https://pypi.org/project/pyserv/</a></p>
+<p>Original gist: <a class="reference external" href="https://gist.github.com/mdonkers/63e115cc0c79b4f6b8b3a6b797e485c7">https://gist.github.com/mdonkers/63e115cc0c79b4f6b8b3a6b797e485c7</a></p>
+</section>
+</section>
+<section id="pre-commit">
+<h2>Pre-commit<a class="headerlink" href="#pre-commit" title="Link to this heading"></a></h2>
+<p>This repo is <a class="reference external" href="https://pre-commit.com/index.html">pre-commit</a> enabled for python/rst source and file-type
+linting. The checks run automatically on commit and will fail the commit
+(if not clean) and perform simple file corrections.  For example, if the
+mypy check fails on commit, you must first fix any fatal errors for the
+commit to succeed. That said, pre-commit does nothing if you don’t install
+it first (both the program itself and the hooks in your local repository
+copy).</p>
+<p>You will need to install pre-commit before contributing any changes;
+installing it using your system’s package manager is recommended,
+otherwise install with pip into your usual virtual environment using
+something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo emerge pre-commit  --or--
+$ pip install pre-commit
+</pre></div>
+</div>
+<p>then install it into the repo you just cloned:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/sarnold/pyserv
+$ cd pyserv/
+$ pre-commit install
+</pre></div>
+</div>
+<p>It’s usually a good idea to update the hooks to the latest version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pre-commit autoupdate
+</pre></div>
+</div>
+<p>Most (but not all) of the pre-commit checks will make corrections for you,
+however, some will only report errors, so these you will need to correct
+manually.</p>
+<p>Automatic-fix checks include ffffff, isort, autoflake, and miscellaneous
+file fixers. If any of these fail, you can review the changes with
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> and just add them to your commit and continue.</p>
+<p>If any of the mypy, bandit, or rst source checks fail, you will get a report,
+and you must fix any errors before you can continue adding/committing.</p>
+<p>To see a “replay” of any <code class="docutils literal notranslate"><span class="pre">rst</span></code> check errors, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pre-commit run rst-backticks -a
+$ pre-commit run rst-directive-colons -a
+$ pre-commit run rst-inline-touching-normal -a
+</pre></div>
+</div>
+<p>To run all <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> checks manually, try:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pre-commit run -a
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to the pyserv documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/modules.html" class="btn btn-neutral float-right" title="pyserv" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Stephen L Arnold.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
