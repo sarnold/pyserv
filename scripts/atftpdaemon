@@ -64,28 +64,23 @@ class ServDaemon(Daemon):
         """
         Daemon needs a run method.
         """
-        argsobj, bsdict = get_inputs()
+        try:
+            argsobj, bsdict = get_inputs()
 
-        if sys.version_info < (3, 10):
-            self.loop = asyncio.get_event_loop()
-        else:
-            try:
-                self.loop = asyncio.get_running_loop()
-            except RuntimeError:
-                self.loop = asyncio.new_event_loop()
+            self.loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(self.loop)
+            listen = self.loop.create_datagram_endpoint(
+                lambda: TFTPServerProtocol(argsobj.host, self.loop, bsdict),
+                local_addr=(
+                    argsobj.host,
+                    argsobj.port,
+                ),
+            )
 
-        asyncio.set_event_loop(self.loop)
-
-        listen = self.loop.create_datagram_endpoint(
-            lambda: TFTPServerProtocol(argsobj.host, self.loop, bsdict),
-            local_addr=(
-                argsobj.host,
-                argsobj.port,
-            ),
-        )
-
-        self.transport, _ = self.loop.run_until_complete(listen)
-        self.loop.run_forever()
+            self.transport, _ = self.loop.run_until_complete(listen)
+            self.loop.run_forever()
+        except RuntimeError as exc:
+            print(f'Got run method error: {exc}')
 
     def cleanup(self):
         """

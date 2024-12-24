@@ -161,9 +161,102 @@ Once installed in a virtual environment, check the ``help`` output::
 **New**
 
 * experimental tftp server daemon based on tftpy
+* even more experimental async tftp server daemon based on py3tftp
 * run ``tox -e tftp`` to create a virtual env and view defaults
+* run ``tox -e tftpd`` to create a virtual env with capabilities for low
+  ports, eg, port ``69``
 * ENV value SOCK_TIMEOUT is specific to tftp client/server connections
 * script args and most ENV values are otherwise the same as ``httpdaemon``
+
+Async tftp usage
+----------------
+
+Run a simple test of the async daemon with tox::
+
+    $ LPNAME=atftpd tox -e tftpd
+    tftpd: install_deps> python -I -m pip install logging_tree 'pip>=23.1' 'setuptools_scm[toml]' .
+    tftpd: commands_pre[0]> bash -c 'dd if=/dev/zero of=$DOCROOT/$TST_FILE bs=1M count=40'
+    40+0 records in
+    40+0 records out
+    41943040 bytes (42 MB, 40 MiB) copied, 0.0127168 s, 3.3 GB/s
+    tftpd: commands_pre[1]> bash -c 'sudo setcap cap_net_bind_service+ep /home/nerdboy/src/pyserv/.tox/tftpd/bin/python'
+    tftpd: commands_pre[2]> bash -c 'sudo setcap cap_net_bind_service+ep /home/nerdboy/src/pyserv/.tox/tftpd/bin/python3'
+    tftpd: commands[0]> python -c 'from pyserv.settings import show_uservars; show_uservars()'
+    Python version: 3.12.7 (main, Oct 19 2024, 22:38:25) [GCC 14.2.1 20240921]
+    -------------------------------------------------------------------------------
+    pyserv 1.6.2.dev8+g684c689
+
+    Pyserv default settings for server and daemon modes.
+
+    Default user vars:
+      log_dir: /home/nerdboy/.local/state/pyserv/log
+      pid_dir: /run/user/1000/pyserv
+      work_dir: /home/nerdboy/src/pyserv
+
+    Current environment values:
+      DEBUG: 0
+      PORT: 69
+      IFACE: 0.0.0.0
+      LPNAME: atftpd
+      LOG: /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
+      PID: /home/nerdboy/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+      DOCROOT: tests/data
+      SOCK_TIMEOUT: 5
+    -------------------------------------------------------------------------------
+    tftpd: commands[1]> atftpdaemon -h
+    usage: atftpdaemon [-h] [--version] [--host HOST] [-p PORT]
+                       [--ack-timeout TIMEOUT] [--conn-timeout CONN_TIMEOUT] [-v]
+                       [-q]
+                       {start,stop,restart,status}
+
+    Async TFTP server daemon
+
+    positional arguments:
+      {start,stop,restart,status}
+
+    options:
+      -h, --help            show this help message and exit
+      --version             show program's version number and exit
+      --host HOST           IP of the interface the server will listen on.
+                            Default: 0.0.0.0 (default: )
+      -p PORT, --port PORT  Port the server will listen on. Default: 9069. TFTP
+                            standard-compliant port: 69 - requires additional
+                            privileges. (default: 9069)
+      --ack-timeout TIMEOUT
+                            Timeout for each ACK of the lock-step. Default: 0.5.
+                            (default: 0.5)
+      --conn-timeout CONN_TIMEOUT
+                            Timeout before the server gives up on a transfer and
+                            closes the connection. Default: 3. (default: 5.0)
+      -v, --verbose         Enable debug-level logging. (default: False)
+      -q, --quiet           Inhibit extra console output. (default: False)
+    tftpd: commands[2]> atftpdaemon start
+    LOG: /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
+    PID: /home/nerdboy/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+    DOCROOT: tests/data
+    tftpd: commands[3]> bash -c 'sleep 2'
+    tftpd: commands[4]> curl --tftp-blksize 8192 --output tests/testbin.swu tftp://0.0.0.0:69/testbin.swu
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100 40.0M  100 40.0M    0     0   275M      0 --:--:-- --:--:-- --:--:--  275M
+    100 40.0M  100 40.0M    0     0   275M      0 --:--:-- --:--:-- --:--:--  275M
+    tftpd: commands[5]> bash -c 'sleep 1'
+    tftpd: commands[6]> tail -n 5 /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
+    2024-12-24 01:48:12 UTC INFO atftpd.daemonize(149) Started
+    2024-12-24 01:48:12 UTC INFO atftpd.connection_made(393) Listening...
+    2024-12-24 01:48:14 UTC INFO atftpd.__init__(273) Initiating RRQProtocol with ('127.0.0.1', 56554)
+    2024-12-24 01:48:14 UTC INFO atftpd.connection_lost(123) Connection to 127.0.0.1:56554 terminated
+    tftpd: commands[7]> cmp tests/data/testbin.swu tests/testbin.swu
+    tftpd: commands[8]> ls -l tests/data/testbin.swu tests/testbin.swu
+    -rw-r--r-- 1 nerdboy nerdboy 41943040 Dec 23 17:48 tests/data/testbin.swu
+    -rw-r--r-- 1 nerdboy nerdboy 41943040 Dec 23 17:48 tests/testbin.swu
+    tftpd: commands[9]> bash -c 'rm -f tests/data/testbin.swu tests/testbin.swu'
+    tftpd: commands_post[0]> atftpdaemon stop
+    LOG: /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
+    PID: /home/nerdboy/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+    DOCROOT: tests/data
+      tftpd: OK (39.19=setup[35.53]+cmd[0.02,0.01,0.01,0.07,0.09,0.10,2.00,0.15,1.00,0.01,0.02,0.00,0.01,0.18] seconds)
+      congratulations :) (39.24 seconds)
 
 
 Install with pip

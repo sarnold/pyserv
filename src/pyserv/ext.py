@@ -26,7 +26,7 @@ def parse_cli_arguments():
     parser.add_argument(
         '--host',
         default='',
-        help=('IP of the interface the server will listen on.'),
+        help=('IP of the interface the server will listen on. ' 'Default: 0.0.0.0'),
     )
     parser.add_argument(
         '-p',
@@ -36,7 +36,7 @@ def parse_cli_arguments():
         help=(
             'Port the server will listen on. '
             'Default: 9069. TFTP standard-compliant port: 69 - '
-            'requires superuser privileges.'
+            'requires additional privileges.'
         ),
     )
     parser.add_argument(
