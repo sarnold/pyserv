@@ -495,8 +495,8 @@ To run all ``pre-commit`` checks manually, try::
     :target: https://github.com/sarnold/pyserv/actions/workflows/pylint.yml
     :alt: Pylint score
 
-.. |license| image:: https://img.shields.io/github/license/sarnold/pyserv
-    :target: https://github.com/sarnold/pyserv/blob/master/LICENSE
+.. |license| image:: https://img.shields.io/badge/license-brightgreen.svg
+    :target: https://github.com/sarnold/pyserv/blob/master/LICENSES/MIT.txt
     :alt: License
 
 .. |tag| image:: https://img.shields.io/github/v/tag/sarnold/pyserv?color=green&include_prereleases&label=latest%20release
