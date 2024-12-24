@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""
+Async TFTP daemon script using pyserv and py3tftp (see settings.py for env vars).
+"""
+
+import asyncio
+import os
+import sys
+from pathlib import Path
+
+from daemon import Daemon
+from daemon.parent_logger import setup_logging
+from py3tftp.protocols import TFTPServerProtocol
+
+from pyserv.ext import parse_cli_arguments
+from pyserv.settings import (
+    DEBUG,
+    get_userdirs,
+    init_dirs,
+    platform_check,
+)
+
+# from logging_tree import printout  # debug logging
+# pylint: disable=R0801
+
+PORT = os.getenv('PORT', default='')
+IFACE = os.getenv('IFACE', default='')
+LPNAME = os.getenv('LPNAME', default='atftpd')
+LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))
+PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath(f'{LPNAME}.pid')))
+DOCROOT = os.getenv('DOCROOT', default=str(get_userdirs()[2]))
+
+
+def get_inputs():
+    """
+    Gather up the inputs for async loop.
+    """
+    uargs = parse_cli_arguments()
+    if IFACE:
+        uargs.host = IFACE
+    if PORT:
+        uargs.port = int(PORT)
+
+    timeouts = {
+        bytes(k, encoding='ascii'): v for k, v in vars(uargs).items() if 'timeout' in k
+    }
+
+    if DEBUG != '0':
+        print(f'Using uargs: {uargs} and timeouts: {timeouts}')
+
+    return uargs, timeouts
+
+
+class ServDaemon(Daemon):
+    """
+    Init daemon with custom run/cleanup methods, pass user vars to the
+    server.
+    """
+
+    loop = None
+    transport = None
+
+    def run(self):
+        """
+        Daemon needs a run method.
+        """
+        try:
+            argsobj, bsdict = get_inputs()
+
+            self.loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(self.loop)
+            listen = self.loop.create_datagram_endpoint(
+                lambda: TFTPServerProtocol(argsobj.host, self.loop, bsdict),
+                local_addr=(
+                    argsobj.host,
+                    argsobj.port,
+                ),
+            )
+
+            self.transport, _ = self.loop.run_until_complete(listen)
+            self.loop.run_forever()
+        except RuntimeError as exc:
+            print(f'Got run method error: {exc}')
+
+    def cleanup(self):
+        """
+        And we need a cleanup method.
+        """
+        self.transport.close()
+        self.loop.close()
+
+
+if __name__ == "__main__":
+    if not platform_check():
+        raise OSError(f'Incompatible platform type "{sys.platform}"')
+
+    pargs, _ = get_inputs()
+
+    setup_logging(int(DEBUG), Path(LOG), 'atftpd')
+    init_dirs([Path(LOG).parent, Path(PID).parent])
+    # printout()
+    if not pargs.quiet:
+        print(f'LOG: {LOG}')
+        print(f'PID: {PID}')
+        print(f'DOCROOT: {DOCROOT}')
+
+    d = ServDaemon(Path(PID), home_dir=DOCROOT, verbose=int(DEBUG), use_cleanup=True)
+    getattr(d, pargs.run[0])()

@@ -80,14 +80,17 @@ if __name__ == "__main__":
     parser.add_argument(
         "--version", action="version", version=f"tftpdaemon {__version__}"
     )
+    parser.add_argument(
+        '-q', '--quiet', action='store_true', help='Inhibit extra console output.'
+    )
     parser.add_argument('run', choices=daemon_args, nargs=1)
 
     args = parser.parse_args()
 
     init_dirs([Path(LOG).parent, Path(PID).parent])
-    setup_logging(DEBUG, Path(LOG), 'tftpd')
+    setup_logging(int(DEBUG), Path(LOG), 'tftpd')
     # printout()
-    if DEBUG == '1':
+    if not args.quiet:
         print(f'LOG: {LOG}')
         print(f'PID: {PID}')
         print(f'DOCROOT: {DOCROOT}')
