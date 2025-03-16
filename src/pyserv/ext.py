@@ -1,6 +1,7 @@
 """
 Pyserv default args for async tftp daemon.
 """
+
 import argparse
 
 from pyserv import __version__

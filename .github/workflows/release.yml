@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-22.04, macos-latest, windows-latest]
-        python-version: ['3.9', '3.10', '3.11', '3.12']
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
 
     steps:
     - name: Set git crlf/eol
@@ -43,7 +43,7 @@ jobs:
 
     - name: Build dist pkgs
       run: |
-        tox -e build
+        tox -e build,check
 
     - name: Upload artifacts
       if: matrix.python-version == 3.9 && runner.os == 'Linux'
@@ -92,7 +92,7 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            packages/pyserv*
+            packages/*
 
   docs:
     name: Release docs
