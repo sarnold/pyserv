@@ -7,19 +7,23 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  python_wheels:
 
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
     defaults:
       run:
         shell: bash
     env:
+      PYTHON: ${{ matrix.python-version }}
       PYTHONIOENCODING: utf-8
+      PIP_DOWNLOAD_CACHE: ${{ github.workspace }}/../.pip_download_cache
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04, macos-latest, windows-latest]
-        python-version: [3.8, 3.9, '3.12']
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.9, '3.10', '3.11', '3.12', '3.13']
 
     steps:
       - name: Set git crlf/eol
