@@ -1,6 +1,7 @@
 """
 Pyserv default settings for server and daemon modes.
 """
+
 import importlib
 import os
 import sys
