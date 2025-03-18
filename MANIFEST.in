@@ -1,4 +1,0 @@
-graft tests
-graft docs
-
-include tox.ini README.rst .env.* Procfile*

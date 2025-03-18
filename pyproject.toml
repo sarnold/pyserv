@@ -9,14 +9,18 @@ build-backend = "setuptools.build_meta"
 name = "pyserv"
 description = "A collection of simple servers for HTTP, WSGI, and TFTP"
 dynamic = ["version"]
+readme = "README.rst"
+license = "MIT"
+
+license-files = [
+    "LICENSE",
+    "LICENSES/*.txt",
+]
 
 authors = [
     {name = "Stephen Arnold"},
     {email = "stephen.arnold42@gmail.com"},
 ]
-
-readme = "README.rst"
-license = {text = "MIT"}
 
 keywords = ["OTA", "http", "httpd", "tftpd", "wsgi", "async"]
 classifiers = [
@@ -25,7 +29,6 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
     "Topic :: Software Development :: Embedded Systems",
     "Topic :: Software Development :: Testing",
-    "License :: OSI Approved :: MIT License",
     "Environment :: Console",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
@@ -81,11 +84,9 @@ Repository = "https://github.com/sarnold/pyserv.git"
 Issues = "https://github.com/sarnold/pyserv/issues"
 Changelog = "https://github.com/sarnold/pyserv/blob/master/CHANGELOG.rst"
 
-[tool.setuptools.packages.find]
-where = ["src/"]
-
 [tool.setuptools]
-license-files = ["LICENSES/*.txt"]
+package-dir = {"" = "src"}
+
 script-files = [
     "scripts/atftpdaemon",
     "scripts/httpdaemon",
