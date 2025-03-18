@@ -1,9 +1,96 @@
 [build-system]
 requires = [
-    "setuptools>=45",
+    "setuptools>=61",
     "setuptools_scm[toml]>=6.2",
 ]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyserv"
+description = "A collection of simple servers for HTTP, WSGI, and TFTP"
+dynamic = ["version"]
+
+authors = [
+    {name = "Stephen Arnold"},
+    {email = "stephen.arnold42@gmail.com"},
+]
+
+readme = "README.rst"
+license = {text = "MIT"}
+
+keywords = ["OTA", "http", "httpd", "tftpd", "wsgi", "async"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Embedded Systems",
+    "Topic :: Software Development :: Testing",
+    "License :: OSI Approved :: MIT License",
+    "Environment :: Console",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+    "platformdirs",
+    "py3tftp",
+    'importlib-metadata>=4.6; python_version < "3.8"',
+    "daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.4.1#69d4c9b6f3916cd5ae87c8b3a78eca1015eeed0f",
+    "tftpy @ git+https://github.com/VCTLabs/tftpy.git@0.8.2.1#58d1f5c60af2e3759fbb137b89816954d8ea6bc9",
+]
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+dev = [
+    "flake8",
+    "isort",
+    "mypy==0.990",
+    "black >= 22.3.0",
+    "pylint >= 3.1.0",
+]
+cov = [
+    "coverage[toml]",
+    "coverage_python_version",
+]
+doc = [
+    "sphinx>=8.2.0",
+    "sphinx_git",
+    "recommonmark",
+    "sphinx_rtd_theme",
+]
+test = [
+    "pytest",
+    "pytest-cov",
+    "httptest",
+    "requests",
+]
+
+[project.scripts]
+serv = "pyserv.server:main"
+tftpd = "pyserv.tftpd:main"
+wsgi = "pyserv.wsgi:main"
+
+[project.urls]
+Homepage = "https://github.com/sarnold/pyserv"
+Repository = "https://github.com/sarnold/pyserv.git"
+Issues = "https://github.com/sarnold/pyserv/issues"
+Changelog = "https://github.com/sarnold/pyserv/blob/master/CHANGELOG.rst"
+
+[tool.setuptools.packages.find]
+where = ["src/"]
+
+[tool.setuptools]
+license-files = ["LICENSES/*.txt"]
+script-files = [
+    "scripts/atftpdaemon",
+    "scripts/httpdaemon",
+    "scripts/tftpdaemon",
+]
 
 [tool.setuptools_scm]
 

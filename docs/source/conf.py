@@ -36,14 +36,14 @@ version = '.'.join(release.split('.')[:2])
 # If your documentation needs a minimal Sphinx version, state it here.
 #
 # needs_sphinx = '1.0'
+needs_sphinx = "8.2.0"
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
     'sphinx_git',
-    'sphinxcontrib.apidoc',
-    'sphinx.ext.autodoc',
+    'sphinx.ext.apidoc',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
@@ -52,10 +52,15 @@ extensions = [
     'recommonmark',
 ]
 
-apidoc_module_dir = '../../src/pyserv/'
-apidoc_output_dir = 'api'
-apidoc_excluded_paths = ['tests']
+# API docs
+apidoc_modules = [
+    {
+        "path": "../../src/pyserv",
+        "destination": "api/",
+    },
+]
 apidoc_separate_modules = True
+apidoc_include_private = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -64,7 +69,7 @@ templates_path = ['_templates']
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = {'.rst': 'restructuredtext'}
 
 # The master toctree document.
 master_doc = 'index'
