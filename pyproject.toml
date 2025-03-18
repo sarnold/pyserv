@@ -58,11 +58,10 @@ cov = [
     "coverage_python_version",
 ]
 doc = [
-    "sphinx",
+    "sphinx>=8.2.0",
     "sphinx_git",
     "recommonmark",
     "sphinx_rtd_theme",
-    "sphinxcontrib-apidoc",
 ]
 test = [
     "pytest",

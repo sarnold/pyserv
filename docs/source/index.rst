@@ -10,10 +10,11 @@ Welcome to the pyserv documentation!
 
 .. toctree::
    :caption: Contents:
-   :maxdepth: 3
+   :maxdepth: 4
 
-   README.rst
+   README
    api/modules
+   CHANGELOG
 
 
 Indices and tables
