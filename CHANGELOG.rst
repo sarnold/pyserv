@@ -2,17 +2,70 @@ Changelog
 =========
 
 
-1.7.0 (2025-03-17)
+1.7.2 (2025-03-20)
 ------------------
 
 Changes
 ~~~~~~~
+- Update changelog file for next release. [Stephen L Arnold]
+- Make sure included workflows get the workflow_call trigger. [Stephen L
+  Arnold]
+
+  * cleanup old runner versions, sync up artifact names
+- Make sure included workflows get the workflow_call trigger. [Stephen L
+  Arnold]
+
+  * cleanup old runner versions
+- Test local workflow file includes. [Stephen L Arnold]
+- Simplify packaging files, remove PYTHONPATH from default env. [Stephen
+  L Arnold]
+
+  * default values *do* get inherited by named envs who do not use setenv
+
+Other
+~~~~~
+- Merge pull request #33 from sarnold/reusable-workflows. [Steve Arnold]
+
+  cleanup linked workflows
+- Merge pull request #32 from sarnold/reusable-workflows. [Steve Arnold]
+
+  Reusable workflows
+- Merge pull request #31 from sarnold/packaging-fixes. [Steve Arnold]
+
+  Packaging fixes
+
+
+1.7.1 (2025-03-18)
+------------------
+
+Changes
+~~~~~~~
+- Update to latest bandit action for testing. [Stephen L Arnold]
+
+Other
+~~~~~
+- Merge pull request #30 from sarnold/action-tests. [Steve Arnold]
+
+  Action tests
+
+
+1.7.0 (2025-03-18)
+------------------
+
+Changes
+~~~~~~~
+- Add changelog and include it as docs appendix. [Stephen L Arnold]
+
+  * remove deprecated apidoc contrib module, use built-in instead
+  * bump python version in sphinx workflow
 - Really fix license badge. [Stephen L Arnold]
 - Make license badge static since GH cannot recognize reuse path.
   [Stephen L Arnold]
 
 Fixes
 ~~~~~
+- Give release.yml a newer python version to match sphinx. [Stephen L
+  Arnold]
 - Migrate to non-deprecated package metadata in pyproject.toml. [Stephen
   L Arnold]
 
@@ -24,6 +77,12 @@ Fixes
 
 Other
 ~~~~~
+- Merge pull request #29 from sarnold/workflow-cleanup. [Steve Arnold]
+
+  fix release docs
+- Merge pull request #28 from sarnold/package-up. [Steve Arnold]
+
+  migrate packaging to toml
 - Merge pull request #27 from sarnold/workflow-cleanup. [Steve Arnold]
 
   Workflow cleanup
