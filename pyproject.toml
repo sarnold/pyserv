@@ -10,12 +10,11 @@ name = "pyserv"
 description = "A collection of simple servers for HTTP, WSGI, and TFTP"
 dynamic = ["version"]
 readme = "README.rst"
-license = "MIT"
 
-license-files = [
-    "LICENSE",
-    "LICENSES/*.txt",
-]
+# legacy bits and new both fail in different versions
+# need workaround until PEP639 has more backend support
+license = "MIT"
+#license = {text = "MIT"}
 
 authors = [
     {name = "Stephen Arnold"},
