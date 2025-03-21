@@ -464,7 +464,43 @@ To run all ``pre-commit`` checks manually, try::
 
   $ pre-commit run -a
 
+
+SBOM and license info
+=====================
+
+This project is now compliant the REUSE Specification Version 3.3, so the
+corresponding license information for all files can be found in the ``REUSE.toml``
+configuration file with license text(s) in the ``LICENSES/`` folder.
+
+Related metadata can be (re)generated with the following tools and command
+examples.
+
+* reuse-tool_ - REUSE_ compliance linting and sdist (source files) SBOM generation
+* sbom4python_ - generate SBOM with full dependency chain
+
+Commands
+--------
+
+Use tox to create the environment and run the lint command::
+
+  $ tox -e reuse                      # --or--
+  $ tox -e reuse -- spdx > sbom.txt   # generate sdist files sbom
+
+Note you can pass any of the other reuse commands after the ``--`` above.
+
+Use the above environment to generate the full SBOM in text format::
+
+  $ source .tox/reuse/bin/activate
+  $ sbom4python --system --use-pip -o <file_name>.txt
+
+Be patient; the last command above may take several minutes. See the
+doc links above for more detailed information on the tools and
+specifications.
+
 .. _pre-commit: https://pre-commit.com/index.html
+.. _reuse-tool: https://github.com/fsfe/reuse-tool
+.. _REUSE: https://reuse.software/spec-3.3/
+.. _sbom4python: https://github.com/anthonyharrison/sbom4python
 
 
 .. |ci| image:: https://github.com/sarnold/pyserv/actions/workflows/ci.yml/badge.svg
@@ -497,7 +533,7 @@ To run all ``pre-commit`` checks manually, try::
 
 .. |license| image:: https://img.shields.io/badge/license-MIT-brightgreen.svg
     :target: https://github.com/sarnold/pyserv/blob/master/LICENSES/MIT.txt
-    :alt: License
+    :alt: License (static)
 
 .. |tag| image:: https://img.shields.io/github/v/tag/sarnold/pyserv?color=green&include_prereleases&label=latest%20release
     :target: https://github.com/sarnold/pyserv/releases
