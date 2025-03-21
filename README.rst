@@ -519,7 +519,7 @@ specifications.
     :target: https://github.com/sarnold/pyserv/actions/workflows/pylint.yml
     :alt: Pylint Status
 
-.. |release| image:: https://github.com/sarnold/pyserv/actions/workflows/release.yml/badge.svg
+.. |release| image:: https://github.com/sarnold/pyserv/actions/workflows/release.yml/badge.svg?event=push
     :target: https://github.com/sarnold/pyserv/actions/workflows/release.yml
     :alt: Release Status
 
