@@ -10,15 +10,16 @@
 
 This is a growing collection of threaded Python server bits, including
 custom `HTTP server`_ and WSGI_ classes, along with corresponding console
-entry points and some daemon scripts. The latest addition includes TFTP
-server support in both console and daemon formats.
+entry points and some daemon scripts. The latest addition includes an async
+version of the original tftpy-based daemon script.
 
 .. note:: Okay, a tftpy_ server class is not technically threaded, but it
           *does* set ``threading.event`` and handles multiple client sessions
           via a ``select`` loop.
 
 These tools exist mainly to handle simple requests for local files in a
-small-ish engineering/development environment.
+small-ish engineering/development environment. Choose daemon or console
+script, depending on workflow needs.
 
 .. important:: This is **not** intended for Internet/intranet use and
   has absolutely **no** security. This is intended mainly for development
@@ -58,12 +59,12 @@ Daemons and Console Entry Points
 
 Pyserv contains modules with some backported features and a fix for broken
 OTA clients. It provides multiple console commands for different protocols,
-and two daemon wrappers for http and tftp.
+and three daemon wrappers for http and tftp.
 
 * console commands with simple arguments to run, well, from the console, or
   for running via Procfile_ with something like Honcho_
 * daemon scripts to run in the background for workflows that need a simple
-  HTTP/WSGI server or TFTP server
+  HTTP server or TFTP server
 
 .. _Procfile: https://devcenter.heroku.com/articles/procfile
 .. _Honcho: https://honcho.readthedocs.io/en/latest/index.html
@@ -91,9 +92,10 @@ The above standard Python console entry points all have these minimal/default
 .. note:: *All* of the above are configurable via environment variables
           defined in the ``settings`` module (with the above defaults).
 
-The ``httpdaemon`` and ``tftpdaemon`` commands are stand-alone `Python daemon`_
-scripts with the same core server code, as well as a default user configuration
-adjustable via environment variables, and the following "extra" features:
+The ``httpdaemon``, ``atftpdaemon``, and ``tftpdaemon`` commands are
+stand-alone `Python daemon`_ scripts with the same core server code, as
+well as a default user configuration adjustable via environment
+variables, and the following "extra" features:
 
 * allowed command-line args are ``start | stop | restart | status``
 * default port is ``8080`` or ``9069`` and listen interface is ``127.0.0.1``
@@ -179,8 +181,8 @@ Run a simple test of the async daemon with tox::
     40+0 records in
     40+0 records out
     41943040 bytes (42 MB, 40 MiB) copied, 0.0127168 s, 3.3 GB/s
-    tftpd: commands_pre[1]> bash -c 'sudo setcap cap_net_bind_service+ep /home/nerdboy/src/pyserv/.tox/tftpd/bin/python'
-    tftpd: commands_pre[2]> bash -c 'sudo setcap cap_net_bind_service+ep /home/nerdboy/src/pyserv/.tox/tftpd/bin/python3'
+    tftpd: commands_pre[1]> bash -c 'sudo setcap cap_net_bind_service+ep /home/user/src/pyserv/.tox/tftpd/bin/python'
+    tftpd: commands_pre[2]> bash -c 'sudo setcap cap_net_bind_service+ep /home/user/src/pyserv/.tox/tftpd/bin/python3'
     tftpd: commands[0]> python -c 'from pyserv.settings import show_uservars; show_uservars()'
     Python version: 3.12.7 (main, Oct 19 2024, 22:38:25) [GCC 14.2.1 20240921]
     -------------------------------------------------------------------------------
@@ -189,17 +191,17 @@ Run a simple test of the async daemon with tox::
     Pyserv default settings for server and daemon modes.
 
     Default user vars:
-      log_dir: /home/nerdboy/.local/state/pyserv/log
+      log_dir: /home/user/.local/state/pyserv/log
       pid_dir: /run/user/1000/pyserv
-      work_dir: /home/nerdboy/src/pyserv
+      work_dir: /home/user/src/pyserv
 
     Current environment values:
       DEBUG: 0
       PORT: 69
       IFACE: 0.0.0.0
       LPNAME: atftpd
-      LOG: /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
-      PID: /home/nerdboy/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+      LOG: /home/user/src/pyserv/.tox/tftpd/log/atftpd.log
+      PID: /home/user/src/pyserv/.tox/tftpd/tmp/atftpd.pid
       DOCROOT: tests/data
       SOCK_TIMEOUT: 5
     -------------------------------------------------------------------------------
@@ -231,8 +233,8 @@ Run a simple test of the async daemon with tox::
       -v, --verbose         Enable debug-level logging. (default: False)
       -q, --quiet           Inhibit extra console output. (default: False)
     tftpd: commands[2]> atftpdaemon start
-    LOG: /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
-    PID: /home/nerdboy/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+    LOG: /home/user/src/pyserv/.tox/tftpd/log/atftpd.log
+    PID: /home/user/src/pyserv/.tox/tftpd/tmp/atftpd.pid
     DOCROOT: tests/data
     tftpd: commands[3]> bash -c 'sleep 2'
     tftpd: commands[4]> curl --tftp-blksize 8192 --output tests/testbin.swu tftp://0.0.0.0:69/testbin.swu
@@ -241,19 +243,19 @@ Run a simple test of the async daemon with tox::
     100 40.0M  100 40.0M    0     0   275M      0 --:--:-- --:--:-- --:--:--  275M
     100 40.0M  100 40.0M    0     0   275M      0 --:--:-- --:--:-- --:--:--  275M
     tftpd: commands[5]> bash -c 'sleep 1'
-    tftpd: commands[6]> tail -n 5 /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
+    tftpd: commands[6]> tail -n 5 /home/user/src/pyserv/.tox/tftpd/log/atftpd.log
     2024-12-24 01:48:12 UTC INFO atftpd.daemonize(149) Started
     2024-12-24 01:48:12 UTC INFO atftpd.connection_made(393) Listening...
     2024-12-24 01:48:14 UTC INFO atftpd.__init__(273) Initiating RRQProtocol with ('127.0.0.1', 56554)
     2024-12-24 01:48:14 UTC INFO atftpd.connection_lost(123) Connection to 127.0.0.1:56554 terminated
     tftpd: commands[7]> cmp tests/data/testbin.swu tests/testbin.swu
     tftpd: commands[8]> ls -l tests/data/testbin.swu tests/testbin.swu
-    -rw-r--r-- 1 nerdboy nerdboy 41943040 Dec 23 17:48 tests/data/testbin.swu
-    -rw-r--r-- 1 nerdboy nerdboy 41943040 Dec 23 17:48 tests/testbin.swu
+    -rw-r--r-- 1 user user 41943040 Dec 23 17:48 tests/data/testbin.swu
+    -rw-r--r-- 1 user user 41943040 Dec 23 17:48 tests/testbin.swu
     tftpd: commands[9]> bash -c 'rm -f tests/data/testbin.swu tests/testbin.swu'
     tftpd: commands_post[0]> atftpdaemon stop
-    LOG: /home/nerdboy/src/pyserv/.tox/tftpd/log/atftpd.log
-    PID: /home/nerdboy/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+    LOG: /home/user/src/pyserv/.tox/tftpd/log/atftpd.log
+    PID: /home/user/src/pyserv/.tox/tftpd/tmp/atftpd.pid
     DOCROOT: tests/data
       tftpd: OK (39.19=setup[35.53]+cmd[0.02,0.01,0.01,0.07,0.09,0.10,2.00,0.15,1.00,0.01,0.02,0.00,0.01,0.18] seconds)
       congratulations :) (39.24 seconds)
@@ -468,7 +470,7 @@ To run all ``pre-commit`` checks manually, try::
 SBOM and license info
 =====================
 
-This project is now compliant the REUSE Specification Version 3.3, so the
+This project is now compliant with the REUSE Specification Version 3.3, so the
 corresponding license information for all files can be found in the ``REUSE.toml``
 configuration file with license text(s) in the ``LICENSES/`` folder.
 
@@ -531,15 +533,15 @@ specifications.
     :target: https://github.com/sarnold/pyserv/actions/workflows/pylint.yml
     :alt: Pylint score
 
-.. |license| image:: https://img.shields.io/badge/license-MIT-brightgreen.svg
+.. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
     :target: https://github.com/sarnold/pyserv/blob/master/LICENSES/MIT.txt
     :alt: License (static)
 
-.. |tag| image:: https://img.shields.io/github/v/tag/sarnold/pyserv?color=green&include_prereleases&label=latest%20release
+.. |tag| image:: https://img.shields.io/github/v/tag/sarnold/pyserv?color=blue&include_prereleases&label=latest%20release
     :target: https://github.com/sarnold/pyserv/releases
     :alt: GitHub tag
 
-.. |python| image:: https://img.shields.io/badge/python-3.6+-blue.svg
+.. |python| image:: https://img.shields.io/badge/python-3.8+-blue.svg
     :target: https://www.python.org/downloads/
     :alt: Python
 
