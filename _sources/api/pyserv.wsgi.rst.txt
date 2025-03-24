@@ -1,0 +1,8 @@
+pyserv.wsgi module
+==================
+
+.. automodule:: pyserv.wsgi
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:

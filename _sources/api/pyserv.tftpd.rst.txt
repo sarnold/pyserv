@@ -1,0 +1,8 @@
+pyserv.tftpd module
+===================
+
+.. automodule:: pyserv.tftpd
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:
