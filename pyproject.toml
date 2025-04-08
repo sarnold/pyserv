@@ -21,7 +21,7 @@ authors = [
     {email = "stephen.arnold42@gmail.com"},
 ]
 
-keywords = ["OTA", "http", "httpd", "tftpd", "wsgi", "async"]
+keywords = ["OTA", "http", "httpd", "tftpd", "wsgi", "async", "tui"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -70,6 +70,10 @@ test = [
     "pytest-cov",
     "httptest",
     "requests",
+]
+tui = [
+    "netifaces",
+    "picotui @ git+https://github.com/sarnold/picotui.git@cleanup-bits",
 ]
 
 [project.scripts]
