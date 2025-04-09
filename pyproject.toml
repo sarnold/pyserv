@@ -39,6 +39,7 @@ classifiers = [
 ]
 
 dependencies = [
+    "netifaces",
     "platformdirs",
     "py3tftp",
     'importlib-metadata>=4.6; python_version < "3.8"',
@@ -72,7 +73,6 @@ test = [
     "requests",
 ]
 tui = [
-    "netifaces",
     "picotui @ git+https://github.com/sarnold/picotui.git@cleanup-bits",
 ]
 
