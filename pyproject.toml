@@ -39,7 +39,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "netifaces",
+    "psutil",
     "platformdirs",
     "py3tftp",
     'importlib-metadata>=4.6; python_version < "3.8"',

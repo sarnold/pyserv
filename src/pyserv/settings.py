@@ -7,19 +7,27 @@ import os
 import sys
 from pathlib import Path
 
+import psutil
 from platformdirs import PlatformDirs
 
 from . import __version__ as version
 
 
-def get_useriface(pref):
+def get_useriface(pref='e'):
     """
     Get available network interface details, eg, interface name and IP
     address. Use ``pref`` to provide a name hint if the default device
     match is not correct, for example 'eth2' or 'wl'.
 
     :param pref: short prefix for desired interface
+    :return: list of iface [name, ip, mask]
+    :raises: IndexError
     """
+    ifaces = psutil.net_if_addrs()
+    iface_str = [x for x in ifaces if x.startswith(pref)][0]
+    ip_str = psutil.net_if_addrs().get(iface_str)[0].address
+    netmask_str = psutil.net_if_addrs().get(iface_str)[0].netmask
+    return [iface_str, ip_str, netmask_str]
 
 
 def get_userdirs():
