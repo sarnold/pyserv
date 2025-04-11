@@ -10,6 +10,7 @@ __pycache__/
 *.swu
 ext/
 src/pyserv/_version.py
+*frozen*
 
 # Distribution / packaging
 .Python

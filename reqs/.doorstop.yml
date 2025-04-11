@@ -1,0 +1,14 @@
+settings:
+  digits: 3
+  prefix: TUI
+  sep: '_'
+attributes:
+  defaults:
+    doc:
+      name: Requirements
+      title: Requirements for _TUI_
+      ref: ''
+      by: sarnold
+      major: '1'
+      minor: A
+      copyright: sarnold

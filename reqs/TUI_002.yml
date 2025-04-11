@@ -1,0 +1,18 @@
+active: true
+derived: false
+doc:
+  by: sarnold
+  copyright: sarnold
+  major: '1'
+  minor: A
+  name: Requirements
+  ref: ''
+  title: Requirements for _TUI_
+header: ''
+level: 1.2
+links: []
+normative: true
+ref: ''
+reviewed: null
+text: |
+  The server TUI **Shall** use pyserv environment variables.
