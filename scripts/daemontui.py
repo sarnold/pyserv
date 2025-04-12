@@ -108,6 +108,9 @@ def screen_redraw(s):
 T_EXIT = False
 DAEMON_NAME = 'tftpdaemon'
 DAEMON_ENV = get_env(DAEMON_NAME)
+# PORT_ENTRY = DAEMON_ENV["PORT"]
+# IFACE_ENTRY = DAEMON_ENV["IFACE"]
+# IDEV_ENTRY = DAEMON_ENV["IDEV"]
 
 
 def create_dialog():
@@ -167,11 +170,33 @@ while not T_EXIT:
         w_checkbox = WCheckbox("Debug")
         d.add(37, 8, w_checkbox)
 
+        d.add(37, 9, "Port: ")
+        w_port_entry = WTextEntry(5, DAEMON_ENV["PORT"])
+        d.add(45, 9, w_port_entry)
+
+        d.add(37, 10, "Device: ")
+        w_idev_entry = WTextEntry(15, DAEMON_ENV["IDEV"])
+        d.add(45, 10, w_idev_entry)
+
+        d.add(37, 11, "Listen: ")
+        w_iface_entry = WTextEntry(15, DAEMON_ENV["IFACE"])
+        d.add(45, 11, w_iface_entry)
+
         def checkbox_changed(w):
             """Update holding env on checkbox change"""
-            denv["DEBUG"] = str(1) if w.get() else str(0)
+            denv["DEBUG"] = '1' if w.get() else '0'
+
+        def radio_changed(w):
+            """Update env and entry widgets on radio button change"""
+            dname = w.items[w.choice]
+            val = '8080' if dname.startswith('http') else '9069'
+            w_port_entry.set(val)
+            w_port_entry.redraw()
+            denv["PORT"] = val
+            denv["LPNAME"] = dname.split('a')[0]
 
         w_checkbox.on("changed", checkbox_changed)
+        w_radio.on("changed", radio_changed)
 
         screen_redraw(Screen)
         Screen.set_screen_redraw(screen_redraw)
@@ -190,9 +215,11 @@ while not T_EXIT:
 
     if res == ACTION_CANCEL:
         print("Canceled...")
+        pprint(denv)
         sys.exit(1)
 
     os.environ.update(DAEMON_ENV)
+    denv.clear()
 
     with Context():
         d = create_run_dialog()
@@ -208,4 +235,5 @@ while not T_EXIT:
 
 print("Exiting...")
 pprint(DAEMON_ENV)
+
 sys.exit(0)
