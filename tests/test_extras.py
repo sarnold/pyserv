@@ -1,3 +1,4 @@
+import ipaddress
 import os
 import sys
 from pathlib import Path
@@ -6,8 +7,10 @@ import pytest
 
 import pyserv
 from pyserv.settings import (
+    get_user_iface,
+    get_user_iface_addr,
+    get_user_iface_mask,
     get_userdirs,
-    get_useriface,
     init_dirs,
     platform_check,
     show_uservars,
@@ -18,25 +21,43 @@ WIN32 = sys.platform == 'win32'
 APPLE = sys.platform == 'darwin'
 
 
-@pytest.mark.skipif(WIN32, reason="does not work on windows")
-def test_get_useriface():
-    """Returns a list of net device bits"""
-    prefix = 'e'
-    net_list = get_useriface(prefix)
-    print(net_list)
-    assert isinstance(net_list, list)
-    assert net_list[0].startswith(prefix)
+def test_get_user_iface():
+    """Returns a string"""
+    prefix = ('e', 'E')
+    net_str = get_user_iface(prefix)
+    print(net_str)
+    assert isinstance(net_str, str)
+    assert net_str.startswith(prefix) or net_str == ''
+
+    prefix = 'zz'
+    net_str = get_user_iface(prefix)
+    assert net_str == ''
 
 
-@pytest.mark.skipif(WIN32, reason="does not work on windows")
-def test_get_useriface_bad():
-    """Returns a None-type object"""
-    prefix = 'z'
-    msg = "list index out of range"
-    with pytest.raises(IndexError) as exc:
-        net_list = get_useriface(prefix)
-    assert msg in str(exc.value)
-    print(exc)
+def test_get_user_iface_addr():
+    """Returns a string"""
+    prefix = ('e', 'E')
+    net_str = get_user_iface_addr(prefix)
+    print(net_str)
+    assert isinstance(net_str, str)
+    assert ipaddress.IPv4Interface(net_str) or net_str == ''
+
+    prefix = 'zz'
+    net_str = get_user_iface_addr(prefix)
+    assert net_str == ''
+
+
+def test_get_user_iface_mask():
+    """Returns a string"""
+    prefix = ('e', 'E')
+    net_str = get_user_iface_mask(prefix)
+    print(net_str)
+    assert isinstance(net_str, str)
+    assert ipaddress.IPv4Interface(net_str) or net_str == ''
+
+    prefix = 'zz'
+    net_str = get_user_iface_mask(prefix)
+    assert net_str == ''
 
 
 def test_get_userdirs():
