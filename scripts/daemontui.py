@@ -12,8 +12,7 @@ from picotui.widgets import *
 
 # Dialog on the screen
 d = None
-final_exit = False
-
+denv = {}
 httpd_env = {
     "DEBUG": "0",
     "PORT": "8080",
@@ -105,6 +104,12 @@ def screen_redraw(s):
     d.redraw()
 
 
+# init starting values
+T_EXIT = False
+DAEMON_NAME = 'tftpdaemon'
+DAEMON_ENV = get_env(DAEMON_NAME)
+
+
 def create_dialog():
     """Creates base settings dialog with usage and navigation buttons."""
     width, height = Screen.screen_size()
@@ -147,8 +152,8 @@ def create_run_dialog():
     return d
 
 
-while not final_exit:
-    """Initial UI context"""
+while not T_EXIT:
+    # init UI
     with Context():
         d = create_dialog()
 
@@ -162,6 +167,12 @@ while not final_exit:
         w_checkbox = WCheckbox("Debug")
         d.add(37, 8, w_checkbox)
 
+        def checkbox_changed(w):
+            """Update holding env on checkbox change"""
+            denv["DEBUG"] = str(1) if w.get() else str(0)
+
+        w_checkbox.on("changed", checkbox_changed)
+
         screen_redraw(Screen)
         Screen.set_screen_redraw(screen_redraw)
         Screen.set_screen_resize(screen_resize)
@@ -171,21 +182,17 @@ while not final_exit:
         res = d.loop()
 
         # without a changed(w) func, updates happen *after* the loop call
-        daemon_name = w_radio.items[w_radio.choice]
+        DAEMON_NAME = w_radio.items[w_radio.choice]
         # we need to pass the name from the selection widget
-        daemon_env = get_env(daemon_name)
-        # w_values = get_w_env(daemon_env)
-
-        def checkbox_changed(w):
-            daemon_env["DEBUG"] = str(w.choice)
-
-        w_checkbox.on("changed", checkbox_changed)
+        DAEMON_ENV = get_env(DAEMON_NAME)
+        if denv:
+            DAEMON_ENV.update(denv)
 
     if res == ACTION_CANCEL:
         print("Canceled...")
         sys.exit(1)
 
-    os.environ.update(daemon_env)
+    os.environ.update(DAEMON_ENV)
 
     with Context():
         d = create_run_dialog()
@@ -200,5 +207,5 @@ while not final_exit:
             break
 
 print("Exiting...")
-pprint(daemon_env)
+pprint(DAEMON_ENV)
 sys.exit(0)
