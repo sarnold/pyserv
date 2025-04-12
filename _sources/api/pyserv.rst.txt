@@ -1,0 +1,23 @@
+pyserv package
+==============
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   pyserv.ext
+   pyserv.server
+   pyserv.settings
+   pyserv.tftpd
+   pyserv.wsgi
+
+Module contents
+---------------
+
+.. automodule:: pyserv
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:

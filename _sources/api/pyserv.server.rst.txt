@@ -1,0 +1,8 @@
+pyserv.server module
+====================
+
+.. automodule:: pyserv.server
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:
