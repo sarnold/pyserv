@@ -7,14 +7,32 @@ import os
 import sys
 from pathlib import Path
 
+import psutil
 from platformdirs import PlatformDirs
 
 from . import __version__ as version
 
 
+def get_useriface(pref='e'):
+    """
+    Get available network interface details, eg, interface name and IP
+    address. Use ``pref`` to provide a name hint if the default device
+    match is not correct, for example 'eth2' or 'wl'.
+
+    :param pref: short prefix for desired interface
+    :return: list of iface [name, ip, mask]
+    :raises: IndexError
+    """
+    ifaces = psutil.net_if_addrs()
+    iface_str = [x for x in ifaces if x.startswith(pref)][0]
+    ip_str = psutil.net_if_addrs().get(iface_str)[0].address
+    netmask_str = psutil.net_if_addrs().get(iface_str)[0].netmask
+    return [iface_str, ip_str, netmask_str]
+
+
 def get_userdirs():
     """
-    Get platform-agnostic user directory paths via appdirs.
+    Get platform-agnostic user directory paths via PlatformDirs.
 
     :return tuple: logdir, piddir, docdir as Path objs
     """
@@ -79,6 +97,7 @@ def show_uservars():
         print("\nCurrent environment values:")
         print(f"  DEBUG: {DEBUG}")
         print(f"  PORT: {PORT}")
+        print(f"  IDEV: {IDEV}")
         print(f"  IFACE: {iface}")
         print(f"  LPNAME: {LPNAME}")
         print(f"  LOG: {LOG}")
@@ -93,6 +112,7 @@ def show_uservars():
 
 DEBUG = os.getenv('DEBUG', default='0')
 PORT = os.getenv('PORT', default='8000')
+IDEV = os.getenv('IDEV', default='lo')
 IFACE = os.getenv('IFACE', default='127.0.0.1')
 LPNAME = os.getenv('LPNAME', default='httpd')
 LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))
