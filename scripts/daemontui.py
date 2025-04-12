@@ -1,3 +1,5 @@
+"""Server console UI for pyserv daemon scripts"""
+
 import os
 import pprint
 import sys
@@ -70,8 +72,7 @@ def tail(iterable, N):
         if len(tailq) >= N:
             tailq.popleft()
         tailq.append(thing)
-    for thing in tailq:
-        yield thing
+    yield from tailq
 
 
 def get_log_tail(log_file, num_lines=10):
@@ -95,7 +96,7 @@ def screen_resize(s):
 
 
 # This routine is called to redraw screen
-def screen_redraw(s, allow_cursor=False):
+def screen_redraw(s):
     """This routine is called to redraw screen"""
     global d
     s.attr_color(C_WHITE, C_BLUE)
@@ -105,6 +106,7 @@ def screen_redraw(s, allow_cursor=False):
 
 
 def create_dialog():
+    """Creates base settings dialog with usage and navigation buttons."""
     width, height = Screen.screen_size()
 
     d = Dialog((width - 70) // 2, (height - 22) // 2, 70, 22)
@@ -127,6 +129,7 @@ def create_dialog():
 
 
 def create_run_dialog():
+    """Creates base settings dialog with just title and navigation buttons."""
     width, height = Screen.screen_size()
 
     d = Dialog((width - 70) // 2, (height - 22) // 2, 70, 22)
@@ -145,7 +148,7 @@ def create_run_dialog():
 
 
 while not final_exit:
-    # start UI
+    """Initial UI context"""
     with Context():
         d = create_dialog()
 
@@ -182,7 +185,7 @@ while not final_exit:
         print("Canceled...")
         sys.exit(1)
 
-    os.environ.update({k: v for k, v in daemon_env.items()})
+    os.environ.update(daemon_env)
 
     with Context():
         d = create_run_dialog()
