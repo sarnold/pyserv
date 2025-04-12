@@ -3,6 +3,6 @@ name: pyserv-test
 dependencies:
   - python
   - setuptools
-  - versioningit
-  - appdirs
+  - psutil
+  - platformdirs
   - pip
