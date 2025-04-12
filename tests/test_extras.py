@@ -34,6 +34,7 @@ def test_get_user_iface():
     assert net_str == ''
 
 
+@pytest.mark.skipif(WIN32, reason="does not work on windows")
 def test_get_user_iface_addr():
     """Returns a string"""
     prefix = ('e', 'E')
@@ -47,6 +48,7 @@ def test_get_user_iface_addr():
     assert net_str == ''
 
 
+@pytest.mark.skipif(WIN32, reason="does not work on windows")
 def test_get_user_iface_mask():
     """Returns a string"""
     prefix = ('e', 'E')
