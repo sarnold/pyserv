@@ -202,8 +202,10 @@ while not T_EXIT:
         Screen.set_screen_redraw(screen_redraw)
         Screen.set_screen_resize(screen_resize)
 
-        d.move_focus(1)
-        d.move_focus(1)
+        # somewhat silly hack to both move the first widget *and* avoid
+        # a TypeError in widget move_focus
+        d.move_focus(1 or None)
+        d.move_focus(1 or None)
         res = d.loop()
 
         # without a changed(w) func, updates happen *after* the loop call
@@ -223,6 +225,18 @@ while not T_EXIT:
 
     with Context():
         d = create_run_dialog()
+
+        d.add(2, 3, "Use the <Start> <Stop> <Status> buttons to operate the server")
+        d.add(2, 5, WFrame(66, 11, "Logs:"))
+
+        b = WButton(8, "Start")
+        d.add(15, 17, b)
+
+        b = WButton(8, "Stop", color=C_MAGENTA)
+        d.add(31, 17, b)
+
+        b = WButton(8, "Status", color=C_YELLOW)
+        d.add(47, 17, b)
 
         screen_redraw(Screen)
         Screen.set_screen_redraw(screen_redraw)
