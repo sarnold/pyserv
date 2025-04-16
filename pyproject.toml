@@ -74,6 +74,7 @@ test = [
 ]
 tui = [
     "picotui @ git+https://github.com/sarnold/picotui.git@cleanup-bits",
+    "textual-dev",
 ]
 
 [project.scripts]
