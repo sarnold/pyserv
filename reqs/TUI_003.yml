@@ -15,5 +15,4 @@ normative: true
 ref: ''
 reviewed: null
 text: |
-  The server TUI **Shall** set the LPNAME environment variable to select the
-  appropriate daemon.
+  The server TUI **Shall** provide user controls to edit/modify default values.

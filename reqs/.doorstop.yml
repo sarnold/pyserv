@@ -1,9 +1,11 @@
 settings:
   digits: 3
+  itemformat: yaml
   prefix: TUI
   sep: '_'
 attributes:
   defaults:
+    owned-by: sarnold
     doc:
       name: Requirements
       title: Requirements for _TUI_
@@ -12,3 +14,5 @@ attributes:
       major: '1'
       minor: A
       copyright: sarnold
+  publish:
+    - owned-by
