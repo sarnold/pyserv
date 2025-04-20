@@ -10,6 +10,8 @@ from picotui.context import Context
 from picotui.menu import *
 from picotui.widgets import *
 
+from pyserv.settings import get_userdirs
+
 # Dialog on the screen
 d = None
 denv = {}
@@ -30,12 +32,6 @@ tftpd_env = {
     "DOCROOT": ".",
     "SOCK_TIMEOUT": "5",
 }
-
-
-def update_env(src, dest):
-    """
-    Update UI env settings.
-    """
 
 
 def get_w_env(env):
@@ -222,6 +218,10 @@ while not T_EXIT:
 
     os.environ.update(DAEMON_ENV)
     denv.clear()
+    DNAME = DAEMON_ENV["LPNAME"]
+    LOG = str(get_userdirs()[0].joinpath(f'{DNAME}.log'))
+    PID = str(get_userdirs()[1].joinpath(f'{DNAME}.pid'))
+    DAEMON_ENV.update({"LOG": LOG, "PID": PID})
 
     with Context():
         d = create_run_dialog()
@@ -229,7 +229,7 @@ while not T_EXIT:
         d.add(2, 3, "Use the <Start> <Stop> <Status> buttons to operate the server")
         d.add(2, 5, WFrame(66, 11, "Logs:"))
 
-        b = WButton(8, "Start")
+        b = WButton(8, "Start", color=C_GREEN)
         d.add(15, 17, b)
 
         b = WButton(8, "Stop", color=C_MAGENTA)

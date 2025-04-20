@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 import pyserv
+import pyserv.ext
 from pyserv.settings import (
     get_user_iface,
     get_user_iface_addr,

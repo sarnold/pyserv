@@ -11,8 +11,10 @@ import tftpy
 
 from .settings import DEBUG, DOCROOT, IFACE
 
-LVL_NAME = 'DEBUG' if DEBUG == '1' else 'INFO'
+LOG = os.getenv('LOG', default='')
 PORT = os.getenv('PORT', default='9069')
+LVL_NAME = 'DEBUG' if DEBUG == '1' else 'INFO'
+logger = logging.getLogger(__name__)
 
 
 def tftpd_init(directory):
@@ -38,9 +40,9 @@ def tftpd_run(iface=IFACE, port=PORT, directory=DOCROOT):  # pragma: no cover
     tftpd = tftpd_init(directory)
     try:
         tftpd.listen(iface, int(port))
-        logging.info('Serving %s on port %d', directory, int(port))
+        logger.info('Serving %s on port %d', directory, int(port))
     except tftpy.TftpException as err:
-        logging.critical("Server listen error: %s", str(err))
+        logger.critical("Server listen error: %s", str(err))
         sys.exit(1)
     except KeyboardInterrupt:
         print("\nExiting ...")
@@ -56,7 +58,10 @@ def main(args=None):  # pragma: no cover
 
       tftpd [IFACE] [PORT]
     """
-    logging.basicConfig(level=LVL_NAME)
+    if LOG:
+        logging.basicConfig(filename=LOG, level=LVL_NAME)
+    else:
+        logging.basicConfig(level=LVL_NAME)
 
     if args is None:
         args = sys.argv[1:]
