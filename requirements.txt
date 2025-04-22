@@ -5,3 +5,5 @@ py3tftp @ git+https://github.com/sirMackk/py3tftp.git@1.3.0#3bd24a1c31dcacf3e27b
 tftpy @ git+https://github.com/VCTLabs/tftpy.git@0.8.2.1#58d1f5c60af2e3759fbb137b89816954d8ea6bc9
 platformdirs
 psutil
+pygtail
+scapy

@@ -1,84 +1,21 @@
 """Server console UI for pyserv daemon scripts"""
 
 import os
-import pprint
 import sys
-from collections import deque
+from pathlib import Path
 from pprint import pprint
 
 from picotui.context import Context
 from picotui.menu import *
 from picotui.widgets import *
 
-from pyserv.settings import get_userdirs
+from pyserv.settings import get_userdirs, init_dirs
+from pyserv.tui_helpers import get_env, get_log_lines
 
 # Dialog on the screen
 d = None
+# Daemon env updates
 denv = {}
-httpd_env = {
-    "DEBUG": "0",
-    "PORT": "8080",
-    "IDEV": "eth0",
-    "IFACE": "0.0.0.0",
-    "LPNAME": "httpd",
-    "DOCROOT": ".",
-}
-tftpd_env = {
-    "DEBUG": "0",
-    "PORT": "9069",
-    "IDEV": "eth0",
-    "IFACE": "0.0.0.0",
-    "LPNAME": "tftpd",
-    "DOCROOT": ".",
-    "SOCK_TIMEOUT": "5",
-}
-
-
-def get_w_env(env):
-    """
-    Get UI widget settings from env values.
-    """
-    w_list = ["DEBUG", "PORT", "IDEV", "IFACE", "SOCK_TIMEOUT"]
-    w_env = {k: v for k, v in env.items() if k in w_list}
-    return w_env
-
-
-def get_env(name):
-    """
-    Get environment data from selected name.
-    """
-    env = {}
-    if name.startswith('httpd'):
-        env.update(httpd_env)
-    elif name.startswith('tftpd'):
-        env.update(tftpd_env)
-    else:
-        tftpd_env["LPNAME"] = 'atftpd'
-        env.update(tftpd_env)
-    return env
-
-
-def tail(iterable, N):
-    """
-    Queue for tailing log ouput.
-    """
-    tailq = deque()
-    for thing in iterable:
-        if len(tailq) >= N:
-            tailq.popleft()
-        tailq.append(thing)
-    yield from tailq
-
-
-def get_log_tail(log_file, num_lines=10):
-    """
-    Get lines from tail queue for display.
-    """
-    with open(log_file, 'r') as f_log:
-        lines = []
-        for line in tail(f_log, num_lines):
-            lines.append(line)
-        return lines
 
 
 def screen_resize(s):
@@ -104,9 +41,6 @@ def screen_redraw(s):
 T_EXIT = False
 DAEMON_NAME = 'tftpdaemon'
 DAEMON_ENV = get_env(DAEMON_NAME)
-# PORT_ENTRY = DAEMON_ENV["PORT"]
-# IFACE_ENTRY = DAEMON_ENV["IFACE"]
-# IDEV_ENTRY = DAEMON_ENV["IDEV"]
 
 
 def create_dialog():
@@ -208,6 +142,10 @@ while not T_EXIT:
         DAEMON_NAME = w_radio.items[w_radio.choice]
         # we need to pass the name from the selection widget
         DAEMON_ENV = get_env(DAEMON_NAME)
+
+        denv["PORT"] = w_port_entry.get()
+        denv["IDEV"] = w_idev_entry.get()
+        denv["IFACE"] = w_iface_entry.get()
         if denv:
             DAEMON_ENV.update(denv)
 
@@ -216,18 +154,24 @@ while not T_EXIT:
         pprint(denv)
         sys.exit(1)
 
-    os.environ.update(DAEMON_ENV)
-    denv.clear()
     DNAME = DAEMON_ENV["LPNAME"]
     LOG = str(get_userdirs()[0].joinpath(f'{DNAME}.log'))
     PID = str(get_userdirs()[1].joinpath(f'{DNAME}.pid'))
     DAEMON_ENV.update({"LOG": LOG, "PID": PID})
+    os.environ.update(DAEMON_ENV)
+    denv.clear()
+    init_dirs([Path(LOG).parent])
+    msg = "No new log lines to display"
+    lines = get_log_lines(LOG, is_tail=False, keep_offset=False) or [msg]
 
     with Context():
         d = create_run_dialog()
 
         d.add(2, 3, "Use the <Start> <Stop> <Status> buttons to operate the server")
-        d.add(2, 5, WFrame(66, 11, "Logs:"))
+        d.add(2, 5, WFrame(66, 12, "Logs:"))
+
+        l = WMultiEntry(64, 10, lines)
+        d.add(3, 6, l)
 
         b = WButton(8, "Start", color=C_GREEN)
         d.add(15, 17, b)
@@ -248,6 +192,7 @@ while not T_EXIT:
             break
 
 print("Exiting...")
+print(f'Num log lines: {len(lines)}')
 pprint(DAEMON_ENV)
 
 sys.exit(0)

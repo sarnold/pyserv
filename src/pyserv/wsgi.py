@@ -16,6 +16,11 @@ LOG = os.getenv('LOG', default='')
 logger = logging.getLogger(__name__)
 
 
+# disable these globally:Similar lines
+#
+# pylint: disable=R0801
+
+
 def wsgi_init(wapp, port, validate=True):
     """
     Init wsgi server for handler handoff; init logging and simple_server

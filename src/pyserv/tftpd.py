@@ -17,6 +17,11 @@ LVL_NAME = 'DEBUG' if DEBUG == '1' else 'INFO'
 logger = logging.getLogger(__name__)
 
 
+# disable these globally:Similar lines
+#
+# pylint: disable=R0801
+
+
 def tftpd_init(directory):
     """
     Init tftpd server for handoff; init logging.
