@@ -162,7 +162,7 @@ while not T_EXIT:
     denv.clear()
     init_dirs([Path(LOG).parent])
     msg = "No new log lines to display"
-    lines = get_log_lines(LOG, is_tail=False, keep_offset=False) or [msg]
+    lines = get_log_lines(LOG, is_tail=False, keep_offset=False, shorten=3) or [msg]
 
     with Context():
         d = create_run_dialog()

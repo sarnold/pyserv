@@ -63,20 +63,37 @@ def tail(iterable, max_size):
     yield from tailq
 
 
-def get_log_lines(filename, is_tail=False, keep_offset=True, num_lines=10):
+def get_log_lines(filename, is_tail=False, keep_offset=True, shorten=0, num_lines=10):
     """
-    Get lines from a (log) file.
+    Get N lines from a (log) file. Set shorten=0 to disable line-splitting.
+
+    :param filename: path to log file as a string
+    :type filename: str
+    :param is_tail: read from the end of file
+    :type is_tail: bool
+    :param keep_offset: save offset file (keep track of lines that have already been read)
+    :type keep_offset: bool
+    :param shorten: split lines on spaces and keep the remainder
+    :type shorten: int
+    :param num_lines: number of lines in tail output
+    :type num_lines: int
+    :return: specified number of log lines
+    :rtype: List
     """
     lines = []
     if not Path(filename).exists():
         return lines
     pygtail = Pygtail(filename, read_from_end=is_tail, save_on_end=keep_offset)
-    for line in tail(pygtail, num_lines):
-        lines.append(line.split('UTC ')[1])
+    for line in tail(pygtail.readlines(), num_lines):
+        if line:
+            if shorten > 0:
+                lines.append(line.split(' ', maxsplit=shorten)[shorten])
+            else:
+                lines.append(line)
     return lines
 
 
-def host_check(ip: str) -> str:
+def host_check(ip: str) -> str:  # pragma: no cover
     """
     Check a remote host using IP address; returns remote MAC address
     if host is UP. Requires root or ``setcap`` on POSIX platforms.
