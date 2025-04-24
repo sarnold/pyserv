@@ -28,15 +28,17 @@ log_str = """
 """
 
 
-def test_get_env():
+def test_get_env(capfd):
     """
     Check env data from name.
     """
-    for name in ["tftpdaemon", "atftpdaemon", "httpdaemon"]:
+    for name in ["tftpdaemon", "atftpdaemon", "httpdaemon", "serv"]:
         d_env = get_env(name)
         print(d_env)
         assert 'DEBUG' in d_env
-        assert name.startswith(d_env['LPNAME'])
+        assert name.startswith(d_env['LPNAME']) or name.startswith("serv")
+    d_env = get_env('foop')
+    assert d_env == {}
 
 
 def test_get_w_env():
