@@ -4,6 +4,7 @@ development environment.
 """
 
 import logging
+import os
 import sys
 from wsgiref.simple_server import demo_app
 
@@ -11,6 +12,13 @@ from . import GetServerWSGI
 from .settings import DEBUG, DOCROOT, PORT
 
 LVL_NAME = 'DEBUG' if DEBUG else 'INFO'
+LOG = os.getenv('LOG', default='')
+logger = logging.getLogger(__name__)
+
+
+# disable these globally:Similar lines
+#
+# pylint: disable=R0801
 
 
 def wsgi_init(wapp, port, validate=True):
@@ -22,7 +30,6 @@ def wsgi_init(wapp, port, validate=True):
     :param port: initialized listen port
     :return wsgi_handler: wsgi handle, eg, wsgid.serve_forever()
     """
-    logging.basicConfig(level=LVL_NAME)
     wsgi_handler = GetServerWSGI(wapp, port, validate=validate)
     return wsgi_handler
 
@@ -36,7 +43,7 @@ def wsgi_run(app=demo_app, port=PORT):  # pragma: no cover
     :param port: WSGI server listen port
     """
     wsgid = wsgi_init(app, port, True)
-    logging.info('Serving %s on port %s', DOCROOT, port)
+    logger.info('Serving %s on port %s', DOCROOT, port)
     try:
         wsgid.start()
         wsgid.join()
@@ -54,6 +61,11 @@ def main(args=None):  # pragma: no cover
 
       wsgi [APP] [PORT]
     """
+    if LOG:
+        logging.basicConfig(filename=LOG, level=LVL_NAME)
+    else:
+        logging.basicConfig(level=LVL_NAME)
+
     if args is None:
         args = sys.argv[1:]
 

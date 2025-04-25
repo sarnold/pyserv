@@ -13,21 +13,51 @@ from platformdirs import PlatformDirs
 from . import __version__ as version
 
 
-def get_useriface(pref='e'):
+def get_user_iface(pref=('e', 'E')):
     """
-    Get available network interface details, eg, interface name and IP
-    address. Use ``pref`` to provide a name hint if the default device
+    Get the active network interface name if possible (not loopback).
+    Use ``pref`` to provide a name hint if the default device
     match is not correct, for example 'eth2' or 'wl'.
 
-    :param pref: short prefix for desired interface
-    :return: list of iface [name, ip, mask]
-    :raises: IndexError
+    :param pref: short prefix hint for interface name
+    :type pref: string or tuple of strings
+    :return: network interface name or empty string
     """
     ifaces = psutil.net_if_addrs()
-    iface_str = [x for x in ifaces if x.startswith(pref)][0]
-    ip_str = psutil.net_if_addrs().get(iface_str)[0].address
-    netmask_str = psutil.net_if_addrs().get(iface_str)[0].netmask
-    return [iface_str, ip_str, netmask_str]
+    iface_str = [x for x in ifaces if x.startswith(pref)]
+    if not iface_str:
+        return ''
+    return iface_str[0]
+
+
+def get_user_iface_addr(pref=('e', 'E')):
+    """
+    Get the active network interface addr if possible (not loopback).
+    Use ``pref`` to provide a name hint if the default device
+    match is not correct, for example 'eth2' or 'wl'.
+
+    :param pref: short prefix hint for interface name
+    :return: network interface addr or empty string
+    """
+    iface_str = get_user_iface(pref)
+    if not iface_str:
+        return ''
+    return psutil.net_if_addrs().get(iface_str)[0].address
+
+
+def get_user_iface_mask(pref=('e', 'E')):
+    """
+    Get the active network interface mask if possible (not loopback).
+    Use ``pref`` to provide a name hint if the default device
+    match is not correct, for example 'eth2' or 'wl'.
+
+    :param pref: short prefix hint for interface name
+    :return: network interface mask or empty string
+    """
+    iface_str = get_user_iface(pref)
+    if not iface_str:
+        return ''
+    return psutil.net_if_addrs().get(iface_str)[0].netmask
 
 
 def get_userdirs():

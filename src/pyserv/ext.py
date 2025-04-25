@@ -11,7 +11,7 @@ Copyright 2016 Matt O. <matt@mattscodecave.com>
 """
 
 
-def parse_cli_arguments():
+def parse_cli_arguments():  # pragma: no cover
     """
     Daemon needs a less closely-coupled bit of args.
     """

@@ -97,26 +97,10 @@ repos:
     rev: 1.8.3
     hooks:
       - id: bandit
-        args: ["-ll", "-q"]
+        args: ["-ll", "-q", "-c", "pyproject.toml"]
         files: src/
 
 #  - repo: https://github.com/lovesegfault/beautysh
 #    rev: v6.2.1
 #    hooks:
 #      - id: beautysh
-
-ci:
-    autofix_commit_msg: |
-        [pre-commit.ci] auto fixes from pre-commit.com hooks
-
-        for more information, see https://pre-commit.ci
-    autofix_prs: false
-    autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
-    autoupdate_schedule: weekly
-    skip: []
-    submodules: false
-
-# re-running a pull request: you can trigger a re-run on a pull request by
-#    commenting pre-commit.ci run (must appear on a line by itself).
-# skipping push runs: skip a run by putting [skip ci], [ci skip],
-#    [skip pre-commit.ci], or [pre-commit.ci skip] in the commit message.

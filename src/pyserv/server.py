@@ -12,6 +12,8 @@ from . import GetServer
 from .settings import DEBUG, DOCROOT
 
 LVL_NAME = 'DEBUG' if DEBUG else 'INFO'
+LOG = os.getenv('LOG', default='')
+logger = logging.getLogger(__name__)
 
 
 def serv_init(iface, port, directory):
@@ -23,7 +25,6 @@ def serv_init(iface, port, directory):
     :param directory: server document root
     :return httpd_handler: threaded httpd handle, eg, httpd.start()
     """
-    logging.basicConfig(level=LVL_NAME)
     httpd_handler = GetServer(iface, port, directory)
     return httpd_handler
 
@@ -38,14 +39,14 @@ def serv_run(iface='', port=8080, directory=DOCROOT):  # pragma: no cover
     :param directory: server document root
     """
     if not Path(directory).exists():
-        logging.error('DOCROOT directory %s does not exist', directory)
+        logger.error('DOCROOT directory %s does not exist', directory)
         sys.exit(1)
     start_dir = Path.cwd()
     path_diff = start_dir.name != Path(directory).name
     if sys.version_info < (3, 7) and path_diff:
         os.chdir(directory)
     httpd = serv_init(iface, port, directory)
-    logging.info('Starting HTTP SERVER at %s:%s', iface, port)
+    logger.info('Starting HTTP SERVER at %s:%s', iface, port)
     try:
         httpd.start()
         httpd.join()
@@ -64,6 +65,11 @@ def main(args=None):  # pragma: no cover
 
       serv [PORT] [IFACE]
     """
+    if LOG:
+        logging.basicConfig(filename=LOG, level=LVL_NAME)
+    else:
+        logging.basicConfig(level=LVL_NAME)
+
     if args is None:
         args = sys.argv[1:]
 

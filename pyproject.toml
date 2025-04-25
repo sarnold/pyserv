@@ -39,8 +39,8 @@ classifiers = [
 ]
 
 dependencies = [
-    "psutil",
     "platformdirs",
+    "psutil",
     "py3tftp",
     'importlib-metadata>=4.6; python_version < "3.8"',
     "daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.4.1#69d4c9b6f3916cd5ae87c8b3a78eca1015eeed0f",
@@ -74,6 +74,9 @@ test = [
 ]
 tui = [
     "picotui @ git+https://github.com/sarnold/picotui.git@cleanup-bits",
+    "pygtail @ git+https://github.com/VCTLabs/pygtail.git@main",
+    "scapy",
+    "textual-dev",
 ]
 
 [project.scripts]
@@ -161,4 +164,4 @@ ensure_newline_before_comments = true
 
 [tool.bandit]
 exclude_dirs = ["docs"]
-#skips = ["B104"]
+skips = ["B104"]
