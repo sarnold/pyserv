@@ -1,3 +1,4 @@
+#  type: ignore
 """Server console UI for pyserv daemon scripts"""
 
 import os

@@ -61,8 +61,9 @@ cov = [
     "coverage_python_version",
 ]
 doc = [
-    "sphinx>=8.2.0",
+    "sphinx",
     "sphinx_git",
+    "sphinxcontrib.apidoc",
     "recommonmark",
     "sphinx_rtd_theme",
 ]
@@ -74,7 +75,7 @@ test = [
 ]
 tui = [
     "picotui @ git+https://github.com/sarnold/picotui.git@cleanup-bits",
-    "pygtail @ git+https://github.com/VCTLabs/pygtail.git@main",
+    "pygtail @ git+https://github.com/VCTLabs/pygtail.git@main#b54b8269a05d1356365b2d69b5606555441ea2f5",
     "scapy",
     "textual-dev",
 ]
