@@ -50,13 +50,11 @@ def get_env(name: str) -> Dict:
     env = {}
     if name.startswith('httpd') or name.startswith('serv'):
         env.update(HTTPD_ENV)
-    elif name.startswith('tftpd'):
+    if name.startswith('tftpd'):
         env.update(TFTPD_ENV)
-    elif name.startswith('atftpd'):
+    if name.startswith('atftpd'):
         TFTPD_ENV["LPNAME"] = 'atftpd'
         env.update(TFTPD_ENV)
-    else:
-        print("Invalid command name")
     return env
 
 
