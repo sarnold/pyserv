@@ -2,6 +2,7 @@
 """Server console UI for pyserv daemon scripts"""
 
 import os
+import signal
 import subprocess as sp
 import sys
 from pathlib import Path
@@ -20,6 +21,16 @@ d = None
 # Daemon env updates
 denv = {}
 dres = 'NONE'
+
+
+def get_pid(pfile):
+    """
+    Get/check the PID of running daemon.
+    """
+    pid = ''
+    if Path(pfile).exists():
+        pid = Path(pfile).read_text().strip()
+    return pid
 
 
 def screen_resize(s):
@@ -170,10 +181,12 @@ while not T_EXIT:
         denv["IFACE"] = w_iface_entry.get()
         if denv:
             DAEMON_ENV.update(denv)
+        DEBUG = int(DAEMON_ENV["DEBUG"])
 
     if res == ACTION_CANCEL:
         print("Canceled...")
-        pprint(denv)
+        if DEBUG > 0:
+            pprint(denv)
         sys.exit(1)
 
     DNAME = DAEMON_ENV["LPNAME"]
@@ -216,7 +229,7 @@ while not T_EXIT:
 
             :param w: button Widget obj
             """
-            if not w.name == 'refresh':
+            if not w.name in 'refresh':
                 btn_cmd_str = f"{DAEMON_NAME} {w.name}"
                 try:
                     _ = sp.check_output(split(btn_cmd_str), stderr=sp.STDOUT)
@@ -240,7 +253,11 @@ while not T_EXIT:
         res = d.loop()
 
     if res == ACTION_CANCEL:
+        daemon_pid = get_pid(PID)
+        if daemon_pid:
+            os.kill(int(daemon_pid), signal.SIGTERM)
         print("Exiting...")
-        print(f'Num log lines: {len(lines)}')
-        pprint(DAEMON_ENV)
+        if DEBUG > 0:
+            print(f'Num log lines: {len(lines)}')
+            pprint(DAEMON_ENV)
         sys.exit(0)
