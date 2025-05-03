@@ -2,9 +2,11 @@
 """Server console UI for pyserv daemon scripts"""
 
 import os
+import subprocess as sp
 import sys
 from pathlib import Path
 from pprint import pprint
+from shlex import split
 
 from picotui.context import Context
 from picotui.menu import *
@@ -17,6 +19,7 @@ from pyserv.tui_helpers import get_env, get_log_lines
 d = None
 # Daemon env updates
 denv = {}
+dres = 'NONE'
 
 
 def screen_resize(s):
@@ -77,11 +80,29 @@ def create_run_dialog():
 
     b = WButton(8, "Back")
     d.add(10, 20, b)
-    b.finish_dialog = ACTION_OK
+    b.finish_dialog = ACTION_PREV
 
     b = WButton(8, "Exit")
     d.add(52, 20, b)
     b.finish_dialog = ACTION_CANCEL
+
+    return d
+
+
+def create_logtail_dialog(lines, title="Recent log tail"):
+    """Creates log display dialog with just title and navigation buttons."""
+    width, height = Screen.screen_size()
+
+    d = DConfirmation(
+        (width - 70) // 2,
+        (height - 22) // 2,
+        70,
+        22,
+        lines,
+        title,
+        ok_txt="Back",
+        cl_txt="Exit",
+    )
 
     return d
 
@@ -133,7 +154,7 @@ while not T_EXIT:
         Screen.set_screen_redraw(screen_redraw)
         Screen.set_screen_resize(screen_resize)
 
-        # somewhat silly hack to both move the first widget *and* avoid
+        # somewhat silly hack to both move to the first widget *and* avoid
         # a TypeError in widget move_focus
         d.move_focus(1 or None)
         d.move_focus(1 or None)
@@ -174,14 +195,43 @@ while not T_EXIT:
         l = WMultiEntry(64, 10, lines)
         d.add(3, 6, l)
 
-        b = WButton(8, "Start", color=C_GREEN)
-        d.add(15, 17, b)
+        b_logs = WButton(8, "Refresh")
+        d.add(31, 20, b_logs)
 
-        b = WButton(8, "Stop", color=C_MAGENTA)
-        d.add(31, 17, b)
+        b_start = WButton(8, "Start", color=C_GREEN)
+        d.add(15, 17, b_start)
 
-        b = WButton(8, "Status", color=C_YELLOW)
-        d.add(47, 17, b)
+        b_stop = WButton(8, "Stop", color=C_MAGENTA)
+        d.add(31, 17, b_stop)
+
+        b_status = WButton(8, "Status", color=C_YELLOW)
+        d.add(47, 17, b_status)
+
+        def button_clicked(w):
+            """
+            Run the command string given by the button widget name attribute.
+            The name attribute is the lowercase form of the button text::
+
+              b = WButton(8, "Start")  =>  b.name = start
+
+            :param w: button Widget obj
+            """
+            if not w.name == 'refresh':
+                btn_cmd_str = f"{DAEMON_NAME} {w.name}"
+                try:
+                    _ = sp.check_output(split(btn_cmd_str), stderr=sp.STDOUT)
+                except CalledProcessError:
+                    pass
+            lines = get_log_lines(LOG, is_tail=False, keep_offset=False, shorten=3)
+            l.set(lines)
+            l.redraw()
+            dres = f'{w.name.upper()}'
+            DAEMON_ENV.update({"LAST": dres})
+
+        b_start.on("click", lambda w: button_clicked(b_start))
+        b_stop.on("click", lambda w: button_clicked(b_stop))
+        b_status.on("click", lambda w: button_clicked(b_status))
+        b_logs.on("click", lambda w: button_clicked(b_logs))
 
         screen_redraw(Screen)
         Screen.set_screen_redraw(screen_redraw)
@@ -189,11 +239,8 @@ while not T_EXIT:
 
         res = d.loop()
 
-        if res == ACTION_CANCEL:
-            break
-
-print("Exiting...")
-print(f'Num log lines: {len(lines)}')
-pprint(DAEMON_ENV)
-
-sys.exit(0)
+    if res == ACTION_CANCEL:
+        print("Exiting...")
+        print(f'Num log lines: {len(lines)}')
+        pprint(DAEMON_ENV)
+        sys.exit(0)
