@@ -292,8 +292,8 @@ Operations console
 |console|
 
 
-.. important:: The default network settings use non-priveleged ports;
-          selecting a lower-numberd port requires elevated priveleges
+.. important:: The default network settings use non-privileged ports;
+          selecting a lower-numbered port requires elevated privileges
           via something like ``sudo`` or ``setcap``.
 
 .. _picotui: https://github.com/sarnold/picotui

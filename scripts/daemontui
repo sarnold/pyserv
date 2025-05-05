@@ -28,6 +28,8 @@ NEW_LINES = []
 # Daemon env updates
 denv = {}
 dres = 'NONE'
+chk_res_down = "<=/=>"
+chk_res_up = "<===>"
 
 
 class RepeatTimer:
@@ -260,6 +262,24 @@ while not T_EXIT:
         rt = RepeatTimer(0.25, refresh, l_logs)
         rt.stop()
 
+        def update_server_status(w, t):
+            """
+            Set the string and color for server status indicator.
+            """
+            if t.is_running:
+                w.t = chk_res_up
+                w.valid = True
+                w.redraw()
+            else:
+                w.t = chk_res_down
+                w.valid = False
+                w.redraw()
+
+        w_daemon_status = WLabel(chk_res_down, w=6)
+        d.add(60, 1, w_daemon_status)
+        w_daemon_status.validate = True
+        update_server_status(w_daemon_status, rt)
+
         b_start = WButton(8, "Start", color=C_GREEN)
         d.add(15, 17, b_start)
 
@@ -296,6 +316,7 @@ while not T_EXIT:
                     time.sleep(0.3)
                     rt.stop()
 
+            update_server_status(w_daemon_status, rt)
             dres = f'{w.name.upper()}'
             DAEMON_ENV.update({"LAST": dres})
 
@@ -307,7 +328,7 @@ while not T_EXIT:
         Screen.set_screen_redraw(screen_redraw)
         Screen.set_screen_resize(screen_resize)
 
-        d.move_focus(1 or None)
+        d.move_focus(2 or None)
         d.move_focus(2 or None)
         res = d.loop()
 
