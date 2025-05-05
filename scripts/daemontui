@@ -132,11 +132,12 @@ def create_dialog():
 
     d = Dialog((width - 70) // 2, (height - 22) // 2, 70, 22)
 
-    d.add(20, 1, WLabel("Server console UI", w=20))
-    d.add(40, 1, WLabel("v0.0.1", w=10))
+    d.add(20, 1, WLabel("Settings console UI", w=20))
+    d.add(40, 1, WLabel("v0.1.0", w=10))
 
     d.add(2, 3, "Use <TAB> to move between fields and arrow keys to select from")
     d.add(2, 4, "multiple options. Use <SPACE> for checkbox, <ENTER> for buttons.")
+    d.add(2, 5, "Note: graphical terminals should also support mouse events.")
 
     b = WButton(8, "Next")
     d.add(10, 20, b)
@@ -150,7 +151,7 @@ def create_dialog():
 
 
 def create_run_dialog():
-    """Creates base settings dialog with just title and navigation buttons."""
+    """Creates base operating dialog with just title and navigation buttons."""
     width, height = Screen.screen_size()
 
     d = Dialog((width - 70) // 2, (height - 22) // 2, 70, 22)
@@ -173,27 +174,27 @@ while not T_EXIT:
     with Context():
         d = create_dialog()
 
-        d.add(3, 6, WFrame(30, 6, "Server type"))
-        d.add(4, 7, "Select daemon name")
+        d.add(3, 7, WFrame(30, 6, "Server type"))
+        d.add(4, 8, "Select daemon name")
         w_radio = WRadioButton(["tftpdaemon", "atftpdaemon", "httpdaemon"])
-        d.add(5, 8, w_radio)
+        d.add(5, 9, w_radio)
 
-        d.add(35, 6, WFrame(32, 9, "Env settings"))
-        d.add(36, 7, "Update daemon defaults")
+        d.add(35, 7, WFrame(32, 9, "Env settings"))
+        d.add(36, 8, "Update daemon defaults")
         w_checkbox = WCheckbox("Debug")
-        d.add(37, 8, w_checkbox)
+        d.add(37, 9, w_checkbox)
 
-        d.add(37, 9, "Port: ")
+        d.add(37, 10, "Port: ")
         w_port_entry = WTextEntry(5, DAEMON_ENV["PORT"])
-        d.add(45, 9, w_port_entry)
+        d.add(45, 10, w_port_entry)
 
-        d.add(37, 10, "Device: ")
+        d.add(37, 11, "Device: ")
         w_idev_entry = WTextEntry(15, DAEMON_ENV["IDEV"])
-        d.add(45, 10, w_idev_entry)
+        d.add(45, 11, w_idev_entry)
 
-        d.add(37, 11, "Listen: ")
+        d.add(37, 12, "Listen: ")
         w_iface_entry = WTextEntry(15, DAEMON_ENV["IFACE"])
-        d.add(45, 11, w_iface_entry)
+        d.add(45, 12, w_iface_entry)
 
         def checkbox_changed(w):
             """Update holding env on checkbox change"""
@@ -306,6 +307,8 @@ while not T_EXIT:
         Screen.set_screen_redraw(screen_redraw)
         Screen.set_screen_resize(screen_resize)
 
+        d.move_focus(1 or None)
+        d.move_focus(2 or None)
         res = d.loop()
 
     if res == ACTION_PREV:
