@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pyserv.wsgi module &#8212; pyserv 1.7.4.dev34 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../_static/documentation_options.js?v=b57dc22c"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Changelog" href="../CHANGELOG.html" />
+    <link rel="prev" title="pyserv.tui_helpers module" href="pyserv.tui_helpers.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../CHANGELOG.html" title="Changelog"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pyserv.tui_helpers.html" title="pyserv.tui_helpers module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyserv 1.7.4.dev34 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >pyserv</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="pyserv.html" accesskey="U">pyserv package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pyserv.wsgi module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-pyserv.wsgi">
+<span id="pyserv-wsgi-module"></span><h1>pyserv.wsgi module<a class="headerlink" href="#module-pyserv.wsgi" title="Link to this heading">¶</a></h1>
+<p>Simple WSGI server for serving swagger or basic flask apps in an engineering
+development environment.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.wsgi.main">
+<span class="sig-prename descclassname"><span class="pre">pyserv.wsgi.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/wsgi.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.wsgi.main" title="Link to this definition">¶</a></dt>
+<dd><p>The serv entry point wrapper; both args are optional, but you must
+provide either APP or APP <em>and</em> PORT.</p>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wsgi</span> <span class="p">[</span><span class="n">APP</span><span class="p">]</span> <span class="p">[</span><span class="n">PORT</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.wsgi.wsgi_init">
+<span class="sig-prename descclassname"><span class="pre">pyserv.wsgi.</span></span><span class="sig-name descname"><span class="pre">wsgi_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wapp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/wsgi.html#wsgi_init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.wsgi.wsgi_init" title="Link to this definition">¶</a></dt>
+<dd><p>Init wsgi server for handler handoff; init logging and simple_server
+classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wapp</strong> – initialized WSGI app to run</p></li>
+<li><p><strong>port</strong> – initialized listen port</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return wsgi_handler<span class="colon">:</span></dt>
+<dd class="field-even"><p>wsgi handle, eg, wsgid.serve_forever()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.wsgi.wsgi_run">
+<span class="sig-prename descclassname"><span class="pre">pyserv.wsgi.</span></span><span class="sig-name descname"><span class="pre">wsgi_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app=&lt;function</span> <span class="pre">demo_app&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port='8000'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/wsgi.html#wsgi_run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.wsgi.wsgi_run" title="Link to this definition">¶</a></dt>
+<dd><p>Run in foreground command wrapper for WSGI console entry point;
+init logging and server, run the server, stop the server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – WSGI app (defaults to <code class="docutils literal notranslate"><span class="pre">demo_app</span></code> if not provided)</p></li>
+<li><p><strong>port</strong> – WSGI server listen port</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Pyserv - A Collection of Simple Servers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyserv</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyserv.html">pyserv package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="pyserv.tui_helpers.html"
+                          title="previous chapter">pyserv.tui_helpers module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../CHANGELOG.html"
+                          title="next chapter">Changelog</a></p>
+  </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../CHANGELOG.html" title="Changelog"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pyserv.tui_helpers.html" title="pyserv.tui_helpers module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyserv 1.7.4.dev34 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >pyserv</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="pyserv.html" >pyserv package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pyserv.wsgi module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025 Stephen Arnold.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

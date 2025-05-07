@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pyserv.tftpd module &#8212; pyserv 1.7.4.dev34 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../_static/documentation_options.js?v=b57dc22c"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyserv.tui_helpers module" href="pyserv.tui_helpers.html" />
+    <link rel="prev" title="pyserv.settings module" href="pyserv.settings.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pyserv.tui_helpers.html" title="pyserv.tui_helpers module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pyserv.settings.html" title="pyserv.settings module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyserv 1.7.4.dev34 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >pyserv</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="pyserv.html" accesskey="U">pyserv package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pyserv.tftpd module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-pyserv.tftpd">
+<span id="pyserv-tftpd-module"></span><h1>pyserv.tftpd module<a class="headerlink" href="#module-pyserv.tftpd" title="Link to this heading">¶</a></h1>
+<p>Simple TFTP server for serving kernels or swupdate images in an engineering
+development environment.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.tftpd.main">
+<span class="sig-prename descclassname"><span class="pre">pyserv.tftpd.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/tftpd.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.tftpd.main" title="Link to this definition">¶</a></dt>
+<dd><p>The serv entry point wrapper; both args are optional, but you must
+provide either IFACE or IFACE <em>and</em> PORT.</p>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tftpd</span> <span class="p">[</span><span class="n">IFACE</span><span class="p">]</span> <span class="p">[</span><span class="n">PORT</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.tftpd.tftpd_init">
+<span class="sig-prename descclassname"><span class="pre">pyserv.tftpd.</span></span><span class="sig-name descname"><span class="pre">tftpd_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/tftpd.html#tftpd_init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.tftpd.tftpd_init" title="Link to this definition">¶</a></dt>
+<dd><p>Init tftpd server for handoff; init logging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>directory</strong> – server root directory</p>
+</dd>
+<dt class="field-even">Return tftpd_server<span class="colon">:</span></dt>
+<dd class="field-even"><p>tftpd server obj</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.tftpd.tftpd_run">
+<span class="sig-prename descclassname"><span class="pre">pyserv.tftpd.</span></span><span class="sig-name descname"><span class="pre">tftpd_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'127.0.0.1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'9069'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/home/runner/work/pyserv/pyserv/docs'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/tftpd.html#tftpd_run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.tftpd.tftpd_run" title="Link to this definition">¶</a></dt>
+<dd><p>Run in foreground command wrapper for TFTP console entry point;
+init server listening, run the server, stop the server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iface</strong> – server listen interface (default: all)</p></li>
+<li><p><strong>port</strong> – server listen port (default: 8069)</p></li>
+<li><p><strong>directory</strong> – server root directory  (default: DOCROOT)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Pyserv - A Collection of Simple Servers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyserv</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyserv.html">pyserv package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="pyserv.settings.html"
+                          title="previous chapter">pyserv.settings module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="pyserv.tui_helpers.html"
+                          title="next chapter">pyserv.tui_helpers module</a></p>
+  </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pyserv.tui_helpers.html" title="pyserv.tui_helpers module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pyserv.settings.html" title="pyserv.settings module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyserv 1.7.4.dev34 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >pyserv</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="pyserv.html" >pyserv package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pyserv.tftpd module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025 Stephen Arnold.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

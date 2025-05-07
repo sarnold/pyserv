@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pyserv.tui_helpers module &#8212; pyserv 1.7.4.dev34 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../_static/documentation_options.js?v=b57dc22c"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyserv.wsgi module" href="pyserv.wsgi.html" />
+    <link rel="prev" title="pyserv.tftpd module" href="pyserv.tftpd.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pyserv.wsgi.html" title="pyserv.wsgi module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pyserv.tftpd.html" title="pyserv.tftpd module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyserv 1.7.4.dev34 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >pyserv</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="pyserv.html" accesskey="U">pyserv package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pyserv.tui_helpers module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-pyserv.tui_helpers">
+<span id="pyserv-tui-helpers-module"></span><h1>pyserv.tui_helpers module<a class="headerlink" href="#module-pyserv.tui_helpers" title="Link to this heading">¶</a></h1>
+<p>Pyserv TUI helper functions for picotui or similar.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.tui_helpers.get_env">
+<span class="sig-prename descclassname"><span class="pre">pyserv.tui_helpers.</span></span><span class="sig-name descname"><span class="pre">get_env</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/tui_helpers.html#get_env"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.tui_helpers.get_env" title="Link to this definition">¶</a></dt>
+<dd><p>Get environment data from selected (daemon) name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – name of the daemon/server command</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>full env settings</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Dict</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.tui_helpers.get_log_lines">
+<span class="sig-prename descclassname"><span class="pre">pyserv.tui_helpers.</span></span><span class="sig-name descname"><span class="pre">get_log_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_tail</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shorten</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/tui_helpers.html#get_log_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.tui_helpers.get_log_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Get N lines from a (log) file. Set shorten=0 to disable line-splitting.
+Check for empty (falsey) tail items before processing line data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – path to log file as a string</p></li>
+<li><p><strong>is_tail</strong> (<em>bool</em>) – read from the end of file</p></li>
+<li><p><strong>keep_offset</strong> (<em>bool</em>) – save offset file (keep track of lines that have already been read)</p></li>
+<li><p><strong>shorten</strong> (<em>int</em>) – split lines on spaces and keep the remainder</p></li>
+<li><p><strong>num_lines</strong> (<em>int</em>) – number of lines in tail output</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>available log lines up to num_lines</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>List</em>[str | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.tui_helpers.get_w_env">
+<span class="sig-prename descclassname"><span class="pre">pyserv.tui_helpers.</span></span><span class="sig-name descname"><span class="pre">get_w_env</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/tui_helpers.html#get_w_env"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.tui_helpers.get_w_env" title="Link to this definition">¶</a></dt>
+<dd><p>Get UI widget settings from env values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> (<em>Dict</em>) – default environ for selected daemon/server</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>core env settings</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Dict</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.tui_helpers.host_check">
+<span class="sig-prename descclassname"><span class="pre">pyserv.tui_helpers.</span></span><span class="sig-name descname"><span class="pre">host_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/tui_helpers.html#host_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.tui_helpers.host_check" title="Link to this definition">¶</a></dt>
+<dd><p>Check a remote host using IP address; returns remote MAC address
+if host is UP. Requires root or <code class="docutils literal notranslate"><span class="pre">setcap</span></code> on POSIX platforms.
+Windows does not have this limitation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ip</strong> (<em>str</em>) – IP address or resolvable hostname</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MAC address string</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.tui_helpers.tail">
+<span class="sig-prename descclassname"><span class="pre">pyserv.tui_helpers.</span></span><span class="sig-name descname"><span class="pre">tail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv/tui_helpers.html#tail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.tui_helpers.tail" title="Link to this definition">¶</a></dt>
+<dd><p>Create a tail queue with specified max number of items (log lines).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterable</strong> (<em>Iterable</em>) – an iterable Python obj, ie, List or Tuple of strings</p></li>
+<li><p><strong>max_size</strong> (<em>int</em>) – max size of tail queue</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
+<dd class="field-even"><p>one item</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Generator</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Pyserv - A Collection of Simple Servers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyserv</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyserv.html">pyserv package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="pyserv.tftpd.html"
+                          title="previous chapter">pyserv.tftpd module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="pyserv.wsgi.html"
+                          title="next chapter">pyserv.wsgi module</a></p>
+  </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pyserv.wsgi.html" title="pyserv.wsgi module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pyserv.tftpd.html" title="pyserv.tftpd module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyserv 1.7.4.dev34 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >pyserv</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="pyserv.html" >pyserv package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pyserv.tui_helpers module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025 Stephen Arnold.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>
