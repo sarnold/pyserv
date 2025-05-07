@@ -261,6 +261,49 @@ Run a simple test of the async daemon with tox::
       congratulations :) (39.24 seconds)
 
 
+Experimental server TUI
+=======================
+
+The new ``daemontui`` script uses the picotui_ `Text User Interface`_ (TUI)
+widget library. Both keyboard and mouse navigation are supported (the latter
+only if the console itself supports mouse input). The TUI script provides a
+convenient way to run the daemon scripts with the following features:
+
+* settings console with default (pyserv) options for each server type
+
+  - select the desired daemon for defaults, then edit values as needed
+
+* operations console with control buttons and log display
+
+  - navigation buttons will stop the running server
+  - eg, select the Back button to return to settings
+
+The current UI displays are shown below.
+
+Settings console
+----------------
+
+|settings|
+
+
+Operations console
+------------------
+
+|console|
+
+
+.. important:: The default network settings use non-privileged ports;
+          selecting a lower-numbered port requires elevated privileges
+          via something like ``sudo`` or ``setcap``.
+
+.. _picotui: https://github.com/sarnold/picotui
+.. _Text User Interface: https://en.wikipedia.org/wiki/Text-based_user_interface
+
+
+.. |settings| image:: gh/images/server_settings.png
+.. |console| image:: gh/images/server_console.png
+
+
 Install with pip
 ================
 

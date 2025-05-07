@@ -39,14 +39,14 @@ copyright = str(datetime.now().year) + f' {author}'
 # If your documentation needs a minimal Sphinx version, state it here.
 #
 # needs_sphinx = '1.0'
-needs_sphinx = "8.2.0"
+#needs_sphinx = "8.2.0"
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
     'sphinx_git',
-    'sphinx.ext.apidoc',
+    'sphinxcontrib.apidoc',
     'sphinx.ext.autodoc.typehints',
     'sphinx.ext.doctest',
     'sphinx.ext.todo',
@@ -54,16 +54,24 @@ extensions = [
     'sphinx.ext.viewcode',
     'recommonmark',
 ]
+# autoapi
+#autoapi_dirs = ['../../src']
 
 # API docs
-apidoc_modules = [
-    {
-        "path": "../../src/pyserv",
-        "destination": "api/",
-    },
-]
-apidoc_separate_modules = True
+# apidoc_modules = [
+    # {
+        # "path": "../../src/pyserv",
+        # "destination": "api/",
+    # },
+# ]
+
+# sphinxcontrib.apidoc
+apidoc_module_dir = '../../src/pyserv'
+apidoc_output_dir = 'api'
+apidoc_excluded_paths = ['scripts', 'tests']
 apidoc_include_private = True
+apidoc_separate_modules = True
+
 autodoc_typehints = 'description'
 
 # Add any paths that contain templates here, relative to this directory.

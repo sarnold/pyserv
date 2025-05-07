@@ -10,7 +10,7 @@ Welcome to the pyserv documentation!
 
 .. toctree::
    :caption: Contents:
-   :maxdepth: 4
+   :maxdepth: 2
 
    README
    api/modules

@@ -11,10 +11,9 @@ description = "A collection of simple servers for HTTP, WSGI, and TFTP"
 dynamic = ["version"]
 readme = "README.rst"
 
-# legacy bits and new both fail in different versions
-# need workaround until PEP639 has more backend support
-license = "MIT"
-#license = {text = "MIT"}
+# use toml table as workaround  for now
+#license = "MIT"  # >=3.9 only
+license = {text = "MIT"}
 
 authors = [
     {name = "Stephen Arnold"},
@@ -45,8 +44,12 @@ dependencies = [
     'importlib-metadata>=4.6; python_version < "3.8"',
     "daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.4.1#69d4c9b6f3916cd5ae87c8b3a78eca1015eeed0f",
     "tftpy @ git+https://github.com/VCTLabs/tftpy.git@0.8.2.1#58d1f5c60af2e3759fbb137b89816954d8ea6bc9",
+    "picotui @ git+https://github.com/sarnold/picotui.git@cleanup-bits",
+    "pygtail @ git+https://github.com/VCTLabs/pygtail.git@main#b54b8269a05d1356365b2d69b5606555441ea2f5",
+    "scapy",
 ]
-requires-python = ">=3.8"
+
+requires-python = ">=3.6"
 
 [project.optional-dependencies]
 dev = [
@@ -61,8 +64,9 @@ cov = [
     "coverage_python_version",
 ]
 doc = [
-    "sphinx>=8.2.0",
+    "sphinx",
     "sphinx_git",
+    "sphinxcontrib.apidoc",
     "recommonmark",
     "sphinx_rtd_theme",
 ]
@@ -73,9 +77,6 @@ test = [
     "requests",
 ]
 tui = [
-    "picotui @ git+https://github.com/sarnold/picotui.git@cleanup-bits",
-    "pygtail @ git+https://github.com/VCTLabs/pygtail.git@main",
-    "scapy",
     "textual-dev",
 ]
 
@@ -97,6 +98,7 @@ script-files = [
     "scripts/atftpdaemon",
     "scripts/httpdaemon",
     "scripts/tftpdaemon",
+    "scripts/daemontui",
 ]
 
 [tool.setuptools_scm]
