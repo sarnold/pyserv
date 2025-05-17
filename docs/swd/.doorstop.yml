@@ -1,13 +1,16 @@
 settings:
   digits: 3
-  itemformat: yaml
-  prefix: TUI
+  itemformat: markdown
+  parent: TUI
+  prefix: SDD
   sep: '_'
+extensions:
+  item_sha_required: true  # sha256
 attributes:
   defaults:
     doc:
-      name: Requirements
-      title: Requirements for _TUI_
+      name: TUI SW Design
+      title: TUI SW Design Description
       ref: ''
       by: sarnold
       major: '1'
@@ -16,4 +19,3 @@ attributes:
   publish:
     - commentary
     - rationale
-    - normative
