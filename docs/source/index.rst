@@ -12,6 +12,7 @@ Welcome to the pyserv documentation!
    :caption: Contents:
    :maxdepth: 2
 
+   TUI_reqs_tree
    README
    api/modules
    CHANGELOG

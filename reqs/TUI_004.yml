@@ -13,6 +13,7 @@ level: 1.4
 links: []
 normative: true
 ref: ''
-reviewed: null
+reviewed: uIbTajApc-tekGjXf6D0dOCNFCI3kO7wjAbMXxC07B0=
 text: |
-  The server TUI **Shall** provide individual buttons for daemon start stop status commands.
+  The server TUI **Shall** provide individual buttons for the primary
+  daemon commands.

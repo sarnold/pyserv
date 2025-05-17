@@ -278,7 +278,7 @@ convenient way to run the daemon scripts with the following features:
   - navigation buttons will stop the running server
   - eg, select the Back button to return to settings
 
-The current UI displays are shown below.
+The current (static) UI displays are shown in more detail below.
 
 Settings console
 ----------------
@@ -286,15 +286,19 @@ Settings console
 |settings|
 
 
+.. important:: The default network settings use non-privileged ports;
+          selecting a lower-numbered port requires elevated privileges
+          via something like ``sudo`` or ``setcap``.
+
+
 Operations console
 ------------------
 
 |console|
 
+**See it in action:**
 
-.. important:: The default network settings use non-privileged ports;
-          selecting a lower-numbered port requires elevated privileges
-          via something like ``sudo`` or ``setcap``.
+|action|
 
 .. _picotui: https://github.com/sarnold/picotui
 .. _Text User Interface: https://en.wikipedia.org/wiki/Text-based_user_interface
@@ -302,6 +306,7 @@ Operations console
 
 .. |settings| image:: gh/images/server_settings.png
 .. |console| image:: gh/images/server_console.png
+.. |action| image:: gh/images/daemontui_animated.gif
 
 
 Install with pip
