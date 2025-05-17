@@ -13,7 +13,7 @@ level: 1.4
 links: []
 normative: true
 ref: ''
-reviewed: uIbTajApc-tekGjXf6D0dOCNFCI3kO7wjAbMXxC07B0=
+reviewed: bavDmtpNDHOs1TBx0utYdk33AKeQEA1otDmijgJhsGk=
 text: |
-  The server TUI **Shall** provide individual buttons for the primary
-  daemon commands.
+  The server TUI **Shall** provide individual UI elements to control the
+  selected daemon.

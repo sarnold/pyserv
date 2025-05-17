@@ -1,0 +1,21 @@
+settings:
+  digits: 3
+  itemformat: markdown
+  parent: TUI
+  prefix: SDD
+  sep: '_'
+extensions:
+  item_sha_required: true  # sha256
+attributes:
+  defaults:
+    doc:
+      name: TUI SW Design
+      title: TUI SW Design Description
+      ref: ''
+      by: sarnold
+      major: '1'
+      minor: A
+      copyright: sarnold
+  publish:
+    - commentary
+    - rationale

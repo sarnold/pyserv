@@ -14,6 +14,8 @@ TUI parameters (on exit).
 
 The server TUI **Shall** run any of the pyserv daemons.
 
+*Child links: SDD_003*
+
 | Attribute | Value |
 | --------- | ----- |
 | normative | True |
@@ -22,6 +24,8 @@ The server TUI **Shall** run any of the pyserv daemons.
 ## 1.2 TUI_002 {#TUI_002}
 
 The server TUI **Shall** set default values for required daemon options.
+
+*Child links: SDD_002*
 
 | Attribute | Value |
 | --------- | ----- |
@@ -32,6 +36,8 @@ The server TUI **Shall** set default values for required daemon options.
 
 The server TUI **Shall** provide user controls to edit/modify default values.
 
+*Child links: SDD_002*
+
 | Attribute | Value |
 | --------- | ----- |
 | normative | True |
@@ -39,8 +45,10 @@ The server TUI **Shall** provide user controls to edit/modify default values.
 
 ## 1.4 TUI_004 {#TUI_004}
 
-The server TUI **Shall** provide individual buttons for the primary
-daemon commands.
+The server TUI **Shall** provide individual UI elements to control the
+selected daemon.
+
+*Child links: SDD_004*
 
 | Attribute | Value |
 | --------- | ----- |
@@ -51,6 +59,8 @@ daemon commands.
 
 The server TUI **Shall** display log output from the currently
 running daemon.
+
+*Child links: SDD_003*
 
 | Attribute | Value |
 | --------- | ----- |
