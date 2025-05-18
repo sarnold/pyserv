@@ -39,14 +39,15 @@ classifiers = [
 
 dependencies = [
     "platformdirs",
-    "psutil",
-    "py3tftp",
     'importlib-metadata>=4.6; python_version < "3.8"',
     "daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.4.1#69d4c9b6f3916cd5ae87c8b3a78eca1015eeed0f",
     "tftpy @ git+https://github.com/VCTLabs/tftpy.git@0.8.2.1#58d1f5c60af2e3759fbb137b89816954d8ea6bc9",
     "picotui @ git+https://github.com/sarnold/picotui.git@cleanup-bits",
+    "psutil",
+    "py3tftp",
     "pygtail @ git+https://github.com/VCTLabs/pygtail.git@main#b54b8269a05d1356365b2d69b5606555441ea2f5",
     "scapy",
+    "yaml_tools @ git+https://github.com/sarnold/yaml-tools.git@path-helpers",
 ]
 
 requires-python = ">=3.6"
@@ -68,7 +69,7 @@ doc = [
     "sphinx_git",
     "sphinxcontrib.apidoc",
     "myst-parser",
-    "sphinx_rtd_theme",
+    "sphinx_rtd_theme<3.0.0",
 ]
 test = [
     "pytest",

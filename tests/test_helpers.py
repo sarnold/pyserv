@@ -3,7 +3,9 @@ import sys
 from pathlib import Path
 
 import pytest
+from yaml_tools.utils import pystache_render
 
+from pyserv.ext import CTX, FIG_TPL
 from pyserv.tui_helpers import (
     HTTPD_ENV,
     TFTPD_ENV,
@@ -26,6 +28,24 @@ log_str = """
 2025-04-20 19:42:43 UTC INFO tftpd.listen(107) Starting receive loop...
 2025-04-20 19:42:56 UTC INFO tftpd.stop(262) Stopped
 """
+
+
+def test_pystache_render():
+    """
+    Test rendering a pystache template.
+    """
+    caption = "THIS is a long figure caption"
+    path = 'some/path/to.svg'
+    CTX.update(
+        {
+            'caption_lc': caption.lower(),
+            'caption_title': caption.title(),
+            'figure_path': path,
+        }
+    )
+    actual = pystache_render(FIG_TPL, CTX)
+    print(f'\n{actual}')
+    assert 'this is a long figure caption' in actual
 
 
 def test_get_env(capfd):

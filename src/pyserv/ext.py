@@ -10,6 +10,21 @@ EPILOG = """
 Copyright 2016 Matt O. <matt@mattscodecave.com>
 """
 
+FIG_TPL = """```{figure} {{figure_path}}
+:width: 90 %
+:align: center
+:alt: {{caption_lc}}
+
+{{caption_title}} (captured from mermaid to SVG).
+```
+"""
+
+CTX = {
+    'caption_lc': '',
+    'caption_title': '',
+    'figure_path': '',
+}
+
 
 def parse_cli_arguments():  # pragma: no cover
     """
