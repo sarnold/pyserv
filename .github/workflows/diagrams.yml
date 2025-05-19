@@ -28,9 +28,16 @@ jobs:
           echo "New files: ${files}"
           echo "files=${files}" >> $GITHUB_OUTPUT
 
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
       - name: Graphics files added
         run: |
           echo ${{ steps.getfile.outputs.files }}
+          python -m pip install --upgrade pip wheel tox
+          tox -e md -- ${{ steps.getfile.outputs.files }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e  # v7.0.8
