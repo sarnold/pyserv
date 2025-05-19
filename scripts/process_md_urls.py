@@ -7,19 +7,31 @@ args. One or more (SVG or PNG) files are required.
 import os
 import sys
 from pathlib import Path
-from typing import List
-
-from yaml_tools.utils import find_mdfiles, pystache_render
-
-from pyserv.ext import CTX, FIG_TPL
+from string import Template
+from typing import List, Tuple
 
 DEBUG = int(os.getenv('DEBUG', default='0'))
 EXTENSIONS = ['.svg', '.png']
 
+FIG_TPL = """```{figure} ${figure_path}
+:width: 90 %
+:align: center
+:alt: ${caption_lc}
+
+${caption_title} (captured from mermaid to SVG or PNG).
+```
+"""
+
+CTX = {
+    'caption_lc': '',
+    'caption_title': '',
+    'figure_path': '',
+}
+
 
 def render_caption(caption: str, path: str):
     """
-    Render a pystache template.
+    Render a string template.
     """
     CTX.update(
         {
@@ -28,7 +40,28 @@ def render_caption(caption: str, path: str):
             'figure_path': path,
         }
     )
-    return pystache_render(FIG_TPL, CTX)
+    return Template(FIG_TPL).substitute(CTX)
+
+
+def find_mdfiles(
+    start: str = '.', fglob: str = '*.md', excludes: Tuple = ('.github', '.tox', '.venv')
+) -> List:
+    """
+    Find markdown files subject to specified exclude paths.
+
+    :param start: directory to start file search
+    :param fglob: file extension glob
+    :param excludes: tuple of excludes
+    """
+    target_files: List = []
+    files = Path(start).rglob(fglob)
+    for file in list(files):
+        if str(file).startswith(excludes):
+            continue
+        target_files.append(file)
+    if DEBUG:
+        print(f'Found file list: {target_files}')
+    return target_files
 
 
 def process_files(new_files: List, target_files: List):
@@ -40,20 +73,19 @@ def process_files(new_files: List, target_files: List):
             doc_str = Path(md_file).read_text(encoding='utf-8')
             if Path(img_file).name not in doc_str:
                 continue
-            else:
-                with Path(md_file).open() as file:
-                    lines = file.readlines()
-                with Path(md_file).open(mode='w') as file:
-                    for line in lines:
-                        if line.startswith(('![', '[')) and Path(img_file).name in line:
-                            if DEBUG:
-                                print(line)
-                            cap_str = line.split('[', 1)[1].split(']')[0]
-                            path_str = line.split('(', 1)[1].split(')')[0]
-                            text = render_caption(cap_str, path_str)
-                            file.write(text + '\n')
-                        else:
-                            file.write(line)
+            with Path(md_file).open(encoding='utf-8') as file:
+                lines = file.readlines()
+            with Path(md_file).open(mode='w', encoding='utf-8') as file:
+                for line in lines:
+                    if line.startswith(('![', '[')) and Path(img_file).name in line:
+                        if DEBUG:
+                            print(line)
+                        cap_str = line.split('[', 1)[1].split(']')[0]
+                        path_str = line.split('(', 1)[1].split(')')[0]
+                        text = render_caption(cap_str, path_str)
+                        file.write(text + '\n')
+                    else:
+                        file.write(line)
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -73,7 +105,7 @@ def main(argv: list[str] | None = None) -> None:
     new_files = [f for f in argv if Path(f).suffix in EXTENSIONS and Path(f).exists()]
     if len(new_files) < 1:
         if DEBUG:
-            print(f"No valid input files (only {EXTENSIONS} are allowed")
+            print(f"No valid input files (only {EXTENSIONS} are allowed)")
         sys.exit(1)
     if DEBUG:
         print(new_files)
