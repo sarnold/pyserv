@@ -47,7 +47,6 @@ dependencies = [
     "py3tftp",
     "pygtail @ git+https://github.com/VCTLabs/pygtail.git@main#b54b8269a05d1356365b2d69b5606555441ea2f5",
     "scapy",
-    "yaml_tools @ git+https://github.com/sarnold/yaml-tools.git@path-helpers",
 ]
 
 requires-python = ">=3.6"
@@ -100,6 +99,7 @@ script-files = [
     "scripts/httpdaemon",
     "scripts/tftpdaemon",
     "scripts/daemontui",
+    "scripts/process_md_urls.py",
 ]
 
 [tool.setuptools_scm]
