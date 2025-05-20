@@ -27,12 +27,12 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 # The full version, including alpha/beta/rc tags with setuptols-scm
 # workaround for extra-long dirty version string
 release = version('pyserv').split("+")[0]
-# The short X.Y version.
-version = '.'.join(release.split('.')[:2])
+# screw the short X.Y version.
+version = release
 
 project = 'pyserv'
 author = 'Stephen Arnold'
-copyright = str(datetime.now().year) + f' {author}'
+copyright = '2022 - ' + str(datetime.now().year) + f' {author}'
 
 # -- General configuration ------------------------------------------------
 
@@ -47,13 +47,18 @@ copyright = str(datetime.now().year) + f' {author}'
 extensions = [
     'sphinx_git',
     'sphinxcontrib.apidoc',
+    'sphinx.ext.autodoc',
     'sphinx.ext.autodoc.typehints',
     'sphinx.ext.doctest',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
-    'recommonmark',
+    'myst_parser',
 ]
+
+myst_suppress_warnings = ["myst.header"]
+myst_enable_extensions = ["attrs_inline", "deflist", "fieldlist", "substitution",]
+
 # autoapi
 #autoapi_dirs = ['../../src']
 
@@ -80,8 +85,10 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-# source_suffix = ['.rst', '.md']
-source_suffix = {'.rst': 'restructuredtext'}
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 # The master toctree document.
 master_doc = 'index'
@@ -108,13 +115,13 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
-
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'classic'  # still has a version
+#html_theme = 'classic'  # still has a version
+html_theme = 'sphinx_rtd_theme'
 
 html_sidebars = {
     '**': [
