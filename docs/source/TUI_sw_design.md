@@ -25,6 +25,15 @@ Rendered versions of current mermaid_ diagrams are shown here, starting
 with the following activity sequence diagram for the TUI context
 loops.
 
+```{figure} assets/tui_sequence_diagram.svg
+:width: 90 %
+:align: center
+:alt: activity sequence diagram
+
+Activity Sequence Diagram.
+```
+
+
 <details>
   <summary>tui_sequence_diagram source</summary>
   User activity sequence diagram showing 2 primary Screen contexts.
@@ -41,6 +50,35 @@ sequenceDiagram
     Operate->>Operate: view logs
     Operate->>InitState: Back: init defaults
     InitState->>Select: Update selections
+```
+</details>
+
+#### SW dependencies
+
+```{figure} assets/tui_dependency_graph.svg
+:width: 90 %
+:align: center
+:alt: daemontui software units
+
+Daemontui Software Units.
+```
+
+
+<details>
+  <summary>tui_dependency_graph source</summary>
+  Maintenance UI dependency graph showing primary software units.
+
+```mermaid
+graph TB
+  subgraph id1[Static Dependencies]
+    subgraph id2[Packages]
+      A(daemontui)
+      B(picotui)
+      C(pygtail)
+      D(pyserv)
+    end
+    A --> B & C & D
+  end
 ```
 </details>
 

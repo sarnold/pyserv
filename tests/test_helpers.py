@@ -2,9 +2,11 @@ import os
 import sys
 from pathlib import Path
 from string import Template
+from time import sleep
 
 import pytest
 
+from pyserv import RepeatTimer
 from pyserv.tui_helpers import (
     HTTPD_ENV,
     TFTPD_ENV,
@@ -85,3 +87,24 @@ def test_get_log_no_lines(tmp_path):
     lines = get_log_lines(str(tf3), is_tail=False, keep_offset=False, num_lines=5)
     print(lines)
     assert len(lines) == 0
+
+
+def rt_target():
+    """
+    Small test func for timer test.
+    """
+    print("Yay")
+
+
+def test_repeat_timer():
+    """
+    Test timer thread can start and stop; partially verifies TUI005.
+    """
+    test_rt = RepeatTimer(0.5, rt_target)
+    test_rt.stop()
+    assert test_rt.is_running is False
+    test_rt.start()
+    sleep(0.75)
+    assert test_rt.is_running
+    test_rt.stop()
+    assert test_rt.is_running is False
