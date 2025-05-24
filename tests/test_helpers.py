@@ -2,11 +2,9 @@ import os
 import sys
 from pathlib import Path
 from string import Template
-from time import sleep
 
 import pytest
 
-from pyserv import RepeatTimer
 from pyserv.tui_helpers import (
     HTTPD_ENV,
     TFTPD_ENV,
@@ -33,7 +31,7 @@ log_str = """
 
 def test_get_env(capfd):
     """
-    Check env data from name.
+    Check env data from name; verifies TUI_002.
     """
     for name in ["tftpdaemon", "atftpdaemon", "httpdaemon", "serv"]:
         d_env = get_env(name)
@@ -57,7 +55,7 @@ def test_get_w_env():
 
 def test_get_log_lines(tmp_path):
     """
-    Create and read a short log file.
+    Create and read a short log file; partially verifies TUI_005.
     """
     tf1 = tmp_path / "tftpd1.log"
     tf1.write_text(log_str, encoding="utf-8")
@@ -69,7 +67,7 @@ def test_get_log_lines(tmp_path):
 
 def test_get_log_num_lines(tmp_path):
     """
-    Create and read a short log file.
+    Create and read a short log file; partially verifies TUI_005.
     """
     tf2 = tmp_path / "tftpd2.log"
     tf2.write_text(log_str, encoding="utf-8")
@@ -81,30 +79,9 @@ def test_get_log_num_lines(tmp_path):
 
 def test_get_log_no_lines(tmp_path):
     """
-    Try to read a non-existent log file.
+    Try to read a non-existent log file; partially verifies TUI_005.
     """
     tf3 = tmp_path / "tftpd3.log"
     lines = get_log_lines(str(tf3), is_tail=False, keep_offset=False, num_lines=5)
     print(lines)
     assert len(lines) == 0
-
-
-def rt_target():
-    """
-    Small test func for timer test.
-    """
-    print("Yay")
-
-
-def test_repeat_timer():
-    """
-    Test timer thread can start and stop; partially verifies TUI005.
-    """
-    test_rt = RepeatTimer(0.5, rt_target)
-    test_rt.stop()
-    assert test_rt.is_running is False
-    test_rt.start()
-    sleep(0.75)
-    assert test_rt.is_running
-    test_rt.stop()
-    assert test_rt.is_running is False

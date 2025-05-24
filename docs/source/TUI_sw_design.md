@@ -33,7 +33,6 @@ loops.
 Activity Sequence Diagram.
 ```
 
-
 <details>
   <summary>tui_sequence_diagram source</summary>
   User activity sequence diagram showing 2 primary Screen contexts.
@@ -55,14 +54,7 @@ sequenceDiagram
 
 #### SW dependencies
 
-```{figure} assets/tui_dependency_graph.svg
-:width: 90 %
-:align: center
-:alt: daemontui software units
-
-Daemontui Software Units.
-```
-
+![primary software dependencies](assets/tui_dependency_graph.svg)
 
 <details>
   <summary>tui_dependency_graph source</summary>

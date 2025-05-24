@@ -14,6 +14,7 @@ pyserv: A collection of server bits for HTTP, WSGI, and TFTP
 
    TUI_reqs_tree
    TUI_sw_design
+   TUI_unit_tests
    README
    api/modules
    CHANGELOG

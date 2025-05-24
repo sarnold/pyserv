@@ -1,0 +1,28 @@
+active: true
+derived: false
+doc:
+  by: sarnold
+  copyright: sarnold
+  major: '1'
+  minor: A
+  name: daemontui
+  ref: ''
+  title: TUI Integration and Unit Tests
+header: ''
+level: 1.2
+links:
+- TUI_005: OxakWymN2lG_2hQfoeU_Rqq_AE-_Ceg8gkWGu15qGxo=
+normative: true
+ref: ''
+references:
+- keyword: TUI_005
+  path: tests/test_helpers.py
+  sha: 3d15389b8ce912d034291f089ab3dea45257adfb9a3d23262ce13e34bc46834d
+  type: file
+- keyword: TUI_005
+  path: tests/test_timer.py
+  sha: 963de23c036440968c7165fa08167fc2c9c88e880ccb726b7446a3c7652728d8
+  type: file
+reviewed: VdFIcbNBKo9xQ3qkT8trB_WP8Tc5u0xDs8bHIK8fJUk=
+text: |
+  Test log tail handler:
