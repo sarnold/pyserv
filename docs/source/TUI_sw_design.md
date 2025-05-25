@@ -55,7 +55,7 @@ sequenceDiagram
 #### SW dependencies
 
 ```{figure} assets/tui_dependency_graph.svg
-:width: 90 %
+:width: 65 %
 :align: center
 :alt: primary software dependencies
 
@@ -65,7 +65,7 @@ Primary Software Dependencies (captured from mermaid to SVG or PNG).
 
 <details>
   <summary>tui_dependency_graph source</summary>
-  Maintenance UI dependency graph showing primary software units.
+  daemontui dependency graph showing primary software units.
 
 ```mermaid
 graph TB
@@ -98,6 +98,8 @@ groups of settings and dynamic data such as network device names and
 file system paths, starting with user-confirmed runtime settings for
 server and logging options.
 
+> `scripts/daemontui.py` (line 123)
+
 *Parent links: TUI_002, TUI_003*
 
 
@@ -108,6 +110,9 @@ server and logging options.
 The daemontui software must display network and server status to the
 operator using both visual indicators and log entries.
 
+> `scripts/daemontui.py` (line 213)
+> `scripts/daemontui.py` (line 218)
+
 *Parent links: TUI_001, TUI_005*
 
 
@@ -116,7 +121,11 @@ operator using both visual indicators and log entries.
 ### daemontui controls
 
 The daemontui software must provide obvious operator controls that
-corespond to the primary daemon commands: [start, stop, status]
+correspond to the primary daemon commands: [start, stop, status]
+
+> `scripts/daemontui.py` (line 236)
+> `scripts/daemontui.py` (line 239)
+> `scripts/daemontui.py` (line 242)
 
 *Parent links: TUI_004*
 
