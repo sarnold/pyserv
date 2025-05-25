@@ -2,6 +2,163 @@ Changelog
 =========
 
 
+1.7.3-44-g618b46d
+-----------------
+
+New
+~~~
+- Add post-process script for munging markdown diagrams in CI. [Stephen
+  L Arnold]
+
+  * works with render-md-mermaid action to convert image URLs required
+    by action into myst-parser captions
+  * remove extra diagram clutter
+- Add small template func to munge markdown after render. [Stephen L
+  Arnold]
+
+  * diagrams workflow needs a helper to replace the simple image
+    syntax with a myst diagram directive
+  * add some extra (temporary) image URLs to goose multiple files in CI
+- Add new doorstop doc for sw design bits, link to parent reqs. [Stephen
+  L Arnold]
+- Replace refresh button with a separate thread. [Stephen L Arnold]
+
+  * call the refresh func with its own daemon thread on a smallish interval
+  * update packaging and deps for daemontui script, cleanup imports and typos
+- Add pid check and kill on exit, use DEBUG for console output. [Stephen
+  L Arnold]
+- Add IDEV environment var to settings. [Stephen L Arnold]
+
+  * flake8 config file to replace what was in setup.cfg, update tox file
+- Testing doorstop for collecting TUI requirements. [Stephen L Arnold]
+
+Changes
+~~~~~~~
+- Cleanup python requirements. [Stephen L Arnold]
+- Refactor workflow helper to remove external python deps. [Stephen L
+  Arnold]
+- Revert to original render-md-mermaid, add svg target. [Stephen L
+  Arnold]
+
+  * make sure bogus image link only exists in doorstop item
+  * allow contents and pull-requests perms for cpr action
+- Cleanup initial reqs experiment, add header item for docs. [Stephen L
+  Arnold]
+
+  * include the generated doorstop doc in sphinx build, update conf
+  * cleanup readme, add animated gif generated from desktop recording
+  * add doorstop to dev environment and docs cmd
+- Add server status indicator to run console, update screenshot.
+  [Stephen L Arnold]
+- Add ui note about mouse support, update docs. [Stephen L Arnold]
+
+  * add some console screenshots and a brief daemontui description
+- Flesh out daemontui controls, update doorstop dep to fork. [Stephen L
+  Arnold]
+- Revert to sphinx contrib apidoc, apply type hints, reformatting.
+  [Stephen L Arnold]
+
+  * update project files, ignore mypy errors in tui script
+- Add more type annotations, update tests and conf.py. [Stephen L
+  Arnold]
+- Add basic tests for tui_helpers, check for empty lines. [Stephen L
+  Arnold]
+
+  * make sure we check for an empty line in the list from pygtail
+  * allow line-shortening by splitting on space char, ie, using
+    shorten=3 drops leading date chars (depending on format)
+- Add more (optional) deps for tui experiments. [Stephen L Arnold]
+
+  * update daemontui log display, split out helper funcs from tui source
+  * update project, tox, and reqs files
+- Update server logging configs, misc cleanup, update daemontui.
+  [Stephen L Arnold]
+
+  * allow env override for log file path instead of console
+- Update doorstop doc config, edit some reqs, create a new one. [Stephen
+  L Arnold]
+- Update picotui example, add workarounds for doorstop deps. [Stephen L
+  Arnold]
+- Skip 2 tests on windows and file a bug in psutils repo. [Stephen L
+  Arnold]
+- Refactor get_iface funcs to only return strings, update tests.
+  [Stephen L Arnold]
+
+  * split original into 3 separate functions that should always return
+    a (possibly empty) string and not raise an exception
+- Add more settings widgets and update environment. [Stephen L Arnold]
+
+  * populate default port number when daemon selection changes
+- Make sure current widgets can update env state, cleanup lint. [Stephen
+  L Arnold]
+- Update reqs file and tox lint cmd, cleanup some lint. [Stephen L
+  Arnold]
+- Add a different get_useriface using psutil. [Stephen L Arnold]
+- Update project files with picotui and doorstop deps. [Stephen L
+  Arnold]
+
+  * use .venv for dev environment or doorstop cries
+- Reduce workflow permissions. [Stephen L Arnold]
+- Still more corrections, rewrites, and updates for the readme. [Stephen
+  L Arnold]
+
+Fixes
+~~~~~
+- Use push event for current release status. [Stephen L Arnold]
+
+  * somehow adding workflow_dispatch made github look away and
+    start displaying the wrong status (where push event is now
+    correct)
+
+Other
+~~~~~
+- Merge pull request #45 from sarnold/more-reqs. [Steve Arnold]
+
+  requirements and diagrams
+- [create-pull-request] automated change. [github-actions[bot]]
+- Merge pull request #43 from sarnold/server-tui-wip. [Steve Arnold]
+
+  daemontui and docs cleanup
+- Merge pull request #41 from sarnold/server-tui-wip. [Steve Arnold]
+
+  Experimental daemon tui
+- Merge pull request #40 from sarnold/cleanup-bits. [Steve Arnold]
+
+  Cleanup bits
+- Merge pull request #38 from sarnold/config-cruft. [Steve Arnold]
+
+  Cruft cleaning
+- Merge pull request #37 from sarnold/more-doc-nits. [Steve Arnold]
+
+  More doc nits
+- Merge pull request #36 from sarnold/status-fix. [Steve Arnold]
+
+  Status fix
+
+
+1.7.3 (2025-03-21)
+------------------
+
+New
+~~~
+- Add extended container workflow for other Linux environments. [Stephen
+  L Arnold]
+
+  * no setup-python or git commands, disable until we have more time
+
+Changes
+~~~~~~~
+- Update readme with reuse compliance and sbom snippet. [Stephen L
+  Arnold]
+- Testing license-as-string in CI matrix. [Stephen L Arnold]
+
+Other
+~~~~~
+- Merge pull request #35 from sarnold/legacy-toml-bits. [Steve Arnold]
+
+  license metadata compromise
+
+
 1.7.2 (2025-03-20)
 ------------------
 
@@ -24,6 +181,9 @@ Changes
 
 Other
 ~~~~~
+- Merge pull request #34 from sarnold/changelogs. [Steve Arnold]
+
+  Changelogs
 - Merge pull request #33 from sarnold/reusable-workflows. [Steve Arnold]
 
   cleanup linked workflows

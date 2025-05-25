@@ -1,0 +1,21 @@
+settings:
+  digits: 3
+  itemformat: yaml
+  parent: TUI
+  prefix: TST
+  sep: '_'
+extensions:
+  item_sha_required: true  # sha256
+attributes:
+  defaults:
+    doc:
+      name: daemontui
+      title: TUI Integration and Unit Tests
+      ref: ''
+      by: sarnold
+      major: '1'
+      minor: A
+      copyright: sarnold
+  publish:
+    - commentary
+    - rationale

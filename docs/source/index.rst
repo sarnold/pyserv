@@ -1,5 +1,5 @@
-Welcome to the pyserv documentation!
-====================================
+pyserv: A collection of server bits for HTTP, WSGI, and TFTP
+============================================================
 
 .. git_commit_detail::
     :branch:
@@ -10,10 +10,11 @@ Welcome to the pyserv documentation!
 
 .. toctree::
    :caption: Contents:
-   :maxdepth: 2
+   :maxdepth: 1
 
    TUI_reqs_tree
    TUI_sw_design
+   TUI_unit_tests
    README
    api/modules
    CHANGELOG
