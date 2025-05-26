@@ -4,19 +4,14 @@ Now includes a reference WSGI server and tftpdaemon script.
 """
 
 import logging
-import sys
 import threading
 from functools import partial
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+from importlib.metadata import version
 from socketserver import ThreadingMixIn
 from urllib.parse import urlparse
 from wsgiref.simple_server import make_server
 from wsgiref.validate import validator
-
-if sys.version_info < (3, 8):
-    from importlib_metadata import version
-else:
-    from importlib.metadata import version
 
 __version__ = version('pyserv')
 __all__ = [
@@ -101,10 +96,7 @@ class GetServer(threading.Thread):
         self.iface = iface
         self.port = int(port)
         self.directory = directory
-        if sys.version_info < (3, 7):
-            self.handler = GetHandler
-        else:
-            self.handler = partial(GetHandler, directory=self.directory)
+        self.handler = partial(GetHandler, directory=self.directory)
         self.server = ThreadingHTTPServer((self.iface, self.port), self.handler)
 
     def run(self):
@@ -183,7 +175,7 @@ class RepeatTimer:
         """
         Safely (re)start thread timer.
         """
-        if not self.is_running:
+        if not self.is_running:  # pragma: no cover
             self._timer = threading.Timer(self.interval, self._run)
             self._timer.start()
             self.is_running = True

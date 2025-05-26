@@ -1,5 +1,7 @@
 from time import sleep
 
+import pytest
+
 from pyserv import RepeatTimer
 
 
