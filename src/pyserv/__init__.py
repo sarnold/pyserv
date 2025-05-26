@@ -4,19 +4,14 @@ Now includes a reference WSGI server and tftpdaemon script.
 """
 
 import logging
-import sys
 import threading
 from functools import partial
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+from importlib.metadata import version
 from socketserver import ThreadingMixIn
 from urllib.parse import urlparse
 from wsgiref.simple_server import make_server
 from wsgiref.validate import validator
-
-if sys.version_info < (3, 8):
-    from importlib_metadata import version
-else:
-    from importlib.metadata import version
 
 __version__ = version('pyserv')
 __all__ = [
@@ -25,6 +20,7 @@ __all__ = [
     "GetHandler",
     "GetServer",
     "GetServerWSGI",
+    "RepeatTimer",
     "munge_url",
 ]
 __description__ = "A collection of simple servers for HTTP, WSGI, and TFTP"
@@ -100,10 +96,7 @@ class GetServer(threading.Thread):
         self.iface = iface
         self.port = int(port)
         self.directory = directory
-        if sys.version_info < (3, 7):
-            self.handler = GetHandler
-        else:
-            self.handler = partial(GetHandler, directory=self.directory)
+        self.handler = partial(GetHandler, directory=self.directory)
         self.server = ThreadingHTTPServer((self.iface, self.port), self.handler)
 
     def run(self):
@@ -145,3 +138,51 @@ class GetServerWSGI(threading.Thread):
     def stop(self):
         """Stop main server thread"""
         self.server.shutdown()
+
+
+class RepeatTimer:
+    """
+    A non-blocking threaded timer to execute a user func repeatedly.
+    Usage::
+
+        def hello(name):
+            print(f"Hello {name}")
+
+        rt = RepeatTimer(1, hello, "World")  # it auto-starts
+        try:
+            sleep(5)  # run other stuff
+        finally:
+            rt.stop()  # best in a try/finally block
+
+    Author: https://stackoverflow.com/a/38317060/14874218
+    """
+
+    def __init__(self, interval, function, *args, **kwargs):
+        self._timer = None
+        self.interval = interval
+        self.function = function
+        self.args = args
+        self.kwargs = kwargs
+        self.is_running = False
+        self.start()
+
+    def _run(self):
+        self.is_running = False
+        self.start()
+        self.function(*self.args, **self.kwargs)
+
+    def start(self):
+        """
+        Safely (re)start thread timer.
+        """
+        if not self.is_running:  # pragma: no cover
+            self._timer = threading.Timer(self.interval, self._run)
+            self._timer.start()
+            self.is_running = True
+
+    def stop(self):
+        """
+        Safely stop thread timer.
+        """
+        self._timer.cancel()
+        self.is_running = False

@@ -25,7 +25,7 @@ The server TUI **Shall** run any of the pyserv daemons.
 
 The server TUI **Shall** set default values for required daemon options.
 
-*Child links: SDD_002*
+*Child links: SDD_002, TST_002*
 
 | Attribute | Value |
 | --------- | ----- |
@@ -60,7 +60,7 @@ selected daemon.
 The server TUI **Shall** display log output from the currently
 running daemon.
 
-*Child links: SDD_003*
+*Child links: SDD_003, TST_003*
 
 | Attribute | Value |
 | --------- | ----- |

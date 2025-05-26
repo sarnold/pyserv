@@ -25,6 +25,14 @@ Rendered versions of current mermaid_ diagrams are shown here, starting
 with the following activity sequence diagram for the TUI context
 loops.
 
+```{figure} assets/tui_sequence_diagram.svg
+:width: 90 %
+:align: center
+:alt: activity sequence diagram
+
+Activity Sequence Diagram.
+```
+
 <details>
   <summary>tui_sequence_diagram source</summary>
   User activity sequence diagram showing 2 primary Screen contexts.
@@ -41,6 +49,35 @@ sequenceDiagram
     Operate->>Operate: view logs
     Operate->>InitState: Back: init defaults
     InitState->>Select: Update selections
+```
+</details>
+
+#### SW dependencies
+
+```{figure} assets/tui_dependency_graph.svg
+:width: 65 %
+:align: center
+:alt: primary software dependencies
+
+Primary Software Dependencies (captured from mermaid to SVG or PNG).
+```
+
+
+<details>
+  <summary>tui_dependency_graph source</summary>
+  daemontui dependency graph showing primary software units.
+
+```mermaid
+graph TB
+  subgraph id1[Static Dependencies]
+    subgraph id2[Packages]
+      A(daemontui)
+      B(picotui)
+      C(pygtail)
+      D(pyserv)
+    end
+    A --> B & C & D
+  end
 ```
 </details>
 
@@ -61,6 +98,8 @@ groups of settings and dynamic data such as network device names and
 file system paths, starting with user-confirmed runtime settings for
 server and logging options.
 
+> `scripts/daemontui.py` (line 123)
+
 *Parent links: TUI_002, TUI_003*
 
 
@@ -71,6 +110,9 @@ server and logging options.
 The daemontui software must display network and server status to the
 operator using both visual indicators and log entries.
 
+> `scripts/daemontui.py` (line 213)
+> `scripts/daemontui.py` (line 218)
+
 *Parent links: TUI_001, TUI_005*
 
 
@@ -79,7 +121,11 @@ operator using both visual indicators and log entries.
 ### daemontui controls
 
 The daemontui software must provide obvious operator controls that
-corespond to the primary daemon commands: [start, stop, status]
+correspond to the primary daemon commands: [start, stop, status]
+
+> `scripts/daemontui.py` (line 236)
+> `scripts/daemontui.py` (line 239)
+> `scripts/daemontui.py` (line 242)
 
 *Parent links: TUI_004*
 
