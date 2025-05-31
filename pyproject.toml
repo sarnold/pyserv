@@ -48,7 +48,7 @@ dependencies = [
     "scapy",
 ]
 
-requires-python = ">=3.6"
+requires-python = ">=3.9"
 
 [project.optional-dependencies]
 dev = [
