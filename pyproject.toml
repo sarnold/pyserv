@@ -114,14 +114,14 @@ filterwarnings = ["ignore:currentThread:DeprecationWarning",]
 
 [tool.coverage.run]
 branch = true
-source = ["src"]
+source = ["src/pyserv"]
 omit = [
     "tests",
     ".tox",
 ]
 
 [tool.coverage.paths]
-source = ["src"]
+source = ["src/pyserv"]
 
 [tool.coverage.report]
 fail_under = 80

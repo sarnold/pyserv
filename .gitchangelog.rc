@@ -61,6 +61,7 @@
 ignore_regexps = [
     r'^([cC]i)\s*:',
     r'dependabot',
+    r'automated change',
     r'@minor', r'!minor',
     r'@cosmetic', r'!cosmetic',
     r'@refactor', r'!refactor',
@@ -174,10 +175,8 @@ tag_filter_regexp = r'^v?[0-9]+\.[0-9]+(\.[0-9]+)?$'
 ## This label will be used as the changelog Title of the last set of changes
 ## between last valid tag and HEAD if any.
 # custom template (.tpl file below) overrides this setting
-unreleased_version_label = lambda: swrap(
-    ["git", "describe", "--tags"],
-    shell=False,
-)
+import setuptools_scm
+unreleased_version_label = setuptools_scm.get_version()
 #unreleased_version_label = "(unreleased)"
 
 
@@ -219,7 +218,7 @@ output_engine = rest_py
 ##
 ## This option tells git-log whether to include merge commits in the log.
 ## The default is to include them.
-include_merge = True
+include_merge = False
 
 
 ## ``log_encoding`` is a string identifier
