@@ -33,6 +33,8 @@ script, depending on workflow needs.
 Quick Start
 ===========
 
+**The officially supported minimum Python version is now 3.9.**
+
 The original reason this version of the "project" exists was serving OTA_
 firmware images to a small device over wifi, eg, an Android device or
 similar that requires an HTTP URL for firmware img/zip files. If that
@@ -589,7 +591,7 @@ specifications.
     :target: https://github.com/sarnold/pyserv/releases
     :alt: GitHub tag
 
-.. |python| image:: https://img.shields.io/badge/python-3.8+-blue.svg
+.. |python| image:: https://img.shields.io/badge/python-3.9+-blue.svg
     :target: https://www.python.org/downloads/
     :alt: Python
 
