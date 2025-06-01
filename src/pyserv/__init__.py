@@ -9,6 +9,8 @@ from functools import partial
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from importlib.metadata import version
 from socketserver import ThreadingMixIn
+from threading import Timer
+from typing import Callable, Union
 from urllib.parse import urlparse
 from wsgiref.simple_server import make_server
 from wsgiref.validate import validator
@@ -142,7 +144,7 @@ class GetServerWSGI(threading.Thread):
 
 class RepeatTimer:
     """
-    A non-blocking threaded timer to execute a user func repeatedly.
+    A non-blocking timer thread to execute a user func repeatedly.
     Usage::
 
         def hello(name):
@@ -157,13 +159,13 @@ class RepeatTimer:
     Author: https://stackoverflow.com/a/38317060/14874218
     """
 
-    def __init__(self, interval, function, *args, **kwargs):
-        self._timer = None
+    def __init__(self, interval: Union[int, float], function: Callable, *args, **kwargs):
+        self._timer: Timer
         self.interval = interval
         self.function = function
         self.args = args
         self.kwargs = kwargs
-        self.is_running = False
+        self.is_running: bool = False
         self.start()
 
     def _run(self):
@@ -176,7 +178,7 @@ class RepeatTimer:
         Safely (re)start thread timer.
         """
         if not self.is_running:  # pragma: no cover
-            self._timer = threading.Timer(self.interval, self._run)
+            self._timer = Timer(self.interval, self._run)
             self._timer.start()
             self.is_running = True
 

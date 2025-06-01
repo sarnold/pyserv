@@ -27,7 +27,11 @@ def get_user_iface(pref=('e', 'E')):
     iface_str = [x for x in ifaces if x.startswith(pref)]
     if not iface_str:
         return ''
-    return iface_str[0]
+    if len(iface_str) > 1:
+        iface, *_ = iface_str
+    else:
+        (iface,) = iface_str
+    return iface
 
 
 def get_user_iface_addr(pref=('e', 'E')):
@@ -42,7 +46,8 @@ def get_user_iface_addr(pref=('e', 'E')):
     iface_str = get_user_iface(pref)
     if not iface_str:
         return ''
-    return psutil.net_if_addrs().get(iface_str)[0].address
+    iface_addr, *_ = psutil.net_if_addrs().get(iface_str)  # type: ignore
+    return iface_addr.address
 
 
 def get_user_iface_mask(pref=('e', 'E')):
@@ -57,7 +62,8 @@ def get_user_iface_mask(pref=('e', 'E')):
     iface_str = get_user_iface(pref)
     if not iface_str:
         return ''
-    return psutil.net_if_addrs().get(iface_str)[0].netmask
+    iface_mask, *_ = psutil.net_if_addrs().get(iface_str)  # type: ignore
+    return iface_mask.netmask
 
 
 def get_userdirs():

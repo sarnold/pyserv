@@ -33,6 +33,10 @@ def test_get_user_iface():
     prefix = 'zz'
     net_str = get_user_iface(prefix)
     assert net_str == ''
+    prefix = 'lo'
+    net_str = get_user_iface(prefix)
+    print(net_str)
+    assert net_str == 'lo' or 'lo0'
 
 
 @pytest.mark.skipif(WIN32, reason="does not work on windows")
