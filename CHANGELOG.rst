@@ -2,11 +2,19 @@ Changelog
 =========
 
 
-1.7.3-44-g618b46d
------------------
+1.8.0 (2025-06-01)
+------------------
 
 New
 ~~~
+- Add doorstop TST document with test items, links, and references.
+  [Stephen L Arnold]
+
+  * add test keywords and move some tests, update design doc
+  * add test doc to sphinx build
+  * note: the reference file test_extras.py causes a doorstop error
+    but with the same tests and keyword moved to a new file it works
+    just fine (using tests/test_timer.py as reference file)
 - Add post-process script for munging markdown diagrams in CI. [Stephen
   L Arnold]
 
@@ -34,6 +42,22 @@ New
 
 Changes
 ~~~~~~~
+- Update changelog cfg, coverage paths, change deps. [Stephen L Arnold]
+
+  * improve changelog cleanliness, use setuptools_scm to get version
+- Sync up documented minimum supported python version. [Stephen L
+  Arnold]
+- Remove support for older python versions. [Stephen L Arnold]
+
+  * rmove old importlib and http handler checks
+  * ignore thread deprectation warnings from pytracer in pytest cfg
+- Add implementation references to SDD bits, update workflows. [Stephen
+  L Arnold]
+
+  * limit container workflow to available redhat-ish and deb containers
+  * allow for github container emptyness and set version via env
+- Update doorstop doc sources, move thread timer class to module.
+  [Stephen L Arnold]
 - Cleanup python requirements. [Stephen L Arnold]
 - Refactor workflow helper to remove external python deps. [Stephen L
   Arnold]
@@ -104,36 +128,15 @@ Changes
 
 Fixes
 ~~~~~
+- Cleanup imports and mypy errors, add more type hints. [Stephen L
+  Arnold]
+
+  * update tests, mypy cfg, and project files
 - Use push event for current release status. [Stephen L Arnold]
 
   * somehow adding workflow_dispatch made github look away and
     start displaying the wrong status (where push event is now
     correct)
-
-Other
-~~~~~
-- Merge pull request #45 from sarnold/more-reqs. [Steve Arnold]
-
-  requirements and diagrams
-- [create-pull-request] automated change. [github-actions[bot]]
-- Merge pull request #43 from sarnold/server-tui-wip. [Steve Arnold]
-
-  daemontui and docs cleanup
-- Merge pull request #41 from sarnold/server-tui-wip. [Steve Arnold]
-
-  Experimental daemon tui
-- Merge pull request #40 from sarnold/cleanup-bits. [Steve Arnold]
-
-  Cleanup bits
-- Merge pull request #38 from sarnold/config-cruft. [Steve Arnold]
-
-  Cruft cleaning
-- Merge pull request #37 from sarnold/more-doc-nits. [Steve Arnold]
-
-  More doc nits
-- Merge pull request #36 from sarnold/status-fix. [Steve Arnold]
-
-  Status fix
 
 
 1.7.3 (2025-03-21)
@@ -151,12 +154,6 @@ Changes
 - Update readme with reuse compliance and sbom snippet. [Stephen L
   Arnold]
 - Testing license-as-string in CI matrix. [Stephen L Arnold]
-
-Other
-~~~~~
-- Merge pull request #35 from sarnold/legacy-toml-bits. [Steve Arnold]
-
-  license metadata compromise
 
 
 1.7.2 (2025-03-20)
@@ -179,21 +176,6 @@ Changes
 
   * default values *do* get inherited by named envs who do not use setenv
 
-Other
-~~~~~
-- Merge pull request #34 from sarnold/changelogs. [Steve Arnold]
-
-  Changelogs
-- Merge pull request #33 from sarnold/reusable-workflows. [Steve Arnold]
-
-  cleanup linked workflows
-- Merge pull request #32 from sarnold/reusable-workflows. [Steve Arnold]
-
-  Reusable workflows
-- Merge pull request #31 from sarnold/packaging-fixes. [Steve Arnold]
-
-  Packaging fixes
-
 
 1.7.1 (2025-03-18)
 ------------------
@@ -201,12 +183,6 @@ Other
 Changes
 ~~~~~~~
 - Update to latest bandit action for testing. [Stephen L Arnold]
-
-Other
-~~~~~
-- Merge pull request #30 from sarnold/action-tests. [Steve Arnold]
-
-  Action tests
 
 
 1.7.0 (2025-03-18)
@@ -234,18 +210,6 @@ Fixes
   Arnold]
 
   * update .pre-commit-config.yaml and apply new formatting
-
-Other
-~~~~~
-- Merge pull request #29 from sarnold/workflow-cleanup. [Steve Arnold]
-
-  fix release docs
-- Merge pull request #28 from sarnold/package-up. [Steve Arnold]
-
-  migrate packaging to toml
-- Merge pull request #27 from sarnold/workflow-cleanup. [Steve Arnold]
-
-  Workflow cleanup
 
 
 1.6.3 (2024-12-24)
@@ -275,20 +239,6 @@ Fixes
   Arnold]
 - Convert syntax for gh-pages deploy workflow action. [Stephen L Arnold]
 
-Other
-~~~~~
-- Merge pull request #26 from sarnold/more-tftp. [Steve Arnold]
-
-  Integrate new async daemon script
-
-
-1.6.2 (2024-12-18)
-------------------
-- Merge pull request #25 from sarnold/tftpdaemon-srv-root. [Steve
-  Arnold]
-
-  tftpdaemon server root fixes
-
 
 1.6.1 (2024-12-16)
 ------------------
@@ -315,15 +265,6 @@ Fixes
 
   * XDG runtime path may not exist in a console environment
   * fixes issue #23
-
-Other
-~~~~~
-- Merge pull request #24 from sarnold/server-root. [Steve Arnold]
-
-  server root hot-fix
-- Merge pull request #22 from sarnold/add-reuse. [Steve Arnold]
-
-  Add reuse config and cleanup; includes bug fix for #23
 
 
 1.6.0 (2024-10-13)
@@ -355,9 +296,6 @@ Fixes
 Other
 ~~~~~
 - Cleanup old release bits. [Stephen L Arnold]
-- Merge pull request #21 from sarnold/dep-updates. [Steve Arnold]
-
-  Dep updates and cleanup
 
 
 1.5.0 (2023-09-20)
@@ -375,12 +313,6 @@ Changes
 - Move to src layout for packaging. [Stephen L Arnold]
 - Add pip show command to tox package check. [Stephen L Arnold]
 - Cleanup package metadata and version imports. [Stephen L Arnold]
-
-Other
-~~~~~
-- Merge pull request #20 from sarnold/pkg-metadata. [Steve Arnold]
-
-  update package metadata and dependencies
 
 
 1.4.2 (2023-08-28)
@@ -431,12 +363,6 @@ Fixes
 - Cleanup new tftpy deps, docstrings, and lint, add small test. [Stephen
   L Arnold]
 
-Other
-~~~~~
-- Merge pull request #19 from sarnold/tftpy-ref. [Steve Arnold]
-
-  tftpy refactor
-
 
 1.3.0 (2023-08-17)
 ------------------
@@ -463,12 +389,6 @@ Fixes
 
 Other
 ~~~~~
-- Merge pull request #17 from sarnold/docstrings. [Steve Arnold]
-
-  docstring and test fixes
-- Merge pull request #16 from sarnold/lint-cleanup. [Steve Arnold]
-
-  Lint cleanup
 - Revert covdefault changes, go back to 3.6 in split coverage ci.
   [Stephen L Arnold]
 - Update workflow action versions, cleanup interfaces, bump py vers.
@@ -511,12 +431,6 @@ Fixes
 
 Other
 ~~~~~
-- Merge pull request #15 from sarnold/test-dirs. [Steve Arnold]
-
-  handle nonexistent DOCROOT in serv_init, update readme
-- Merge pull request #14 from sarnold/older-than-37. [Steve Arnold]
-
-  Older than py37
 - Cgh: dev: try combining python version coverage in current workflow.
   [Stephen L Arnold]
 
@@ -536,12 +450,6 @@ Changes
     appear to understand PEP345 markers
   * this means we have to rely on readme blurb about posix daemon
     not compaitble with Windows
-
-Other
-~~~~~
-- Merge pull request #13 from sarnold/plat-fixes. [Steve Arnold]
-
-  make install compatible with ubuntu LTS
 
 
 1.2.3 (2022-08-22)
@@ -565,12 +473,6 @@ Fixes
 - Ripple cmd changes to all affected workflows. [Stephen L Arnold]
 - Make sure tox cmds match the release workflow. [Stephen L Arnold]
 - Remove one picky pylint warning. [Stephen L Arnold]
-
-Other
-~~~~~
-- Merge pull request #11 from sarnold/doc-cleanup. [Steve Arnold]
-
-  apidoc cleanup
 
 
 1.2.2 (2022-07-15)
@@ -604,12 +506,6 @@ Fixes
 
 Other
 ~~~~~
-- Merge pull request #10 from sarnold/doc-updates. [Steve Arnold]
-
-  doc updates plus cleanup
-- Merge pull request #9 from sarnold/defs-refactor. [Steve Arnold]
-
-  refactor with argparse instead of env vars
 - Fx: dev: cleanup thread deprecation warnings. [Stephen L Arnold]
 
   * lower required coverage to 85 percent, <sigh> Windows skip
@@ -680,18 +576,6 @@ Fixes
   * install stand-alone httpdaemon script to venv bin dir
   * show both default paths and env values in settings display
 
-Other
-~~~~~
-- Merge pull request #7 from sarnold/tests-test. [Steve Arnold]
-
-  Add tests
-- Merge pull request #6 from sarnold/serv-refactor. [Steve Arnold]
-
-  refactor server code, cleanup threaded shutdown and docs
-- Merge pull request #5 from sarnold/daemonizer. [Steve Arnold]
-
-  refactor for daemonizer
-
 
 1.2.0 (2022-06-27)
 ------------------
@@ -729,18 +613,6 @@ Fixes
 
   * this now works with the dialog ota_update console cmds
 - Give it a proper main() and modern packaging. [Stephen Arnold]
-
-Other
-~~~~~
-- Merge pull request #4 from sarnold/pre-commit. [Steve Arnold]
-
-  add pre-commit and pep8speaks
-- Merge pull request #3 from sarnold/workflows. [Steve Arnold]
-
-  Docs and workflows
-- Merge pull request #2 from sarnold/simple-handler. [Steve Arnold]
-
-  Simple request handler plus path rewrite
 
 
 1.1.0 (2019-12-18)
