@@ -59,7 +59,7 @@ sequenceDiagram
 :align: center
 :alt: primary software dependencies
 
-Primary Software Dependencies (captured from mermaid to SVG or PNG).
+Primary Software Dependencies.
 ```
 
 
@@ -98,7 +98,7 @@ groups of settings and dynamic data such as network device names and
 file system paths, starting with user-confirmed runtime settings for
 server and logging options.
 
-> `scripts/daemontui.py` (line 123)
+> `scripts/daemontui.py` (line 122)
 
 *Parent links: TUI_002, TUI_003*
 
@@ -110,8 +110,8 @@ server and logging options.
 The daemontui software must display network and server status to the
 operator using both visual indicators and log entries.
 
-> `scripts/daemontui.py` (line 213)
-> `scripts/daemontui.py` (line 218)
+> `scripts/daemontui.py` (line 212)
+> `scripts/daemontui.py` (line 217)
 
 *Parent links: TUI_001, TUI_005*
 
@@ -123,9 +123,9 @@ operator using both visual indicators and log entries.
 The daemontui software must provide obvious operator controls that
 correspond to the primary daemon commands: [start, stop, status]
 
-> `scripts/daemontui.py` (line 236)
-> `scripts/daemontui.py` (line 239)
-> `scripts/daemontui.py` (line 242)
+> `scripts/daemontui.py` (line 235)
+> `scripts/daemontui.py` (line 238)
+> `scripts/daemontui.py` (line 241)
 
 *Parent links: TUI_004*
 

@@ -17,7 +17,7 @@ Test default settings:
 Test log tail handler:
 
 > `tests/test_helpers.py` (line 58)
-> `tests/test_timer.py` (line 15)
+> `tests/test_timer.py` (line 17)
 
 *Parent links: TUI_005*
 
