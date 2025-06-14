@@ -1,8 +1,8 @@
 # daemon requirements, useful for tox/pip
 daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.4.0#5e0fd72b9176fdcda8c9386f8b0905f2c434b61f; platform_system!="Windows"
-picotui @ git+https://github.com/sarnold/picotui.git@master#ef694427c7b43fb9da4f16e6fd47f4e652224bbc
+picotui @ git+https://github.com/sarnold/picotui.git@master#ecc7c111ab69819134b9e759364faeca5f3190c1
 py3tftp @ git+https://github.com/sirMackk/py3tftp.git@1.3.0#3bd24a1c31dcacf3e27b9e01bce7a59c28563695
-pygtail @ git+https://github.com/VCTLabs/pygtail.git@main#b54b8269a05d1356365b2d69b5606555441ea2f5
+pygtail @ git+https://github.com/VCTLabs/pygtail.git@main#7026c3a2165e19ed705fffbadcb2e5858f7f12c7
 tftpy @ git+https://github.com/VCTLabs/tftpy.git@0.8.2.1#58d1f5c60af2e3759fbb137b89816954d8ea6bc9
 platformdirs
 psutil
