@@ -63,6 +63,8 @@ doc = [
     "sphinx_git",
     "sphinxcontrib.apidoc",
     "myst-parser",
+    "sphinx-nefertiti",
+    "sphinxcontrib.mermaid",
     "sphinx_rtd_theme<3.0.0",
 ]
 test = [
