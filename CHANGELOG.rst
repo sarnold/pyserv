@@ -2,6 +2,51 @@ Changelog
 =========
 
 
+1.8.2 (2025-06-14)
+------------------
+
+New
+~~~
+- Make sphinx config use git to get last non-dev versions. [Stephen L
+  Arnold]
+
+  * this should work as long as at least 2 tags exist
+
+Changes
+~~~~~~~
+- Disable fallback version logic, go through release workflow as-is.
+  [Stephen L Arnold]
+- Disable link-checker command in CI to workaround extension error.
+  [Stephen L Arnold]
+
+  * upstream issue: https://github.com/danirus/sphinx-nefertiti/issues/66
+- Add sphinx_nefertiti and mermaid extensions, cleanup conf.py. [Stephen
+  L Arnold]
+- Update and pin git-based dependencies. [Stephen L Arnold]
+
+Fixes
+~~~~~
+- Add another pytest ignore, update container workflow. [Stephen L
+  Arnold]
+
+  * bare github container plus rawhide equals broken workflows
+  * force py3.13 on rawhide to avoid building platform wheels from source
+
+
+1.8.1 (2025-06-03)
+------------------
+
+Changes
+~~~~~~~
+- Update, review, and regenerate doorstop doc bits. [Stephen L Arnold]
+
+Fixes
+~~~~~
+- Use string for license expression, cleanup deps. [Stephen L Arnold]
+
+  * cleanup crufty picotui dev branch, use master#hash
+
+
 1.8.0 (2025-06-01)
 ------------------
 
@@ -42,6 +87,7 @@ New
 
 Changes
 ~~~~~~~
+- Update changelog for release. [Stephen L Arnold]
 - Update changelog cfg, coverage paths, change deps. [Stephen L Arnold]
 
   * improve changelog cleanliness, use setuptools_scm to get version
