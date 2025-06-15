@@ -59,8 +59,8 @@ version = ".".join(_ver_list[:2])
 release = ".".join(_ver_list[:3])
 
 _ver_last = get_current_tag()
-if _ver_last == release:
-    _ver_last = get_previous_tag()
+# if _ver_last == release:
+    # _ver_last = get_previous_tag()
 
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
