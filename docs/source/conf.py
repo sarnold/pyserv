@@ -12,11 +12,10 @@
 #
 import os
 import sys
-import subprocess as sp
 
 from datetime import datetime
-from shlex import split
 
+from semaver import Version
 import sphinx_nefertiti
 
 if sys.version_info < (3, 8):
@@ -25,22 +24,6 @@ else:
     from importlib.metadata import version
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-
-def get_current_tag():
-    """
-    Get the current (non-dev) tag value from git.
-    """
-    git_tag_str = "git describe --abbrev=0 --tags"
-    return sp.check_output(split(git_tag_str), text=True).strip()
-
-
-def get_previous_tag():
-    """
-    Get the previous (non-dev) tag value from git.
-    """
-    git_tag_str = "git tag --sort=taggerdate"
-    return sp.check_output(split(git_tag_str), text=True).splitlines()[-2]
 
 
 # -- Project information -----------------------------------------------------
@@ -58,9 +41,7 @@ version = ".".join(_ver_list[:2])
 # The X.Y.Z number.
 release = ".".join(_ver_list[:3])
 
-_ver_last = get_current_tag()
-# if _ver_last == release:
-    # _ver_last = get_previous_tag()
+_ver_last = Version(release) - Version('0.0.1')
 
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 

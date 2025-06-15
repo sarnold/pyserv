@@ -59,6 +59,7 @@ cov = [
     "coverage_python_version",
 ]
 doc = [
+    "semaver",
     "sphinx",
     "sphinx_git",
     "sphinxcontrib.apidoc",
