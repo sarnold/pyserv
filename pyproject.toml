@@ -74,9 +74,6 @@ test = [
     "httptest",
     "requests",
 ]
-tui = [
-    "textual-dev",
-]
 
 [project.scripts]
 serv = "pyserv.server:main"

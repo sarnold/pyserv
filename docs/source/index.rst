@@ -1,5 +1,5 @@
-pyserv: A collection of server bits for HTTP, WSGI, and TFTP
-============================================================
+pyserv: Servers and Daemons for HTTP, WSGI, and TFTP
+====================================================
 
 .. git_commit_detail::
     :branch:

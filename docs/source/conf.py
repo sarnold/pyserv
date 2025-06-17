@@ -14,14 +14,10 @@ import os
 import sys
 
 from datetime import datetime
+from importlib.metadata import version
 
 from semaver import Version
 import sphinx_nefertiti
-
-if sys.version_info < (3, 8):
-    from importlib_metadata import version
-else:
-    from importlib.metadata import version
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
@@ -41,7 +37,9 @@ version = ".".join(_ver_list[:2])
 # The X.Y.Z number.
 release = ".".join(_ver_list[:3])
 
-_ver_last = Version(release) - Version('0.0.1')
+_ver_last = str(Version(release) - Version('0.0.1'))
+if _ver_last.endswith('99'):
+    _ver_last = _ver_last[:-2]
 
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
