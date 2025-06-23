@@ -26,41 +26,19 @@ else:
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-
-def get_current_tag():
-    """
-    Get the current (non-dev) tag value from git.
-    """
-    git_tag_str = "git describe --abbrev=0 --tags"
-    return sp.check_output(split(git_tag_str), text=True).strip()
-
-
-def get_previous_tag():
-    """
-    Get the previous (non-dev) tag value from git.
-    """
-    git_tag_str = "git tag --sort=taggerdate"
-    return sp.check_output(split(git_tag_str), text=True).splitlines()[-2]
-
-
 # -- Project information -----------------------------------------------------
+
+# The full version, including alpha/beta/rc tags with setuptols-scm
+# workaround for extra-long dirty version string
+release = version('pyserv').split("+")[0]
+# screw the short X.Y version.
+version = release
 
 project = 'pyserv'
 author = 'Stephen Arnold'
 copyright = '2022 - ' + str(datetime.now().year) + f' {author}'
 
 # -- General configuration ------------------------------------------------
-
-_ver_list = version('pyserv').split(".")
-
-# The X.Y number.
-version = ".".join(_ver_list[:2])
-# The X.Y.Z number.
-release = ".".join(_ver_list[:3])
-
-_ver_last = get_current_tag()
-# if _ver_last == release:
-    # _ver_last = get_previous_tag()
 
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
@@ -75,8 +53,10 @@ extensions = [
     'sphinx.ext.viewcode',
     'myst_parser',
     'sphinx_nefertiti',
-    'sphinxcontrib.mermaid',
+    #'sphinxcontrib.mermaid',
 ]
+# do not render mermaid, show source instead
+#myst_fence_as_directive = ["mermaid"]
 
 myst_enable_extensions = [
     'amsmath',
@@ -90,7 +70,6 @@ myst_enable_extensions = [
 ]
 
 myst_suppress_warnings = ["myst.header"]
-myst_fence_as_directive = ["mermaid"]
 
 # sphinxcontrib.apidoc
 apidoc_module_dir = f'../../src/{project}'
@@ -138,8 +117,7 @@ html_theme_options = {
 
     "current_version": "latest",
     "versions": [
-        (f"v{release}", f"https://sarnold.github.io/{project}/"),
-        (f"v{_ver_last}", f"https://sarnold.github.io/{project}/"),
+        (f"v{version}", f"https://sarnold.github.io/{project}/"),
     ],
 
     "show_colorset_choices": True,
