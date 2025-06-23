@@ -37,18 +37,19 @@ Activity Sequence Diagram.
   <summary>tui_sequence_diagram source</summary>
   User activity sequence diagram showing 2 primary Screen contexts.
 
-```mermaid
+```{mermaid}
+
 sequenceDiagram
-    participant Select
-    participant InitState
-    participant Operate
-    Select->>Select: confirm settings
-    Select->>InitState: Next: setup state variables
-    InitState->>Operate: initialize log display
-    Operate->>Operate: run server
-    Operate->>Operate: view logs
-    Operate->>InitState: Back: init defaults
-    InitState->>Select: Update selections
+  participant Select
+  participant InitState
+  participant Operate
+  Select->>Select: confirm settings
+  Select->>InitState: Next: setup state variables
+  InitState->>Operate: initialize log display
+  Operate->>Operate: run server
+  Operate->>Operate: view logs
+  Operate->>InitState: Back: init defaults
+  InitState->>Select: Update selections
 ```
 </details>
 
@@ -67,7 +68,8 @@ Primary Software Dependencies.
   <summary>tui_dependency_graph source</summary>
   daemontui dependency graph showing primary software units.
 
-```mermaid
+```{mermaid}
+
 graph TB
   subgraph id1[Static Dependencies]
     subgraph id2[Packages]
