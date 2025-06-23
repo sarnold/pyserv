@@ -35,12 +35,12 @@ classifiers = [
 
 dependencies = [
     "platformdirs",
-    "daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.4.1#69d4c9b6f3916cd5ae87c8b3a78eca1015eeed0f",
-    "tftpy @ git+https://github.com/VCTLabs/tftpy.git@0.8.2.1#58d1f5c60af2e3759fbb137b89816954d8ea6bc9",
-    "picotui @ git+https://github.com/sarnold/picotui.git@v1.2.1.1#ecc7c111ab69819134b9e759364faeca5f3190c1",
+    "daemonizer @ https://github.com/sarnold/python-daemonizer/releases/download/0.4.1/daemonizer-0.4.1-py3-none-any.whl",
+    "tftpy @ https://github.com/VCTLabs/tftpy/releases/download/0.8.2.1/tftpy-0.8.2.1-py3-none-any.whl",
+    "picotui @ https://github.com/sarnold/picotui/releases/download/v1.2.2/picotui-1.2.1.1-py3-none-any.whl",
     "psutil",
     "py3tftp",
-    "pygtail @ git+https://github.com/VCTLabs/pygtail.git@0.14.0.1#7026c3a2165e19ed705fffbadcb2e5858f7f12c7",
+    "pygtail @ https://github.com/VCTLabs/pygtail/releases/download/0.14.0.1/pygtail-0.14.0.1-py3-none-any.whl",
     "scapy==2.6.1",
 ]
 
