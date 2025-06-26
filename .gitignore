@@ -11,6 +11,7 @@ __pycache__/
 ext/
 src/pyserv/_version.py
 *frozen*
+/*.whl
 
 # Distribution / packaging
 .Python
