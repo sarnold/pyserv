@@ -1,0 +1,8 @@
+# version 1.1.3
+git+https://github.com/sarnold/python-daemonizer.git@490811d#egg=daemonizer
+# version 0.8.2.1
+git+https://github.com/VCTLabs/tftpy.git@58d1f5c#egg=tftpy
+# version v1.2.2
+git+https://github.com/sarnold/picotui.git@ef69442#egg=picotui
+# version 0.14.0.1
+git+https://github.com/VCTLabs/pygtail.git@7026c3a#egg=pygtail
