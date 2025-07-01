@@ -12,10 +12,8 @@
 #
 import os
 import sys
-import subprocess as sp
 
 from datetime import datetime
-from shlex import split
 
 import sphinx_nefertiti
 

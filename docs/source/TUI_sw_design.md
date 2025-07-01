@@ -37,7 +37,7 @@ Activity Sequence Diagram.
   <summary>tui_sequence_diagram source</summary>
   User activity sequence diagram showing 2 primary Screen contexts.
 
-```{mermaid}
+```
 
 sequenceDiagram
   participant Select
@@ -68,7 +68,7 @@ Primary Software Dependencies.
   <summary>tui_dependency_graph source</summary>
   daemontui dependency graph showing primary software units.
 
-```{mermaid}
+```
 
 graph TB
   subgraph id1[Static Dependencies]
