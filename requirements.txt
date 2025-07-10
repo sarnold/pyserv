@@ -4,6 +4,5 @@ https://github.com/sarnold/picotui/releases/download/v1.2.2/picotui-1.2.2-py3-no
 https://github.com/VCTLabs/pygtail/releases/download/0.14.0.1/pygtail-0.14.0.1-py3-none-any.whl
 https://github.com/VCTLabs/tftpy/releases/download/0.8.2.1/tftpy-0.8.2.1-py3-none-any.whl
 platformdirs
-psutil
 py3tftp
 scapy==2.6.1
