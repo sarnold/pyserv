@@ -7,63 +7,9 @@ import os
 import sys
 from pathlib import Path
 
-import psutil
 from platformdirs import PlatformDirs
 
 from . import __version__ as version
-
-
-def get_user_iface(pref=('e', 'E')):
-    """
-    Get the active network interface name if possible (not loopback).
-    Use ``pref`` to provide a name hint if the default device
-    match is not correct, for example 'eth2' or 'wl'.
-
-    :param pref: short prefix hint for interface name
-    :type pref: string or tuple of strings
-    :return: network interface name or empty string
-    """
-    ifaces = psutil.net_if_addrs()
-    iface_str = [x for x in ifaces if x.startswith(pref)]
-    if not iface_str:
-        return ''
-    if len(iface_str) > 1:
-        iface, *_ = iface_str
-    else:
-        (iface,) = iface_str
-    return iface
-
-
-def get_user_iface_addr(pref=('e', 'E')):
-    """
-    Get the active network interface addr if possible (not loopback).
-    Use ``pref`` to provide a name hint if the default device
-    match is not correct, for example 'eth2' or 'wl'.
-
-    :param pref: short prefix hint for interface name
-    :return: network interface addr or empty string
-    """
-    iface_str = get_user_iface(pref)
-    if not iface_str:
-        return ''
-    iface_addr, *_ = psutil.net_if_addrs().get(iface_str)  # type: ignore
-    return iface_addr.address
-
-
-def get_user_iface_mask(pref=('e', 'E')):
-    """
-    Get the active network interface mask if possible (not loopback).
-    Use ``pref`` to provide a name hint if the default device
-    match is not correct, for example 'eth2' or 'wl'.
-
-    :param pref: short prefix hint for interface name
-    :return: network interface mask or empty string
-    """
-    iface_str = get_user_iface(pref)
-    if not iface_str:
-        return ''
-    iface_mask, *_ = psutil.net_if_addrs().get(iface_str)  # type: ignore
-    return iface_mask.netmask
 
 
 def get_userdirs():
