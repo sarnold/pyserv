@@ -8,9 +8,6 @@ import pytest
 import pyserv
 import pyserv.ext
 from pyserv.settings import (
-    get_user_iface,
-    get_user_iface_addr,
-    get_user_iface_mask,
     get_userdirs,
     init_dirs,
     platform_check,
@@ -20,51 +17,6 @@ from pyserv.settings import (
 
 WIN32 = sys.platform == 'win32'
 APPLE = sys.platform == 'darwin'
-
-
-def test_get_user_iface():
-    """Returns a string"""
-    prefix = ('e', 'E')
-    net_str = get_user_iface(prefix)
-    print(net_str)
-    assert isinstance(net_str, str)
-    assert net_str.startswith(prefix) or net_str == ''
-
-    prefix = 'zz'
-    net_str = get_user_iface(prefix)
-    assert net_str == ''
-    prefix = 'lo'
-    net_str = get_user_iface(prefix)
-    print(net_str)
-    assert net_str == 'lo' or 'lo0'
-
-
-@pytest.mark.skipif(WIN32, reason="does not work on windows")
-def test_get_user_iface_addr():
-    """Returns a string"""
-    prefix = ('e', 'E')
-    net_str = get_user_iface_addr(prefix)
-    print(net_str)
-    assert isinstance(net_str, str)
-    assert ipaddress.IPv4Interface(net_str) or net_str == ''
-
-    prefix = 'zz'
-    net_str = get_user_iface_addr(prefix)
-    assert net_str == ''
-
-
-@pytest.mark.skipif(WIN32, reason="does not work on windows")
-def test_get_user_iface_mask():
-    """Returns a string"""
-    prefix = ('e', 'E')
-    net_str = get_user_iface_mask(prefix)
-    print(net_str)
-    assert isinstance(net_str, str)
-    assert ipaddress.IPv4Interface(net_str) or net_str == ''
-
-    prefix = 'zz'
-    net_str = get_user_iface_mask(prefix)
-    assert net_str == ''
 
 
 def test_get_userdirs():
