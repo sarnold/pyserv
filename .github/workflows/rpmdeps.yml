@@ -1,0 +1,36 @@
+name: rpm deps
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+  push:
+    branches: [ master ]
+
+jobs:
+  get_rpms:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Download rpm release assets
+        run: |
+          gh release download daemonizer-1.1.3 --pattern '*.noarch.rpm' -R VCTLabs/el9-rpm-toolbox
+          gh release download tftpy-0.8.6.1 --pattern '*.noarch.rpm' -R VCTLabs/el9-rpm-toolbox
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: check artifacts
+        run: |
+          ls -l
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rpms
+          path: |
+            python3*.rpm
