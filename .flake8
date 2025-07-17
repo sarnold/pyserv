@@ -10,3 +10,4 @@ exclude =
 
 max-line-length = 90
 #extend-ignore = E203
+per-file-ignores = daemontui.py:B023
