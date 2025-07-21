@@ -35,13 +35,12 @@ classifiers = [
 
 dependencies = [
     "platformdirs",
-    "daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.4.1#69d4c9b6f3916cd5ae87c8b3a78eca1015eeed0f",
-    "tftpy @ git+https://github.com/VCTLabs/tftpy.git@0.8.2.1#58d1f5c60af2e3759fbb137b89816954d8ea6bc9",
-    "picotui @ git+https://github.com/sarnold/picotui.git@v1.2.1.1#ecc7c111ab69819134b9e759364faeca5f3190c1",
-    "psutil",
+    "daemonizer @ https://github.com/sarnold/python-daemonizer/releases/download/1.1.3/daemonizer-1.1.3-py3-none-any.whl",
+    "picotui @ https://github.com/sarnold/picotui/releases/download/v1.2.2/picotui-1.2.2-py3-none-any.whl",
     "py3tftp",
-    "pygtail @ git+https://github.com/VCTLabs/pygtail.git@0.14.0.1#7026c3a2165e19ed705fffbadcb2e5858f7f12c7",
-    "scapy",
+    "pygtail @ https://github.com/VCTLabs/pygtail/releases/download/0.14.0.1/pygtail-0.14.0.1-py3-none-any.whl",
+    "scapy==2.6.1",
+    "tftpy @ https://github.com/VCTLabs/tftpy/releases/download/0.8.6.1/tftpy-0.8.6.1-py3-none-any.whl",
 ]
 
 requires-python = ">=3.9"
@@ -50,9 +49,11 @@ requires-python = ">=3.9"
 dev = [
     "flake8",
     "isort",
-    "mypy==0.990",
+    "mypy>=0.990",
     "black >= 22.3.0",
     "pylint >= 3.1.0",
+    "pylint-per-file-ignores",
+    "flatpak-pip-generator",
 ]
 cov = [
     "coverage[toml]",
@@ -100,6 +101,15 @@ script-files = [
 ]
 
 [tool.setuptools_scm]
+version_scheme = "no-guess-dev"
+version_file = "src/pyserv/_version.py"
+
+[tool.pylint.MASTER]
+load-plugins = [
+    "pylint_per_file_ignores",
+]
+[tool.pylint-per-file-ignores]
+"_version.py"="C0114,C0103"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -168,4 +178,4 @@ ensure_newline_before_comments = true
 
 [tool.bandit]
 exclude_dirs = ["docs"]
-skips = ["B104"]
+skips = ["B104", "B404", "B603"]

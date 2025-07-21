@@ -13,9 +13,20 @@ from pathlib import Path
 from pprint import pprint
 from shlex import split
 
+from picotui.basewidget import ACTION_CANCEL, ACTION_OK, ACTION_PREV
 from picotui.context import Context
-from picotui.menu import *
-from picotui.widgets import *
+from picotui.defs import C_BLUE, C_GREEN, C_MAGENTA, C_WHITE, C_YELLOW
+from picotui.dialogs import Dialog
+from picotui.screen import Screen
+from picotui.widgets import (
+    WButton,
+    WCheckbox,
+    WFrame,
+    WLabel,
+    WMultiEntry,
+    WRadioButton,
+    WTextEntry,
+)
 
 from pyserv import RepeatTimer
 from pyserv.settings import get_userdirs, init_dirs
@@ -66,7 +77,6 @@ def screen_resize(s):
 # This routine is called to redraw screen
 def screen_redraw(s):
     """This routine is called to redraw screen"""
-    global d
     s.attr_color(C_WHITE, C_BLUE)
     s.cls()
     s.attr_reset()
