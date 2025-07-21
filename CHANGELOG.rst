@@ -2,7 +2,47 @@ Changelog
 =========
 
 
-1.8.2 (2025-06-14)
+1.8.4 (2025-07-21)
+------------------
+
+Changes
+~~~~~~~
+- Bakport metadata from pyproject.toml to setup.cfg, relax versions.
+  [Stephen L Arnold]
+
+  * makes things compatible with ancient el9 setuptools
+
+
+1.8.3 (2025-07-21)
+------------------
+
+New
+~~~
+- Add requirements file of wheel URLs for flatpak-generator. [Stephen L
+  Arnold]
+
+  * use a different dep format for all the git+https urls
+  * update project files to match wheel deps
+
+Changes
+~~~~~~~
+- Update dependency versions, add GH cli workflow. [Stephen L Arnold]
+
+  * downloading specific rpm assets from specified tags
+- Remove psutil, along with related get_iface funcs and tests. [Stephen
+  L Arnold]
+- Add flatpak generator tool and cleanup docs review and config.
+  [Stephen L Arnold]
+
+Fixes
+~~~~~
+- Cleanup and update dependencies and imports, update tox and readme.
+  [Stephen L Arnold]
+
+  * ignore one spurious flake8 warning in daemontui.py
+
+
+1.8.2 (2025-06-15)
 ------------------
 
 New
