@@ -18,6 +18,53 @@ from pyserv.settings import (
 WIN32 = sys.platform == 'win32'
 APPLE = sys.platform == 'darwin'
 
+EXPECTED = {
+    "DEBUG": '0',
+    "PORT": '8000',
+    "IDEV": 'lo',
+    "IFACE": '127.0.0.1',
+    "LPNAME": 'httpd',
+    "SOCK_TIMEOUT": '5',
+    "LOG": str(get_userdirs()[0].joinpath('httpd.log')),
+    "PID": str(get_userdirs()[1].joinpath('httpd.pid')),
+    "DOCROOT": str(get_userdirs()[2]),
+}
+EMPTY = {
+    "DEBUG": '',
+    "PORT": '',
+    "IDEV": '',
+    "IFACE": '',
+    "LPNAME": '',
+    "SOCK_TIMEOUT": '',
+    "LOG": '',
+    "PID": '',
+    "DOCROOT": '',
+}
+
+
+def test_settings_not_empty(monkeypatch):
+    for k in EMPTY:
+        monkeypatch.setenv(k, "")
+        assert EMPTY[k] == ""
+
+    from pyserv.settings import (
+        DEBUG,
+        DOCROOT,
+        IDEV,
+        IFACE,
+        LOG,
+        LPNAME,
+        PID,
+        PORT,
+        SOCK_TIMEOUT,
+    )
+
+    for key, envar in zip(
+        EXPECTED, (DEBUG, PORT, IDEV, IFACE, LPNAME, SOCK_TIMEOUT, LOG, PID, DOCROOT)
+    ):
+        assert envar == EXPECTED[key]
+        print(envar)
+
 
 def test_get_userdirs():
     """We should get Path objs"""
@@ -70,4 +117,5 @@ def test_show_uservars_error(monkeypatch, capfd):
     monkeypatch.delattr('pyserv.settings.LOG', raising=True)
     show_uservars()
     out, err = capfd.readouterr()
+    print(out)
     assert "FAILED:" in out

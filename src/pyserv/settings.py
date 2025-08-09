@@ -92,12 +92,19 @@ def show_uservars():
         print(f"FAILED: {repr(exc)}")
 
 
-DEBUG = os.getenv('DEBUG', default='0')
-PORT = os.getenv('PORT', default='8000')
-IDEV = os.getenv('IDEV', default='lo')
-IFACE = os.getenv('IFACE', default='127.0.0.1')
-LPNAME = os.getenv('LPNAME', default='httpd')
-LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))
-PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath(f'{LPNAME}.pid')))
-DOCROOT = os.getenv('DOCROOT', default=str(get_userdirs()[2]))
-SOCK_TIMEOUT = os.getenv('SOCK_TIMEOUT', default='5')
+DEBUG = os.getenv('DEBUG', default='0') or '0'
+PORT = os.getenv('PORT', default='8000') or '8000'
+IDEV = os.getenv('IDEV', default='lo') or 'lo'
+IFACE = os.getenv('IFACE', default='127.0.0.1') or '127.0.0.1'
+LPNAME = os.getenv('LPNAME', default='httpd') or 'httpd'
+SOCK_TIMEOUT = os.getenv('SOCK_TIMEOUT', default='5') or '5'
+# fmt: stop
+LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log'))) or str(
+    get_userdirs()[0].joinpath(f'{LPNAME}.log')
+)  # noqa
+PID = os.getenv('PID', default=str(get_userdirs()[1].joinpath(f'{LPNAME}.pid'))) or str(
+    get_userdirs()[1].joinpath(f'{LPNAME}.pid')
+)  # noqa
+DOCROOT = os.getenv('DOCROOT', default=str(get_userdirs()[2])) or str(
+    get_userdirs()[2]
+)  # noqa
