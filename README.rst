@@ -111,30 +111,38 @@ variables, and the following "extra" features:
 
 Sample environment display with tox overrides, ie, inside a Tox_ venv::
 
-  Python version: 3.11.4 (main, Jul  5 2023, 16:15:04) [GCC 12.3.1 20230526]
+  Python version: 3.13.3 (main, Jun  2 2025, 19:32:29) [GCC 15.1.0]
   -------------------------------------------------------------------------------
-  pyserv 1.4.1.dev1
+  pyserv 1.8.4
 
   Pyserv default settings for server and daemon modes.
 
   Default user vars:
     log_dir: /home/user/.local/state/pyserv/log
     pid_dir: /run/user/1001/pyserv
-    work_dir: /home/user/src/pyserv
+    work_dir: /home/user/src/python-servers
 
   Current environment values:
     DEBUG: 1
     PORT: 8000
+    IDEV: lo
     IFACE: 127.0.0.1
     LPNAME: httpd
-    LOG: /home/user/src/pyserv/.tox/dev/log/httpd.log
-    PID: /home/user/src/pyserv/.tox/dev/tmp/httpd.pid
-    DOCROOT: /home/user/src/pyserv
+    LOG: /home/user/src/python-servers/.tox/dev/log/httpd.log
+    PID: /home/user/src/python-servers/.tox/dev/tmp/httpd.pid
+    DOCROOT: /home/user/src/python-servers
     SOCK_TIMEOUT: 5
   -------------------------------------------------------------------------------
 
-Use any of the variables under "Current environment values" to set your
-own custom environment.
+Use, ie, export any of the variables under "Current environment values"
+to set your own custom environment settings.
+
+.. important:: The ``os.getenv`` defaults are only applied if the corresponding
+               environment variable *is not set*. Previously it was possible
+               to set the above environment vars *to an empty value* but this
+               is no longer the case. From this release onward, empty values
+               are ignored and the default value is applied instead.
+
 
 Daemon usage
 ------------
