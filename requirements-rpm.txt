@@ -1,10 +1,10 @@
 # version 1.1.3
-git+https://github.com/sarnold/python-daemonizer.git@490811d#egg=daemonizer
+git+https://github.com/sarnold/python-daemonizer.git@4c64a2f#egg=daemonizer
 # version 0.8.6.1
-git+https://github.com/msoulier/tftpy.git@8b84f45#egg=tftpy
+git+https://github.com/VCTLabs/tftpy.git@0ec2018#egg=tftpy
 # version v1.2.3.1
-git+https://github.com/sarnold/picotui.git@ef69442#egg=picotui
+git+https://github.com/sarnold/picotui.git@fc56be8#egg=picotui
 # version 0.14.0.1
-git+https://github.com/VCTLabs/pygtail.git@7026c3a#egg=pygtail
+git+https://github.com/VCTLabs/pygtail.git@3192902#egg=pygtail
 # version 1.3.0
 py3tftp  # async daemon requirement
