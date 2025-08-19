@@ -2,12 +2,52 @@ Changelog
 =========
 
 
+1.8.7 (2025-08-19)
+------------------
+
+Fixes
+~~~~~
+- Remove deprecated version attribute from package metadata. [Stephen L
+  Arnold]
+
+  * bump github deps to latest versions with the same fix
+
+
+1.8.6 (2025-08-15)
+------------------
+
+Changes
+~~~~~~~
+- Bump picotui to latest version, use tags in pip URLs. [Stephen L
+  Arnold]
+
+
+1.8.5 (2025-08-10)
+------------------
+
+Changes
+~~~~~~~
+- Add readme admonition about change in previous behavior. [Stephen L
+  Arnold]
+
+Fixes
+~~~~~
+- Add fallback values for empty environment settings. [Stephen L Arnold]
+
+  * provide the same default values for each setting var if set but empty
+  * add another test using monkeypatched empty values
+  * update requirements file and coverage config
+
+  this closes issue #62
+
+
 1.8.4 (2025-07-21)
 ------------------
 
 Changes
 ~~~~~~~
-- Bakport metadata from pyproject.toml to setup.cfg, relax versions.
+- Update changelog for packaging release. [Stephen L Arnold]
+- Backport metadata from pyproject.toml to setup.cfg, relax versions.
   [Stephen L Arnold]
 
   * makes things compatible with ancient el9 setuptools
