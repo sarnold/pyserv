@@ -6,15 +6,8 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-version_scheme = "no-guess-dev"
-version_file = "src/pyserv/_version.py"
-
-[tool.pylint.MASTER]
-load-plugins = [
-    "pylint_per_file_ignores",
-]
-[tool.pylint-per-file-ignores]
-"_version.py"="C0114,C0103"
+version_scheme = "post-release"
+#version_scheme = "no-guess-dev"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
