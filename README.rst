@@ -318,6 +318,11 @@ Operations console
 .. |console| image:: gh/images/server_console.png
 .. |action| image:: gh/images/daemontui_animated.gif
 
+.. note:: The ``daemontui.py`` script is not currently installed with the
+          package. To run the script, create a Tox dev environment as
+          shown below, then activate the environment and use the command
+          ``python scripts/daemontui.py``.
+
 
 Install with pip
 ================
