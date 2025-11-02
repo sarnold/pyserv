@@ -4,6 +4,7 @@ Async TFTP daemon script using pyserv and py3tftp (see settings.py for env vars)
 """
 
 import asyncio
+import logging
 import os
 import sys
 from pathlib import Path
@@ -23,7 +24,7 @@ from pyserv.settings import (
 # from logging_tree import printout  # debug logging
 # pylint: disable=R0801
 
-PORT = os.getenv('PORT', default='')
+PORT = os.getenv('PORT', default='9069')
 IFACE = os.getenv('IFACE', default='')
 LPNAME = os.getenv('LPNAME', default='atftpd')
 LOG = os.getenv('LOG', default=str(get_userdirs()[0].joinpath(f'{LPNAME}.log')))
@@ -45,7 +46,7 @@ def get_inputs():
         bytes(k, encoding='ascii'): v for k, v in vars(uargs).items() if 'timeout' in k
     }
 
-    if DEBUG != '0':
+    if uargs.verbose:
         print(f'Using uargs: {uargs} and timeouts: {timeouts}')
 
     return uargs, timeouts
@@ -64,20 +65,20 @@ class ServDaemon(Daemon):
         """
         Daemon needs a run method.
         """
+        argsobj, bsdict = get_inputs()
+
+        self.loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(self.loop)
+        listen = self.loop.create_datagram_endpoint(
+            lambda: TFTPServerProtocol(argsobj.host, self.loop, bsdict),
+            local_addr=(
+                argsobj.host,
+                argsobj.port,
+            ),
+        )
+
+        self.transport, _ = self.loop.run_until_complete(listen)
         try:
-            argsobj, bsdict = get_inputs()
-
-            self.loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(self.loop)
-            listen = self.loop.create_datagram_endpoint(
-                lambda: TFTPServerProtocol(argsobj.host, self.loop, bsdict),
-                local_addr=(
-                    argsobj.host,
-                    argsobj.port,
-                ),
-            )
-
-            self.transport, _ = self.loop.run_until_complete(listen)
             self.loop.run_forever()
         except RuntimeError as exc:
             print(f'Got run method error: {exc}')
@@ -96,7 +97,16 @@ if __name__ == "__main__":
 
     pargs, _ = get_inputs()
 
-    setup_logging(int(DEBUG), Path(LOG), 'atftpd')
+    lvl: int = 1 if (DEBUG or pargs.verbose) else 0
+    setup_logging(lvl, Path(LOG), 'atftpd')
+    atftpd_lvl = (
+        logging.DEBUG
+        if (pargs.verbose or int(DEBUG))
+        else logging.WARNING if pargs.quiet else logging.INFO
+    )
+    logging.getLogger('py3tftp').setLevel(atftpd_lvl)
+    logging.getLogger().setLevel(atftpd_lvl)
+
     init_dirs([Path(LOG).parent, Path(PID).parent])
     # printout()
     if not pargs.quiet:
@@ -104,5 +114,5 @@ if __name__ == "__main__":
         print(f'PID: {PID}')
         print(f'DOCROOT: {DOCROOT}')
 
-    d = ServDaemon(Path(PID), home_dir=DOCROOT, verbose=int(DEBUG), use_cleanup=True)
+    d = ServDaemon(Path(PID), home_dir=DOCROOT, verbose=0, use_cleanup=True)
     getattr(d, pargs.run[0])()
