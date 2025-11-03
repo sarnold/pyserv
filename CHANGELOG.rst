@@ -2,6 +2,15 @@ Changelog
 =========
 
 
+1.8.10 (2025-11-03)
+-------------------
+
+Changes
+~~~~~~~
+- Bump daemonizer to latest release in setup.cfg and reqs files.
+  [Stephen L Arnold]
+
+
 1.8.9 (2025-11-03)
 ------------------
 
