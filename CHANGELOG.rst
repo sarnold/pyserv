@@ -2,6 +2,43 @@ Changelog
 =========
 
 
+1.8.9 (2025-11-03)
+------------------
+
+Changes
+~~~~~~~
+- Bump daemonizer to latest in all reqs files and setup.cfg. [Stephen L
+  Arnold]
+
+  * bump all the deps in requirements-rpm.txt to latest
+
+Fixes
+~~~~~
+- Restore missing async argparser defaults, cleanup logging. [Stephen L
+  Arnold]
+
+  * fix lpname string split in daemontui script
+  * fix missing arg defaults in async argparser, cleanup help strings
+  * cleanup logging configuration, set daemon class logging to INFO only
+  * align server logging with parent cfg, move asyncio setup out of try block
+
+
+1.8.8 (2025-09-11)
+------------------
+
+New
+~~~
+- Add rpm sbom dependency workflow, mv ci scripts to .github dir.
+  [Stephen L Arnold]
+
+Changes
+~~~~~~~
+- Remove experimental daemontui script from installed files. [Stephen L
+  Arnold]
+
+  * update readme and project files, cleanup pylint and version bits
+
+
 1.8.7 (2025-08-19)
 ------------------
 
