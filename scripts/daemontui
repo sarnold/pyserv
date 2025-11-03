@@ -144,7 +144,7 @@ while not T_EXIT:
         d.add(5, 9, w_radio)
 
         d.add(35, 7, WFrame(32, 9, "Env settings"))
-        d.add(36, 8, "Update daemon defaults")
+        d.add(36, 8, "Change daemon defaults")
         w_checkbox = WCheckbox("Debug")
         d.add(37, 9, w_checkbox)
 
@@ -171,7 +171,7 @@ while not T_EXIT:
             w_port_entry.set(val)
             w_port_entry.redraw()
             denv["PORT"] = val
-            denv["LPNAME"] = dname.split('a')[0]
+            denv["LPNAME"] = dname.rsplit('a', maxsplit=1)[0]
 
         w_checkbox.on("changed", checkbox_changed)
         w_radio.on("changed", radio_changed)

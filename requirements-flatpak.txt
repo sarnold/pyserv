@@ -3,4 +3,4 @@ platformdirs @ https://files.pythonhosted.org/packages/fe/39/979e8e21520d4e47a0b
 pygtail @ https://github.com/VCTLabs/pygtail/releases/download/0.14.0.2/pygtail-0.14.0.2-py3-none-any.whl
 picotui @ https://github.com/sarnold/picotui/releases/download/v1.2.3.2/picotui-1.2.3.2-py3-none-any.whl
 tftpy @ https://github.com/VCTLabs/tftpy/releases/download/0.8.6.2/tftpy-0.8.6.2-py3-none-any.whl
-daemonizer @ https://github.com/sarnold/python-daemonizer/releases/download/1.1.4/daemonizer-1.1.4-py3-none-any.whl
+daemonizer @ https://github.com/sarnold/python-daemonizer/releases/download/1.1.6/daemonizer-1.1.6-py3-none-any.whl

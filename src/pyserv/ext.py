@@ -26,8 +26,8 @@ def parse_cli_arguments():  # pragma: no cover
     )
     parser.add_argument(
         '--host',
-        default='',
-        help=('IP of the interface the server will listen on. ' 'Default: 0.0.0.0'),
+        default='0.0.0.0',
+        help=('IP of the interface the server will listen on. '),
     )
     parser.add_argument(
         '-p',
@@ -36,7 +36,7 @@ def parse_cli_arguments():  # pragma: no cover
         type=int,
         help=(
             'Port the server will listen on. '
-            'Default: 9069. TFTP standard-compliant port: 69 - '
+            'TFTP standard-compliant port: 69 - '
             'requires additional privileges.'
         ),
     )
@@ -45,7 +45,7 @@ def parse_cli_arguments():  # pragma: no cover
         dest="timeout",
         default=0.5,
         type=float,
-        help='Timeout for each ACK of the lock-step. Default: 0.5.',
+        help='Timeout for each ACK of the lock-step.',
     )
     parser.add_argument(
         '--conn-timeout',
@@ -53,7 +53,7 @@ def parse_cli_arguments():  # pragma: no cover
         type=float,
         help=(
             'Timeout before the server gives up on a transfer and closes '
-            'the connection. Default: 3.'
+            'the connection.'
         ),
     )
     parser.add_argument(
