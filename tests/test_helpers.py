@@ -54,7 +54,7 @@ def test_get_w_env():
 
 def test_get_log_lines(tmp_path):
     """
-    Create and read a short log file; partially verifies TUI005.
+    Create and read a short log file; partially verifies TUI_005.
     """
     tf1 = tmp_path / "tftpd1.log"
     tf1.write_text(log_str, encoding="utf-8")
@@ -66,7 +66,7 @@ def test_get_log_lines(tmp_path):
 
 def test_get_log_num_lines(tmp_path):
     """
-    Create and read a short log file; partially verifies TUI005.
+    Create and read a short log file; partially verifies TUI_005.
     """
     tf2 = tmp_path / "tftpd2.log"
     tf2.write_text(log_str, encoding="utf-8")
@@ -78,7 +78,7 @@ def test_get_log_num_lines(tmp_path):
 
 def test_get_log_no_lines(tmp_path):
     """
-    Try to read a non-existent log file; partially verifies TUI005.
+    Try to read a non-existent log file; partially verifies TUI_005.
     """
     tf3 = tmp_path / "tftpd3.log"
     lines = update_log_lines(str(tf3), num_lines=5)
