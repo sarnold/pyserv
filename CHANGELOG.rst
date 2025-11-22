@@ -2,6 +2,23 @@ Changelog
 =========
 
 
+1.8.11 (2025-11-22)
+-------------------
+
+Changes
+~~~~~~~
+- Use transitional rpm deps in workflow, review doorstop bits. [Stephen
+  L Arnold]
+
+  * update changelog file for release
+- Revert diagram markup to (re)generate dep graph. [Stephen L Arnold]
+
+  * add checkout workaround for pull request action
+- Update doorstop doc items, restore comment markers. [Stephen L Arnold]
+- Replace pygtail with logwatcher, update log handling and deps.
+  [Stephen L Arnold]
+
+
 1.8.10 (2025-11-03)
 -------------------
 
