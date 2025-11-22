@@ -9,9 +9,8 @@ from pyserv.tui_helpers import (
     HTTPD_ENV,
     TFTPD_ENV,
     get_env,
-    get_log_lines,
     get_w_env,
-    tail,
+    update_log_lines,
 )
 
 WIN32 = sys.platform == 'win32'
@@ -55,11 +54,11 @@ def test_get_w_env():
 
 def test_get_log_lines(tmp_path):
     """
-    Create and read a short log file; partially verifies TUI_005.
+    Create and read a short log file; partially verifies TUI005.
     """
     tf1 = tmp_path / "tftpd1.log"
     tf1.write_text(log_str, encoding="utf-8")
-    lines = get_log_lines(str(tf1), is_tail=False, keep_offset=False, shorten=3)
+    lines = update_log_lines(str(tf1), shorten=3)
     print(lines)
     assert len(lines) == 8
     assert "Started" in lines[0]
@@ -67,11 +66,11 @@ def test_get_log_lines(tmp_path):
 
 def test_get_log_num_lines(tmp_path):
     """
-    Create and read a short log file; partially verifies TUI_005.
+    Create and read a short log file; partially verifies TUI005.
     """
     tf2 = tmp_path / "tftpd2.log"
     tf2.write_text(log_str, encoding="utf-8")
-    lines = get_log_lines(str(tf2), is_tail=False, keep_offset=False, num_lines=5)
+    lines = update_log_lines(str(tf2), num_lines=5)
     print(lines)
     assert len(lines) == 5
     assert "Stopped" in lines[0]
@@ -79,9 +78,9 @@ def test_get_log_num_lines(tmp_path):
 
 def test_get_log_no_lines(tmp_path):
     """
-    Try to read a non-existent log file; partially verifies TUI_005.
+    Try to read a non-existent log file; partially verifies TUI005.
     """
     tf3 = tmp_path / "tftpd3.log"
-    lines = get_log_lines(str(tf3), is_tail=False, keep_offset=False, num_lines=5)
+    lines = update_log_lines(str(tf3), num_lines=5)
     print(lines)
     assert len(lines) == 0
