@@ -55,30 +55,31 @@ sequenceDiagram
 
 #### SW dependencies
 
+First and second-level package dependencies for the `daemontui` script.
+
 ```{figure} assets/tui_dependency_graph.svg
-:width: 65 %
+:width: 90 %
 :align: center
 :alt: primary software dependencies
 
 Primary Software Dependencies.
 ```
 
-
 <details>
   <summary>tui_dependency_graph source</summary>
   daemontui dependency graph showing primary software units.
 
 ```
-
 graph TB
   subgraph id1[Static Dependencies]
     subgraph id2[Packages]
       A(daemontui)
       B(picotui)
-      C(pygtail)
+      C(logwatcher)
       D(pyserv)
+      E(scapy)
     end
-    A --> B & C & D
+    A --> B & C & D & E
   end
 ```
 </details>
@@ -100,7 +101,7 @@ groups of settings and dynamic data such as network device names and
 file system paths, starting with user-confirmed runtime settings for
 server and logging options.
 
-> `scripts/daemontui.py` (line 122)
+> `scripts/daemontui.py` (line 132)
 
 *Parent links: TUI_002, TUI_003*
 
@@ -112,8 +113,8 @@ server and logging options.
 The daemontui software must display network and server status to the
 operator using both visual indicators and log entries.
 
-> `scripts/daemontui.py` (line 212)
-> `scripts/daemontui.py` (line 217)
+> `scripts/daemontui.py` (line 222)
+> `scripts/daemontui.py` (line 227)
 
 *Parent links: TUI_001, TUI_005*
 
@@ -125,9 +126,9 @@ operator using both visual indicators and log entries.
 The daemontui software must provide obvious operator controls that
 correspond to the primary daemon commands: [start, stop, status]
 
-> `scripts/daemontui.py` (line 235)
-> `scripts/daemontui.py` (line 238)
-> `scripts/daemontui.py` (line 241)
+> `scripts/daemontui.py` (line 245)
+> `scripts/daemontui.py` (line 248)
+> `scripts/daemontui.py` (line 251)
 
 *Parent links: TUI_004*
 

@@ -4,7 +4,7 @@ git+https://github.com/sarnold/python-daemonizer.git@1.1.7#egg=daemonizer
 git+https://github.com/VCTLabs/tftpy.git@0.8.6.2#egg=tftpy
 # version v1.2.3.2
 git+https://github.com/sarnold/picotui.git@v1.2.3.2#egg=picotui
-# version 0.14.0.2
-git+https://github.com/VCTLabs/pygtail.git@0.14.0.2#egg=pygtail
+# version 0.5.4
+git+https://github.com/sarnold/pylogtailer.git@v0.5.4#egg=logwatcher
 # version 1.3.0
 py3tftp  # async daemon requirement

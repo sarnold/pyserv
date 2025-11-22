@@ -30,7 +30,7 @@ from picotui.widgets import (
 
 from pyserv import RepeatTimer
 from pyserv.settings import get_userdirs, init_dirs
-from pyserv.tui_helpers import get_env, get_log_lines
+from pyserv.tui_helpers import get_env, update_log_lines
 
 # Dialog on the screen
 d = None
@@ -50,7 +50,7 @@ def refresh(w):
     :param w: picotui Widget that accepts a list of strings
     """
     global NEW_LINES
-    NEW_LINES = get_log_lines(LOG, is_tail=False, keep_offset=False, shorten=3)
+    NEW_LINES = update_log_lines(LOG, shorten=3)
     w.set(NEW_LINES)
     w.redraw()
 
@@ -275,7 +275,7 @@ while not T_EXIT:
 
             if 'stop' in w.name:
                 if rt.is_running:
-                    time.sleep(0.3)
+                    time.sleep(0.1)  # wait for logs to catch up
                     rt.stop()
 
             update_server_status(w_daemon_status, rt)

@@ -7,7 +7,7 @@ TUI Automated Tests
 
 Test default settings:
 
-> `tests/test_helpers.py` (line 34)
+> `tests/test_helpers.py` (line 33)
 
 *Parent links: TUI_002*
 
@@ -16,7 +16,7 @@ Test default settings:
 
 Test log tail handler:
 
-> `tests/test_helpers.py` (line 58)
+> `tests/test_helpers.py` (line 57)
 > `tests/test_timer.py` (line 17)
 
 *Parent links: TUI_005*

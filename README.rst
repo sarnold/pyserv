@@ -6,7 +6,7 @@
 
 |pre| |cov| |pylint|
 
-|tag| |license| |python|
+|tag| |license| |reuse| |python|
 
 This is a growing collection of threaded Python server bits, including
 custom `HTTP server`_ and WSGI_ classes, along with corresponding console
@@ -603,6 +603,10 @@ specifications.
 .. |tag| image:: https://img.shields.io/github/v/tag/sarnold/pyserv?color=blue&include_prereleases&label=latest%20release
     :target: https://github.com/sarnold/pyserv/releases
     :alt: GitHub tag
+
+.. |reuse| image:: https://img.shields.io/badge/REUSE-compliant-blue.svg
+    :target: https://reuse.software/spec-3.3/
+    :alt: REUSE
 
 .. |python| image:: https://img.shields.io/badge/python-3.9+-blue.svg
     :target: https://www.python.org/downloads/

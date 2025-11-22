@@ -2,11 +2,11 @@
 Pyserv TUI helper functions for picotui or similar.
 """
 
-from collections import deque
+import codecs
 from pathlib import Path
-from typing import Deque, Dict, Generator, Iterable, List, Optional
+from typing import IO, Dict, List, Optional
 
-from pygtail import Pygtail
+from logwatcher.logwatcher import LogWatcher
 from scapy.layers.l2 import getmacbyip
 
 HTTPD_ENV = {
@@ -26,6 +26,18 @@ TFTPD_ENV = {
     "DOCROOT": ".",
     "SOCK_TIMEOUT": "5",
 }
+
+
+class TLogWatcher(LogWatcher):
+    """Override ``open()`` to decode log lines"""
+
+    @classmethod
+    def open(cls, file: str) -> IO:
+        return codecs.open(file, 'r', encoding="utf-8", errors='ignore')
+
+
+def dummy_callback(filename: str, lines: List[Optional[str]]):
+    pass
 
 
 def get_w_env(env: Dict) -> Dict:
@@ -58,47 +70,26 @@ def get_env(name: str) -> Dict:
     return env
 
 
-def tail(iterable: Iterable, max_size: int) -> Generator:
-    """
-    Create a tail queue with specified max number of items (log lines).
-
-    :param iterable: an iterable Python obj, ie, List or Tuple of strings
-    :param max_size: max size of tail queue
-    :yields: one item
-    """
-    tailq: Deque = deque()
-    for thing in iterable:
-        if len(tailq) >= max_size:
-            tailq.popleft()
-        tailq.append(thing.rstrip())
-    yield from tailq
-
-
-def get_log_lines(
-    filename: str,
-    is_tail: bool = False,
-    keep_offset: bool = True,
-    shorten: int = 0,
-    num_lines: int = 10,
+def update_log_lines(
+    fname: str, shorten: int = 0, num_lines: int = 10
 ) -> List[Optional[str]]:
     """
-    Get N lines from a (log) file. Set shorten=0 to disable line-splitting.
-    Check for empty (falsey) tail items before processing line data.
+    Simpler version of ``get_log_lines()`` using LogWatcher instead of
+    Pygtail.
 
-    :param filename: path to log file as a string
-    :param is_tail: read from the end of file
-    :param keep_offset: save offset file (keep track of lines that have already been read)
+    :param fname: path to log file as a string
     :param shorten: split lines on spaces and keep the remainder
     :param num_lines: number of lines in tail output
     :return: available log lines up to num_lines
     """
     lines: List = []
-    if not Path(filename).exists():
+    if not Path(fname).exists():
         return lines
-    pygtail = Pygtail(filename, read_from_end=is_tail, save_on_end=keep_offset)
-    for line in tail(pygtail.readlines(), num_lines):
+    log_path = Path(fname).parent.resolve()
+    lw = TLogWatcher(str(log_path), dummy_callback)
+    for line in lw.tail(str(fname), num_lines):
         if line:
-            if shorten > 0:
+            if shorten > 0 and isinstance(line, str):
                 lines.append(line.split(' ', maxsplit=shorten)[shorten])
             else:
                 lines.append(line)
