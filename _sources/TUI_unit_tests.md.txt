@@ -1,0 +1,38 @@
+# 1.0 Automated Tests {#TST_001}
+
+Automated Tests
+
+Whether desktop or CI, run these tests from the project root,
+after installing Python and [Tox](https://github.com/tox-dev/tox):
+
+```shell
+tox -e py
+```
+
+To see test output, ie, code under test and print statements, append
+the following positional arg to the above tox command:
+
+```shell
+tox -e py -- no
+```
+
+
+## 1.1 TST_002 {#TST_002}
+
+Test default settings:
+
+> `tests/test_helpers.py` (line 33)
+
+*Parent links: TUI_002*
+
+
+## 1.2 TST_003 {#TST_003}
+
+Test log tail handler:
+
+> `tests/test_helpers.py` (line 57)
+> `tests/test_timer.py` (line 17)
+
+*Parent links: TUI_005*
+
+
