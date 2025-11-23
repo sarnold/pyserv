@@ -36,8 +36,8 @@ class TLogWatcher(LogWatcher):
         return codecs.open(file, 'r', encoding="utf-8", errors='ignore')
 
 
-def dummy_callback(filename: str, lines: List[Optional[str]]):
-    pass
+def dummy_callback(filename: str, lines: List[Optional[str]]):  # pylint: disable=W0613
+    """Logwatcher feeds a log display only, no need for line printing."""
 
 
 def get_w_env(env: Dict) -> Dict:

@@ -49,7 +49,10 @@ repos:
         - --follow-imports=normal
         - --install-types
         - --non-interactive
-        - --ignore-missing-imports
+        - --check-untyped-defs
+      additional_dependencies:
+        - "logwatcher @ git+https://github.com/sarnold/pylogtailer.git@main"
+        - "scapy==2.6.1"
       files: src/
 
   - repo: "https://github.com/asottile/blacken-docs"

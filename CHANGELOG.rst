@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+1.9.0 (2025-11-23)
+------------------
+
+Changes
+~~~~~~~
+- Cleanup doc bits, tool configs, and some lint. [Stephen L Arnold]
+
+
 1.8.11 (2025-11-22)
 -------------------
 

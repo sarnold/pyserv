@@ -37,8 +37,8 @@ Activity Sequence Diagram.
   <summary>tui_sequence_diagram source</summary>
   User activity sequence diagram showing 2 primary Screen contexts.
 
-```
 
+```mermaid
 sequenceDiagram
   participant Select
   participant InitState
@@ -62,21 +62,22 @@ First and second-level package dependencies for the `daemontui` script.
 :align: center
 :alt: primary software dependencies
 
-Primary Software Dependencies.
+Primary Software Dependencies (captured from mermaid to SVG or PNG).
 ```
+
 
 <details>
   <summary>tui_dependency_graph source</summary>
   daemontui dependency graph showing primary software units.
 
-```
+```mermaid
 graph TB
-  subgraph id1[Static Dependencies]
-    subgraph id2[Packages]
+  subgraph id1[TUI Import Dependencies]
+    subgraph id2[Python Modules]
       A(daemontui)
-      B(picotui)
+      B(pyserv)
       C(logwatcher)
-      D(pyserv)
+      D(picotui)
       E(scapy)
     end
     A --> B & C & D & E
