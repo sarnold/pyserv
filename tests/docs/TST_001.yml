@@ -13,6 +13,20 @@ level: 1.0
 links: []
 normative: false
 ref: ''
-reviewed: vC-5jgxRWFbTDeXaPhB5sZmNMHZg3_upHdoP9hHyYvg=
+reviewed: C0KkAPrjDbWWcpXwFJ46Erq3R09Ia-ZDA8vGhkGjmFQ=
 text: |
-  TUI Automated Tests
+  Automated Tests
+
+  Whether desktop or CI, run these tests from the project root,
+  after installing Python and [Tox](https://github.com/tox-dev/tox):
+
+  ```shell
+  tox -e py
+  ```
+
+  To see test output, ie, code under test and print statements, append
+  the following positional arg to the above tox command:
+
+  ```shell
+  tox -e py -- no
+  ```
