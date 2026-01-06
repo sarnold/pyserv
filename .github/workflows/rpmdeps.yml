@@ -25,7 +25,8 @@ jobs:
           gh release download logwatcher-0.5.4 --pattern '*.noarch.rpm' -R VCTLabs/el9-rpm-toolbox
           gh release download py3tftp-1.3.0 --pattern '*.noarch.rpm' -R VCTLabs/el9-rpm-toolbox
           gh release download tftpy-0.8.6.2 --pattern '*.noarch.rpm' -R VCTLabs/el9-rpm-toolbox
-          gh release download pyserv-1.8.11 --pattern '*.noarch.rpm' -R VCTLabs/el9-rpm-toolbox
+          gh release download pyserv-1.9.1 --pattern '*.noarch.rpm' -R VCTLabs/el9-rpm-toolbox
+          gh release download scapy-2.7.0 --pattern '*.noarch.rpm' -R VCTLabs/el9-rpm-toolbox
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -119,7 +120,7 @@ jobs:
         dnf install -y dnf-utils epel-release 'dnf-command(config-manager)'
         dnf config-manager --set-enabled crb
         dnf search --refresh epel
-        dnf install -y python3-pip rpms/*.rpm
+        dnf install --allowerasing -y python3-pip rpms/*.rpm
 
     - name: Manually create pip cache dir
       run: mkdir -p ~/.cache/pip
