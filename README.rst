@@ -606,7 +606,7 @@ specifications.
 
 .. |reuse| image:: https://img.shields.io/badge/REUSE-compliant-blue.svg
     :target: https://reuse.software/spec-3.3/
-    :alt: REUSE
+    :alt: REUSE (static)
 
 .. |python| image:: https://img.shields.io/badge/python-3.9+-blue.svg
     :target: https://www.python.org/downloads/

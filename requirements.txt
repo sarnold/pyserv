@@ -5,4 +5,4 @@ https://github.com/sarnold/pylogtailer/releases/download/v0.5.4/logwatcher-0.5.4
 https://github.com/VCTLabs/tftpy/releases/download/0.8.6.2/tftpy-0.8.6.2-py3-none-any.whl
 platformdirs
 py3tftp
-scapy==2.6.1
+scapy

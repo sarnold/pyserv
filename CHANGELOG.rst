@@ -2,12 +2,26 @@ Changelog
 =========
 
 
+1.9.1 (2026-01-07)
+------------------
+
+Changes
+~~~~~~~
+- Un-pin scapy deps, use new toolbox package in rpm workflows. [Stephen
+  L Arnold]
+
+  * allow dnf install to use not-latest versions of rpm deps
+  * update changelog file for release
+
+
 1.9.0 (2025-11-23)
 ------------------
 
 Changes
 ~~~~~~~
 - Cleanup doc bits, tool configs, and some lint. [Stephen L Arnold]
+
+  * update changelog file for release
 
 
 1.8.11 (2025-11-22)

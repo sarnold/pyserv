@@ -1,4 +1,4 @@
-scapy @ https://files.pythonhosted.org/packages/4b/34/8695b43af99d0c796e4b7933a0d7df8925f43a8abdd0ff0f6297beb4de3a/scapy-2.6.1-py3-none-any.whl
+scapy @ https://files.pythonhosted.org/packages/f0/6f/bd32e5e8adc391063858da17271bb444e4b009842cffa593bca8b2b78af7/scapy-2.7.0-py3-none-any.whl
 platformdirs @ https://files.pythonhosted.org/packages/fe/39/979e8e21520d4e47a0bbe349e2713c0aac6f3d853d0e5b34d76206c439aa/platformdirs-4.3.8-py3-none-any.whl
 logwatcher @ https://github.com/sarnold/pylogtailer/releases/download/v0.5.4/logwatcher-0.5.4-py3-none-any.whl
 picotui @ https://github.com/sarnold/picotui/releases/download/v1.2.3.2/picotui-1.2.3.2-py3-none-any.whl
