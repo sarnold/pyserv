@@ -1,0 +1,597 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="colorset-reset" content="86400000" />
+    <meta name="docsearch:name" content="pyserv" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="1.9.1" />
+    <meta name="docsearch:version" content="1.9.1" />
+    
+      <meta name="theme-color" content="#CFE2FF" media="(prefers-color-scheme: light)" />
+      <meta name="theme-color" content="#031633" media="(prefers-color-scheme: dark)" />
+    
+    
+      <title>pyserv.settings &mdash; pyserv 1.9.1 documentation</title>
+    
+    <link rel="canonical" href="_modules/pyserv/settings" />
+          <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8e8a900e" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../../_static/sphinx-nefertiti-blue.min.css?v=8c7e6259" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../../_static/fonts/nunito/stylesheet.css?v=abf98f06" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../../_static/fonts/ubuntu-sans-mono/stylesheet.css?v=8616a587" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../../_static/pygments-dark.css?v=f21207c5" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../../_static/pygments-light.css?v=6c104457" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-icons.min.css?v=44730005" /><!-- add (1) -->
+        <link rel="index" title="Index" href="../../genindex.html" />
+        <link rel="search" title="Search" href="../../search.html" />
+        <link rel="top" title="pyserv 1.9.1 documentation" href="#" />
+        <link rel="up" title="pyserv" href="../pyserv.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Ubuntu Sans Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);--nftt-monospace-font-size: .90rem;}
+
+      h1 *,
+      h2 *,
+      h3 *,
+      h4 *,
+      h5 *,
+      h6 * {
+        font-size: inherit;
+      }
+
+      .light pre,
+      .dark pre {
+        line-height: var(--nftt-pre-line-height, 140%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="back-to-top-container" class="position-fixed start-50 translate-middle-x">
+      <button id="back-to-top" type="button" class="d-none btn btn-neutral btn-sm shadow px-4" data-bs-toggle="button">Back to top</button>
+    </div>
+    <header id="snftt-nav-bar" class="navbar navbar-expand-xl neutral nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-fluid visually-hidden-focusable overflow-hidden justify-content-start flex-grow-1">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to index filter</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="../../index.html"
+             class="navbar-brand"
+          ><span class="brand-text">pyserv</span><span class="brand-short-text">pyserv</span></a>
+        
+        
+        <div class="d-flex d-xl-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-xl offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-xl-0 ps-xl-4">
+    <hr class="d-xl-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-xl-auto">
+        <form id="nftt-search-form" action="../../search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control search-input" placeholder="Search" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-short-text">pyserv</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+            <hr class="d-xl-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-lg-auto">
+              
+              
+              <li class="nav-item col-12 col-xl-auto">
+                <a class="nav-link py-2 py-xl-0 px-0 px-xl-2" href="https://github.com/sarnold/pyserv" target="_blank" rel="noopener">
+                  <div class="d-flex align-items-center">
+                    <div class="me-2">
+                      <i class="bi bi-git size-24"></i>
+                    </div>
+                    <div class="repo d-flex flex-column align-items-center" data-snftt-repo-url="https://github.com/sarnold/pyserv">
+                      pyserv
+                      <div class="d-flex justify-content-center" data-snftt-repo-metrics>
+                        <span class="pe-2 d-flex justify-content-center align-items-center">
+                          <i class="bi bi-tag size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-tag></span>
+                        </span>
+                        <span class="pe-2 d-flex justify-content-center align-items-center">
+                          <i class="bi bi-star size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-stars></span>
+                        </span>
+                        <span class="d-flex justify-content-center align-items-center">
+                          <i class="bi bi-diagram-2 size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-forks></span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+                <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+                <hr class="d-xl-none text-white-50">
+              </li>
+              
+              
+  <li class="nav-item dropdown">
+    <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-version" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Select version">
+      <span id="snftt-version-text" class="d-xl-none">pyserv</span>
+      <span class="ms-2" data-snftt-version-active="latest">latest</span>
+    </a>
+    
+    <ul class="dropdown-menu dropdown-menu-end dropdown-limit-max-height" aria-labelledby="snftt-version-text" id="versions-dropdown-menu">
+      <li>
+        <h6 class="dropdown-header">Versions</h6>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+    <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+    <hr class="d-xl-none text-white-50">
+  </li>
+
+              
+  <!-- colorssets-dropdown.html -->
+  <li class="nav-item dropdown">
+    <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-color" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Change base color">
+      <i class="bi bi-palette"></i>
+      <span id="snftt-color-text" class="d-xl-none ms-2">Change base color</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-color-text">
+      <li>
+        <h6 class="dropdown-header">Change base color</h6>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center active" data-snftt-colorset="blue" href="#" aria-pressed="false">
+          <span class="blue">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Blue</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="indigo" href="#" aria-pressed="false">
+          <span class="indigo">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Indigo</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="purple" href="#" aria-pressed="false">
+          <span class="purple">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Purple</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="pink" href="#" aria-pressed="false">
+          <span class="pink">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Pink</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="red" href="#" aria-pressed="false">
+          <span class="red">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Red</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="orange" href="#" aria-pressed="false">
+          <span class="orange">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Orange</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="yellow" href="#" aria-pressed="false">
+          <span class="yellow">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Yellow</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="green" href="#" aria-pressed="false">
+          <span class="green">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Green</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="teal" href="#" aria-pressed="false">
+          <span class="teal">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Teal</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="default" href="#" aria-pressed="false">
+          <span class="cyan">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Cyan</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li><hr class="dropdown-divider" /></li>
+      <li>
+        <h6 class="dropdown-header">Header style</h6>
+      </li>
+      <li>
+        <a class="dropdown-item d-flex align-items-center active current" data-snftt-colorset-neutral="on" href="#" aria-pressed="false">
+          <i class="bi bi-noise-reduction"></i>
+          <span class="ms-3">Neutral</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+    <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+    <hr class="d-lg-none text-white-50">
+  </li>
+
+              
+              <!-- lightdark-dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Change appearance">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-xl-none ms-2">Change appearance</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Change appearance</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="ms-3">Automatic</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+    </header>
+
+    <div class="container-fluid flex-grow-1">
+      <div class="nftt-gutter nftt-page">
+        <aside class="nftt-sidebar ">
+          <div class="nftt-sidebar-content">
+            
+            <div class="title d-none d-xl-none">
+              <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Index</span>
+            </div>
+            <div id="sidebar" tabindex="-1" class="offcanvas-xl offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+                <!-- sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title fw-bold" id="nfttSidebarOffcanvasLabel">
+    Index
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="index filter" aria-label="index filter">
+    </div>
+    <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Pyserv - A Collection of Simple Servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../TUI_reqs_tree.html">1.0 TUI Requirements {#TUI_006}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../TUI_sw_design.html">1.0 TUI Design Elements {#SDD_001}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../TUI_unit_tests.html">1.0 Automated Tests {#TST_001}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">pyserv</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/pyserv.html">pyserv package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/pyserv.ext.html">pyserv.ext module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/pyserv.server.html">pyserv.server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/pyserv.settings.html">pyserv.settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/pyserv.tftpd.html">pyserv.tftpd module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/pyserv.tui_helpers.html">pyserv.tui_helpers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/pyserv.wsgi.html">pyserv.wsgi module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+            </div>
+            
+          </div>
+        </aside>
+        <article id="content" class="nftt-content" role="main">
+          <div><div class="d-flex flex-row justify-content-between">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="../../index.html">Start</a></li>
+        <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+        <li class="breadcrumb-item"><a href="../pyserv.html">pyserv</a></li>
+      <li class="breadcrumb-item active" aria-current="page">pyserv.settings</li>
+    </ol>
+  </nav>
+  
+    <div class="fs085">
+    </div>
+  
+</div>
+            
+    <h1>Source code for pyserv.settings</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Pyserv default settings for server and daemon modes.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">platformdirs</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlatformDirs</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">version</span>
+
+
+<div class="viewcode-block" id="get_userdirs">
+<a class="viewcode-back" href="../../api/pyserv.settings.html#pyserv.settings.get_userdirs">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_userdirs</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get platform-agnostic user directory paths via PlatformDirs.</span>
+
+<span class="sd">    :return tuple: logdir, piddir, docdir as Path objs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dirs</span> <span class="o">=</span> <span class="n">PlatformDirs</span><span class="p">(</span><span class="n">appname</span><span class="o">=</span><span class="s1">&#39;pyserv&#39;</span><span class="p">,</span> <span class="n">appauthor</span><span class="o">=</span><span class="s1">&#39;nerdboy&#39;</span><span class="p">)</span>
+    <span class="n">run_check</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/run/user&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+    <span class="n">run_path</span> <span class="o">=</span> <span class="n">dirs</span><span class="o">.</span><span class="n">user_runtime_path</span> <span class="k">if</span> <span class="n">run_check</span> <span class="k">else</span> <span class="n">dirs</span><span class="o">.</span><span class="n">user_cache_path</span>
+    <span class="n">logdir</span> <span class="o">=</span> <span class="n">dirs</span><span class="o">.</span><span class="n">user_log_path</span>
+    <span class="n">piddir</span> <span class="o">=</span> <span class="n">run_path</span>
+    <span class="n">docdir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">logdir</span><span class="p">,</span> <span class="n">piddir</span><span class="p">,</span> <span class="n">docdir</span></div>
+
+
+
+<div class="viewcode-block" id="init_dirs">
+<a class="viewcode-back" href="../../api/pyserv.settings.html#pyserv.settings.init_dirs">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">init_dirs</span><span class="p">(</span><span class="n">dirs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check and create user dirs for logs and PID (doc root is assumed</span>
+<span class="sd">    to already exist).</span>
+
+<span class="sd">    :param dirs: list of Path objs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">usr_path</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
+        <span class="n">usr_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="platform_check">
+<a class="viewcode-back" href="../../api/pyserv.settings.html#pyserv.settings.platform_check">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">platform_check</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check to see if we think we are POSIX.</span>
+
+<span class="sd">    :return we_are_posix: true if system is posix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">myname</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span>
+    <span class="n">is_posix</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;posix&#39;</span>
+    <span class="n">posix_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;linux&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;darwin&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;openbsd&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;freebsd&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">we_are_posix</span> <span class="o">=</span> <span class="n">myname</span> <span class="ow">in</span> <span class="n">posix_list</span> <span class="ow">and</span> <span class="n">is_posix</span>
+    <span class="k">return</span> <span class="n">we_are_posix</span></div>
+
+
+
+<div class="viewcode-block" id="show_uservars">
+<a class="viewcode-back" href="../../api/pyserv.settings.html#pyserv.settings.show_uservars">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">show_uservars</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Display defaults and (possibly) overridden host paths and environment</span>
+<span class="sd">    variables.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python version: </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">79</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pyserv </span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">iface</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">IFACE</span> <span class="k">else</span> <span class="n">IFACE</span>
+    <span class="n">dirnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;log_dir&#39;</span><span class="p">,</span> <span class="s1">&#39;pid_dir&#39;</span><span class="p">,</span> <span class="s1">&#39;work_dir&#39;</span><span class="p">]</span>
+    <span class="n">modname</span> <span class="o">=</span> <span class="s1">&#39;pyserv.settings&#39;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">mod</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">modname</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">mod</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Default user vars:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dirnames</span><span class="p">,</span> <span class="n">mod</span><span class="o">.</span><span class="n">get_userdirs</span><span class="p">()):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  </span><span class="si">{</span><span class="n">dirname</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Current environment values:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  DEBUG: </span><span class="si">{</span><span class="n">DEBUG</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  PORT: </span><span class="si">{</span><span class="n">PORT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  IDEV: </span><span class="si">{</span><span class="n">IDEV</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  IFACE: </span><span class="si">{</span><span class="n">iface</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  LPNAME: </span><span class="si">{</span><span class="n">LPNAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  LOG: </span><span class="si">{</span><span class="n">LOG</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  PID: </span><span class="si">{</span><span class="n">PID</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  DOCROOT: </span><span class="si">{</span><span class="n">DOCROOT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  SOCK_TIMEOUT: </span><span class="si">{</span><span class="n">SOCK_TIMEOUT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">79</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">NameError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;FAILED: </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;PORT&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;8000&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;8000&#39;</span>
+<span class="n">IDEV</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;IDEV&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;lo&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;lo&#39;</span>
+<span class="n">IFACE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;IFACE&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;127.0.0.1&#39;</span>
+<span class="n">LPNAME</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;LPNAME&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;httpd&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;httpd&#39;</span>
+<span class="n">SOCK_TIMEOUT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;SOCK_TIMEOUT&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;5&#39;</span>
+<span class="c1"># fmt: stop</span>
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;LOG&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">get_userdirs</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">LPNAME</span><span class="si">}</span><span class="s1">.log&#39;</span><span class="p">)))</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span>
+    <span class="n">get_userdirs</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">LPNAME</span><span class="si">}</span><span class="s1">.log&#39;</span><span class="p">)</span>
+<span class="p">)</span>  <span class="c1"># noqa</span>
+<span class="n">PID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;PID&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">get_userdirs</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">LPNAME</span><span class="si">}</span><span class="s1">.pid&#39;</span><span class="p">)))</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span>
+    <span class="n">get_userdirs</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">LPNAME</span><span class="si">}</span><span class="s1">.pid&#39;</span><span class="p">)</span>
+<span class="p">)</span>  <span class="c1"># noqa</span>
+<span class="n">DOCROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DOCROOT&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">get_userdirs</span><span class="p">()[</span><span class="mi">2</span><span class="p">]))</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span>
+    <span class="n">get_userdirs</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">)</span>  <span class="c1"># noqa</span>
+</pre></div>
+</div>
+        </article>
+        <aside class="nftt-toc my-3">
+          
+        </aside>
+      </div>
+    </div>
+
+    <footer class="nftt-footer">
+      
+<nav id="paginator"></nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="pyserv">
+          <span class="fs-6 fw-bold">pyserv</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2022 - 2026 Stephen Arnold</li>
+          </ul>
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.4.7</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.9.1</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+
+    <div class="modal modal-xl fade" id="nftt-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-xxl-down modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nftt-modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="nftt-modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="../../_static/documentation_options.js?v=60b3a732"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/colorsets.js?v=58f89e02"></script>
+    <script src="../../_static/docs-versions.js?v=04636b99"></script>
+    <script src="../../_static/sphinx-nefertiti.min.js?v=732b5b51"></script>
+    <script src="../../_static/bootstrap.bundle.min.js?v=e96d90d1"></script>
+  </body>
+</html>

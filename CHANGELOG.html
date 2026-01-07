@@ -1,0 +1,1773 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="colorset-reset" content="86400000" />
+    <meta name="docsearch:name" content="pyserv" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="1.9.1" />
+    <meta name="docsearch:version" content="1.9.1" />
+    
+      <meta name="theme-color" content="#CFE2FF" media="(prefers-color-scheme: light)" />
+      <meta name="theme-color" content="#031633" media="(prefers-color-scheme: dark)" />
+    
+    
+      <title>Changelog &mdash; pyserv 1.9.1 documentation</title>
+    
+    <link rel="canonical" href="CHANGELOG" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/sphinx-nefertiti-blue.min.css?v=8c7e6259" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/fonts/nunito/stylesheet.css?v=abf98f06" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/fonts/ubuntu-sans-mono/stylesheet.css?v=8616a587" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/pygments-dark.css?v=f21207c5" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/pygments-light.css?v=6c104457" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/bootstrap-icons.min.css?v=44730005" /><!-- add (1) -->
+        <link rel="index" title="Index" href="genindex.html" />
+        <link rel="search" title="Search" href="search.html" />
+        <link rel="top" title="pyserv 1.9.1 documentation" href="#" />
+        <link rel="prev" title="pyserv.wsgi module" href="api/pyserv.wsgi.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Ubuntu Sans Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);--nftt-monospace-font-size: .90rem;}
+
+      h1 *,
+      h2 *,
+      h3 *,
+      h4 *,
+      h5 *,
+      h6 * {
+        font-size: inherit;
+      }
+
+      .light pre,
+      .dark pre {
+        line-height: var(--nftt-pre-line-height, 140%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="back-to-top-container" class="position-fixed start-50 translate-middle-x">
+      <button id="back-to-top" type="button" class="d-none btn btn-neutral btn-sm shadow px-4" data-bs-toggle="button">Back to top</button>
+    </div>
+    <header id="snftt-nav-bar" class="navbar navbar-expand-xl neutral nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-fluid visually-hidden-focusable overflow-hidden justify-content-start flex-grow-1">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to index filter</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="index.html"
+             class="navbar-brand"
+          ><span class="brand-text">pyserv</span><span class="brand-short-text">pyserv</span></a>
+        
+        
+        <div class="d-flex d-xl-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-xl offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-xl-0 ps-xl-4">
+    <hr class="d-xl-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-xl-auto">
+        <form id="nftt-search-form" action="search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control search-input" placeholder="Search" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-short-text">pyserv</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+            <hr class="d-xl-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-lg-auto">
+              
+              
+              <li class="nav-item col-12 col-xl-auto">
+                <a class="nav-link py-2 py-xl-0 px-0 px-xl-2" href="https://github.com/sarnold/pyserv" target="_blank" rel="noopener">
+                  <div class="d-flex align-items-center">
+                    <div class="me-2">
+                      <i class="bi bi-git size-24"></i>
+                    </div>
+                    <div class="repo d-flex flex-column align-items-center" data-snftt-repo-url="https://github.com/sarnold/pyserv">
+                      pyserv
+                      <div class="d-flex justify-content-center" data-snftt-repo-metrics>
+                        <span class="pe-2 d-flex justify-content-center align-items-center">
+                          <i class="bi bi-tag size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-tag></span>
+                        </span>
+                        <span class="pe-2 d-flex justify-content-center align-items-center">
+                          <i class="bi bi-star size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-stars></span>
+                        </span>
+                        <span class="d-flex justify-content-center align-items-center">
+                          <i class="bi bi-diagram-2 size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-forks></span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+                <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+                <hr class="d-xl-none text-white-50">
+              </li>
+              
+              
+  <li class="nav-item dropdown">
+    <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-version" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Select version">
+      <span id="snftt-version-text" class="d-xl-none">pyserv</span>
+      <span class="ms-2" data-snftt-version-active="latest">latest</span>
+    </a>
+    
+    <ul class="dropdown-menu dropdown-menu-end dropdown-limit-max-height" aria-labelledby="snftt-version-text" id="versions-dropdown-menu">
+      <li>
+        <h6 class="dropdown-header">Versions</h6>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+    <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+    <hr class="d-xl-none text-white-50">
+  </li>
+
+              
+  <!-- colorssets-dropdown.html -->
+  <li class="nav-item dropdown">
+    <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-color" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Change base color">
+      <i class="bi bi-palette"></i>
+      <span id="snftt-color-text" class="d-xl-none ms-2">Change base color</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-color-text">
+      <li>
+        <h6 class="dropdown-header">Change base color</h6>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center active" data-snftt-colorset="blue" href="#" aria-pressed="false">
+          <span class="blue">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Blue</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="indigo" href="#" aria-pressed="false">
+          <span class="indigo">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Indigo</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="purple" href="#" aria-pressed="false">
+          <span class="purple">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Purple</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="pink" href="#" aria-pressed="false">
+          <span class="pink">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Pink</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="red" href="#" aria-pressed="false">
+          <span class="red">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Red</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="orange" href="#" aria-pressed="false">
+          <span class="orange">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Orange</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="yellow" href="#" aria-pressed="false">
+          <span class="yellow">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Yellow</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="green" href="#" aria-pressed="false">
+          <span class="green">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Green</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="teal" href="#" aria-pressed="false">
+          <span class="teal">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Teal</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="default" href="#" aria-pressed="false">
+          <span class="cyan">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Cyan</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li><hr class="dropdown-divider" /></li>
+      <li>
+        <h6 class="dropdown-header">Header style</h6>
+      </li>
+      <li>
+        <a class="dropdown-item d-flex align-items-center active current" data-snftt-colorset-neutral="on" href="#" aria-pressed="false">
+          <i class="bi bi-noise-reduction"></i>
+          <span class="ms-3">Neutral</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+    <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+    <hr class="d-lg-none text-white-50">
+  </li>
+
+              
+              <!-- lightdark-dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Change appearance">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-xl-none ms-2">Change appearance</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Change appearance</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="ms-3">Automatic</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+    </header>
+
+    <div class="container-fluid flex-grow-1">
+      <div class="nftt-gutter nftt-page">
+        <aside class="nftt-sidebar ">
+          <div class="nftt-sidebar-content">
+            
+            <div class="title d-none d-xl-none">
+              <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Index</span>
+            </div>
+            <div id="sidebar" tabindex="-1" class="offcanvas-xl offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+                <!-- sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title fw-bold" id="nfttSidebarOffcanvasLabel">
+    Index
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="index filter" aria-label="index filter">
+    </div>
+    <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Pyserv - A Collection of Simple Servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TUI_reqs_tree.html">1.0 TUI Requirements {#TUI_006}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TUI_sw_design.html">1.0 TUI Design Elements {#SDD_001}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TUI_unit_tests.html">1.0 Automated Tests {#TST_001}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">pyserv</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/pyserv.html">pyserv package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.ext.html">pyserv.ext module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.server.html">pyserv.server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.settings.html">pyserv.settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.tftpd.html">pyserv.tftpd module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.tui_helpers.html">pyserv.tui_helpers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.wsgi.html">pyserv.wsgi module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+            </div>
+            
+          </div>
+        </aside>
+        <article id="content" class="nftt-content" role="main">
+          <div><div class="d-flex flex-row justify-content-between">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Start</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Changelog</li>
+    </ol>
+  </nav>
+  
+    <div class="fs085">
+        <a href="_sources/CHANGELOG.rst.txt"  rel="nofollow" aria-label="Show source of this document"><i class="bi bi-file-earmark-code"></i></a>
+    </div>
+  
+</div>
+            
+    <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h1>
+<section id="id1">
+<h2>1.9.1 (2026-01-07)<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<section id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Un-pin scapy deps, use new toolbox package in rpm workflows. [Stephen
+L Arnold]</p>
+<ul>
+<li><p>allow dnf install to use not-latest versions of rpm deps</p></li>
+<li><p>update changelog file for release</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2>1.9.0 (2025-11-23)<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<section id="id3">
+<h3>Changes<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Cleanup doc bits, tool configs, and some lint. [Stephen L Arnold]</p>
+<ul>
+<li><p>update changelog file for release</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>1.8.11 (2025-11-22)<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<section id="id5">
+<h3>Changes<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use transitional rpm deps in workflow, review doorstop bits. [Stephen
+L Arnold]</p>
+<ul>
+<li><p>update changelog file for release</p></li>
+</ul>
+</li>
+<li><p>Revert diagram markup to (re)generate dep graph. [Stephen L Arnold]</p>
+<ul>
+<li><p>add checkout workaround for pull request action</p></li>
+</ul>
+</li>
+<li><p>Update doorstop doc items, restore comment markers. [Stephen L Arnold]</p></li>
+<li><p>Replace pygtail with logwatcher, update log handling and deps.
+[Stephen L Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id6">
+<h2>1.8.10 (2025-11-03)<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<section id="id7">
+<h3>Changes<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Bump daemonizer to latest release in setup.cfg and reqs files.
+[Stephen L Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h2>1.8.9 (2025-11-03)<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
+<section id="id9">
+<h3>Changes<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Bump daemonizer to latest in all reqs files and setup.cfg. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>bump all the deps in requirements-rpm.txt to latest</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="fixes">
+<h3>Fixes<a class="headerlink" href="#fixes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Restore missing async argparser defaults, cleanup logging. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>fix lpname string split in daemontui script</p></li>
+<li><p>fix missing arg defaults in async argparser, cleanup help strings</p></li>
+<li><p>cleanup logging configuration, set daemon class logging to INFO only</p></li>
+<li><p>align server logging with parent cfg, move asyncio setup out of try block</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id10">
+<h2>1.8.8 (2025-09-11)<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
+<section id="new">
+<h3>New<a class="headerlink" href="#new" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add rpm sbom dependency workflow, mv ci scripts to .github dir.
+[Stephen L Arnold]</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>Changes<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Remove experimental daemontui script from installed files. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>update readme and project files, cleanup pylint and version bits</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id12">
+<h2>1.8.7 (2025-08-19)<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h2>
+<section id="id13">
+<h3>Fixes<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Remove deprecated version attribute from package metadata. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>bump github deps to latest versions with the same fix</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id14">
+<h2>1.8.6 (2025-08-15)<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h2>
+<section id="id15">
+<h3>Changes<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Bump picotui to latest version, use tags in pip URLs. [Stephen L
+Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id16">
+<h2>1.8.5 (2025-08-10)<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h2>
+<section id="id17">
+<h3>Changes<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add readme admonition about change in previous behavior. [Stephen L
+Arnold]</p></li>
+</ul>
+</section>
+<section id="id18">
+<h3>Fixes<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p>Add fallback values for empty environment settings. [Stephen L Arnold]</p>
+<ul class="simple">
+<li><p>provide the same default values for each setting var if set but empty</p></li>
+<li><p>add another test using monkeypatched empty values</p></li>
+<li><p>update requirements file and coverage config</p></li>
+</ul>
+<p>this closes issue #62</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="id19">
+<h2>1.8.4 (2025-07-21)<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h2>
+<section id="id20">
+<h3>Changes<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Update changelog for packaging release. [Stephen L Arnold]</p></li>
+<li><p>Backport metadata from pyproject.toml to setup.cfg, relax versions.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>makes things compatible with ancient el9 setuptools</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id21">
+<h2>1.8.3 (2025-07-21)<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h2>
+<section id="id22">
+<h3>New<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add requirements file of wheel URLs for flatpak-generator. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>use a different dep format for all the git+https urls</p></li>
+<li><p>update project files to match wheel deps</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id23">
+<h3>Changes<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Update dependency versions, add GH cli workflow. [Stephen L Arnold]</p>
+<ul>
+<li><p>downloading specific rpm assets from specified tags</p></li>
+</ul>
+</li>
+<li><p>Remove psutil, along with related get_iface funcs and tests. [Stephen
+L Arnold]</p></li>
+<li><p>Add flatpak generator tool and cleanup docs review and config.
+[Stephen L Arnold]</p></li>
+</ul>
+</section>
+<section id="id24">
+<h3>Fixes<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Cleanup and update dependencies and imports, update tox and readme.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>ignore one spurious flake8 warning in daemontui.py</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id25">
+<h2>1.8.2 (2025-06-15)<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h2>
+<section id="id26">
+<h3>New<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Make sphinx config use git to get last non-dev versions. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>this should work as long as at least 2 tags exist</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id27">
+<h3>Changes<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Disable fallback version logic, go through release workflow as-is.
+[Stephen L Arnold]</p></li>
+<li><p>Disable link-checker command in CI to workaround extension error.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>upstream issue: <a class="reference external" href="https://github.com/danirus/sphinx-nefertiti/issues/66">https://github.com/danirus/sphinx-nefertiti/issues/66</a></p></li>
+</ul>
+</li>
+<li><p>Add sphinx_nefertiti and mermaid extensions, cleanup conf.py. [Stephen
+L Arnold]</p></li>
+<li><p>Update and pin git-based dependencies. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+<section id="id28">
+<h3>Fixes<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add another pytest ignore, update container workflow. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>bare github container plus rawhide equals broken workflows</p></li>
+<li><p>force py3.13 on rawhide to avoid building platform wheels from source</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id29">
+<h2>1.8.1 (2025-06-03)<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h2>
+<section id="id30">
+<h3>Changes<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Update, review, and regenerate doorstop doc bits. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+<section id="id31">
+<h3>Fixes<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use string for license expression, cleanup deps. [Stephen L Arnold]</p>
+<ul>
+<li><p>cleanup crufty picotui dev branch, use master#hash</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id32">
+<h2>1.8.0 (2025-06-01)<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h2>
+<section id="id33">
+<h3>New<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add doorstop TST document with test items, links, and references.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>add test keywords and move some tests, update design doc</p></li>
+<li><p>add test doc to sphinx build</p></li>
+<li><p>note: the reference file test_extras.py causes a doorstop error
+but with the same tests and keyword moved to a new file it works
+just fine (using tests/test_timer.py as reference file)</p></li>
+</ul>
+</li>
+<li><p>Add post-process script for munging markdown diagrams in CI. [Stephen
+L Arnold]</p>
+<ul>
+<li><p>works with render-md-mermaid action to convert image URLs required
+by action into myst-parser captions</p></li>
+<li><p>remove extra diagram clutter</p></li>
+</ul>
+</li>
+<li><p>Add small template func to munge markdown after render. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>diagrams workflow needs a helper to replace the simple image
+syntax with a myst diagram directive</p></li>
+<li><p>add some extra (temporary) image URLs to goose multiple files in CI</p></li>
+</ul>
+</li>
+<li><p>Add new doorstop doc for sw design bits, link to parent reqs. [Stephen
+L Arnold]</p></li>
+<li><p>Replace refresh button with a separate thread. [Stephen L Arnold]</p>
+<ul>
+<li><p>call the refresh func with its own daemon thread on a smallish interval</p></li>
+<li><p>update packaging and deps for daemontui script, cleanup imports and typos</p></li>
+</ul>
+</li>
+<li><p>Add pid check and kill on exit, use DEBUG for console output. [Stephen
+L Arnold]</p></li>
+<li><p>Add IDEV environment var to settings. [Stephen L Arnold]</p>
+<ul>
+<li><p>flake8 config file to replace what was in setup.cfg, update tox file</p></li>
+</ul>
+</li>
+<li><p>Testing doorstop for collecting TUI requirements. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+<section id="id34">
+<h3>Changes<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Update changelog for release. [Stephen L Arnold]</p></li>
+<li><p>Update changelog cfg, coverage paths, change deps. [Stephen L Arnold]</p>
+<ul>
+<li><p>improve changelog cleanliness, use setuptools_scm to get version</p></li>
+</ul>
+</li>
+<li><p>Sync up documented minimum supported python version. [Stephen L
+Arnold]</p></li>
+<li><p>Remove support for older python versions. [Stephen L Arnold]</p>
+<ul>
+<li><p>rmove old importlib and http handler checks</p></li>
+<li><p>ignore thread deprectation warnings from pytracer in pytest cfg</p></li>
+</ul>
+</li>
+<li><p>Add implementation references to SDD bits, update workflows. [Stephen
+L Arnold]</p>
+<ul>
+<li><p>limit container workflow to available redhat-ish and deb containers</p></li>
+<li><p>allow for github container emptyness and set version via env</p></li>
+</ul>
+</li>
+<li><p>Update doorstop doc sources, move thread timer class to module.
+[Stephen L Arnold]</p></li>
+<li><p>Cleanup python requirements. [Stephen L Arnold]</p></li>
+<li><p>Refactor workflow helper to remove external python deps. [Stephen L
+Arnold]</p></li>
+<li><p>Revert to original render-md-mermaid, add svg target. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>make sure bogus image link only exists in doorstop item</p></li>
+<li><p>allow contents and pull-requests perms for cpr action</p></li>
+</ul>
+</li>
+<li><p>Cleanup initial reqs experiment, add header item for docs. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>include the generated doorstop doc in sphinx build, update conf</p></li>
+<li><p>cleanup readme, add animated gif generated from desktop recording</p></li>
+<li><p>add doorstop to dev environment and docs cmd</p></li>
+</ul>
+</li>
+<li><p>Add server status indicator to run console, update screenshot.
+[Stephen L Arnold]</p></li>
+<li><p>Add ui note about mouse support, update docs. [Stephen L Arnold]</p>
+<ul>
+<li><p>add some console screenshots and a brief daemontui description</p></li>
+</ul>
+</li>
+<li><p>Flesh out daemontui controls, update doorstop dep to fork. [Stephen L
+Arnold]</p></li>
+<li><p>Revert to sphinx contrib apidoc, apply type hints, reformatting.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>update project files, ignore mypy errors in tui script</p></li>
+</ul>
+</li>
+<li><p>Add more type annotations, update tests and conf.py. [Stephen L
+Arnold]</p></li>
+<li><p>Add basic tests for tui_helpers, check for empty lines. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>make sure we check for an empty line in the list from pygtail</p></li>
+<li><p>allow line-shortening by splitting on space char, ie, using
+shorten=3 drops leading date chars (depending on format)</p></li>
+</ul>
+</li>
+<li><p>Add more (optional) deps for tui experiments. [Stephen L Arnold]</p>
+<ul>
+<li><p>update daemontui log display, split out helper funcs from tui source</p></li>
+<li><p>update project, tox, and reqs files</p></li>
+</ul>
+</li>
+<li><p>Update server logging configs, misc cleanup, update daemontui.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>allow env override for log file path instead of console</p></li>
+</ul>
+</li>
+<li><p>Update doorstop doc config, edit some reqs, create a new one. [Stephen
+L Arnold]</p></li>
+<li><p>Update picotui example, add workarounds for doorstop deps. [Stephen L
+Arnold]</p></li>
+<li><p>Skip 2 tests on windows and file a bug in psutils repo. [Stephen L
+Arnold]</p></li>
+<li><p>Refactor get_iface funcs to only return strings, update tests.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>split original into 3 separate functions that should always return
+a (possibly empty) string and not raise an exception</p></li>
+</ul>
+</li>
+<li><p>Add more settings widgets and update environment. [Stephen L Arnold]</p>
+<ul>
+<li><p>populate default port number when daemon selection changes</p></li>
+</ul>
+</li>
+<li><p>Make sure current widgets can update env state, cleanup lint. [Stephen
+L Arnold]</p></li>
+<li><p>Update reqs file and tox lint cmd, cleanup some lint. [Stephen L
+Arnold]</p></li>
+<li><p>Add a different get_useriface using psutil. [Stephen L Arnold]</p></li>
+<li><p>Update project files with picotui and doorstop deps. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>use .venv for dev environment or doorstop cries</p></li>
+</ul>
+</li>
+<li><p>Reduce workflow permissions. [Stephen L Arnold]</p></li>
+<li><p>Still more corrections, rewrites, and updates for the readme. [Stephen
+L Arnold]</p></li>
+</ul>
+</section>
+<section id="id35">
+<h3>Fixes<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Cleanup imports and mypy errors, add more type hints. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>update tests, mypy cfg, and project files</p></li>
+</ul>
+</li>
+<li><p>Use push event for current release status. [Stephen L Arnold]</p>
+<ul>
+<li><p>somehow adding workflow_dispatch made github look away and
+start displaying the wrong status (where push event is now
+correct)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id36">
+<h2>1.7.3 (2025-03-21)<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h2>
+<section id="id37">
+<h3>New<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add extended container workflow for other Linux environments. [Stephen
+L Arnold]</p>
+<ul>
+<li><p>no setup-python or git commands, disable until we have more time</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id38">
+<h3>Changes<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Update readme with reuse compliance and sbom snippet. [Stephen L
+Arnold]</p></li>
+<li><p>Testing license-as-string in CI matrix. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id39">
+<h2>1.7.2 (2025-03-20)<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h2>
+<section id="id40">
+<h3>Changes<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Update changelog file for next release. [Stephen L Arnold]</p></li>
+<li><p>Make sure included workflows get the workflow_call trigger. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>cleanup old runner versions, sync up artifact names</p></li>
+</ul>
+</li>
+<li><p>Make sure included workflows get the workflow_call trigger. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>cleanup old runner versions</p></li>
+</ul>
+</li>
+<li><p>Test local workflow file includes. [Stephen L Arnold]</p></li>
+<li><p>Simplify packaging files, remove PYTHONPATH from default env. [Stephen
+L Arnold]</p>
+<ul>
+<li><p>default values <em>do</em> get inherited by named envs who do not use setenv</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id41">
+<h2>1.7.1 (2025-03-18)<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h2>
+<section id="id42">
+<h3>Changes<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Update to latest bandit action for testing. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id43">
+<h2>1.7.0 (2025-03-18)<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h2>
+<section id="id44">
+<h3>Changes<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add changelog and include it as docs appendix. [Stephen L Arnold]</p>
+<ul>
+<li><p>remove deprecated apidoc contrib module, use built-in instead</p></li>
+<li><p>bump python version in sphinx workflow</p></li>
+</ul>
+</li>
+<li><p>Really fix license badge. [Stephen L Arnold]</p></li>
+<li><p>Make license badge static since GH cannot recognize reuse path.
+[Stephen L Arnold]</p></li>
+</ul>
+</section>
+<section id="id45">
+<h3>Fixes<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Give release.yml a newer python version to match sphinx. [Stephen L
+Arnold]</p></li>
+<li><p>Migrate to non-deprecated package metadata in pyproject.toml. [Stephen
+L Arnold]</p>
+<ul>
+<li><p>remove setup.cfg metadata and update tox</p></li>
+</ul>
+</li>
+<li><p>Fix package metadata nit and cleanup release workflow. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>update .pre-commit-config.yaml and apply new formatting</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id46">
+<h2>1.6.3 (2024-12-24)<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h2>
+<section id="id47">
+<h3>New<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Refactor module for async instead of importing it directly. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>add attribution to REUSE.toml config</p></li>
+<li><p>cleanup daemon scripts</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id48">
+<h3>Changes<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Integrate args and env vars, try and except, update docs. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>mainly async daemon and tox/readme updates</p></li>
+</ul>
+</li>
+<li><p>Async integration and cleanup commit that broke something. [Stephen L
+Arnold]</p></li>
+<li><p>Cleanup tftpd logging, add async dep for testing. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+<section id="id49">
+<h3>Fixes<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Make sure tftpdaemon gets an absolute path for DOCROOT. [Stephen L
+Arnold]</p></li>
+<li><p>Convert syntax for gh-pages deploy workflow action. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id50">
+<h2>1.6.1 (2024-12-16)<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h2>
+<section id="id51">
+<h3>New<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add reuse tool to lint environment, use reuse cfg and LICENSES dir.
+[Stephen Arnold]</p></li>
+</ul>
+</section>
+<section id="id52">
+<h3>Changes<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Refactor test, remove pytest skip, show test output in ci workflow.
+[Stephen L Arnold]</p></li>
+<li><p>Fefactor platform_check, remove a branch, adjust test assert. [Stephen
+L Arnold]</p></li>
+</ul>
+</section>
+<section id="id53">
+<h3>Fixes<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Let Daemon class set the working directory, not GetServer. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>this only applies to the httpdaemon script</p></li>
+</ul>
+</li>
+<li><p>Add daemon fallback path for XDG runtime dir. [Stephen L Arnold]</p>
+<ul>
+<li><p>XDG runtime path may not exist in a console environment</p></li>
+<li><p>fixes issue #23</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id54">
+<h2>1.6.0 (2024-10-13)<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h2>
+<section id="id55">
+<h3>Changes<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Remove old py version from coverage workflow and tox config. [Stephen
+L Arnold]</p></li>
+<li><p>Restore py36 in CI coverage and tox file and bump pip req. [Stephen L
+Arnold]</p></li>
+<li><p>Update version handling to use setuptools_scm. [Stephen L Arnold]</p>
+<ul>
+<li><p>update __init__ plus consumers, including packaging</p></li>
+<li><p>some minor nit cleanup</p></li>
+</ul>
+</li>
+<li><p>Still more version updates in tox workflows. [Stephen L Arnold]</p></li>
+<li><p>Update all workflow action vertsions, bump macos to latest. [Stephen L
+Arnold]</p></li>
+<li><p>Still more setup cleanup, use gh release tarballs for deps. [Stephen L
+Arnold]</p></li>
+<li><p>Bump repolite dep to latest release, cleanup setup.cfg. [Stephen L
+Arnold]</p></li>
+</ul>
+</section>
+<section id="id56">
+<h3>Fixes<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add missing action version updates to ci workfolw file. [Stephen L
+Arnold]</p></li>
+</ul>
+</section>
+<section id="other">
+<h3>Other<a class="headerlink" href="#other" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Cleanup old release bits. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id57">
+<h2>1.5.0 (2023-09-20)<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h2>
+<section id="id58">
+<h3>Changes<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Belated readme updates for new user paths, default tftp port. [Stephen
+L Arnold]</p></li>
+<li><p>Refactor/update dependencies, cleanup tests and tox. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>appdirs =&gt; platformdirs, minor refactor, daemonizer =&gt; 0.4.0</p></li>
+</ul>
+</li>
+<li><p>Update dcos build and docs, add git info. [Stephen L Arnold]</p></li>
+<li><p>Move to src layout for packaging. [Stephen L Arnold]</p></li>
+<li><p>Add pip show command to tox package check. [Stephen L Arnold]</p></li>
+<li><p>Cleanup package metadata and version imports. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id59">
+<h2>1.4.2 (2023-08-28)<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h2>
+<section id="id60">
+<h3>Fixes<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add missing env override for tftpdaemon script. [Stephen L Arnold]</p>
+<ul>
+<li><p>this is mostly a workflow fix to set the correct logging name</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id61">
+<h2>1.4.1 (2023-08-28)<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fix tftpy port handling, set defaults in tftpd and daemon script.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>update tftpy dep to VCT-hosted patch release</p></li>
+<li><p>cleanup test workflow cmd</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id62">
+<h2>1.4.0 (2023-08-27)<a class="headerlink" href="#id62" title="Link to this heading">¶</a></h2>
+<section id="id63">
+<h3>New<a class="headerlink" href="#id63" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add experimental tftpdaemon script, configure via settings. [Stephen L
+Arnold]</p></li>
+</ul>
+</section>
+<section id="id64">
+<h3>Changes<a class="headerlink" href="#id64" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Just a bit more readme clarity. [Stephen L Arnold]</p></li>
+<li><p>Update readme with latest examples, cleanup some lint. [Stephen L
+Arnold]</p></li>
+<li><p>Revert previous module, adjust for alternate tftpy module. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>tftp server needs upstream master, add repolite cfg file</p></li>
+<li><p>update tox tftp cmd with daemon/curl client test using 40Mb bin file</p></li>
+<li><p>make fork release on github for somewhat more permanent pkging URL</p></li>
+</ul>
+</li>
+<li><p>Update reqs file, ignore duplicate code in daemon scripts. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>add get_timeouts to test_extras</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id65">
+<h3>Fixes<a class="headerlink" href="#id65" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Cleanup new tftpy deps, docstrings, and lint, add small test. [Stephen
+L Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id66">
+<h2>1.3.0 (2023-08-17)<a class="headerlink" href="#id66" title="Link to this heading">¶</a></h2>
+<section id="id67">
+<h3>New<a class="headerlink" href="#id67" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add wsgi support, eg simple wsgi server and check script. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>cleanup deprecated tox directives, update pre-commit config</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id68">
+<h3>Changes<a class="headerlink" href="#id68" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Cleanup manifest warnings. [Stephen L Arnold]</p></li>
+<li><p>Make sure we have py36 for split tests. [Stephen L Arnold]</p></li>
+<li><p>Cleanup some docstrings and update a test. [Stephen L Arnold]</p></li>
+<li><p>Cleanup tox/test nits, update wsgi module and black formatting.
+[Stephen L Arnold]</p></li>
+</ul>
+</section>
+<section id="id69">
+<h3>Fixes<a class="headerlink" href="#id69" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Post-rebase cleanup, remove unused import from daemon script. [Stephen
+L Arnold]</p></li>
+</ul>
+</section>
+<section id="id70">
+<h3>Other<a class="headerlink" href="#id70" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Revert covdefault changes, go back to 3.6 in split coverage ci.
+[Stephen L Arnold]</p></li>
+<li><p>Update workflow action versions, cleanup interfaces, bump py vers.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>fix another test nit</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id71">
+<h2>1.2.5 (2022-10-18)<a class="headerlink" href="#id71" title="Link to this heading">¶</a></h2>
+<section id="id72">
+<h3>Changes<a class="headerlink" href="#id72" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Move old directory support to serv_run, update daemon script. [Stephen
+L Arnold]</p></li>
+<li><p>Spread matrix workflows across more python/platform versions. [Stephen
+L Arnold]</p>
+<ul>
+<li><p>make GetHandler compatible with py36, update mypy config</p></li>
+<li><p>update project and tox files to match workflow versions</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id73">
+<h3>Fixes<a class="headerlink" href="#id73" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Handle nonexistent DOCROOT in serv_init, update readme. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>remove superflous daemon check, it will raise FileNotFound error
+if home_dir (ie, doc root) does not exist</p></li>
+<li><p>include honcho proc/env files in sdist</p></li>
+</ul>
+</li>
+<li><p>Make things work on py36, add tests, skip one test on py36. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>use GetHandler without the directory arg on py36, change to docroot
+in run method instead</p></li>
+</ul>
+</li>
+<li><p>Refactor GetServer to be compatible with older python pre-3.7.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>make log/pid file names a user-settable environment var (default: httpd)</p></li>
+<li><p>update pip install URLs and docstrings, update readme/tox files</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id74">
+<h3>Other<a class="headerlink" href="#id74" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Cgh: dev: try combining python version coverage in current workflow.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>split coverage in tox file from testenv</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id75">
+<h2>1.2.4 (2022-08-24)<a class="headerlink" href="#id75" title="Link to this heading">¶</a></h2>
+<section id="id76">
+<h3>Changes<a class="headerlink" href="#id76" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Update serv example command in readme file. [Stephen L Arnold]</p></li>
+<li><p>Remove environment marker from daemonizer dep, use PEP440 url.
+[Stephen L Arnold]</p>
+<ul>
+<li><p>sadly this is required for “stock” Ubuntu focal since it does not
+appear to understand PEP345 markers</p></li>
+<li><p>this means we have to rely on readme blurb about posix daemon
+not compaitble with Windows</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id77">
+<h2>1.2.3 (2022-08-22)<a class="headerlink" href="#id77" title="Link to this heading">¶</a></h2>
+<section id="id78">
+<h3>Changes<a class="headerlink" href="#id78" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add post-release docs build job to release workflow. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>make sure we have matching docs version on release</p></li>
+</ul>
+</li>
+<li><p>Update setup metadata =&gt; author info and python versions. [Stephen L
+Arnold]</p></li>
+<li><p>Improve iface settings display, cleanup/disable logging_tree. [Stephen
+L Arnold]</p>
+<ul>
+<li><p>make reqs spec compatible with py38</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id79">
+<h3>Fixes<a class="headerlink" href="#id79" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Ripple cmd changes to all affected workflows. [Stephen L Arnold]</p></li>
+<li><p>Make sure tox cmds match the release workflow. [Stephen L Arnold]</p></li>
+<li><p>Remove one picky pylint warning. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id80">
+<h2>1.2.2 (2022-07-15)<a class="headerlink" href="#id80" title="Link to this heading">¶</a></h2>
+<section id="id81">
+<h3>New<a class="headerlink" href="#id81" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add minimal argparse, mainly for help and version. [Stephen L Arnold]</p>
+<ul>
+<li><p>daemon class does not like having its args handled, so</p></li>
+<li><p>use settings defaults or ENV variables for daemon config</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id82">
+<h3>Changes<a class="headerlink" href="#id82" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix doc string formatting in settings. [Stephen L Arnold]</p></li>
+<li><p>Fix set log level, add test assert, cleanup test imports. [Stephen L
+Arnold]</p></li>
+<li><p>Add DEBUG var for serv cmd logging, update readme. [Stephen L Arnold]</p></li>
+<li><p>(un)refactor moving to argarse, go back to env vars. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>argparse with daemonizer is not a great mix</p></li>
+</ul>
+</li>
+<li><p>Refactor with argparse instead of env vars. [Stephen L Arnold]</p></li>
+</ul>
+</section>
+<section id="id83">
+<h3>Fixes<a class="headerlink" href="#id83" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Tox file and lint cleanup, daemon not runnable on windows. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>mark test_platform_check with &#64;pytest.mark.skipif</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id84">
+<h3>Other<a class="headerlink" href="#id84" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fx: dev: cleanup thread deprecation warnings. [Stephen L Arnold]</p>
+<ul>
+<li><p>lower required coverage to 85 percent, &lt;sigh&gt; Windows skip</p></li>
+</ul>
+</li>
+<li><p>Update issue templates. [Steve Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id85">
+<h2>1.2.1 (2022-07-09)<a class="headerlink" href="#id85" title="Link to this heading">¶</a></h2>
+<section id="id86">
+<h3>New<a class="headerlink" href="#id86" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add coverage workflow and fix_pkg_name coverage script. [Stephen L
+Arnold]</p></li>
+<li><p>Add httpdaemon script, cleanup logging, update tox file. [Stephen L
+Arnold]</p></li>
+</ul>
+</section>
+<section id="id87">
+<h3>Changes<a class="headerlink" href="#id87" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Update minimum daemon requirement to latest release. [Stephen L
+Arnold]</p></li>
+<li><p>Add post-install check for daemon script, cleanup setup.cfg. [Stephen
+L Arnold]</p>
+<ul>
+<li><p>add coverage/status badges to readme file</p></li>
+</ul>
+</li>
+<li><p>Flesh out sdist using MANIFEST.in file. [Stephen L Arnold]</p></li>
+<li><p>Add more tests and coverage controls, mark main/serv_run no cover.
+[Stephen L Arnold]</p></li>
+<li><p>Remove superfluous check, fix test name, add more tests. [Stephen L
+Arnold]</p></li>
+<li><p>Refactor some bits, add some tests, update reqs and tox files.
+[Stephen L Arnold]</p></li>
+<li><p>More docstring cleanup, add debug logging for thread info. [Stephen L
+Arnold]</p></li>
+<li><p>Switch desc back to docstring, remove unused imports. [Stephen L
+Arnold]</p></li>
+<li><p>Add missing arg check, simplify platform error. [Stephen L Arnold]</p></li>
+<li><p>Add platform check and change dir to doc root. [Stephen L Arnold]</p></li>
+<li><p>Revert optional deps, allow broken daemon script on windows. [Stephen
+L Arnold]</p></li>
+<li><p>Update readme, cleanup packaging, add devenv file. [Stephen L Arnold]</p>
+<ul>
+<li><p>make daemonizer deps optional =&gt; [dev] and add to readme</p></li>
+<li><p>add conda devenv file with conda deps (use pip for daemonizer)</p></li>
+</ul>
+</li>
+<li><p>Move script to no-extension, add symlink for py. [Stephen L Arnold]</p></li>
+<li><p>Package daemon script, update cfgs, apply cleanup. [Stephen L Arnold]</p></li>
+<li><p>Switch to threaded http.server class, update docstrings. [Stephen L
+Arnold]</p></li>
+<li><p>More refactoring, allow iface arg, update readme. [Stephen L Arnold]</p></li>
+<li><p>Refactor stand-alone run() interface for daemon script. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>add settings file with env overrides for user defaults</p></li>
+<li><p>split run() into init and foreground runner</p></li>
+<li><p>update tox file with default env and deps</p></li>
+<li><p>add appdirs dep to setup.cfg</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id88">
+<h3>Fixes<a class="headerlink" href="#id88" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use tuple of names and add platform check for logdir. [Stephen L
+Arnold]</p></li>
+<li><p>Handle thread shutdown cleanly, cleanup readme and docstrings.
+[Stephen L Arnold]</p></li>
+<li><p>Pylint needs egg_info in clean ci environment. [Stephen L Arnold]</p></li>
+<li><p>Packaging and lint cleanup, add damonizer deps. [Stephen L Arnold]</p>
+<ul>
+<li><p>cleanup pylint and flake8 warnings, update setup.cfg and tox files</p></li>
+<li><p>add daemon script dependencies to install_requires</p></li>
+<li><p>install stand-alone httpdaemon script to venv bin dir</p></li>
+<li><p>show both default paths and env values in settings display</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id89">
+<h2>1.2.0 (2022-06-27)<a class="headerlink" href="#id89" title="Link to this heading">¶</a></h2>
+<section id="id90">
+<h3>New<a class="headerlink" href="#id90" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use versioningit to maintain package versioning. [Stephen L Arnold]</p>
+<ul>
+<li><p>convert pkg from py_module to package</p></li>
+<li><p>add module init for version/description metadata</p></li>
+<li><p>add config to project files, update tox and .gitignore</p></li>
+<li><p>add base tag for last upstream version</p></li>
+</ul>
+</li>
+<li><p>Add pre-commit and pep8speaks configs, apply cleanup. [Stephen L
+Arnold]</p></li>
+<li><p>Add the usual github workflows for python. [Stephen L Arnold]</p></li>
+<li><p>Add docs build, cleanup doc strings, update readme/tox files. [Stephen
+L Arnold]</p></li>
+</ul>
+</section>
+<section id="id91">
+<h3>Changes<a class="headerlink" href="#id91" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add pre-commit section to readme. [Stephen L Arnold]</p></li>
+<li><p>Still-another-readme-update. [Stephen L Arnold]</p></li>
+<li><p>Yet-another-readme-update. [Stephen L Arnold]</p></li>
+<li><p>Add honcho dependency, plus basic env and Procfile. [Stephen L Arnold]</p></li>
+<li><p>Update (minimal) readme. [Stephen L Arnold]</p></li>
+<li><p>Remove clutter, try SimpleHTTPRequestHandler instead. [Stephen L
+Arnold]</p></li>
+</ul>
+</section>
+<section id="id92">
+<h3>Fixes<a class="headerlink" href="#id92" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use the right branch name for pylint badge. [Stephen L Arnold]</p></li>
+<li><p>Cleanup some lint in server and tox files. [Stephen L Arnold]</p></li>
+<li><p>Flesh out get wrapper and logging, rewrite get path ftw. [Stephen L
+Arnold]</p>
+<ul>
+<li><p>this now works with the dialog ota_update console cmds</p></li>
+</ul>
+</li>
+<li><p>Give it a proper main() and modern packaging. [Stephen Arnold]</p></li>
+</ul>
+</section>
+</section>
+<section id="id93">
+<h2>1.1.0 (2019-12-18)<a class="headerlink" href="#id93" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>File change. [Dheeraj M Pai]</p></li>
+<li><p>Initial commit. [dheerajmpai]</p></li>
+</ul>
+</section>
+</section>
+
+</div>
+        </article>
+        <aside class="nftt-toc my-3">
+          
+          <div class="my-sm-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">Changelog</a><ul>
+<li><a class="reference internal" href="#id1">1.9.1 (2026-01-07)</a><ul>
+<li><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">1.9.0 (2025-11-23)</a><ul>
+<li><a class="reference internal" href="#id3">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">1.8.11 (2025-11-22)</a><ul>
+<li><a class="reference internal" href="#id5">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">1.8.10 (2025-11-03)</a><ul>
+<li><a class="reference internal" href="#id7">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8">1.8.9 (2025-11-03)</a><ul>
+<li><a class="reference internal" href="#id9">Changes</a></li>
+<li><a class="reference internal" href="#fixes">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id10">1.8.8 (2025-09-11)</a><ul>
+<li><a class="reference internal" href="#new">New</a></li>
+<li><a class="reference internal" href="#id11">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id12">1.8.7 (2025-08-19)</a><ul>
+<li><a class="reference internal" href="#id13">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id14">1.8.6 (2025-08-15)</a><ul>
+<li><a class="reference internal" href="#id15">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id16">1.8.5 (2025-08-10)</a><ul>
+<li><a class="reference internal" href="#id17">Changes</a></li>
+<li><a class="reference internal" href="#id18">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id19">1.8.4 (2025-07-21)</a><ul>
+<li><a class="reference internal" href="#id20">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id21">1.8.3 (2025-07-21)</a><ul>
+<li><a class="reference internal" href="#id22">New</a></li>
+<li><a class="reference internal" href="#id23">Changes</a></li>
+<li><a class="reference internal" href="#id24">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id25">1.8.2 (2025-06-15)</a><ul>
+<li><a class="reference internal" href="#id26">New</a></li>
+<li><a class="reference internal" href="#id27">Changes</a></li>
+<li><a class="reference internal" href="#id28">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id29">1.8.1 (2025-06-03)</a><ul>
+<li><a class="reference internal" href="#id30">Changes</a></li>
+<li><a class="reference internal" href="#id31">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id32">1.8.0 (2025-06-01)</a><ul>
+<li><a class="reference internal" href="#id33">New</a></li>
+<li><a class="reference internal" href="#id34">Changes</a></li>
+<li><a class="reference internal" href="#id35">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id36">1.7.3 (2025-03-21)</a><ul>
+<li><a class="reference internal" href="#id37">New</a></li>
+<li><a class="reference internal" href="#id38">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id39">1.7.2 (2025-03-20)</a><ul>
+<li><a class="reference internal" href="#id40">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id41">1.7.1 (2025-03-18)</a><ul>
+<li><a class="reference internal" href="#id42">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id43">1.7.0 (2025-03-18)</a><ul>
+<li><a class="reference internal" href="#id44">Changes</a></li>
+<li><a class="reference internal" href="#id45">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id46">1.6.3 (2024-12-24)</a><ul>
+<li><a class="reference internal" href="#id47">New</a></li>
+<li><a class="reference internal" href="#id48">Changes</a></li>
+<li><a class="reference internal" href="#id49">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id50">1.6.1 (2024-12-16)</a><ul>
+<li><a class="reference internal" href="#id51">New</a></li>
+<li><a class="reference internal" href="#id52">Changes</a></li>
+<li><a class="reference internal" href="#id53">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id54">1.6.0 (2024-10-13)</a><ul>
+<li><a class="reference internal" href="#id55">Changes</a></li>
+<li><a class="reference internal" href="#id56">Fixes</a></li>
+<li><a class="reference internal" href="#other">Other</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id57">1.5.0 (2023-09-20)</a><ul>
+<li><a class="reference internal" href="#id58">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id59">1.4.2 (2023-08-28)</a><ul>
+<li><a class="reference internal" href="#id60">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id61">1.4.1 (2023-08-28)</a></li>
+<li><a class="reference internal" href="#id62">1.4.0 (2023-08-27)</a><ul>
+<li><a class="reference internal" href="#id63">New</a></li>
+<li><a class="reference internal" href="#id64">Changes</a></li>
+<li><a class="reference internal" href="#id65">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id66">1.3.0 (2023-08-17)</a><ul>
+<li><a class="reference internal" href="#id67">New</a></li>
+<li><a class="reference internal" href="#id68">Changes</a></li>
+<li><a class="reference internal" href="#id69">Fixes</a></li>
+<li><a class="reference internal" href="#id70">Other</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id71">1.2.5 (2022-10-18)</a><ul>
+<li><a class="reference internal" href="#id72">Changes</a></li>
+<li><a class="reference internal" href="#id73">Fixes</a></li>
+<li><a class="reference internal" href="#id74">Other</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id75">1.2.4 (2022-08-24)</a><ul>
+<li><a class="reference internal" href="#id76">Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id77">1.2.3 (2022-08-22)</a><ul>
+<li><a class="reference internal" href="#id78">Changes</a></li>
+<li><a class="reference internal" href="#id79">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id80">1.2.2 (2022-07-15)</a><ul>
+<li><a class="reference internal" href="#id81">New</a></li>
+<li><a class="reference internal" href="#id82">Changes</a></li>
+<li><a class="reference internal" href="#id83">Fixes</a></li>
+<li><a class="reference internal" href="#id84">Other</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id85">1.2.1 (2022-07-09)</a><ul>
+<li><a class="reference internal" href="#id86">New</a></li>
+<li><a class="reference internal" href="#id87">Changes</a></li>
+<li><a class="reference internal" href="#id88">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id89">1.2.0 (2022-06-27)</a><ul>
+<li><a class="reference internal" href="#id90">New</a></li>
+<li><a class="reference internal" href="#id91">Changes</a></li>
+<li><a class="reference internal" href="#id92">Fixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id93">1.1.0 (2019-12-18)</a></li>
+</ul>
+</li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
+          
+        </aside>
+      </div>
+    </div>
+
+    <footer class="nftt-footer">
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="d-flex page-item">
+            <a href="api/pyserv.wsgi.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: pyserv.wsgi module">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-none d-sm-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">pyserv.wsgi module</span>
+              </div>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="pyserv">
+          <span class="fs-6 fw-bold">pyserv</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2022 - 2026 Stephen Arnold</li>
+          </ul>
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.4.7</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.9.1</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+
+    <div class="modal modal-xl fade" id="nftt-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-xxl-down modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nftt-modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="nftt-modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="_static/documentation_options.js?v=60b3a732"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/colorsets.js?v=58f89e02"></script>
+    <script src="_static/docs-versions.js?v=04636b99"></script>
+    <script src="_static/sphinx-nefertiti.min.js?v=732b5b51"></script>
+    <script src="_static/bootstrap.bundle.min.js?v=e96d90d1"></script>
+  </body>
+</html>

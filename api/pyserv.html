@@ -1,0 +1,723 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="colorset-reset" content="86400000" />
+    <meta name="docsearch:name" content="pyserv" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="1.9.1" />
+    <meta name="docsearch:version" content="1.9.1" />
+    
+      <meta name="theme-color" content="#CFE2FF" media="(prefers-color-scheme: light)" />
+      <meta name="theme-color" content="#031633" media="(prefers-color-scheme: dark)" />
+    
+    
+      <title>pyserv package &mdash; pyserv 1.9.1 documentation</title>
+    
+    <link rel="canonical" href="api/pyserv" />
+          <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8e8a900e" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/sphinx-nefertiti-blue.min.css?v=8c7e6259" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/nunito/stylesheet.css?v=abf98f06" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/fonts/ubuntu-sans-mono/stylesheet.css?v=8616a587" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/pygments-dark.css?v=f21207c5" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/pygments-light.css?v=6c104457" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="../_static/bootstrap-icons.min.css?v=44730005" /><!-- add (1) -->
+        <link rel="index" title="Index" href="../genindex.html" />
+        <link rel="search" title="Search" href="../search.html" />
+        <link rel="top" title="pyserv 1.9.1 documentation" href="#" />
+        <link rel="up" title="pyserv" href="modules.html" />
+        <link rel="next" title="pyserv.ext module" href="pyserv.ext.html" />
+        <link rel="prev" title="pyserv" href="modules.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Ubuntu Sans Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);--nftt-monospace-font-size: .90rem;}
+
+      h1 *,
+      h2 *,
+      h3 *,
+      h4 *,
+      h5 *,
+      h6 * {
+        font-size: inherit;
+      }
+
+      .light pre,
+      .dark pre {
+        line-height: var(--nftt-pre-line-height, 140%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="back-to-top-container" class="position-fixed start-50 translate-middle-x">
+      <button id="back-to-top" type="button" class="d-none btn btn-neutral btn-sm shadow px-4" data-bs-toggle="button">Back to top</button>
+    </div>
+    <header id="snftt-nav-bar" class="navbar navbar-expand-xl neutral nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-fluid visually-hidden-focusable overflow-hidden justify-content-start flex-grow-1">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to index filter</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="../index.html"
+             class="navbar-brand"
+          ><span class="brand-text">pyserv</span><span class="brand-short-text">pyserv</span></a>
+        
+        
+        <div class="d-flex d-xl-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-xl offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-xl-0 ps-xl-4">
+    <hr class="d-xl-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-xl-auto">
+        <form id="nftt-search-form" action="../search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control search-input" placeholder="Search" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-short-text">pyserv</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+            <hr class="d-xl-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-lg-auto">
+              
+              
+              <li class="nav-item col-12 col-xl-auto">
+                <a class="nav-link py-2 py-xl-0 px-0 px-xl-2" href="https://github.com/sarnold/pyserv" target="_blank" rel="noopener">
+                  <div class="d-flex align-items-center">
+                    <div class="me-2">
+                      <i class="bi bi-git size-24"></i>
+                    </div>
+                    <div class="repo d-flex flex-column align-items-center" data-snftt-repo-url="https://github.com/sarnold/pyserv">
+                      pyserv
+                      <div class="d-flex justify-content-center" data-snftt-repo-metrics>
+                        <span class="pe-2 d-flex justify-content-center align-items-center">
+                          <i class="bi bi-tag size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-tag></span>
+                        </span>
+                        <span class="pe-2 d-flex justify-content-center align-items-center">
+                          <i class="bi bi-star size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-stars></span>
+                        </span>
+                        <span class="d-flex justify-content-center align-items-center">
+                          <i class="bi bi-diagram-2 size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-forks></span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+                <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+                <hr class="d-xl-none text-white-50">
+              </li>
+              
+              
+  <li class="nav-item dropdown">
+    <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-version" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Select version">
+      <span id="snftt-version-text" class="d-xl-none">pyserv</span>
+      <span class="ms-2" data-snftt-version-active="latest">latest</span>
+    </a>
+    
+    <ul class="dropdown-menu dropdown-menu-end dropdown-limit-max-height" aria-labelledby="snftt-version-text" id="versions-dropdown-menu">
+      <li>
+        <h6 class="dropdown-header">Versions</h6>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+    <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+    <hr class="d-xl-none text-white-50">
+  </li>
+
+              
+  <!-- colorssets-dropdown.html -->
+  <li class="nav-item dropdown">
+    <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-color" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Change base color">
+      <i class="bi bi-palette"></i>
+      <span id="snftt-color-text" class="d-xl-none ms-2">Change base color</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-color-text">
+      <li>
+        <h6 class="dropdown-header">Change base color</h6>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center active" data-snftt-colorset="blue" href="#" aria-pressed="false">
+          <span class="blue">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Blue</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="indigo" href="#" aria-pressed="false">
+          <span class="indigo">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Indigo</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="purple" href="#" aria-pressed="false">
+          <span class="purple">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Purple</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="pink" href="#" aria-pressed="false">
+          <span class="pink">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Pink</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="red" href="#" aria-pressed="false">
+          <span class="red">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Red</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="orange" href="#" aria-pressed="false">
+          <span class="orange">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Orange</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="yellow" href="#" aria-pressed="false">
+          <span class="yellow">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Yellow</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="green" href="#" aria-pressed="false">
+          <span class="green">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Green</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="teal" href="#" aria-pressed="false">
+          <span class="teal">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Teal</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="default" href="#" aria-pressed="false">
+          <span class="cyan">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Cyan</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li><hr class="dropdown-divider" /></li>
+      <li>
+        <h6 class="dropdown-header">Header style</h6>
+      </li>
+      <li>
+        <a class="dropdown-item d-flex align-items-center active current" data-snftt-colorset-neutral="on" href="#" aria-pressed="false">
+          <i class="bi bi-noise-reduction"></i>
+          <span class="ms-3">Neutral</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+    <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+    <hr class="d-lg-none text-white-50">
+  </li>
+
+              
+              <!-- lightdark-dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Change appearance">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-xl-none ms-2">Change appearance</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Change appearance</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="ms-3">Automatic</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+    </header>
+
+    <div class="container-fluid flex-grow-1">
+      <div class="nftt-gutter nftt-page">
+        <aside class="nftt-sidebar ">
+          <div class="nftt-sidebar-content">
+            
+            <div class="title d-none d-xl-none">
+              <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Index</span>
+            </div>
+            <div id="sidebar" tabindex="-1" class="offcanvas-xl offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+                <!-- sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title fw-bold" id="nfttSidebarOffcanvasLabel">
+    Index
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="index filter" aria-label="index filter">
+    </div>
+    <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Pyserv - A Collection of Simple Servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TUI_reqs_tree.html">1.0 TUI Requirements {#TUI_006}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TUI_sw_design.html">1.0 TUI Design Elements {#SDD_001}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TUI_unit_tests.html">1.0 Automated Tests {#TST_001}</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyserv</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pyserv package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyserv.ext.html">pyserv.ext module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyserv.server.html">pyserv.server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyserv.settings.html">pyserv.settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyserv.tftpd.html">pyserv.tftpd module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyserv.tui_helpers.html">pyserv.tui_helpers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyserv.wsgi.html">pyserv.wsgi module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+            </div>
+            
+          </div>
+        </aside>
+        <article id="content" class="nftt-content" role="main">
+          <div><div class="d-flex flex-row justify-content-between">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="../index.html">Start</a></li>
+        <li class="breadcrumb-item"><a href="modules.html">pyserv</a></li>
+      <li class="breadcrumb-item active" aria-current="page">pyserv package</li>
+    </ol>
+  </nav>
+  
+    <div class="fs085">
+        <a href="../_sources/api/pyserv.rst.txt"  rel="nofollow" aria-label="Show source of this document"><i class="bi bi-file-earmark-code"></i></a>
+    </div>
+  
+</div>
+            
+    <section id="pyserv-package">
+<h1>pyserv package<a class="headerlink" href="#pyserv-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyserv.ext.html">pyserv.ext module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.ext.html#pyserv.ext.parse_cli_arguments"><code class="docutils literal notranslate"><span class="pre">parse_cli_arguments()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyserv.server.html">pyserv.server module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.server.html#pyserv.server.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.server.html#pyserv.server.serv_init"><code class="docutils literal notranslate"><span class="pre">serv_init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.server.html#pyserv.server.serv_run"><code class="docutils literal notranslate"><span class="pre">serv_run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyserv.settings.html">pyserv.settings module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.settings.html#pyserv.settings.get_userdirs"><code class="docutils literal notranslate"><span class="pre">get_userdirs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.settings.html#pyserv.settings.init_dirs"><code class="docutils literal notranslate"><span class="pre">init_dirs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.settings.html#pyserv.settings.platform_check"><code class="docutils literal notranslate"><span class="pre">platform_check()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.settings.html#pyserv.settings.show_uservars"><code class="docutils literal notranslate"><span class="pre">show_uservars()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyserv.tftpd.html">pyserv.tftpd module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.tftpd.html#pyserv.tftpd.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.tftpd.html#pyserv.tftpd.tftpd_init"><code class="docutils literal notranslate"><span class="pre">tftpd_init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.tftpd.html#pyserv.tftpd.tftpd_run"><code class="docutils literal notranslate"><span class="pre">tftpd_run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyserv.tui_helpers.html">pyserv.tui_helpers module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.tui_helpers.html#pyserv.tui_helpers.TLogWatcher"><code class="docutils literal notranslate"><span class="pre">TLogWatcher</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyserv.tui_helpers.html#pyserv.tui_helpers.TLogWatcher.open"><code class="docutils literal notranslate"><span class="pre">TLogWatcher.open()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.tui_helpers.html#pyserv.tui_helpers.dummy_callback"><code class="docutils literal notranslate"><span class="pre">dummy_callback()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.tui_helpers.html#pyserv.tui_helpers.get_env"><code class="docutils literal notranslate"><span class="pre">get_env()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.tui_helpers.html#pyserv.tui_helpers.get_w_env"><code class="docutils literal notranslate"><span class="pre">get_w_env()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.tui_helpers.html#pyserv.tui_helpers.host_check"><code class="docutils literal notranslate"><span class="pre">host_check()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.tui_helpers.html#pyserv.tui_helpers.update_log_lines"><code class="docutils literal notranslate"><span class="pre">update_log_lines()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyserv.wsgi.html">pyserv.wsgi module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.wsgi.html#pyserv.wsgi.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.wsgi.html#pyserv.wsgi.wsgi_init"><code class="docutils literal notranslate"><span class="pre">wsgi_init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyserv.wsgi.html#pyserv.wsgi.wsgi_run"><code class="docutils literal notranslate"><span class="pre">wsgi_run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-pyserv">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyserv" title="Link to this heading">¶</a></h2>
+<p>Simple HTTP server classes with GET path rewriting and request/header logging.
+Now includes a reference WSGI server and tftpdaemon script.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyserv.GetHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyserv.</span></span><span class="sig-name descname"><span class="pre">GetHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#GetHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.GetHandler" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleHTTPRequestHandler</span></code></p>
+<p>Munge the incoming request path from Dialog OTA. Runs <cite>urlparse</cite> on
+the url and updates the GET handler path. We also log the result.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyserv.GetHandler.do_GET">
+<span class="sig-name descname"><span class="pre">do_GET</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#GetHandler.do_GET"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.GetHandler.do_GET" title="Link to this definition">¶</a></dt>
+<dd><p>Serve a GET request.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyserv.GetHandler.log_message">
+<span class="sig-name descname"><span class="pre">log_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#GetHandler.log_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.GetHandler.log_message" title="Link to this definition">¶</a></dt>
+<dd><p>We need a custom log handler, otherwise Get message goes to
+<cite>sys.stdout</cite> only.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyserv.GetServer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyserv.</span></span><span class="sig-name descname"><span class="pre">GetServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#GetServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.GetServer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+<p>Threaded wrapper class for custom ThreadingHTTPServer instance.</p>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">GetServer</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyserv.GetServer.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#GetServer.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.GetServer.run" title="Link to this definition">¶</a></dt>
+<dd><p>Start main server thread</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyserv.GetServer.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#GetServer.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.GetServer.stop" title="Link to this definition">¶</a></dt>
+<dd><p>Stop main server thread</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyserv.GetServerWSGI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyserv.</span></span><span class="sig-name descname"><span class="pre">GetServerWSGI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flask_app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_flask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#GetServerWSGI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.GetServerWSGI" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+<p>Threaded wrapper class for custom flask WSGIServer instance.</p>
+<p>Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">GetServerWSGI</span><span class="p">(</span><span class="n">my_app</span><span class="p">,</span> <span class="mi">8080</span><span class="p">,</span> <span class="n">is_flask</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyserv.GetServerWSGI.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#GetServerWSGI.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.GetServerWSGI.run" title="Link to this definition">¶</a></dt>
+<dd><p>Start main server thread</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyserv.GetServerWSGI.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#GetServerWSGI.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.GetServerWSGI.stop" title="Link to this definition">¶</a></dt>
+<dd><p>Stop main server thread</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyserv.RepeatTimer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyserv.</span></span><span class="sig-name descname"><span class="pre">RepeatTimer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#RepeatTimer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.RepeatTimer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A non-blocking timer thread to execute a user func repeatedly.
+Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">rt</span> <span class="o">=</span> <span class="n">RepeatTimer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">hello</span><span class="p">,</span> <span class="s2">&quot;World&quot;</span><span class="p">)</span>  <span class="c1"># it auto-starts</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># run other stuff</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">rt</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>  <span class="c1"># best in a try/finally block</span>
+</pre></div>
+</div>
+<p>Author: <a class="reference external" href="https://stackoverflow.com/a/38317060/14874218">https://stackoverflow.com/a/38317060/14874218</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interval</strong> (<em>int</em><em> | </em><em>float</em>)</p></li>
+<li><p><strong>function</strong> (<em>Callable</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyserv.RepeatTimer.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#RepeatTimer.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.RepeatTimer.start" title="Link to this definition">¶</a></dt>
+<dd><p>Safely (re)start thread timer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyserv.RepeatTimer.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#RepeatTimer.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.RepeatTimer.stop" title="Link to this definition">¶</a></dt>
+<dd><p>Safely stop thread timer.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyserv.munge_url">
+<span class="sig-prename descclassname"><span class="pre">pyserv.</span></span><span class="sig-name descname"><span class="pre">munge_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ota_url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyserv.html#munge_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyserv.munge_url" title="Link to this definition">¶</a></dt>
+<dd><p>Parse the url sent by OTA command for file path and host string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ota_url</strong> – (possibly) broken GET path</p>
+</dd>
+<dt class="field-even">Return tuple<span class="colon">:</span></dt>
+<dd class="field-even"><p>netloc and path from <code class="docutils literal notranslate"><span class="pre">urlparse</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+</div>
+        </article>
+        <aside class="nftt-toc my-3">
+          
+          <div class="my-sm-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">pyserv package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-pyserv">Module contents</a><ul>
+<li><a class="reference internal" href="#pyserv.GetHandler"><code class="docutils literal notranslate"><span class="pre">GetHandler</span></code></a><ul>
+<li><a class="reference internal" href="#pyserv.GetHandler.do_GET"><code class="docutils literal notranslate"><span class="pre">GetHandler.do_GET()</span></code></a></li>
+<li><a class="reference internal" href="#pyserv.GetHandler.log_message"><code class="docutils literal notranslate"><span class="pre">GetHandler.log_message()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pyserv.GetServer"><code class="docutils literal notranslate"><span class="pre">GetServer</span></code></a><ul>
+<li><a class="reference internal" href="#pyserv.GetServer.run"><code class="docutils literal notranslate"><span class="pre">GetServer.run()</span></code></a></li>
+<li><a class="reference internal" href="#pyserv.GetServer.stop"><code class="docutils literal notranslate"><span class="pre">GetServer.stop()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pyserv.GetServerWSGI"><code class="docutils literal notranslate"><span class="pre">GetServerWSGI</span></code></a><ul>
+<li><a class="reference internal" href="#pyserv.GetServerWSGI.run"><code class="docutils literal notranslate"><span class="pre">GetServerWSGI.run()</span></code></a></li>
+<li><a class="reference internal" href="#pyserv.GetServerWSGI.stop"><code class="docutils literal notranslate"><span class="pre">GetServerWSGI.stop()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pyserv.RepeatTimer"><code class="docutils literal notranslate"><span class="pre">RepeatTimer</span></code></a><ul>
+<li><a class="reference internal" href="#pyserv.RepeatTimer.start"><code class="docutils literal notranslate"><span class="pre">RepeatTimer.start()</span></code></a></li>
+<li><a class="reference internal" href="#pyserv.RepeatTimer.stop"><code class="docutils literal notranslate"><span class="pre">RepeatTimer.stop()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pyserv.munge_url"><code class="docutils literal notranslate"><span class="pre">munge_url()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
+          
+        </aside>
+      </div>
+    </div>
+
+    <footer class="nftt-footer">
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="d-flex page-item">
+            <a href="modules.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: pyserv">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-none d-sm-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">pyserv</span>
+              </div>
+            </a>
+          </li>
+        <li class="d-flex page-item ms-auto">
+            <a href="pyserv.ext.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: pyserv.ext module">
+              <div class="d-flex flex-column">
+                <span class="text-small text-end text-start text-muted">Next</span>
+                <span class="underline">pyserv.ext module</span>
+              </div>
+              <span class="next-page"><i class="bi bi-caret-right"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="pyserv">
+          <span class="fs-6 fw-bold">pyserv</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2022 - 2026 Stephen Arnold</li>
+          </ul>
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.4.7</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.9.1</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+
+    <div class="modal modal-xl fade" id="nftt-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-xxl-down modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nftt-modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="nftt-modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="../_static/documentation_options.js?v=60b3a732"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/colorsets.js?v=58f89e02"></script>
+    <script src="../_static/docs-versions.js?v=04636b99"></script>
+    <script src="../_static/sphinx-nefertiti.min.js?v=732b5b51"></script>
+    <script src="../_static/bootstrap.bundle.min.js?v=e96d90d1"></script>
+  </body>
+</html>

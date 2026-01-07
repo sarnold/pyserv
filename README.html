@@ -1,0 +1,1052 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="colorset-reset" content="86400000" />
+    <meta name="docsearch:name" content="pyserv" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="1.9.1" />
+    <meta name="docsearch:version" content="1.9.1" />
+    
+      <meta name="theme-color" content="#CFE2FF" media="(prefers-color-scheme: light)" />
+      <meta name="theme-color" content="#031633" media="(prefers-color-scheme: dark)" />
+    
+    
+      <title>Pyserv - A Collection of Simple Servers &mdash; pyserv 1.9.1 documentation</title>
+    
+    <link rel="canonical" href="README" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/sphinx-nefertiti-blue.min.css?v=8c7e6259" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/fonts/nunito/stylesheet.css?v=abf98f06" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/fonts/ubuntu-sans-mono/stylesheet.css?v=8616a587" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/pygments-dark.css?v=f21207c5" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/pygments-light.css?v=6c104457" /><!-- add (1) -->
+          <link rel="stylesheet" type="text/css" href="_static/bootstrap-icons.min.css?v=44730005" /><!-- add (1) -->
+        <link rel="index" title="Index" href="genindex.html" />
+        <link rel="search" title="Search" href="search.html" />
+        <link rel="top" title="pyserv 1.9.1 documentation" href="#" />
+        <link rel="next" title="1.0 TUI Requirements {#TUI_006}" href="TUI_reqs_tree.html" />
+        <link rel="prev" title="pyserv: A collection of server bits for HTTP, WSGI, and TFTP" href="index.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Ubuntu Sans Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);--nftt-monospace-font-size: .90rem;}
+
+      h1 *,
+      h2 *,
+      h3 *,
+      h4 *,
+      h5 *,
+      h6 * {
+        font-size: inherit;
+      }
+
+      .light pre,
+      .dark pre {
+        line-height: var(--nftt-pre-line-height, 140%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="back-to-top-container" class="position-fixed start-50 translate-middle-x">
+      <button id="back-to-top" type="button" class="d-none btn btn-neutral btn-sm shadow px-4" data-bs-toggle="button">Back to top</button>
+    </div>
+    <header id="snftt-nav-bar" class="navbar navbar-expand-xl neutral nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-fluid visually-hidden-focusable overflow-hidden justify-content-start flex-grow-1">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to index filter</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="index.html"
+             class="navbar-brand"
+          ><span class="brand-text">pyserv</span><span class="brand-short-text">pyserv</span></a>
+        
+        
+        <div class="d-flex d-xl-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-xl offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-xl-0 ps-xl-4">
+    <hr class="d-xl-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-xl-auto">
+        <form id="nftt-search-form" action="search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control search-input" placeholder="Search" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title navbar-brand" id="nfttNavbarOffcanvasLabel"><span class="brand-short-text">pyserv</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-xl-0 px-xl-3">
+            <hr class="d-xl-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-lg-auto">
+              
+              
+              <li class="nav-item col-12 col-xl-auto">
+                <a class="nav-link py-2 py-xl-0 px-0 px-xl-2" href="https://github.com/sarnold/pyserv" target="_blank" rel="noopener">
+                  <div class="d-flex align-items-center">
+                    <div class="me-2">
+                      <i class="bi bi-git size-24"></i>
+                    </div>
+                    <div class="repo d-flex flex-column align-items-center" data-snftt-repo-url="https://github.com/sarnold/pyserv">
+                      pyserv
+                      <div class="d-flex justify-content-center" data-snftt-repo-metrics>
+                        <span class="pe-2 d-flex justify-content-center align-items-center">
+                          <i class="bi bi-tag size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-tag></span>
+                        </span>
+                        <span class="pe-2 d-flex justify-content-center align-items-center">
+                          <i class="bi bi-star size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-stars></span>
+                        </span>
+                        <span class="d-flex justify-content-center align-items-center">
+                          <i class="bi bi-diagram-2 size-14"></i>
+                          <span class="repo-metric" data-snftt-repo-forks></span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+                <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+                <hr class="d-xl-none text-white-50">
+              </li>
+              
+              
+  <li class="nav-item dropdown">
+    <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-version" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Select version">
+      <span id="snftt-version-text" class="d-xl-none">pyserv</span>
+      <span class="ms-2" data-snftt-version-active="latest">latest</span>
+    </a>
+    
+    <ul class="dropdown-menu dropdown-menu-end dropdown-limit-max-height" aria-labelledby="snftt-version-text" id="versions-dropdown-menu">
+      <li>
+        <h6 class="dropdown-header">Versions</h6>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+    <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+    <hr class="d-xl-none text-white-50">
+  </li>
+
+              
+  <!-- colorssets-dropdown.html -->
+  <li class="nav-item dropdown">
+    <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-color" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Change base color">
+      <i class="bi bi-palette"></i>
+      <span id="snftt-color-text" class="d-xl-none ms-2">Change base color</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-color-text">
+      <li>
+        <h6 class="dropdown-header">Change base color</h6>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center active" data-snftt-colorset="blue" href="#" aria-pressed="false">
+          <span class="blue">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Blue</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="indigo" href="#" aria-pressed="false">
+          <span class="indigo">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Indigo</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="purple" href="#" aria-pressed="false">
+          <span class="purple">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Purple</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="pink" href="#" aria-pressed="false">
+          <span class="pink">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Pink</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="red" href="#" aria-pressed="false">
+          <span class="red">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Red</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="orange" href="#" aria-pressed="false">
+          <span class="orange">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Orange</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="yellow" href="#" aria-pressed="false">
+          <span class="yellow">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Yellow</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="green" href="#" aria-pressed="false">
+          <span class="green">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Green</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="teal" href="#" aria-pressed="false">
+          <span class="teal">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Teal</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="dropdown-item d-flex align-items-center " data-snftt-colorset="default" href="#" aria-pressed="false">
+          <span class="cyan">
+            <i class="bi bi-circle-fill"></i>
+          </span>
+          <span class="ms-3">Cyan</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+      
+      <li><hr class="dropdown-divider" /></li>
+      <li>
+        <h6 class="dropdown-header">Header style</h6>
+      </li>
+      <li>
+        <a class="dropdown-item d-flex align-items-center active current" data-snftt-colorset-neutral="on" href="#" aria-pressed="false">
+          <i class="bi bi-noise-reduction"></i>
+          <span class="ms-3">Neutral</span>
+          <i class="bi bi-check ms-auto"></i>
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item col-12 col-xl-auto h-100" aria-hidden="true">
+    <div class="vr d-none d-xl-flex h-100 mx-xl-2 text-white-50"></div>
+    <hr class="d-lg-none text-white-50">
+  </li>
+
+              
+              <!-- lightdark-dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Change appearance">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-xl-none ms-2">Change appearance</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Change appearance</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span>
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="ms-3">Automatic</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+    </header>
+
+    <div class="container-fluid flex-grow-1">
+      <div class="nftt-gutter nftt-page">
+        <aside class="nftt-sidebar ">
+          <div class="nftt-sidebar-content">
+            
+            <div class="title d-none d-xl-none">
+              <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Index</span>
+            </div>
+            <div id="sidebar" tabindex="-1" class="offcanvas-xl offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+                <!-- sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title fw-bold" id="nfttSidebarOffcanvasLabel">
+    Index
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="index filter" aria-label="index filter">
+    </div>
+    <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pyserv - A Collection of Simple Servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TUI_reqs_tree.html">1.0 TUI Requirements {#TUI_006}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TUI_sw_design.html">1.0 TUI Design Elements {#SDD_001}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TUI_unit_tests.html">1.0 Automated Tests {#TST_001}</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">pyserv</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/pyserv.html">pyserv package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.ext.html">pyserv.ext module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.server.html">pyserv.server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.settings.html">pyserv.settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.tftpd.html">pyserv.tftpd module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.tui_helpers.html">pyserv.tui_helpers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyserv.wsgi.html">pyserv.wsgi module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">Changelog</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+            </div>
+            
+          </div>
+        </aside>
+        <article id="content" class="nftt-content" role="main">
+          <div><div class="d-flex flex-row justify-content-between">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Start</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Pyserv - A Collection of Simple Servers</li>
+    </ol>
+  </nav>
+  
+    <div class="fs085">
+        <a href="_sources/README.rst.txt"  rel="nofollow" aria-label="Show source of this document"><i class="bi bi-file-earmark-code"></i></a>
+    </div>
+  
+</div>
+            
+    <section id="pyserv-a-collection-of-simple-servers">
+<h1>Pyserv - A Collection of Simple Servers<a class="headerlink" href="#pyserv-a-collection-of-simple-servers" title="Link to this heading">¶</a></h1>
+<p><a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/ci.yml"><img alt="CI Status" src="https://github.com/sarnold/pyserv/actions/workflows/ci.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/wheels.yml"><img alt="Wheel Status" src="https://github.com/sarnold/pyserv/actions/workflows/wheels.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/release.yml"><img alt="Release Status" src="https://github.com/sarnold/pyserv/actions/workflows/release.yml/badge.svg?event=push" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/pylint.yml"><img alt="Pylint Status" src="https://github.com/sarnold/pyserv/actions/workflows/pylint.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/coverage.yml"><img alt="Coverage workflow" src="https://github.com/sarnold/pyserv/actions/workflows/coverage.yml/badge.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/pre-commit/pre-commit"><img alt="pre-commit" src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&amp;logoColor=white" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/"><img alt="Test coverage" src="https://raw.githubusercontent.com/sarnold/pyserv/badges/master/test-coverage.svg" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/actions/workflows/pylint.yml"><img alt="Pylint score" src="https://raw.githubusercontent.com/sarnold/pyserv/badges/master/pylint-score.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/sarnold/pyserv/releases"><img alt="GitHub tag" src="https://img.shields.io/github/v/tag/sarnold/pyserv?color=blue&amp;include_prereleases&amp;label=latest%20release" /></a> <a class="reference external" href="https://github.com/sarnold/pyserv/blob/master/LICENSES/MIT.txt"><img alt="License (static)" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a> <a class="reference external" href="https://reuse.software/spec-3.3/"><img alt="REUSE (static)" src="https://img.shields.io/badge/REUSE-compliant-blue.svg" /></a> <a class="reference external" href="https://www.python.org/downloads/"><img alt="Python" src="https://img.shields.io/badge/python-3.9+-blue.svg" /></a></p>
+<p>This is a growing collection of threaded Python server bits, including
+custom <a class="reference external" href="https://docs.python.org/3/library/http.server.html">HTTP server</a> and <a class="reference external" href="https://docs.python.org/3/library/wsgiref.html">WSGI</a> classes, along with corresponding console
+entry points and some daemon scripts. The latest addition includes an async
+version of the original tftpy-based daemon script.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Okay, a <a class="reference external" href="https://tftpy.sourceforge.net/sphinx/index.html">tftpy</a> server class is not technically threaded, but it
+<em>does</em> set <code class="docutils literal notranslate"><span class="pre">threading.event</span></code> and handles multiple client sessions
+via a <code class="docutils literal notranslate"><span class="pre">select</span></code> loop.</p>
+</div>
+<p>These tools exist mainly to handle simple requests for local files in a
+small-ish engineering/development environment. Choose daemon or console
+script, depending on workflow needs.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This is <strong>not</strong> intended for Internet/intranet use and
+has absolutely <strong>no</strong> security. This is intended mainly for development
+support on a local subnet, eg, a local WIFI network <em>you</em> control. You
+have been warned.</p>
+</div>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
+<p><strong>The officially supported minimum Python version is now 3.9.</strong></p>
+<p>The original reason this version of the “project” exists was serving <a class="reference external" href="https://en.wikipedia.org/wiki/Over-the-air_programming">OTA</a>
+firmware images to a small device over wifi, eg, an Android device or
+similar that requires an HTTP URL for firmware img/zip files. If that
+is what you need, then make sure the FW update files you want are in
+a directory in your virtual environment and run the <code class="docutils literal notranslate"><span class="pre">serv</span></code> command
+from that directory.  The simple way to do that is:</p>
+<ul class="simple">
+<li><p>follow the steps below to create a virtual env (either venv or tox)</p></li>
+<li><p>connect your dev host to the same wifi network as the device</p></li>
+<li><p>copy your FW files into the source directory, then start the server</p></li>
+</ul>
+<p>In another terminal, run your update command and provide a URL like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">dev_host_wifi_IP</span><span class="o">&gt;</span><span class="p">:</span><span class="n">PORT</span><span class="o">/</span><span class="n">fw_update</span><span class="o">.</span><span class="n">img</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">PORT</span></code> is the port used below and <code class="docutils literal notranslate"><span class="pre">fw_update.img</span></code> is the name
+of your OTA update file.</p>
+</section>
+<section id="daemons-and-console-entry-points">
+<h2>Daemons and Console Entry Points<a class="headerlink" href="#daemons-and-console-entry-points" title="Link to this heading">¶</a></h2>
+<p>Pyserv contains modules with some backported features and a fix for broken
+OTA clients. It provides multiple console commands for different protocols,
+and three daemon wrappers for http and tftp.</p>
+<ul class="simple">
+<li><p>console commands with simple arguments to run, well, from the console, or
+for running via <a class="reference external" href="https://devcenter.heroku.com/articles/procfile">Procfile</a> with something like <a class="reference external" href="https://honcho.readthedocs.io/en/latest/index.html">Honcho</a></p></li>
+<li><p>daemon scripts to run in the background for workflows that need a simple
+HTTP server or TFTP server</p></li>
+</ul>
+<section id="console-command-options">
+<h3>Console command options<a class="headerlink" href="#console-command-options" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>HTTP - the <code class="docutils literal notranslate"><span class="pre">serv</span></code> console command</p></li>
+<li><p>WSGI - the <code class="docutils literal notranslate"><span class="pre">wsgi</span></code> console command</p></li>
+<li><p>TFTP - the <code class="docutils literal notranslate"><span class="pre">tftpd</span></code> console command</p></li>
+</ul>
+<p>The above standard Python console entry points all have these minimal/default
+“features” with no arguments:</p>
+<ul class="simple">
+<li><p>the document/server root is always the current directory</p>
+<ul>
+<li><p>HTTP: default port is <code class="docutils literal notranslate"><span class="pre">8080</span></code> and the server listens on <em>all</em> interfaces</p></li>
+<li><p>WSGI: default port is <code class="docutils literal notranslate"><span class="pre">8000</span></code>, default app is builtin demo app, and the
+server listens on localhost</p></li>
+<li><p>TFTP: default port is <code class="docutils literal notranslate"><span class="pre">9069</span></code> and the server listens on localhost</p></li>
+</ul>
+</li>
+<li><p>the <em>only</em> allowed args are either port, or port <em>and</em> interface (or
+app_name and port for WSGI)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>All</em> of the above are configurable via environment variables
+defined in the <code class="docutils literal notranslate"><span class="pre">settings</span></code> module (with the above defaults).</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">httpdaemon</span></code>, <code class="docutils literal notranslate"><span class="pre">atftpdaemon</span></code>, and <code class="docutils literal notranslate"><span class="pre">tftpdaemon</span></code> commands are
+stand-alone <a class="reference external" href="https://github.com/sarnold/python-daemonizer">Python daemon</a> scripts with the same core server code, as
+well as a default user configuration adjustable via environment
+variables, and the following “extra” features:</p>
+<ul class="simple">
+<li><p>allowed command-line args are <code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">|</span> <span class="pre">stop</span> <span class="pre">|</span> <span class="pre">restart</span> <span class="pre">|</span> <span class="pre">status</span></code></p></li>
+<li><p>default port is <code class="docutils literal notranslate"><span class="pre">8080</span></code> or <code class="docutils literal notranslate"><span class="pre">9069</span></code> and listen interface is <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code></p></li>
+<li><p>default XDG user paths are set for pid and log files</p></li>
+<li><p>environment values are checked first; if not set, fallback to defaults</p></li>
+<li><p>logging using daemon package logger config</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The XDG runtime path may not exist in a console environment;
+if so, the fallback is XDG user cache path.</p>
+</div>
+<p>Sample environment display with tox overrides, ie, inside a <a class="reference external" href="https://github.com/tox-dev/tox">Tox</a> venv:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="n">version</span><span class="p">:</span> <span class="mf">3.13.3</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">Jun</span>  <span class="mi">2</span> <span class="mi">2025</span><span class="p">,</span> <span class="mi">19</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">29</span><span class="p">)</span> <span class="p">[</span><span class="n">GCC</span> <span class="mf">15.1.0</span><span class="p">]</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">pyserv</span> <span class="mf">1.8.4</span>
+
+<span class="n">Pyserv</span> <span class="n">default</span> <span class="n">settings</span> <span class="k">for</span> <span class="n">server</span> <span class="ow">and</span> <span class="n">daemon</span> <span class="n">modes</span><span class="o">.</span>
+
+<span class="n">Default</span> <span class="n">user</span> <span class="nb">vars</span><span class="p">:</span>
+  <span class="n">log_dir</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/.</span><span class="n">local</span><span class="o">/</span><span class="n">state</span><span class="o">/</span><span class="n">pyserv</span><span class="o">/</span><span class="n">log</span>
+  <span class="n">pid_dir</span><span class="p">:</span> <span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="mi">1001</span><span class="o">/</span><span class="n">pyserv</span>
+  <span class="n">work_dir</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">servers</span>
+
+<span class="n">Current</span> <span class="n">environment</span> <span class="n">values</span><span class="p">:</span>
+  <span class="n">DEBUG</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="n">PORT</span><span class="p">:</span> <span class="mi">8000</span>
+  <span class="n">IDEV</span><span class="p">:</span> <span class="n">lo</span>
+  <span class="n">IFACE</span><span class="p">:</span> <span class="mf">127.0.0.1</span>
+  <span class="n">LPNAME</span><span class="p">:</span> <span class="n">httpd</span>
+  <span class="n">LOG</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">servers</span><span class="o">/.</span><span class="n">tox</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">httpd</span><span class="o">.</span><span class="n">log</span>
+  <span class="n">PID</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">servers</span><span class="o">/.</span><span class="n">tox</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">httpd</span><span class="o">.</span><span class="n">pid</span>
+  <span class="n">DOCROOT</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">servers</span>
+  <span class="n">SOCK_TIMEOUT</span><span class="p">:</span> <span class="mi">5</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>Use, ie, export any of the variables under “Current environment values”
+to set your own custom environment settings.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">os.getenv</span></code> defaults are only applied if the corresponding
+environment variable <em>is not set</em>. Previously it was possible
+to set the above environment vars <em>to an empty value</em> but this
+is no longer the case. From this release onward, empty values
+are ignored and the default value is applied instead.</p>
+</div>
+</section>
+<section id="daemon-usage">
+<h3>Daemon usage<a class="headerlink" href="#daemon-usage" title="Link to this heading">¶</a></h3>
+<p>Once installed in a virtual environment, check the <code class="docutils literal notranslate"><span class="pre">help</span></code> output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ httpdaemon -h
+usage: httpdaemon [-h] [--version] {start,stop,restart,status}
+
+Threaded HTTP server daemon
+
+positional arguments:
+  {start,stop,restart,status}
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program&#39;s version number and exit
+</pre></div>
+</div>
+<p><strong>One small wrinkle</strong></p>
+<ul class="simple">
+<li><p>the daemon scripts are “traditional” forking daemons and thus <em>will not</em>
+work on Windows, however, the console command variants should Just Work
+(if not, please file an issue).</p></li>
+</ul>
+<p><strong>New</strong></p>
+<ul class="simple">
+<li><p>experimental tftp server daemon based on tftpy</p></li>
+<li><p>even more experimental async tftp server daemon based on py3tftp</p></li>
+<li><p>run <code class="docutils literal notranslate"><span class="pre">tox</span> <span class="pre">-e</span> <span class="pre">tftp</span></code> to create a virtual env and view defaults</p></li>
+<li><p>run <code class="docutils literal notranslate"><span class="pre">tox</span> <span class="pre">-e</span> <span class="pre">tftpd</span></code> to create a virtual env with capabilities for low
+ports, eg, port <code class="docutils literal notranslate"><span class="pre">69</span></code></p></li>
+<li><p>ENV value SOCK_TIMEOUT is specific to tftp client/server connections</p></li>
+<li><p>script args and most ENV values are otherwise the same as <code class="docutils literal notranslate"><span class="pre">httpdaemon</span></code></p></li>
+</ul>
+</section>
+<section id="async-tftp-usage">
+<h3>Async tftp usage<a class="headerlink" href="#async-tftp-usage" title="Link to this heading">¶</a></h3>
+<p>Run a simple test of the async daemon with tox:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ LPNAME=atftpd tox -e tftpd
+tftpd: install_deps&gt; python -I -m pip install logging_tree &#39;pip&gt;=23.1&#39; &#39;setuptools_scm[toml]&#39; .
+tftpd: commands_pre[0]&gt; bash -c &#39;dd if=/dev/zero of=$DOCROOT/$TST_FILE bs=1M count=40&#39;
+40+0 records in
+40+0 records out
+41943040 bytes (42 MB, 40 MiB) copied, 0.0127168 s, 3.3 GB/s
+tftpd: commands_pre[1]&gt; bash -c &#39;sudo setcap cap_net_bind_service+ep /home/user/src/pyserv/.tox/tftpd/bin/python&#39;
+tftpd: commands_pre[2]&gt; bash -c &#39;sudo setcap cap_net_bind_service+ep /home/user/src/pyserv/.tox/tftpd/bin/python3&#39;
+tftpd: commands[0]&gt; python -c &#39;from pyserv.settings import show_uservars; show_uservars()&#39;
+Python version: 3.12.7 (main, Oct 19 2024, 22:38:25) [GCC 14.2.1 20240921]
+-------------------------------------------------------------------------------
+pyserv 1.6.2.dev8+g684c689
+
+Pyserv default settings for server and daemon modes.
+
+Default user vars:
+  log_dir: /home/user/.local/state/pyserv/log
+  pid_dir: /run/user/1000/pyserv
+  work_dir: /home/user/src/pyserv
+
+Current environment values:
+  DEBUG: 0
+  PORT: 69
+  IFACE: 0.0.0.0
+  LPNAME: atftpd
+  LOG: /home/user/src/pyserv/.tox/tftpd/log/atftpd.log
+  PID: /home/user/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+  DOCROOT: tests/data
+  SOCK_TIMEOUT: 5
+-------------------------------------------------------------------------------
+tftpd: commands[1]&gt; atftpdaemon -h
+usage: atftpdaemon [-h] [--version] [--host HOST] [-p PORT]
+                   [--ack-timeout TIMEOUT] [--conn-timeout CONN_TIMEOUT] [-v]
+                   [-q]
+                   {start,stop,restart,status}
+
+Async TFTP server daemon
+
+positional arguments:
+  {start,stop,restart,status}
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program&#39;s version number and exit
+  --host HOST           IP of the interface the server will listen on.
+                        Default: 0.0.0.0 (default: )
+  -p PORT, --port PORT  Port the server will listen on. Default: 9069. TFTP
+                        standard-compliant port: 69 - requires additional
+                        privileges. (default: 9069)
+  --ack-timeout TIMEOUT
+                        Timeout for each ACK of the lock-step. Default: 0.5.
+                        (default: 0.5)
+  --conn-timeout CONN_TIMEOUT
+                        Timeout before the server gives up on a transfer and
+                        closes the connection. Default: 3. (default: 5.0)
+  -v, --verbose         Enable debug-level logging. (default: False)
+  -q, --quiet           Inhibit extra console output. (default: False)
+tftpd: commands[2]&gt; atftpdaemon start
+LOG: /home/user/src/pyserv/.tox/tftpd/log/atftpd.log
+PID: /home/user/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+DOCROOT: tests/data
+tftpd: commands[3]&gt; bash -c &#39;sleep 2&#39;
+tftpd: commands[4]&gt; curl --tftp-blksize 8192 --output tests/testbin.swu tftp://0.0.0.0:69/testbin.swu
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 40.0M  100 40.0M    0     0   275M      0 --:--:-- --:--:-- --:--:--  275M
+100 40.0M  100 40.0M    0     0   275M      0 --:--:-- --:--:-- --:--:--  275M
+tftpd: commands[5]&gt; bash -c &#39;sleep 1&#39;
+tftpd: commands[6]&gt; tail -n 5 /home/user/src/pyserv/.tox/tftpd/log/atftpd.log
+2024-12-24 01:48:12 UTC INFO atftpd.daemonize(149) Started
+2024-12-24 01:48:12 UTC INFO atftpd.connection_made(393) Listening...
+2024-12-24 01:48:14 UTC INFO atftpd.__init__(273) Initiating RRQProtocol with (&#39;127.0.0.1&#39;, 56554)
+2024-12-24 01:48:14 UTC INFO atftpd.connection_lost(123) Connection to 127.0.0.1:56554 terminated
+tftpd: commands[7]&gt; cmp tests/data/testbin.swu tests/testbin.swu
+tftpd: commands[8]&gt; ls -l tests/data/testbin.swu tests/testbin.swu
+-rw-r--r-- 1 user user 41943040 Dec 23 17:48 tests/data/testbin.swu
+-rw-r--r-- 1 user user 41943040 Dec 23 17:48 tests/testbin.swu
+tftpd: commands[9]&gt; bash -c &#39;rm -f tests/data/testbin.swu tests/testbin.swu&#39;
+tftpd: commands_post[0]&gt; atftpdaemon stop
+LOG: /home/user/src/pyserv/.tox/tftpd/log/atftpd.log
+PID: /home/user/src/pyserv/.tox/tftpd/tmp/atftpd.pid
+DOCROOT: tests/data
+  tftpd: OK (39.19=setup[35.53]+cmd[0.02,0.01,0.01,0.07,0.09,0.10,2.00,0.15,1.00,0.01,0.02,0.00,0.01,0.18] seconds)
+  congratulations :) (39.24 seconds)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="experimental-server-tui">
+<h2>Experimental server TUI<a class="headerlink" href="#experimental-server-tui" title="Link to this heading">¶</a></h2>
+<p>The new <code class="docutils literal notranslate"><span class="pre">daemontui</span></code> script uses the <a class="reference external" href="https://github.com/sarnold/picotui">picotui</a> <a class="reference external" href="https://en.wikipedia.org/wiki/Text-based_user_interface">Text User Interface</a> (TUI)
+widget library. Both keyboard and mouse navigation are supported (the latter
+only if the console itself supports mouse input). The TUI script provides a
+convenient way to run the daemon scripts with the following features:</p>
+<ul class="simple">
+<li><p>settings console with default (pyserv) options for each server type</p>
+<ul>
+<li><p>select the desired daemon for defaults, then edit values as needed</p></li>
+</ul>
+</li>
+<li><p>operations console with control buttons and log display</p>
+<ul>
+<li><p>navigation buttons will stop the running server</p></li>
+<li><p>eg, select the Back button to return to settings</p></li>
+</ul>
+</li>
+</ul>
+<p>The current (static) UI displays are shown in more detail below.</p>
+<section id="settings-console">
+<h3>Settings console<a class="headerlink" href="#settings-console" title="Link to this heading">¶</a></h3>
+<p><img alt="settings" src="_images/server_settings.png" /></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The default network settings use non-privileged ports;
+selecting a lower-numbered port requires elevated privileges
+via something like <code class="docutils literal notranslate"><span class="pre">sudo</span></code> or <code class="docutils literal notranslate"><span class="pre">setcap</span></code>.</p>
+</div>
+</section>
+<section id="operations-console">
+<h3>Operations console<a class="headerlink" href="#operations-console" title="Link to this heading">¶</a></h3>
+<p><img alt="console" src="_images/server_console.png" /></p>
+<p><strong>See it in action:</strong></p>
+<p><img alt="action" src="_images/daemontui_animated.gif" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">daemontui.py</span></code> script is not currently installed with the
+package. To run the script, create a Tox dev environment as
+shown below, then activate the environment and use the command
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/daemontui.py</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="install-with-pip">
+<h2>Install with pip<a class="headerlink" href="#install-with-pip" title="Link to this heading">¶</a></h2>
+<p>This refactored fork of pyserv is <em>not</em> published on PyPI, thus use one of
+the following commands to install the latest pyserv in a Python virtual
+environment on any platform.</p>
+<p>From source:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 -m venv env
+$ source env/bin/activate
+$ pip install git+https://github.com/sarnold/pyserv.git
+$ serv 8000      # optionally add interface, eg, 10.0.0.2
+</pre></div>
+</div>
+<p>The output should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Starting</span> <span class="n">HTTP</span> <span class="n">SERVER</span> <span class="n">at</span> <span class="n">PORT</span> <span class="p">:</span><span class="mi">8000</span>
+</pre></div>
+</div>
+<p>The alternative to python venv is the <a class="reference external" href="https://github.com/tox-dev/tox">Tox</a> test driver.  If you have it
+installed already, clone this repository and try the following commands
+from the pyserv source directory.</p>
+<p>To install in dev mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e dev
+</pre></div>
+</div>
+<p>To run tests using default system Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e py
+</pre></div>
+</div>
+<p>To run pylint:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e lint
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After installing in dev mode, use the environment created by
+Tox just like any other Python virtual environment.  The dev
+install mode of Pip allows you to edit the code and run it
+again while inside the virtual environment. By default Tox
+environments are created under <code class="docutils literal notranslate"><span class="pre">.tox/</span></code> and named after the
+env argument (eg, py).</p>
+</div>
+<p>To install the latest release, eg with your own <code class="docutils literal notranslate"><span class="pre">tox.ini</span></code> file in
+another project, use something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install https://github.com/sarnold/pyserv/releases/download/1.2.4/pyserv-1.2.4-py3-none-any.whl
+</pre></div>
+</div>
+<p>If you have a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file, you can add something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pyserv</span> <span class="o">@</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sarnold</span><span class="o">/</span><span class="n">pyserv</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="mf">1.2.4</span><span class="o">/</span><span class="n">pyserv</span><span class="o">-</span><span class="mf">1.2.4</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>Note the newest pip versions may no longer work using <code class="docutils literal notranslate"><span class="pre">-f</span></code> with just
+the GH “releases” path to get the latest release from Github.</p>
+<section id="tftp-client-example">
+<h3>TFTP client example<a class="headerlink" href="#tftp-client-example" title="Link to this heading">¶</a></h3>
+<p>In the repo, use the tox env and start the server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e py
+$ source .tox/py/bin/activate
+(py) $ tftpd
+INFO:tftpy.TftpServer:Server requested on ip 127.0.0.1, port 9069
+INFO:tftpy.TftpServer:Starting receive loop...
+</pre></div>
+</div>
+<p>Open a new terminal and try out downloading a file with <code class="docutils literal notranslate"><span class="pre">curl</span></code> using
+default options; note this will send the file directly to stdout:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl tftp://127.0.0.1:9069/requirements.txt
+# daemon requirements, useful for tox/pip
+daemonizer @ git+https://github.com/sarnold/python-daemonizer.git@0.3.5#5f6bc3c80a90344b2c8e4cc24ed0b8c098a7af50; platform_system!=&quot;Windows&quot;
+appdirs
+tftpy
+</pre></div>
+</div>
+<p>On the server side, ie, inside your virtual environment, you should see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">Setting</span> <span class="n">tidport</span> <span class="n">to</span> <span class="mi">51009</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">Dropping</span> <span class="n">unsupported</span> <span class="n">option</span> <span class="s1">&#39;timeout&#39;</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">requested</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">server</span> <span class="n">root</span> <span class="o">-</span> <span class="n">good</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">Opening</span> <span class="n">file</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">pyserv</span><span class="o">/</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span> <span class="k">for</span> <span class="n">reading</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="n">Currently</span> <span class="n">handling</span> <span class="n">these</span> <span class="n">sessions</span><span class="p">:</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span>    <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">51009</span> <span class="o">&lt;</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="o">.</span><span class="n">TftpStateExpectACK</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0xffff87d5d1d0</span><span class="o">&gt;</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">Reached</span> <span class="n">EOF</span> <span class="n">on</span> <span class="n">file</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpStates</span><span class="p">:</span><span class="n">Received</span> <span class="n">ACK</span> <span class="n">to</span> <span class="n">final</span> <span class="n">DAT</span><span class="p">,</span> <span class="n">we</span><span class="s1">&#39;re done.</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="n">Successful</span> <span class="n">transfer</span><span class="o">.</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="n">Session</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">51009</span> <span class="n">complete</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="n">Transferred</span> <span class="mi">257</span> <span class="nb">bytes</span> <span class="ow">in</span> <span class="mf">0.00</span> <span class="n">seconds</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="n">Average</span> <span class="n">rate</span><span class="p">:</span> <span class="mf">1243.74</span> <span class="n">kbps</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="mf">0.00</span> <span class="nb">bytes</span> <span class="ow">in</span> <span class="n">resent</span> <span class="n">data</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">tftpy</span><span class="o">.</span><span class="n">TftpServer</span><span class="p">:</span><span class="mi">0</span> <span class="n">duplicate</span> <span class="n">packets</span>
+</pre></div>
+</div>
+<p>If no port is provided the server attempts to run on port 9069.</p>
+<p>If the given port (or the default port 9069) is already in use, you will
+need to pass a different port number, eg, 9169.</p>
+<p>For larger/binary files, use <code class="docutils literal notranslate"><span class="pre">-O</span></code> to save the file in the current directory,
+and for better performance with large files, use curl’s <code class="docutils literal notranslate"><span class="pre">--tftp-blksize</span></code> arg
+and set a larger size, eg, 8192.</p>
+</section>
+<section id="get-request-example">
+<h3>GET request example<a class="headerlink" href="#get-request-example" title="Link to this heading">¶</a></h3>
+<p>In the repo, use the tox env and start the server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e py
+$ source .tox/py/bin/activate
+(py) $ serv
+INFO:root:Starting HTTP SERVER at :8080
+</pre></div>
+</div>
+<p>Open a new terminal and try out sending a GET request:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python
+&gt;&gt;&gt; import requests
+&gt;&gt;&gt; URL = &#39;http://0.0.0.0:8080&#39;
+&gt;&gt;&gt; r = requests.get(URL)
+&gt;&gt;&gt; print(r.text)
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+</pre></div>
+</div>
+<p>On the server side, ie, inside your virtual environment, you should see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Starting</span> <span class="n">HTTP</span> <span class="n">SERVER</span> <span class="n">at</span> <span class="p">:</span><span class="mi">8080</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Path</span> <span class="ow">in</span><span class="p">:</span> <span class="o">/</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Path</span> <span class="n">out</span><span class="p">:</span> <span class="o">/</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Headers</span><span class="p">:</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span>  <span class="n">Host</span><span class="p">:</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">8080</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span>  <span class="n">User</span><span class="o">-</span><span class="n">Agent</span><span class="p">:</span> <span class="n">python</span><span class="o">-</span><span class="n">requests</span><span class="o">/</span><span class="mf">2.25.1</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span>  <span class="n">Accept</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="n">gzip</span><span class="p">,</span> <span class="n">deflate</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span>  <span class="n">Accept</span><span class="p">:</span> <span class="o">*/*</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span>  <span class="n">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="mf">127.0.0.1</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">13</span><span class="o">/</span><span class="n">Jul</span><span class="o">/</span><span class="mi">2022</span> <span class="mi">20</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">22</span><span class="p">]</span> <span class="s2">&quot;GET / HTTP/1.1&quot;</span> <span class="mi">200</span> <span class="o">-</span>
+</pre></div>
+</div>
+<p>If no port is provided the server attempts to run on port 8080.</p>
+<p>If the given port (or the default port 8080) is already in use, you will
+need to pass a different port number, eg, 8088.</p>
+<p>Motivation:</p>
+<p>Small device firmware with non-compliant HTTP client implementations.</p>
+<p>Original project from gist: <a class="reference external" href="https://pypi.org/project/pyserv/">https://pypi.org/project/pyserv/</a></p>
+<p>Original gist: <a class="reference external" href="https://gist.github.com/mdonkers/63e115cc0c79b4f6b8b3a6b797e485c7">https://gist.github.com/mdonkers/63e115cc0c79b4f6b8b3a6b797e485c7</a></p>
+</section>
+</section>
+<section id="pre-commit">
+<h2>Pre-commit<a class="headerlink" href="#pre-commit" title="Link to this heading">¶</a></h2>
+<p>This repo is <a class="reference external" href="https://pre-commit.com/index.html">pre-commit</a> enabled for python/rst source and file-type
+linting. The checks run automatically on commit and will fail the commit
+(if not clean) and perform simple file corrections.  For example, if the
+mypy check fails on commit, you must first fix any fatal errors for the
+commit to succeed. That said, pre-commit does nothing if you don’t install
+it first (both the program itself and the hooks in your local repository
+copy).</p>
+<p>You will need to install pre-commit before contributing any changes;
+installing it using your system’s package manager is recommended,
+otherwise install with pip into your usual virtual environment using
+something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo emerge pre-commit  --or--
+$ pip install pre-commit
+</pre></div>
+</div>
+<p>then install it into the repo you just cloned:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/sarnold/pyserv
+$ cd pyserv/
+$ pre-commit install
+</pre></div>
+</div>
+<p>It’s usually a good idea to update the hooks to the latest version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pre-commit autoupdate
+</pre></div>
+</div>
+<p>Most (but not all) of the pre-commit checks will make corrections for you,
+however, some will only report errors, so these you will need to correct
+manually.</p>
+<p>Automatic-fix checks include ffffff, isort, autoflake, and miscellaneous
+file fixers. If any of these fail, you can review the changes with
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> and just add them to your commit and continue.</p>
+<p>If any of the mypy, bandit, or rst source checks fail, you will get a report,
+and you must fix any errors before you can continue adding/committing.</p>
+<p>To see a “replay” of any <code class="docutils literal notranslate"><span class="pre">rst</span></code> check errors, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pre-commit run rst-backticks -a
+$ pre-commit run rst-directive-colons -a
+$ pre-commit run rst-inline-touching-normal -a
+</pre></div>
+</div>
+<p>To run all <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> checks manually, try:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pre-commit run -a
+</pre></div>
+</div>
+</section>
+<section id="sbom-and-license-info">
+<h2>SBOM and license info<a class="headerlink" href="#sbom-and-license-info" title="Link to this heading">¶</a></h2>
+<p>This project is now compliant with the REUSE Specification Version 3.3, so the
+corresponding license information for all files can be found in the <code class="docutils literal notranslate"><span class="pre">REUSE.toml</span></code>
+configuration file with license text(s) in the <code class="docutils literal notranslate"><span class="pre">LICENSES/</span></code> folder.</p>
+<p>Related metadata can be (re)generated with the following tools and command
+examples.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fsfe/reuse-tool">reuse-tool</a> - <a class="reference external" href="https://reuse.software/spec-3.3/">REUSE</a> compliance linting and sdist (source files) SBOM generation</p></li>
+<li><p><a class="reference external" href="https://github.com/anthonyharrison/sbom4python">sbom4python</a> - generate SBOM with full dependency chain</p></li>
+</ul>
+<section id="commands">
+<h3>Commands<a class="headerlink" href="#commands" title="Link to this heading">¶</a></h3>
+<p>Use tox to create the environment and run the lint command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e reuse                      # --or--
+$ tox -e reuse -- spdx &gt; sbom.txt   # generate sdist files sbom
+</pre></div>
+</div>
+<p>Note you can pass any of the other reuse commands after the <code class="docutils literal notranslate"><span class="pre">--</span></code> above.</p>
+<p>Use the above environment to generate the full SBOM in text format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source .tox/reuse/bin/activate
+$ sbom4python --system --use-pip -o &lt;file_name&gt;.txt
+</pre></div>
+</div>
+<p>Be patient; the last command above may take several minutes. See the
+doc links above for more detailed information on the tools and
+specifications.</p>
+</section>
+</section>
+</section>
+
+</div>
+        </article>
+        <aside class="nftt-toc my-3">
+          
+          <div class="my-sm-1 my-lg-0 ps-xl-3 text-muted">
+            <button class="btn btn-link p-lg-0 mb-2 mb-lg-0 text-decoration-none nftt-toc-toggle d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+            >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+            <div class="title d-none d-lg-block">
+              <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+            </div>
+            <div class="collapse nftt-toc-collapse" id="tocContents">
+              <nav id="TableOfContents">
+                <ul>
+<li><a class="reference internal" href="#">Pyserv - A Collection of Simple Servers</a><ul>
+<li><a class="reference internal" href="#quick-start">Quick Start</a></li>
+<li><a class="reference internal" href="#daemons-and-console-entry-points">Daemons and Console Entry Points</a><ul>
+<li><a class="reference internal" href="#console-command-options">Console command options</a></li>
+<li><a class="reference internal" href="#daemon-usage">Daemon usage</a></li>
+<li><a class="reference internal" href="#async-tftp-usage">Async tftp usage</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#experimental-server-tui">Experimental server TUI</a><ul>
+<li><a class="reference internal" href="#settings-console">Settings console</a></li>
+<li><a class="reference internal" href="#operations-console">Operations console</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#install-with-pip">Install with pip</a><ul>
+<li><a class="reference internal" href="#tftp-client-example">TFTP client example</a></li>
+<li><a class="reference internal" href="#get-request-example">GET request example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pre-commit">Pre-commit</a></li>
+<li><a class="reference internal" href="#sbom-and-license-info">SBOM and license info</a><ul>
+<li><a class="reference internal" href="#commands">Commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </nav>
+            </div>
+          </div>
+          
+        </aside>
+      </div>
+    </div>
+
+    <footer class="nftt-footer">
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="d-flex page-item">
+            <a href="index.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: pyserv: A collection of server bits for HTTP, WSGI, and TFTP">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-none d-sm-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">pyserv: A collection of server bits for HTTP, WSGI, and TFTP</span>
+              </div>
+            </a>
+          </li>
+        <li class="d-flex page-item ms-auto">
+            <a href="TUI_reqs_tree.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: 1.0 TUI Requirements {#TUI_006}">
+              <div class="d-flex flex-column">
+                <span class="text-small text-end text-start text-muted">Next</span>
+                <span class="underline">1.0 TUI Requirements {#TUI_006}</span>
+              </div>
+              <span class="next-page"><i class="bi bi-caret-right"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="pyserv">
+          <span class="fs-6 fw-bold">pyserv</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2022 - 2026 Stephen Arnold</li>
+          </ul>
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.4.7</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.9.1</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+
+    <div class="modal modal-xl fade" id="nftt-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-xxl-down modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nftt-modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="nftt-modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <script src="_static/documentation_options.js?v=60b3a732"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/colorsets.js?v=58f89e02"></script>
+    <script src="_static/docs-versions.js?v=04636b99"></script>
+    <script src="_static/sphinx-nefertiti.min.js?v=732b5b51"></script>
+    <script src="_static/bootstrap.bundle.min.js?v=e96d90d1"></script>
+  </body>
+</html>
