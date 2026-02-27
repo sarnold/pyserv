@@ -35,7 +35,7 @@ jobs:
           ls -l
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: rpms
           path: |
@@ -100,7 +100,7 @@ jobs:
       run: chown root.root .
 
     # download all artifacts to rpms dir
-    - uses: actions/download-artifact@v7
+    - uses: actions/download-artifact@v8
       with:
         name: rpms
         path: rpms
@@ -153,7 +153,7 @@ jobs:
         find . -maxdepth 3 -name \*.json
 
     - name: Upload rpm sbom files
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: "pyserv-${{ needs.get_version.outputs.version }}.${{ matrix.name }}-rpm-sbom"
         path: |
