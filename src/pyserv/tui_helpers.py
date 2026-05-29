@@ -2,7 +2,6 @@
 Pyserv TUI helper functions for picotui or similar.
 """
 
-import codecs
 from pathlib import Path
 from typing import IO, Dict, List, Optional
 
@@ -29,11 +28,14 @@ TFTPD_ENV = {
 
 
 class TLogWatcher(LogWatcher):
-    """Override ``open()`` to decode log lines"""
+    """
+    Overriding ``open()`` for decoding may lead to issues in newer Python
+    so open in binary mode instead.
+    """
 
     @classmethod
     def open(cls, file: str) -> IO:
-        return codecs.open(file, 'r', encoding="utf-8", errors='ignore')
+        return open(file, 'rb')
 
 
 def dummy_callback(filename: str, lines: List[Optional[str]]):  # pylint: disable=W0613
@@ -87,7 +89,12 @@ def update_log_lines(
         return lines
     log_path = Path(fname).parent.resolve()
     lw = TLogWatcher(str(log_path), dummy_callback)
-    for line in lw.tail(str(fname), num_lines):
+    decoded_lines = [
+        line.decode('utf-8')
+        for line in lw.tail(str(fname), num_lines)
+        if isinstance(line, bytes)
+    ]
+    for line in decoded_lines:
         if line:
             if shorten > 0 and isinstance(line, str):
                 lines.append(line.split(' ', maxsplit=shorten)[shorten])
